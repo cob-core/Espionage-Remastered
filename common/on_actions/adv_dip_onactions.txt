@@ -1,0 +1,72 @@
+﻿on_yearly_pulse_country = {
+	on_actions = {
+		adv_separate_actions
+	}
+}
+
+adv_separate_actions = {
+	events = {
+		adv_dip_separate_events.1
+	}
+}
+
+
+
+# Root = Country
+# scope:target = Uprising country
+on_secession_start = {
+	effect = {
+		if = {
+			limit = {
+				any_country = {
+					has_diplomatic_pact = {
+						who = root
+						type = support_nationalists
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					has_diplomatic_pact = {
+						who = root
+						type = support_nationalists
+					}
+				}
+				change_relations = {
+					country = scope:target
+					value = 200
+				}
+				set_owes_obligation_to = {
+					country = scope:target
+					setting = no
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					any_scope_culture ={
+						is_primary_culture_of = prev
+						is_primary_culture_of = scope:target
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					any_scope_culture ={
+						is_primary_culture_of = prev
+						is_primary_culture_of = scope:target
+					}
+				}
+				change_relations = {
+					country = scope:target
+					value = 200
+				}
+				set_owes_obligation_to = {
+					country = scope:target
+					setting = no
+				}
+			}
+		}
+	}
+}

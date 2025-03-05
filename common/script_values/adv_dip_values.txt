@@ -1,0 +1,45 @@
+﻿
+# 0.015% of GDP, rounded to nearest 10
+spy_cost_multiplier_very_small = {
+	value = scope:spy_target_country.gdp
+	divide = 10000
+	multiply = 0.075
+	round = yes
+	multiply = 10
+}
+
+# 0.025% of GDP, rounded to nearest 100
+spy_cost_multiplier_small = {
+	value = scope:spy_target_country.gdp
+	divide = 100000
+	multiply = 0.15
+	round = yes
+	multiply = 100
+}
+
+# 0.05% of GDP, rounded to nearest 100
+spy_cost_multiplier_medium = {
+	value = scope:spy_target_country.gdp
+	divide = 100000
+	multiply = 0.25
+	round = yes
+	multiply = 100
+}
+
+# 0.1% of GDP, rounded to nearest 1000
+spy_cost_multiplier_large = {
+	value = scope:spy_target_country.gdp
+	divide = 1000000
+	multiply = 0.5
+	round = yes
+	multiply = 1000
+}
+
+# 0.5% of GDP, rounded to nearest 1000
+spy_cost_multiplier_very_large = {
+	value = scope:spy_target_country.gdp
+	divide = 1000000
+	multiply = 2.5
+	round = yes
+	multiply = 1000
+}

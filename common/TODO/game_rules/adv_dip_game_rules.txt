@@ -1,0 +1,9 @@
+﻿rule_join_nationalism_revolts = {
+	default = dont_join_nationalism
+
+	dont_join_nationalism = {
+	}
+
+	join_nationalism = {
+	}
+}

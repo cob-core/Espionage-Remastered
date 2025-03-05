@@ -1,0 +1,31 @@
+﻿namespace = adv_dip_separate_events
+
+# On Action Event
+adv_dip_separate_events.1 = {
+	type = country_event
+	hidden = yes
+
+	trigger = {
+		is_ai = yes
+		is_at_war = no
+		any_scope_state = {
+			is_capital = yes
+			market_access = 0
+			devastation = 0
+		}
+		NOT = {
+			any_scope_state = {
+				is_coastal = yes
+			}
+		}
+		
+	}
+
+	immediate = {
+		create_diplomatic_play = {
+			name = independence
+			target_country = overlord
+			type = dp_independence
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "name" : "Espionage Remastered",
+  "id" : "",
+  "version" : "2",
+  "supported_game_version" : "",
+  "short_description" : "",
+  "tags" : ["diplomacy","gameplay","events"],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
