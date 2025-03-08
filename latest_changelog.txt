@@ -1,4 +1,0 @@
-Fixed Fund Armaments events.
-Added Election Interference and relevant events.
-Adjusted descriptions, effects, and other localisation.
-Adjusted requirements and values.

@@ -89,7 +89,7 @@
 			custom_tooltip = {
 				text = fund_armaments_monthly_effect
 				random_list = { 
-					70 = {}
+					2 = {}
 					1 = { 
 						root = {
 							trigger_event = {

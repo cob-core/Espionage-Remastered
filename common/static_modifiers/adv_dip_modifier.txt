@@ -1,6 +1,6 @@
 ﻿sow_discontent_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	state_radicals_from_sol_change_mult = 0.1
+	state_radicals_and_loyalists_from_sol_change_mult = 0.1
 	political_movement_support_add = 0.1
 	political_movement_radicalism_add = 0.1
 }
@@ -59,22 +59,31 @@ fund_armaments_modifier = {
 }
 
 armaments_cost_modifier {
-	tax_income_add = -5000
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_tax_income_add = -5000
 }
 
 overthrower_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	country_influence_mult = 0.1
 	power_bloc_cohesion_add = 10
 	country_improve_relations_speed_mult = 0.2
 }
 
 overthrown_modifier {
-	country_legitimacy_govt_size_add = -60
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_legitimacy_govt_size_add = -50
 	interest_group_in_government_attraction_mult = 2
-	country_radicals_from_legitimacy_mult = 0.1
-	country_legitimacy_govt_leader_clout_add = 1
+	country_radicals_from_legitimacy_mult = 0.25
+	country_legitimacy_govt_leader_clout_add = 50
 	country_opposition_ig_approval_add = -10
 	country_voting_power_base_add = -50
-	state_radicals_from_sol_change_mult = 0.25
-	state_loyalists_from_sol_change_mult = 0.25
+	state_radicals_and_loyalists_from_sol_change_mult = 0.25
+}
+
+suppress_government_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -10
+	interest_group_pol_str_mult = -5
+	interest_group_pop_attraction_mult = -0.2
 }

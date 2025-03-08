@@ -118,12 +118,6 @@
 			scaled_debt <= 0
 			is_at_war = no
 			scope:target_country = { is_subject_of = root }
-			any_country = {
-				has_diplomatic_pact = {
-					who = scope:target_country
-					type = agitate_for_liberty
-				}								
-			}
 				
 			# We want to have at least five times their income, and at least 50k income in general
 			OR = {
@@ -173,15 +167,7 @@
 					scaled_debt > 0
 					is_at_war = yes
 				}
-				NOT = {scope:target_country= { is_subject_of = root }}
-				NOT = {
-					any_country = {
-						has_diplomatic_pact = {
-							who = scope:target_country
-							type = agitate_for_liberty
-						}								
-					}
-				}			
+				NOT = {scope:target_country= { is_subject_of = root }}			
 				
 				# We want to have at least five times their income, and at least 50k income in general
 				NOR = {

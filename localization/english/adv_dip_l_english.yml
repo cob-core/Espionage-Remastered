@@ -29,6 +29,7 @@ fund_armaments_modifier: "Funding into Armaments"
 overthrower_modifier: "This country has been meddling in the affairs of others."
 overthrown_modifier: "The government of this country has been interfered with."
 suppress_government_modifier: "Government has been shutdown due to external interference."
+armaments_cost_modifier: "Armaments Sent Abroad"
 
 adv_dip_event.21.t: "Support Nationalists"
 adv_dip_event.21.d: "The proud [ROOT.GetCountry.GetName] Secret Service's espionage operations against [SCOPE.sCountry('spy_target_country').GetName] have taken a major step forward. They are convinced that with a little support they can achieve the complete success of the operation."
