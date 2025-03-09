@@ -43,3 +43,11 @@ spy_cost_multiplier_very_large = {
 	round = yes
 	multiply = 1000
 }
+
+counterespionage_cost = {
+	value = scope:spy_target_country.gdp
+	divide = 1000000
+	multiply = 2.5
+	round = yes
+	multiply = 1000
+}

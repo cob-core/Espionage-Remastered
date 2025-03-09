@@ -53,6 +53,11 @@ spy_network_cost_modifier = {
 	country_expenses_add = 1
 }
 
+counterespionage_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+}
+
 fund_armaments_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 	country_military_goods_cost_mult = -0.1
@@ -72,18 +77,12 @@ overthrower_modifier {
 
 overthrown_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_legitimacy_govt_size_add = -50
-	interest_group_in_government_attraction_mult = 2
-	country_radicals_from_legitimacy_mult = 0.25
-	country_legitimacy_govt_leader_clout_add = 50
-	country_opposition_ig_approval_add = -10
-	country_voting_power_base_add = -50
-	state_radicals_and_loyalists_from_sol_change_mult = 0.25
+	interest_group_in_government_attraction_mult = 0.25
+	country_radicals_from_legitimacy_mult = 0.1
+	state_radicals_and_loyalists_from_sol_change_mult = 0.1
 }
 
 suppress_government_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	interest_group_approval_add = -10
-	interest_group_pol_str_mult = -5
-	interest_group_pop_attraction_mult = -0.2
+	country_party_whip_impact_mult = 0.25
 }

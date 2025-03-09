@@ -14,8 +14,7 @@
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
 			OR = {
-				government_transfer_of_power = presidential_elective
-				government_transfer_of_power = parliamentary_elective
+				any_active_party = {}
 		}
 	}
 }
@@ -56,26 +55,30 @@
 			custom_tooltip = {
 				text = election_interference_monthly_effect
 				random_list = { 
-					2 = {}
-					1 = { 
+					8 = {}
+					1 = {
 						root = {
 							trigger_event = {
-					            id = adv_dip_event.81
-					        }1
-					    }
+								id = adv_dip_event.81
+							}
+						}
 					}
-				}								
+				}
 			}
-		} 	
+		}
 	
 		should_invalidate = {
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
+				scope:target_country = {
+					any_active_party {
+						count = 0
+					}
+				}
 				in_default = yes
 			}
 		}
-	}
 	
 	ai = {
 
