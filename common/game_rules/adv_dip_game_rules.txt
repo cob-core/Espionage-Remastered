@@ -1,0 +1,12 @@
+﻿espionage_event_cost = {
+	default = medium_cost
+
+	low_cost {
+	}
+
+	medium_cost {
+	}
+
+	high_cost {
+	}
+}

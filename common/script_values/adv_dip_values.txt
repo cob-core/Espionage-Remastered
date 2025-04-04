@@ -24,6 +24,30 @@ spy_cost_multiplier_medium = {
 	multiply = 0.25
 	round = yes
 	multiply = 100
+	if = {
+		limit = {
+			NOT = {
+				has_modifier = low_espionage_event_costs
+			}
+		}
+		multiply = low_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_modifier = medium_espionage_event_costs
+			}
+		}
+		multiply = medium_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_modifier = high_espionage_event_costs
+			}
+		}
+		multiply = high_espionage_event_costs_value
+	}
 }
 
 # 0.1% of GDP, rounded to nearest 1000
@@ -47,7 +71,19 @@ spy_cost_multiplier_very_large = {
 counterespionage_cost = {
 	value = scope:spy_target_country.gdp
 	divide = 1000000
-	multiply = 2.5
+	multiply = 2
 	round = yes
 	multiply = 1000
+}
+
+low_espionage_event_costs_value = {
+	value = 0.8
+}
+
+medium_espionage_event_costs_value = {
+	value = 1
+}
+
+high_espionage_event_costs_value = {
+	value = 1.2
 }

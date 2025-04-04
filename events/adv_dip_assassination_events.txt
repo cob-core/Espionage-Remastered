@@ -1,0 +1,1656 @@
+﻿namespace = adv_dip_assassination_event
+
+adv_dip_assassination_event.100 = { # Start Event
+	type = country_event
+    placement = ROOT
+
+    title = adv_dip_assassination_event.100.t
+    desc = adv_dip_assassination_event.100.d
+    flavor = adv_dip_assassination_event.100.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+    duration = 3
+
+	immediate = {
+		set_variable = ongoing_plans
+	}
+
+	option = {
+		name = adv_dip_assassination_event.100.a
+		trigger_event = { id = adv_dip_assassination_event.101 days = 0 popup = yes }
+
+	}
+}
+
+adv_dip_assassination_event.101 = { # Select Commander
+	type = country_event
+    placement = ROOT
+
+    title = adv_dip_assassination_event.101.t
+    desc = adv_dip_assassination_event.101.d
+    flavor = adv_dip_assassination_event.101.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+
+	trigger = {
+		any_scope_character = {
+			is_busy = no
+			OR = {
+				has_role = general
+				has_role = admiral
+			}
+		}
+	}
+
+	immediate = {
+		random_scope_character = {
+			limit = {
+				is_busy = no
+				is_ruler = no
+				OR = {
+					has_role = general
+					has_role = admiral
+				}
+			}
+			save_scope_as = assassination_leader_1
+		}
+		random_scope_character = {
+			limit = {
+				is_busy = no
+				is_ruler = no
+				OR = {
+					has_role = general
+					has_role = admiral
+				}
+				NOT = {
+					this = scope:assassination_leader_1
+				}
+
+			}
+			save_scope_as = assassination_leader_2
+		}
+		random_scope_character = {
+			limit = {
+				is_busy = no
+				is_ruler = no
+				OR = {
+					has_role = general
+					has_role = admiral
+				}
+				NOR = {
+					this = scope:assassination_leader_1
+					this = scope:assassination_leader_2
+				}
+			}
+			save_scope_as = assassination_leader_3
+		}
+		set_variable = active_assassination
+	}
+
+	option = {
+		name = "[SCOPE.sCharacter('assassination_leader_1').GetFullName]"
+		custom_tooltip = assassination_costs_tt
+		scope:assassination_leader_1 = {
+			set_variable = assassination_leader_var
+			set_character_busy_and_immortal = yes
+		}
+		trigger_event = { id = adv_dip_assassination_event.102 days = 7 }
+	}
+
+	option = {
+		name = "[SCOPE.sCharacter('assassination_leader_2').GetFullName]"
+		custom_tooltip = assassination_costs_tt
+		trigger = {
+			exists = scope:assassination_leader_2
+		}
+		scope:assassination_leader_2 = {
+			set_variable = assassination_leader_var
+			set_character_busy_and_immortal = yes
+		}
+		trigger_event = { id = adv_dip_assassination_event.102 days = 7 }
+	}
+
+	option = {
+		name = "[SCOPE.sCharacter('assassination_leader_3').GetFullName]"
+		custom_tooltip = assassination_costs_tt
+		trigger = {
+			exists = scope:assassination_leader_3
+		}
+		scope:assassination_leader_3 = {
+			set_variable = assassination_leader_var
+			set_character_busy_and_immortal = yes
+		}
+		trigger_event = { id = adv_dip_assassination_event.102 days = 7 }
+	}
+}
+
+adv_dip_assassination_event.102 = { # Select Target
+	type = country_event
+	placement = root
+
+	title = adv_dip_assassination_event.102.t
+	desc = adv_dip_assassination_event.102.d
+	flavor = adv_dip_assassination_event.102.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = assassinate_political_leader
+						}
+					}
+					NOT = {
+						has_modifier = recent_assassination_modifier
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = assassinate_political_leader
+						}
+					}
+					NOT = {
+						has_modifier = recent_assassination_modifier
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = assassinate_political_leader
+						}
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+
+		scope:spy_target_country = {
+			every_scope_politician = {
+				add_to_local_variable_list = {
+					name = assassination_candidates
+					target = this
+				}
+				}
+			}
+
+			every_in_local_list = {
+				variable = assassination_candidates
+				
+				if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_0
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_0
+					}
+				}
+				else_if= {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_1
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_1
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_2
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_2
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_3
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_3
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_4
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_4
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_5
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_5
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_6
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_6
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_7
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_7
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_8
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_8
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_9
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_9
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_10
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_10
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_11
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_11
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							exists = scope:assassination_target_scope_12
+						}
+					}
+					this = {
+						save_scope_as = assassination_target_scope_12
+					}
+				}
+			}
+		}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_0
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_0').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_0 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+				}
+			}
+		}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_1
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_1').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_1 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_2
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_2').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_2 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_3
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_3').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_3 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_4
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_4').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_4 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_5
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_5').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_5 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_6
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_6').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_6 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_7
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_7').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_7 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_8
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_8').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_8 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_9
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_9').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_9 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_10
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_10').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_10 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_11
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_11').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_11 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+	
+	option = {
+		trigger = {    
+			exists = scope:assassination_target_scope_12
+		}
+		name = "[SCOPE.sCharacter('assassination_target_scope_12').GetFullName]"
+		trigger_event = {
+			id = adv_dip_assassination_event.103
+			days = 7
+		}
+		scope:spy_target_country = {
+			scope:assassination_target_scope_12 = {
+				set_variable = {
+					name = assassination_target_var
+					value = 1
+					}
+				}
+			}
+		add_modifier = {
+			name = assassination_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		ai_chance = {
+			base = 1
+			add = 100
+		}
+	}
+			
+	option = {
+		name = adv_dip_assassination_event.102.b
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_assassination_event.103 = { # Plot Begins
+	type = country_event
+
+    title = adv_dip_assassination_event.103.t
+    desc = adv_dip_assassination_event.103.d
+    flavor = adv_dip_assassination_event.103.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		random_scope_character = {
+			limit = { has_variable = assassination_leader_var }
+			save_scope_as = assassination_leader
+		}
+		random_scope_character = {
+			limit = { has_variable = assassination_target_var }
+			save_scope_as = assassination_target
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.103.a
+		default_option = yes
+		add_journal_entry = {
+			type = adv_dip_je_assassination
+		}
+	}
+}
+
+adv_dip_assassination_event.198 = { #Successful
+	type = country_event
+    placement = ROOT
+
+    title = adv_dip_assassination_event.198.t
+    desc = adv_dip_assassination_event.198.d
+    flavor = adv_dip_assassination_event.198.f
+
+    event_image = {
+		video = "unspecific_steam_ship"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+
+	immediate = {
+		random_scope_character = {
+			limit = { has_variable = assassination_leader_var }
+			save_scope_as = assassination_leader
+		}
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.198.a
+		default_option = yes
+		scope:assassination_leader = {
+			set_character_busy_and_immortal = no
+		} 
+		scope:assassination_target = {
+			kill_character = yes
+		}
+		add_modifier = {
+			name = modifier_successful_assassination
+			months = 13
+			is_decaying = yes
+		}
+		root = {
+			remove_diplomatic_pact = {
+				country = scope:spy_target_country
+				type = assassinate_political_leader
+			}
+		}
+		scope:spy_target_country = {
+			add_modifier = {
+				name = recent_assassination_modifier
+				months = 13
+			}
+			THIS = {
+				add_radicals = {
+					value = 0.2
+				}
+			}
+		}
+		remove_variable = active_assassination
+		remove_assassination_events_effect = yes
+	}
+}
+
+adv_dip_assassination_event.199 = { #Failed
+	type = country_event
+    placement = ROOT
+
+    title = adv_dip_assassination_event.199.t
+    desc = adv_dip_assassination_event.199.d
+    flavor = adv_dip_assassination_event.199.f
+
+    event_image = {
+		video = "unspecific_steam_ship"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+    duration = 3
+
+	immediate = {
+		remove_variable = active_assassination
+		random_scope_character = {
+			limit = { has_variable = assassination_leader_var }
+			save_scope_as = assassination_leader
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.199.a
+		default_option = yes
+		scope:assassination_leader = {
+			set_character_busy_and_immortal = no
+		} 
+		add_modifier = {
+			name = modifier_failed_assassination
+			months = 13
+			is_decaying = yes
+		}
+		root = {
+			remove_diplomatic_pact = {
+				country = scope:spy_target_country
+				type = assassinate_political_leader
+			}
+		}
+		scope:spy_target_country = {
+			add_modifier = {
+				name = recent_assassination_modifier
+				months = 13
+			}
+		}
+		remove_variable = active_assassination
+		remove_assassination_events_effect = yes
+	}
+}
+
+# # # # # FLAVOUR EVENTS # # # # #
+adv_dip_assassination_event.110 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.110.t
+    desc = adv_dip_assassination_event.110.d
+    flavor = adv_dip_assassination_event.110.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+
+	}
+
+	option = {
+		name = adv_dip_assassination_event.110.a
+		default_option = yes
+		assassination_minor_progress_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.110.b
+		assassination_minor_progress_effect = yes
+	}
+}
+
+adv_dip_assassination_event.111 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.111.t
+    desc = adv_dip_assassination_event.111.d
+    flavor = adv_dip_assassination_event.111.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.111.a
+		default_option = yes
+		assassination_moderate_progress_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.111.b
+		assassination_moderate_progress_effect = yes
+	}
+}
+
+adv_dip_assassination_event.112 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.112.t
+    desc = adv_dip_assassination_event.112.d
+    flavor = adv_dip_assassination_event.112.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.112.a
+		default_option = yes
+		add_small_assassination_risk_effect = yes
+		add_modifier = {
+			name = cleaned_the_cat_modifier
+			months = 13
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.112.b
+	}
+}
+
+adv_dip_assassination_event.113 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.113.t
+    desc = adv_dip_assassination_event.113.d
+    flavor = adv_dip_assassination_event.113.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.113.a
+		default_option = yes
+		assassination_great_progress_effect = yes
+		add_large_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.113.b
+	}
+}
+
+adv_dip_assassination_event.114 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.114.t
+    desc = adv_dip_assassination_event.114.d
+    flavor = adv_dip_assassination_event.114.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		ruler = {
+			save_scope_as = adv_dip_leader
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.114.a
+		default_option = yes
+		assassination_great_progress_effect = yes
+		add_small_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.114.b
+		assassination_minor_progress_effect = yes
+	}
+}
+
+adv_dip_assassination_event.115 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.115.t
+    desc = adv_dip_assassination_event.115.d
+    flavor = adv_dip_assassination_event.115.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.115.a
+		default_option = yes
+		assassination_moderate_progress_effect = yes
+		add_small_assassination_risk_effect = yes
+		add_modifier = {
+			name = paid_a_witch_modifier
+			months = 6
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.115.b
+		default_option = yes
+	}
+}
+
+adv_dip_assassination_event.116 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.116.t
+    desc = adv_dip_assassination_event.116.d
+    flavor = adv_dip_assassination_event.116.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.116.a
+		default_option = yes
+		assassination_moderate_progress_effect = yes
+		add_small_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.116.b
+	}
+}
+
+adv_dip_assassination_event.117 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.117.t
+    desc = adv_dip_assassination_event.117.d
+    flavor = adv_dip_assassination_event.117.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.117.a
+		default_option = yes
+		assassination_success = yes
+	}
+}
+
+adv_dip_assassination_event.118 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.118.t
+    desc = adv_dip_assassination_event.118.d
+    flavor = adv_dip_assassination_event.118.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		scope:spy_target_country = {
+			ruler = {
+				save_scope_as = assassination_target_country_leader
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.118.a
+		default_option = yes
+		assassination_moderate_progress_effect = yes
+		add_medium_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.118.b
+		assassination_minor_progress_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.118.c
+		assassination_great_progress_effect = yes
+		add_large_assassination_risk_effect = yes
+		scope:spy_target_country = {
+			add_modifier = {
+				name = blamed_for_poisoning_modifier
+				months = 13
+			}
+		}
+		
+	}
+}
+
+adv_dip_assassination_event.119 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.119.t
+    desc = adv_dip_assassination_event.119.d
+    flavor = adv_dip_assassination_event.119.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		random_scope_character = {
+			limit = { has_variable = assassination_target_var }
+			save_scope_as = assassination_target
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.119.a
+		default_option = yes
+		assassination_great_progress_effect = yes
+		add_large_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.119.b
+		assassination_minor_progress_effect = yes
+		add_medium_assassination_risk_effect = yes
+		scope:spy_target_country = {
+			capital = {
+				state_region = {
+					add_devastation = 5
+				}
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.119.c
+	}
+}
+
+adv_dip_assassination_event.120 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.120.t
+    desc = adv_dip_assassination_event.120.d
+    flavor = adv_dip_assassination_event.120.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.120.a
+		default_option = yes
+		assassination_failure = yes
+		add_modifier = {
+			name = assassin_paid_off_modifier
+			months = 6
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.120.b
+		assassination_failure = yes
+	}
+}
+
+adv_dip_assassination_event.122 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.122.t
+    desc = adv_dip_assassination_event.122.d
+    flavor = adv_dip_assassination_event.122.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		ruler = {
+			save_scope_as = adv_dip_leader
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.122.a
+		scope:adv_dip_leader = {
+			kill_character = yes
+		}
+		add_medium_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.122.b
+		default_option = yes
+		scope:adv_dip_leader = {
+			kill_character = yes
+		}
+		assassination_failure = yes
+	}
+}
+
+adv_dip_assassination_event.123 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.123.t
+    desc = adv_dip_assassination_event.123.d
+    flavor = adv_dip_assassination_event.123.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.123.a
+		default_option = yes
+		add_small_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.123.b
+		assassination_minor_progress_effect = yes
+		add_medium_assassination_risk_effect = yes
+	}
+}
+
+adv_dip_assassination_event.124 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.124.t
+    desc = adv_dip_assassination_event.124.d
+    flavor = adv_dip_assassination_event.124.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.124.a
+		default_option = yes
+		trigger_event = { id = adv_dip_assassination_event.134 days = 14 }
+		add_small_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.124.b
+		assassination_moderate_progress_effect = yes
+		add_large_assassination_risk_effect = yes
+	}
+}
+
+adv_dip_assassination_event.125 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.125.t
+    desc = adv_dip_assassination_event.125.d
+    flavor = adv_dip_assassination_event.125.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.125.a
+		default_option = yes
+		trigger_event = { id = adv_dip_assassination_event.135 days = 7 }
+		add_medium_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.125.b
+	}
+}
+
+adv_dip_assassination_event.126 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.126.t
+    desc = adv_dip_assassination_event.126.d
+    flavor = adv_dip_assassination_event.126.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.126.a
+		default_option = yes
+		assassination_minor_progress_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.125.b
+		assassination_moderate_progress_effect = yes
+		add_medium_assassination_risk_effect = yes
+	}
+}
+
+adv_dip_assassination_event.127 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.127.t
+    desc = adv_dip_assassination_event.127.d
+    flavor = adv_dip_assassination_event.127.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.127.a
+		assassination_moderate_progress_effect = yes
+		add_medium_assassination_risk_effect = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.127.b
+		default_option = yes
+		assassination_minor_progress_effect = yes
+	}
+}
+
+adv_dip_assassination_event.128 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.128.t
+    desc = adv_dip_assassination_event.128.d
+    flavor = adv_dip_assassination_event.128.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.128.a
+		assassination_moderate_progress_effect = yes
+		add_medium_assassination_risk_effect = yes
+		scope:spy_target_country = {
+			add_radicals = {
+				value = 0.01
+				interest_group = ig:ig_devout
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.128.b
+		default_option = yes
+	}
+}
+
+adv_dip_assassination_event.129 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.129.t
+    desc = adv_dip_assassination_event.129.d
+    flavor = adv_dip_assassination_event.129.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.129.a
+		default_option = yes
+	}
+
+	option = {
+		name = adv_dip_assassination_event.129.b
+		assassination_great_progress_effect = yes
+		add_large_assassination_risk_effect = yes
+	}
+}
+
+adv_dip_assassination_event.134 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.134.t
+    desc = adv_dip_assassination_event.134.d
+    flavor = adv_dip_assassination_event.134.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_assassination_event.134.a
+		default_option = yes
+		assassination_moderate_progress_effect = yes
+	}
+}
+
+adv_dip_assassination_event.135 = {
+	type = country_event
+
+    title = adv_dip_assassination_event.135.t
+    desc = adv_dip_assassination_event.135.d
+    flavor = adv_dip_assassination_event.135.f
+
+    event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+    duration = 3
+	
+	immediate = {
+		random_country = {
+			limit = {
+				country_rank >= rank_value:great_power
+				NOT = {
+					has_diplomatic_pact = {
+						who = THIS
+						type = assassinate_political_leader
+					}
+				}
+			}
+			ruler = {
+				save_scope_as = assassination_rival_country_leader
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_assassination_event.135.a
+		default_option = yes
+		assassination_great_progress_effect = yes
+		add_small_assassination_risk_effect = yes
+	}
+}

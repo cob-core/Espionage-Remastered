@@ -1,0 +1,131 @@
+﻿adv_dip_je_assassination = {
+	
+	group = je_group_expeditions
+
+	scripted_progress_bar = assassination_progress_bar
+	scripted_progress_bar = assassination_risk_progress_bar
+
+	weight = 200
+    transferable = no
+    should_be_pinned_by_default = yes
+
+	on_monthly_pulse = {
+		random_events = {
+			40 = 0
+			20 = adv_dip_assassination_event.110 #Sandwich Shop
+			5 = adv_dip_assassination_event.111 #INTEL-Cat
+			20 = adv_dip_assassination_event.113 #INTEL-Chambermaid
+			20 = adv_dip_assassination_event.114 #Counter-Assassin Caught
+			5 = adv_dip_assassination_event.115 #Witch
+			20 = adv_dip_assassination_event.116 #Latrine Papers
+			5 = adv_dip_assassination_event.117 #Assassin Drowns - Erfart Latrine Incident
+			20 = adv_dip_assassination_event.118 #Poisoned Chalice
+			20 = adv_dip_assassination_event.119 #Opera
+			5 = adv_dip_assassination_event.112 #Cat Found
+			5 = adv_dip_assassination_event.120 #Assassin Blackmails
+			5 = adv_dip_assassination_event.122 #Counter-Assassin Success
+			15 = adv_dip_assassination_event.123 #Equipment
+			15 = adv_dip_assassination_event.124 #Bear Grylls Mushrooms
+			20 = adv_dip_assassination_event.125 #Second Assassin
+			20 = adv_dip_assassination_event.126 #Body Double
+			20 = adv_dip_assassination_event.127 #Kitchen Problems
+			20 = adv_dip_assassination_event.128 #Confession
+			20 = adv_dip_assassination_event.129 #Seduction
+		}
+	}
+	
+	immediate = {
+		random_scope_character = {
+			limit = {
+				has_variable = assassination_leader_var
+			}
+			save_scope_as = assassination_leader
+		}
+		random_country = {
+			limit = {
+				root = {
+					has_diplomatic_pact = {
+						who = prev
+						type = assassinate_political_leader
+					}
+				}
+			}
+			save_scope_as = spy_target_country
+		}
+		scope:spy_target_country = {
+			random_scope_character = {
+				limit = {
+					has_variable = assassination_target_var
+				}
+				save_scope_as = assassination_target
+			}
+		}
+	}
+	
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = assassination_low_risk_loc
+				trigger = {
+					scope:journal_entry = {
+						"scripted_bar_progress(assassination_risk_progress_bar)" <= 3
+					}
+				}
+			}
+			triggered_desc = {
+				desc = assassination_medium_risk_loc
+				trigger = {
+					scope:journal_entry = {
+						"scripted_bar_progress(assassination_risk_progress_bar)" <= 5
+					}
+				}
+			}
+			triggered_desc = {
+				desc = assassination_high_risk_loc
+				trigger = {
+					scope:journal_entry = {
+						"scripted_bar_progress(assassination_risk_progress_bar)" > 5
+					}
+				}
+			}
+		}
+	}
+	
+    complete = {
+		custom_tooltip = {
+			text = adv_dip_je_assassination_success
+			scope:journal_entry = {
+				"scripted_bar_progress(assassination_progress_bar)" >= 8
+			}
+		}
+    }
+	
+	on_complete = {
+		trigger_event = { id = adv_dip_assassination_event.198 }
+	}
+    
+    fail = {
+		custom_tooltip = {
+			text = adv_dip_je_assassination_failure
+			OR = {
+				NOT = {
+					has_variable = active_assassination
+				}
+				scope:journal_entry = {
+					"scripted_bar_progress(assassination_risk_progress_bar)" >= 8
+				}
+				NOT = {
+					has_diplomatic_pact = {
+						who = scope:spy_target_country
+						type = assassinate_political_leader
+					}
+				}
+			}
+		}
+    }
+	
+	on_fail = {
+		trigger_event = { id = adv_dip_assassination_event.199 }
+	}
+
+}

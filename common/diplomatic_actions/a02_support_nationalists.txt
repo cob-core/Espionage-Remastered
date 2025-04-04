@@ -15,6 +15,10 @@
 			NOT = { is_country_type = decentralized }
 		}
 		country_rank >= rank_value:great_power
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 4
+		}
 	}
 	
 	possible = {
@@ -28,10 +32,7 @@
 				}								
 			}
 		}
-		institution_investment_level = {
-			institution = institution_espionage
-			value >= 4
-		}
+		has_diplomatic_relevance = scope:target_country
 	}
 	
 	pact = {	
@@ -40,7 +41,7 @@
 		is_two_sided_pact = no
 		show_in_outliner = yes
 		
-		income_transfer = 0.5
+		income_transfer = 0.1
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes

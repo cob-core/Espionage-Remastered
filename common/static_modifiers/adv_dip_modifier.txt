@@ -1,4 +1,17 @@
-﻿sow_discontent_modifier = {
+﻿low_espionage_event_costs = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+}
+
+medium_espionage_event_costs = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+}
+
+high_espionage_event_costs = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+}
+
+
+sow_discontent_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	state_radicals_and_loyalists_from_sol_change_mult = 0.1
 	political_movement_support_add = 0.1
@@ -53,19 +66,26 @@ spy_network_cost_modifier = {
 	country_expenses_add = 1
 }
 
+assassination_cost_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+}
+
 counterespionage_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 	country_expenses_add = 1
 }
 
 fund_armaments_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_military_goods_cost_mult = -0.1
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_expenses_add = -5000
+	unit_supply_consumption_mult = 1
+	state_conscription_rate_mult = 0.05
 }
 
 armaments_cost_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_tax_income_add = -5000
+	country_expenses_add = 5000
 }
 
 overthrower_modifier {
@@ -85,4 +105,45 @@ overthrown_modifier {
 suppress_government_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	country_party_whip_impact_mult = 0.25
+}
+
+modifier_failed_assassination {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_influence_mult = -0.1
+	country_prestige_add = -25
+}
+
+modifier_successful_assassination {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_influence_mult = 0.1
+	country_prestige_add = 25
+}
+
+assassin_paid_off_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1000
+}
+
+rescue_mission_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 2000
+}
+
+paid_a_witch_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 2000
+}
+
+cleaned_the_cat_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_prestige_add = 15
+}
+
+recent_assassination_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+}
+
+blamed_for_poisoning_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	character_popularity_add = -50
 }

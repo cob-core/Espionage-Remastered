@@ -15,6 +15,10 @@
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
 		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 1
+		}
 	}
 	
 	possible = {
@@ -29,10 +33,6 @@
 			country_rank < rank_value:great_power
 		}
 		has_diplomatic_relevance = scope:target_country
-		institution_investment_level = {
-			institution = institution_espionage
-			value >= 1
-		}
 	}
 	
 	pact = {	
@@ -45,7 +45,7 @@
 
 		relations_progress_per_day = 13
 
-		income_transfer = 0.10
+		income_transfer = 0.05
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
@@ -72,7 +72,7 @@
 			custom_tooltip = {
 				text = send_advisors_monthly_effect
 				random_list = { 
-					80 = {}
+					8 = {}
 					1 = { 
 						root = {
 							trigger_event = {

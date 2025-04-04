@@ -15,7 +15,11 @@
 			NOT = { is_country_type = decentralized }
 			is_subject = yes
 			NOT = { is_subject_of = root}
-		}	
+		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 3
+		}
 	}
 	
 	possible = {
@@ -34,10 +38,7 @@
 				has_truce_with = scope:target_country							
 			}
 		}
-		institution_investment_level = {
-			institution = institution_espionage
-			value >= 3
-		}
+		has_diplomatic_relevance = scope:target_country
 	}
 	
 	pact = {	
@@ -45,7 +46,7 @@
 	
 		is_two_sided_pact = no
 		show_in_outliner = yes
-		income_transfer = 0.75
+		income_transfer = 0.1
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
@@ -55,7 +56,7 @@
 			custom_tooltip = {
 				text = agitate_for_liberty_monthly_effect
 				random_list = { 
-					35 = {}
+					32 = {}
 					1 = { 
 						root = {
 							trigger_event = {

@@ -72,7 +72,7 @@ adv_dip_event.11 = {
 		add_modifier = {
 			name = spy_network_cost_modifier
 			months = 25
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 		}
 		scope:spy_target_country = {
 			trigger_event = {
@@ -122,7 +122,7 @@ adv_dip_event.12 = {
 			multiplier = 2
 		}
 		add_radicals = {
-			value = small_radicals
+			value = 0.05
 		}
 	}
 	option = {
@@ -295,7 +295,7 @@ adv_dip_event.21 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -371,7 +371,7 @@ adv_dip_event.21 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -448,7 +448,7 @@ adv_dip_event.21 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -525,7 +525,7 @@ adv_dip_event.21 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -601,7 +601,7 @@ adv_dip_event.21 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -793,7 +793,7 @@ adv_dip_event.31 = {
 		name = adv_dip_event.31.a
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		if = {
@@ -967,7 +967,7 @@ adv_dip_event.33 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -1048,7 +1048,7 @@ adv_dip_event.41 = {
 		name = adv_dip_event.41.a
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		scope:spy_target_country = {
@@ -1185,7 +1185,7 @@ adv_dip_event.51 = {
 		name = adv_dip_event.51.a
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		scope:spy_target_country = {
@@ -1322,7 +1322,7 @@ adv_dip_event.61 = {
 		name = adv_dip_event.61.a
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		scope:spy_target_country = {
@@ -1376,7 +1376,7 @@ adv_dip_event.62 = {
 					root = {
 						has_diplomatic_pact = {
 							who = prev
-							type = send_advisors
+							type = send_military_attache
 						}
 					}
 					NOT = {
@@ -1389,7 +1389,7 @@ adv_dip_event.62 = {
 					root = {
 						has_diplomatic_pact = {
 							who = prev
-							type = send_advisors
+							type = send_military_attache
 						}
 					}
 					NOT = {
@@ -1405,7 +1405,7 @@ adv_dip_event.62 = {
 					root = {
 						has_diplomatic_pact = {
 							who = prev
-							type = send_advisors
+							type = send_military_attache
 						}
 					}
 				}
@@ -1419,7 +1419,7 @@ adv_dip_event.62 = {
 		name = adv_dip_event.62.a
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		scope:spy_target_country = {
@@ -1502,7 +1502,7 @@ adv_dip_event.63 = {
 					root = {
 						has_diplomatic_pact = {
 							who = prev
-							type = send_advisors
+							type = cultural_exchange
 						}
 					}
 				}
@@ -1516,7 +1516,7 @@ adv_dip_event.63 = {
 		name = adv_dip_event.63.a
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		scope:spy_target_country = {
@@ -1612,11 +1612,6 @@ adv_dip_event.71 = {
 	option = {
 		name = adv_dip_event.71.a
 		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
-		add_modifier = {
 			name = armaments_cost_modifier
 			months = 25
 		}
@@ -1626,9 +1621,20 @@ adv_dip_event.71 = {
 				months = 25
 			}
 		}
+		random_country = {
+			limit = {
+			}
+		}
 		change_relations = {
 			country = scope:spy_target_country
 			value = 10
+		}
+		create_trade_route = {
+			goods = small_arms
+			level = 15
+			direction = export
+			origin = root.market
+			target = scope:spy_target_country.market
 		}
 		ai_chance = {
 			base = 100
@@ -1896,7 +1902,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -1930,7 +1936,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -1964,7 +1970,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -1998,7 +2004,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2032,7 +2038,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2066,7 +2072,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2100,7 +2106,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2134,7 +2140,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2168,7 +2174,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2201,7 +2207,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2235,7 +2241,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2269,7 +2275,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2303,7 +2309,7 @@ adv_dip_event.81 = {
 		}
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
+			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
 		ai_chance = {
@@ -2329,7 +2335,7 @@ adv_dip_event.82 = {
 	flavor = adv_dip_event.82.f
 
 	event_image = {
-		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+		video = "unspecific_politicians_arguing"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -2393,7 +2399,7 @@ adv_dip_event.82 = {
 
 		add_modifier = {
 			name = counterespionage_modifier
-			multiplier = counterespionage_cost
+			multiplier = spy_cost_multiplier_medium
 			months = 48
 		}
 		ai_chance = {

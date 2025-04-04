@@ -13,16 +13,16 @@
 		NOT = { is_country_type = decentralized }
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
-		}	
+		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 5
+		}
 	}
 	
 	possible = {
 		is_revolutionary = no
 		in_default = no
-		institution_investment_level = {
-			institution = institution_espionage
-			value >= 5
-		}
 	}
 	
 	pact = {	
@@ -30,7 +30,7 @@
 	
 		is_two_sided_pact = no
 		show_in_outliner = yes
-		income_transfer = 0.75
+		income_transfer = 0.15
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
@@ -56,7 +56,7 @@
 			custom_tooltip = {
 				text = sow_discontent_monthly_effect
 				random_list = { 
-					200 = {}
+					32 = {}
 					1 = { 
 						root = {
 							trigger_event = {

@@ -1,0 +1,21 @@
+assassination_progress_bar = {
+	name = "assassination_progress_bar"
+	desc = "assassination_progress_bar_desc"
+
+	default_green = yes
+
+	start_value = 0
+	min_value = 0
+	max_value = 8
+ }
+ 
+ assassination_risk_progress_bar = {
+	name = "assassination_risk_progress_bar"
+	desc = "assassination_risk_progress_bar_desc"
+
+	default_bad = yes
+
+	start_value = 0
+	min_value = 0
+	max_value = 8
+ }
