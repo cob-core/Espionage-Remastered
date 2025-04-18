@@ -2414,3 +2414,365 @@ adv_dip_event.82 = {
 		}
 	}
 }
+
+adv_dip_event.101 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.101.t
+	desc = adv_dip_event.101.d
+	flavor = adv_dip_event.101.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.101.a
+		default_option = yes
+
+		scope:piracy_target = {
+			trigger_event = adv_dip_event.102
+		}
+
+		add_modifier = {
+			name = pirate_loot_modifier
+			months = 13
+			multiplier = piracy_loot_value
+		}
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.102 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.102.t
+	desc = adv_dip_event.102.d
+	flavor = adv_dip_event.102.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.102.a
+		default_option = yes
+
+		add_modifier = {
+			name = local_piracy_modifier
+			months = 13
+		}
+
+		add_modifier = {
+			name = piracy_cost
+			months = 13
+			multiplier = piracy_cost_multiplier
+		}
+		
+		scope:piracy_target = {
+			add_journal_entry = {
+				type = adv_dip_je_pirates
+			}
+		}
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.103 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.103.t
+	desc = adv_dip_event.103.d
+	flavor = adv_dip_event.103.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.103.a
+		default_option = yes
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.110 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.110.t
+	desc = adv_dip_event.110.d
+	flavor = adv_dip_event.110.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.110.a
+		default_option = yes
+
+		ai_chance = {
+			base = 10
+		}
+
+		scope:develop_nation_target = {
+			activate_law = law_type:law_monarchy
+		}
+
+	}
+}
+
+adv_dip_event.120 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.120.t
+	desc = adv_dip_event.120.d
+	flavor = adv_dip_event.120.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = support_slaves
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = support_slaves
+						}
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = support_slaves
+						}
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.120.a
+		default_option = yes
+
+		scope:spy_target_country = {
+			random_scope_state = {
+				every_scope_pop = {
+					limit = {
+						is_pop_type = slaves
+					}
+					move_partial_pop = {state = root.capital population_ratio = 0.1}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}

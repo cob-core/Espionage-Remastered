@@ -1,0 +1,36 @@
+je_modernise_ports = {
+	name = adv_dip_je_pirates_modernise_ports
+	desc = adv_dip_je_pirates_modernise_ports_desc
+
+	visible = { always = yes }
+	
+	ai_chance = {
+		base = 5
+		modifier = {
+			trigger = { bureaucracy > 0 }
+			add = 5
+		}
+	}
+
+	possible = {
+		not = {
+			has_variable = recently_fought_pirates
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = recently_fought_pirates
+			months = 6
+		}
+        add_modifier = {
+			name = modernised_ports_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = piracy_cost
+			months = 13
+			multiplier = piracy_cost_multiplier
+		}
+	}
+}

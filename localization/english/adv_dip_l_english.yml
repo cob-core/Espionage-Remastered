@@ -22,6 +22,11 @@ sow_discontent_monthly_effect: "Agents work to foment civil unrest within the ta
 fund_armaments_monthly_effect: "Covert weapon shipments may find their way across borders."
 humiliation_trigger_false_desc_third: "Suffer public humiliation from rival powers."
 election_interference_monthly_effect: "Our agents seek opportunities to influence political outcomes."
+steal_technology_monthly_effect: "Our agents may discover technological secrets from their research institutions."
+steal_commander_monthly_effect: "Our agents may convince enemy commanders to defect to our side."
+fund_piracy_monthly_effect: "Our funded privateers raid enemy shipping lanes."
+develop_nation_monthly_effect: "Our advisors help implement modernization programs."
+support_slaves_monthly_effect: "Our agents may assist in liberating enslaved individuals from their captors."
 
 # # # # # MODIFIERS # # # # #
 
@@ -41,6 +46,17 @@ suppress_government_modifier: "Government Crackdown"
 armaments_cost_modifier: "Armaments Shipments"
 assassination_cost_modifier: "Assassination Plot"
 recent_assassination_modifier: "Recent Assassination"
+piracy_disruption_modifier: "Piracy Disruption"
+local_piracy_modifier: "Piracy Activity"
+piracy_cost: "Anti-Piracy Costs"
+increased_port_security: "Increased Port Security"
+pirate_loot_modifier: "Dividends from Piracy"
+slave_liberation_support_modifier: "Liberation Network"
+slave_liberation_disruption_modifier: "Liberation Movement Activity"
+development_aid_modifier: "Foreign Development Aid"
+modernization_program_modifier: "Modernization Program"
+extorting_subjects_modifier: "Extorting Subjects"
+modernised_ports_modifier: "Modernised Ports"
 
 # # # # # ASSASSINATION MODIFIERS # # # # #
 
@@ -100,7 +116,7 @@ adv_dip_event.61.b: "Nevermind."
 
 adv_dip_event.62.t: "Attaché of the Military Kind"
 adv_dip_event.62.d: "The glorious advisory group of [ROOT.GetCountry.GetName] is ready to set off for [SCOPE.sCountry('spy_target_country').GetName]. Although sending them will cost a little money, it will be of great help to close cooperation with the other country and military development."
-adv_dip_event.62.f: "The military attaches received their next briefing in the War Ministry's secure chamber. Maps of [SCOPE.sCountry('spy_target_country').GetName]'s defensive installations and troop deployments covered one wall. \n\n"Your official purpose is to share our expertise in modern warfare," the General explained. "You will train their officers, modernize their tactics, and assess their capabilities." \n\nHe let the statement hang before continuing more quietly, "You will also catalog every weakness, every vulnerability in their defenses. You will document their readiness, their supply lines, and their command structure." \n\nOne attache raised an eyebrow. "So we're to build them up while simultaneously preparing for their potential downfall?" \n\nThe General's smile didn't reach his eyes. "Precisely, Colonel. That is the art of military diplomacy.""
+adv_dip_event.62.f: "The military attachés received their next briefing in the War Ministry's secure chamber. Maps of [SCOPE.sCountry('spy_target_country').GetName]'s defensive installations and troop deployments covered one wall. \n\n"Your official purpose is to share our expertise in modern warfare," the General explained. "You will train their officers, modernize their tactics, and assess their capabilities." \n\nHe let the statement hang before continuing more quietly, "You will also catalog every weakness, every vulnerability in their defenses. You will document their readiness, their supply lines, and their command structure." \n\nOne attache raised an eyebrow. "So we're to build them up while simultaneously preparing for their potential downfall?" \n\nThe General's smile didn't reach his eyes. "Precisely, Colonel. That is the art of military diplomacy.""
 adv_dip_event.62.a: "Dispatch."
 adv_dip_event.62.b: "Nevermind."
 
@@ -139,6 +155,57 @@ adv_dip_event.82.d: "Certain characters in government appear to be getting extre
 adv_dip_event.82.f: "The Security Minister slammed the intelligence report onto the cabinet table. \n\n"Three newly prominent political figures have received substantial donations from shell companies we've traced back to [ROOT.GetCountry.GetName]," he announced grimly. "Their sudden rise in popularity correlates directly with these infusions of foreign capital." \n\nThe Prime Minister's expression darkened. "The timing is no coincidence." \n\n"No, sir. Intercepted communications suggest a coordinated attempt to install sympathetic voices in our government. The breach appears to extend into several ministries." \n\nAround the table, faces paled as implications settled in. Their democracy itself had been weaponized against them through golden handshakes and whispered promises."
 adv_dip_event.82.a: "I'm sure it's nothing."
 adv_dip_event.82.b: "Shutdown government. Force everyone out now."
+
+adv_dip_event.91.t: "Military Defection"
+adv_dip_event.91.d: "Our agents have successfully convinced a military commander from [SCOPE.sCountry('spy_target_country').GetName] to defect to our side."
+adv_dip_event.91.f: "The Foreign Ministry's clandestine evening meeting was interrupted by an urgent dispatch. A high-ranking [SCOPE.sCountry('spy_target_country').GetName] military commander had accepted our offer of asylum and generous compensation in exchange for their expertise and loyalty.\n\nTheir defection would not only strengthen our own military capabilities but also significantly weaken our rival's command structure. The commander's intimate knowledge of their former nation's military strategies and deployments would prove invaluable."
+adv_dip_event.91.a: "A valuable addition to our forces."
+
+adv_dip_event.101.t: "Pirates Strike!"
+adv_dip_event.101.d: "Our funded pirates have successfully raided [SCOPE.sCountry('piracy_target').GetName]'s merchant shipping!"
+adv_dip_event.101.f: "The harbormaster's report arrived with news of another successful raid. Our 'privateers' had struck a devastating blow to [SCOPE.sCountry('spy_target_country').GetName]'s maritime commerce, seizing valuable cargo and disrupting their trade routes.\n\nWhile officially we maintain no connection to these raiders, their effectiveness in hampering our rival's trade brings a satisfied smile to our admiralty."
+adv_dip_event.101.a: "Look at me. I am the captain now."
+
+adv_dip_event.102.t: "Shipping Routes Disrupted"
+adv_dip_event.102.d: "Pirates have been wreaking havoc on our merchant shipping!"
+adv_dip_event.102.f: "The latest reports from our port authorities paint a grim picture. Pirates have been systematically targeting our merchant vessels, causing severe disruptions to our maritime trade. The attacks seem too coordinated to be mere chance - someone must be supporting these raiders.\n\nOur merchants demand action, but catching the true culprits may prove challenging."
+adv_dip_event.102.a: "Pirates?! I hate those filthy bandits."
+
+adv_dip_event.103.t: "Spoils of War"
+adv_dip_event.103.d: "The wave of pirate attacks against our shipping has finally begun to subside."
+adv_dip_event.103.f: "After months of disruption, our maritime trade routes are finally returning to normal. The coordinated attacks that plagued our merchant vessels have mysteriously ceased, though the damage to our economy will take time to repair.\n\nWhile some suspect foreign involvement in the raids, proving such allegations would be difficult. For now, our merchants are simply relieved to resume their regular trading operations."
+adv_dip_event.103.a: "Our ports can breathe easier."
+
+adv_dip_event.110.t: "Knowledge Shared"
+adv_dip_event.110.d: "Our development program in [SCOPE.sCountry('spy_target_country').GetName] has yielded promising results. Local scholars and engineers have embraced modern techniques, leading to notable improvements in their research capabilities."
+adv_dip_event.110.f: "The lecture hall buzzed with excitement as local intellectuals eagerly absorbed the latest scientific principles. Our advisors had spent months carefully introducing modern methodologies, and now the results were becoming evident.\n\n'Their grasp of industrial concepts is remarkable,' the chief advisor reported. 'What might have taken decades of isolated development, they've assimilated in months. Several promising students have already proposed improvements to our original designs.'\n\nWhile ostensibly about modernization, this transfer of knowledge served our broader strategic interests. A developed [SCOPE.sCountry('spy_target_country').GetName] would be a more valuable trading partner - and a more reliable ally."
+adv_dip_event.110.a: "Knowledge lifts all nations."
+
+adv_dip_event.120.t: "The Underground Railroad"
+adv_dip_event.120.d: "Our network of abolitionists has successfully helped a group of enslaved people escape from [SCOPE.sCountry('spy_target_country').GetName]. They have sought refuge in our territory, bringing with them harrowing stories and a determination to build new lives in freedom."
+adv_dip_event.120.f: "The safe house was quiet save for muffled sobs of relief. A dozen newly-freed souls huddled around a warm hearth, their arduous journey finally at an end. Their escape had been meticulously planned - sympathetic conductors, hidden compartments in wagons, forged papers prepared by our agents.\n\n'They'll be looking for us,' one woman whispered, clutching her infant closer.\n\n'Let them look,' the station master replied firmly. 'You're in [ROOT.GetCountry.GetName] now. Here, you're free people.'\n\nAs word reached the capital, officials began the delicate process of settling the refugees while maintaining plausible deniability about their network's involvement."
+adv_dip_event.120.a: "Welcome them to freedom."
+
+
+# # # # # PIRACY JOURNAL # # # # #
+adv_dip_je_pirates: "Under Siege at Sea"
+adv_dip_je_pirates_reason: "Our maritime trade routes are under systematic attack by organized privateers. These are no mere opportunistic raiders - their tactics suggest coordinated strikes funded by hostile powers. Our merchant vessels report increasing losses, trade efficiency is plummeting, and insurance rates are skyrocketing. Unless we take decisive action, these 'pirates' will continue to strangle our maritime commerce.\n\nOur port authorities recommend increasing security measures, while military advisors suggest direct action against known pirate havens. Some merchants have even proposed paying protection money to ensure safe passage."
+adv_dip_je_piracy_success: "The pirates stop being funded."
+adv_dip_je_piracy_failure: "The pirates stop being funded."
+
+adv_dip_je_pirates_port_security: "Increase Port Security"
+adv_dip_je_pirates_port_security_desc: "Increases the security of our ports, reducing the effects of piracy."
+
+adv_dip_je_pirates_disrupt: "Disrupt Pirates"
+adv_dip_je_pirates_disrupt_desc: "Disrupts the pirates attacking our maritime trade."
+
+adv_dip_je_pirates_extort_subjects: "Extort Subjects"
+adv_dip_je_pirates_extort_subjects_desc: "Extort subjects for more funds to fight the piracy with."
+adv_dip_je_pirates_modernise_ports: "Modernise Ports"
+adv_dip_je_pirates_modernise_ports_desc: "Modernise our ports to make them more secure against piracy."
+
+recently_fought_pirates: "Recently Fought Pirates"
+
 
 # # # # # ASSASSINATION EVENTS # # # # #
 
@@ -572,7 +639,6 @@ election_interference_trigger_false_desc_third: "[COUNTRY.GetName] does not inte
 assassinate_political_leader: "Political Assassination"
 assassinate_political_leader_action_name: "Political Assassination"
 assassinate_political_leader_action_propose_name: "Political Assassination"
-assassinate_political_leader_action_propose_name: "Political Assassination"
 assassinate_political_leader_action_break_name: "End Political Assassination"
 assassinate_political_leader_action_notification_name: "Political Assassination"
 assassinate_political_leader_action_notification_desc: "We are conducting a political assassination in [INITIATOR_COUNTRY.GetName]."
@@ -584,3 +650,58 @@ assassinate_political_leader_trigger_desc_first: "[COUNTRY.GetAdjectiveNoFlag] i
 assassinate_political_leader_trigger_false_desc_first: "[COUNTRY.GetAdjectiveNoFlag] is no longer attempting to assassinate someone in [TARGET_COUNTRY.GetName]"
 assassinate_political_leader_trigger_desc_third: "[COUNTRY.GetName] is attempting to assassinate someone in [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 assassinate_political_leader_trigger_false_desc_third: "[COUNTRY.GetName] is no longer attempting to assassinate someone in [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
+
+steal_technology: "Steal Technology"
+steal_technology_action_name: "Steal Technology"
+steal_technology_action_break_name: "End Technology Theft"
+steal_technology_action_notification_name: "Technology Theft Established"
+steal_technology_action_notification_desc: "We have begun stealing technology from [INITIATOR_COUNTRY.GetName]."
+steal_technology_desc: "#header $steal_technology$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that allows covert theft of technological advancements from another [Concept('concept_country', '$concept_countries$')]."
+steal_technology_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is stealing technology from [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+steal_technology_action_notification_break_name: "Technology Theft Ended"
+steal_technology_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ceased stealing our technology."
+
+steal_commander: "Steal General/Admiral"
+steal_commander_action_name: "Steal Commander"
+steal_commander_action_break_name: "End Commander Theft"
+steal_commander_action_notification_name: "Commander Theft Established"
+steal_commander_action_notification_desc: "We have begun attempting to recruit commanders from [INITIATOR_COUNTRY.GetName]."
+steal_commander_desc: "#header $steal_commander$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that attempts to recruit military commanders from another [Concept('concept_country', '$concept_countries$')]."
+steal_commander_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is attempting to recruit commanders from [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+steal_commander_action_notification_break_name: "Commander Theft Ended"
+steal_commander_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ceased attempting to recruit our commanders."
+
+fund_piracy: "Fund Piracy"
+fund_piracy_action_name: "Fund Piracy"
+fund_piracy_action_propose_name: "Fund Piracy"
+fund_piracy_action_break_name: "End Piracy Funding"
+fund_piracy_action_notification_name: "Piracy Operation Established"
+fund_piracy_action_notification_desc: "We have begun funding piracy operations against [INITIATOR_COUNTRY.GetName]'s shipping."
+fund_piracy_desc: "#header $fund_piracy$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that funds privateers to disrupt another [Concept('concept_country', '$concept_countries$')]'s maritime trade."
+fund_piracy_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is funding pirates to raid [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]'s shipping lanes."
+fund_piracy_action_notification_break_name: "Piracy Funding Ended"
+fund_piracy_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ceased funding pirate operations against our shipping."
+
+# Support Slaves Action
+support_slaves: "Support Slave Liberation"
+support_slaves_action_name: "Support Slave Liberation"
+support_slaves_action_propose_name: "Support Slave Liberation"
+support_slaves_action_break_name: "End Liberation Support"
+support_slaves_action_notification_name: "Liberation Support Established"
+support_slaves_action_notification_desc: "We have established support for slave liberation in [INITIATOR_COUNTRY.GetName]."
+support_slaves_desc: "#header $support_slaves$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that provides support to enslaved populations, helping them escape oppression and seek freedom."
+support_slaves_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is supporting slave liberation in [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+support_slaves_action_notification_break_name: "Liberation Support Ended"
+support_slaves_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ended their support for slave liberation."
+support_slaves_monthly_effect: "Our agents work to assist enslaved people in finding routes to freedom."
+
+develop_nation: "Develop Nation"
+develop_nation_action_name: "Develop Nation"
+develop_nation_action_propose_name: "Develop Nation"
+develop_nation_action_break_name: "End Development Aid"
+develop_nation_action_notification_name: "Development Aid Established"
+develop_nation_action_notification_desc: "We have established a development program with [INITIATOR_COUNTRY.GetName]."
+develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that provides developmental assistance to help modernize a decentralized nation."
+develop_nation_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is providing development aid to [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+develop_nation_action_notification_break_name: "Development Aid Ended"
+develop_nation_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ended their development assistance program."

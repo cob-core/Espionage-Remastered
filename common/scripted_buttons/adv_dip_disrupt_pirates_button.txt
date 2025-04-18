@@ -1,0 +1,36 @@
+je_disrupt_pirates = {
+	name = adv_dip_je_pirates_disrupt
+	desc = adv_dip_je_pirates_disrupt_desc
+
+	visible = { always = yes }
+	
+	ai_chance = {
+		base = 5
+		modifier = {
+			trigger = { bureaucracy > 0 }
+			add = 5
+		}
+	}
+
+	possible = {
+		not = {
+			has_variable = recently_fought_pirates
+		}
+	}
+
+	effect = {
+		set_variable = {
+			name = recently_fought_pirates
+			months = 6
+		}
+        add_modifier = {
+			name = piracy_disruption_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = piracy_cost
+			months = 13
+			multiplier = piracy_cost_multiplier
+		}
+	}
+}

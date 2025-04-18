@@ -8,11 +8,6 @@
 	unlocking_technologies = {
 		logistics
 	}
-
-	selectable = {
-		NOT = { is_country_type = decentralized }
-		is_revolutionary = no
-	}
 	
 	potential = {
 		NOT = { is_country_type = decentralized }
@@ -55,9 +50,8 @@
 
 		second_modifier = {
 			unit_supply_consumption_mult = 1
-			country_military_goods_cost_mult = -0.15
 			country_military_wages_mult = -0.25
-			country_pact_leverage_generation_add = 100
+			country_pact_leverage_generation_add = 200
 			state_conscription_rate_mult = 1
 			country_radicals_from_legitimacy_mult = 0.5
 			state_radicals_and_loyalists_from_sol_change_mult = 0.1
@@ -69,7 +63,7 @@
 			custom_tooltip = {
 				text = fund_armaments_monthly_effect
 				random_list = { 
-					16 = {}
+					40 = {}
 					1 = { 
 						root = {
 							trigger_event = {
@@ -92,62 +86,28 @@
 	}
 	
 	ai = {
-		max_influence_spending_fraction = 0.10
+		max_influence_spending_fraction = 0.05
 	
 		propose_score = {
 			value = 10
 		}
 	
-		will_propose = { 
+		will_propose = {
 			scaled_debt <= 0
 			is_at_war = no
-			scope:target_country = { is_subject_of = root }
-			any_country = {
-				has_diplomatic_pact = {
-					who = scope:target_country
-					type = agitate_for_liberty
-				}								
-			}
-				
-			# We want to have at least five times their income, and at least 50k income in general
 			OR = {
-				AND = {
-					weekly_net_fixed_income >= 50000
-					scope:target_country.income <= 10000
+				scope:target_country = { is_subject_of = root }
+				scope:target_country = {
+					has_attitude = {
+						who = THIS
+						attitude = cooperative
+					}
 				}
-				AND = {
-					weekly_net_fixed_income >= 75000
-					scope:target_country.income <= 15000
-				}				
-				AND = {
-					weekly_net_fixed_income >= 100000
-					scope:target_country.income <= 20000
+				has_attitude = {
+					who = scope:target_country
+					attitude = domineering
 				}
-				AND = {
-					weekly_net_fixed_income >= 125000
-					scope:target_country.income <= 25000
-				}
-				AND = {
-					weekly_net_fixed_income >= 150000
-					scope:target_country.income <= 30000
-				}	
-				AND = {
-					weekly_net_fixed_income >= 175000
-					scope:target_country.income <= 35000
-				}
-				AND = {
-					weekly_net_fixed_income >= 200000
-					scope:target_country.income <= 40000
-				}
-				AND = {
-					weekly_net_fixed_income >= 225000
-					scope:target_country.income <= 45000
-				}	
-				AND = {
-					weekly_net_fixed_income >= 250000
-					scope:target_country.income <= 50000
-				}					
-			}			
+			}
 		}
 		
 		will_break = { 
@@ -157,55 +117,6 @@
 					scaled_debt > 0
 					is_at_war = yes
 				}
-				NOT = {scope:target_country= { is_subject_of = root }}
-				NOT = {
-					any_country = {
-						has_diplomatic_pact = {
-							who = scope:target_country
-							type = agitate_for_liberty
-						}								
-					}
-				}			
-				
-				# We want to have at least five times their income, and at least 50k income in general
-				NOR = {
-					AND = {
-						weekly_net_fixed_income >= 50000
-						scope:target_country.weekly_net_fixed_income <= 10000
-					}
-					AND = {
-						weekly_net_fixed_income >= 75000
-						scope:target_country.weekly_net_fixed_income <= 15000
-					}				
-					AND = {
-						weekly_net_fixed_income >= 100000
-						scope:target_country.weekly_net_fixed_income <= 20000
-					}
-					AND = {
-						weekly_net_fixed_income >= 125000
-						scope:target_country.weekly_net_fixed_income <= 25000
-					}
-					AND = {
-						weekly_net_fixed_income >= 150000
-						scope:target_country.weekly_net_fixed_income <= 30000
-					}	
-					AND = {
-						weekly_net_fixed_income >= 175000
-						scope:target_country.weekly_net_fixed_income <= 35000
-					}
-					AND = {
-						weekly_net_fixed_income >= 200000
-						scope:target_country.weekly_net_fixed_income <= 40000
-					}
-					AND = {
-						weekly_net_fixed_income >= 225000
-						scope:target_country.weekly_net_fixed_income <= 45000
-					}	
-					AND = {
-						weekly_net_fixed_income >= 250000
-						scope:target_country.weekly_net_fixed_income <= 50000
-					}					
-				}					
 			}
 		}			
 	}

@@ -96,7 +96,7 @@
 	ai = {
 
 		propose_score = {
-			value = 10
+			value = 5
 		}
 	
 		will_propose = { 
@@ -110,7 +110,6 @@
 				relations:root <= relations_threshold:cold
 			}
 			country_rank >= rank_value:great_power
-			weekly_net_fixed_income >= 50000
 		}
 		
 		will_break = { 
@@ -119,15 +118,7 @@
 				AND = {
 					scaled_debt > 0
 					is_at_war = yes
-				}
-				NOT = {
-					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
-						}										
-					}
-				}						
+				}				
 			}					
 		}			
 	}

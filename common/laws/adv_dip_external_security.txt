@@ -46,5 +46,21 @@ law_spy_agency = {
 			limit = { ai_has_enact_weight_modifier_journal_entries = yes }
 			add = 750
 		}
+
+		if = {
+			limit = {
+				scope:root_country = {
+					country_rank > rank_value:minor_power
+				}
+			}
+			add = 750
+		}
+
+		if = {
+			limit = {
+				scaled_debt = 0
+			}
+			add = 100
+		}
 	}
 }

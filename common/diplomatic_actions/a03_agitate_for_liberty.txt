@@ -89,7 +89,7 @@
 	
 	ai = {
 		propose_score = {
-			value = 10
+			value = 100
 		}
 	
 		will_propose = { 
@@ -124,17 +124,10 @@
 				}
 				NOT = {
 					scope:target_country.overlord = {
-						relations:root <= relations_threshold:cold											
+						relations:root <= relations_threshold:cold
 					}
-				}
-				AND = {
-					scope:target_country = {
-						relations:overlord <= relations_threshold:cold
-					}
-					has_truce_with = scope:target_country.overlord
 				}
 			}					
 		}			
 	}
 }
-

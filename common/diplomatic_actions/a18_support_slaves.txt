@@ -1,8 +1,9 @@
-﻿cultural_exchange = {
+support_slaves = {
 	groups = {
 		general
 	}
-	requires_approval = yes
+
+	requires_approval = no
 	should_notify_third_parties = no
 
 	unlocking_technologies = {
@@ -14,6 +15,7 @@
 		country_rank >= rank_value:great_power
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
+			NOT = { has_law = law_type:law_slavery_banned }
 		}
 		institution_investment_level = {
 			institution = institution_espionage
@@ -35,24 +37,22 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 	
-	pact = {	
+	pact = {
 		cost = 150
 	
 		is_two_sided_pact = no
 		show_in_outliner = yes
-		can_be_used_in_sway_offers = yes
+		can_be_used_in_sway_offers = no
 		sway_maneuvers_cost = 10
-
-		relations_progress_per_day = 13
-
+		
 		income_transfer = 0.05
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
 		income_transfer_to_pops = {
-			allow_non_fully_accepted = no
+			allow_non_fully_accepted = yes
 			upper_strata_pops = {
-				value = 1
+				value = 0
 				max = 1
 				min = 0
 			}
@@ -62,21 +62,32 @@
 				min = 0				
 			}
 			lower_strata_pops = {
-				value = 0
+				value = 1
 				max = 1
 				min = 0				
 			}
 		}
 
+		first_modifier = {
+			
+		}
+
+		second_modifier = {
+			state_slave_import_mult = -0.5
+			country_slaves_pol_str_mult = 0.5
+			state_slaves_mass_migration_disallowed_bool = no
+			state_slaves_internal_migration_disallowed_bool = no
+		}
+
 		monthly_effect = {
 			custom_tooltip = {
-				text = send_advisors_monthly_effect
+				text = support_slaves_monthly_effect
 				random_list = { 
-					8 = {}
+					40 = {}
 					1 = { 
 						root = {
 							trigger_event = {
-					            id = adv_dip_event.63
+					            id = adv_dip_event.120
 					        }
 					    }
 					}
@@ -108,8 +119,7 @@
 	}
 	
 	ai = {
-		max_influence_spending_fraction = 0.10
-	
+
 		propose_score = {
 			value = 10
 		}
@@ -117,25 +127,13 @@
 		will_propose = { 
 			scaled_debt <= 0
 			is_at_war = no
-			scope:target_country = { is_subject_of = root }
 			scope:target_country = {
-				country_rank < rank_value:major_power
+				has_diplomatic_pact = {
+					who = root
+					type = rivalry
+				}
+				relations:root <= relations_threshold:cold									
 			}
-			OR = {
-				scope:target_country = { is_subject_of = root }
-				has_attitude = {
-					who = scope:target_country
-					attitude = domineering
-				}
-				has_attitude = {
-					who = scope:target_country
-					attitude = cooperative
-				}
-				has_attitude = {
-					who = scope:target_country
-					attitude = conciliatory
-				}
-			}	
 		}
 		
 		will_break = { 
@@ -145,7 +143,15 @@
 					scaled_debt > 0
 					is_at_war = yes
 				}
-			}
+				NOT = {
+					scope:target_country = {
+						has_diplomatic_pact = {
+							who = root
+							type = rivalry
+						}										
+					}
+				}						
+			}					
 		}			
 	}
 }

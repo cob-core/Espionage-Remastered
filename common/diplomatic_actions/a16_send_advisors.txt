@@ -117,47 +117,25 @@
 		will_propose = { 
 			scaled_debt <= 0
 			is_at_war = no
-			scope:target_country = { is_subject_of = root }
-				
-			# We want to have at least five times their income, and at least 50k income in general
+			scope:target_country = {
+				country_rank < rank_value:major_power
+			}
 			OR = {
-				AND = {
-					weekly_net_fixed_income >= 50000
-					scope:target_country.income <= 10000
+				scope:target_country = { is_subject_of = root }
+				has_attitude = {
+					who = scope:target_country
+					attitude = domineering
 				}
-				AND = {
-					weekly_net_fixed_income >= 75000
-					scope:target_country.income <= 15000
-				}				
-				AND = {
-					weekly_net_fixed_income >= 100000
-					scope:target_country.income <= 20000
+				has_attitude = {
+					who = scope:target_country
+					attitude = cooperative
 				}
-				AND = {
-					weekly_net_fixed_income >= 125000
-					scope:target_country.income <= 25000
+				has_attitude = {
+					who = scope:target_country
+					attitude = conciliatory
 				}
-				AND = {
-					weekly_net_fixed_income >= 150000
-					scope:target_country.income <= 30000
-				}	
-				AND = {
-					weekly_net_fixed_income >= 175000
-					scope:target_country.income <= 35000
-				}
-				AND = {
-					weekly_net_fixed_income >= 200000
-					scope:target_country.income <= 40000
-				}
-				AND = {
-					weekly_net_fixed_income >= 225000
-					scope:target_country.income <= 45000
-				}	
-				AND = {
-					weekly_net_fixed_income >= 250000
-					scope:target_country.income <= 50000
-				}					
-			}			
+			}
+				
 		}
 		
 		will_break = { 
@@ -167,47 +145,6 @@
 					scaled_debt > 0
 					is_at_war = yes
 				}
-				NOT = {scope:target_country= { is_subject_of = root }}	
-				
-				# We want to have at least five times their income, and at least 50k income in general
-				NOR = {
-					AND = {
-						weekly_net_fixed_income >= 50000
-						scope:target_country.weekly_net_fixed_income <= 10000
-					}
-					AND = {
-						weekly_net_fixed_income >= 75000
-						scope:target_country.weekly_net_fixed_income <= 15000
-					}				
-					AND = {
-						weekly_net_fixed_income >= 100000
-						scope:target_country.weekly_net_fixed_income <= 20000
-					}
-					AND = {
-						weekly_net_fixed_income >= 125000
-						scope:target_country.weekly_net_fixed_income <= 25000
-					}
-					AND = {
-						weekly_net_fixed_income >= 150000
-						scope:target_country.weekly_net_fixed_income <= 30000
-					}	
-					AND = {
-						weekly_net_fixed_income >= 175000
-						scope:target_country.weekly_net_fixed_income <= 35000
-					}
-					AND = {
-						weekly_net_fixed_income >= 200000
-						scope:target_country.weekly_net_fixed_income <= 40000
-					}
-					AND = {
-						weekly_net_fixed_income >= 225000
-						scope:target_country.weekly_net_fixed_income <= 45000
-					}	
-					AND = {
-						weekly_net_fixed_income >= 250000
-						scope:target_country.weekly_net_fixed_income <= 50000
-					}					
-				}					
 			}
 		}			
 	}

@@ -14,9 +14,13 @@
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
 			OR = {
-				any_active_party = {}
+				scope:target_country = {
+					any_interest_group = {
+						has_party = yes
+					}
+				}
+			}
 		}
-	}
 	institution_investment_level = {
 		institution = institution_espionage
 		value >= 4
@@ -26,7 +30,11 @@
 	possible = {
 		is_revolutionary = no
 		in_default = no
-
+		scope:target_country = {
+			any_interest_group = {
+				has_party = yes
+			}
+		}
 	}
 	
 	pact = {	
@@ -60,11 +68,18 @@
 			custom_tooltip = {
 				text = election_interference_monthly_effect
 				random_list = { 
-					16 = {}
+					4 = {}
 					1 = {
-						root = {
-							trigger_event = {
-								id = adv_dip_event.81
+						if = {
+							limit = {
+								scope:spy_target_country = {
+									in_election_campaign = yes
+								}
+							}
+							root = {
+								trigger_event = {
+									id = adv_dip_event.81
+								}
 							}
 						}
 					}
@@ -76,9 +91,11 @@
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
-				scope:target_country = {
-					any_active_party {
-						count = 0
+				NOT = {
+					scope:target_country = {
+						any_interest_group = {
+							has_party = yes
+						}
 					}
 				}
 				in_default = yes
@@ -87,11 +104,12 @@
 				}
 			}
 		}
+	}
 	
 	ai = {
 
 		propose_score = {
-			value = 10
+			value = 5
 		}
 	
 		will_propose = { 
@@ -104,8 +122,7 @@
 				}
 				relations:root <= relations_threshold:cold
 			}
-			country_rank >= rank_value:great_power
-			weekly_net_fixed_income >= 50000
+			country_rank >= rank_value:major_power
 		}
 		
 		will_break = { 

@@ -1,0 +1,61 @@
+﻿adv_dip_je_pirates = {
+	
+	group = je_group_internal_affairs
+
+	weight = 200
+    transferable = no
+    should_be_pinned_by_default = yes
+
+	scripted_button = je_disrupt_pirates
+	scripted_button = je_extort_subjects
+	scripted_button = je_add_port_security
+	scripted_button = je_modernise_ports
+
+	on_monthly_pulse = {
+	}
+	
+	immediate = {
+	}
+	
+	
+    complete = {
+		custom_tooltip = {
+			text = adv_dip_je_piracy_success
+			NOT = {
+				root = {
+					any_country = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+			}
+		}
+    }
+	
+	on_complete = {
+		trigger_event = { id = adv_dip_event.103 }
+	}
+    
+    fail = {
+		custom_tooltip = {
+			text = adv_dip_je_piracy_failure
+			NOT = {
+				root = {
+					any_country = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+			}
+		}
+    }
+	
+	on_fail = {
+		trigger_event = { id = adv_dip_event.103 }
+	}
+
+}

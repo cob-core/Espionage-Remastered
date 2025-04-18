@@ -1,4 +1,4 @@
-﻿support_nationalists = {
+fund_piracy = {
 	groups = {
 		general
 	}
@@ -6,7 +6,7 @@
 	should_notify_third_parties = no
 
 	unlocking_technologies = {
-		nationalism
+		admiralty
 	}
 	
 	potential = {
@@ -29,10 +29,11 @@
 				has_diplomatic_pact = {
 					who = root
 					type = humiliation
-				}								
+				}
 			}
 		}
 		has_diplomatic_relevance = scope:target_country
+		
 	}
 	
 	pact = {	
@@ -41,38 +42,19 @@
 		is_two_sided_pact = no
 		show_in_outliner = yes
 		
-		income_transfer = 0.1
+		income_transfer = 0.05
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
-		income_transfer_to_pops = {
-			allow_non_fully_accepted = yes
-			upper_strata_pops = {
-				value = 0
-				max = 1
-				min = 0
-			}
-			middle_strata_pops = {
-				value = 0.2
-				max = 1
-				min = 0				
-			}
-			lower_strata_pops = {
-				value = 0.8
-				max = 1
-				min = 0				
-			}
-		}
-
 		monthly_effect = {
 			custom_tooltip = {
-				text = support_nationalists_monthly_effect
+				text = fund_piracy_monthly_effect
 				random_list = { 
-					80 = {} #35
+					40 = {}
 					1 = { 
 						root = {
 							trigger_event = {
-					            id = adv_dip_event.21
+					            id = adv_dip_event.101
 					        }
 					    }
 					}
@@ -98,17 +80,22 @@
 	ai = {
 
 		propose_score = {
-			value = 100
+			value = 10
+			if = {
+				limit = {
+					scope:target_country = {
+						has_diplomatic_pact = {
+							who = root
+							type = rivalry
+						}
+					}
+				}
+			}
 		}
 	
 		will_propose = { 
 			scaled_debt <= 0
-			scope:target_country = {
-				has_diplomatic_pact = {
-					who = root
-					type = rivalry
-				}
-				relations:root <= relations_threshold:cold									
+				relations:root <= relations_threshold:cold
 			}
 		}
 		
@@ -121,14 +108,6 @@
 				}
 				NOT = {
 					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
-						}										
-					}
-				}
-				NOT = {
-					scope:target_country = {
 						relations:root <= relations_threshold:cold											
 					}
 				}						
@@ -136,4 +115,3 @@
 		}			
 	}
 }
-

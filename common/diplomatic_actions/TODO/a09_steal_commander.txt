@@ -1,0 +1,112 @@
+steal_commander = {
+    groups = {
+        general
+    }
+    requires_approval = yes
+    should_notify_third_parties = no
+
+    unlocking_technologies = {
+        standing_army
+    }
+
+    selectable = {
+        NOT = { is_country_type = decentralized }
+        is_revolutionary = no
+    }
+    
+    potential = {
+        NOT = { is_country_type = decentralized }
+        scope:target_country = {
+            NOT = { is_country_type = decentralized }
+            any_scope_character = {
+                OR = {
+                    has_role = general
+                    has_role = admiral
+                }
+            }
+        }
+        institution_investment_level = {
+            institution = institution_espionage
+            value >= 2
+        }
+    }
+    
+    possible = {
+        is_revolutionary = no
+        in_default = no
+        NOT = { has_war_with = scope:target_country }
+        scope:target_country = {
+            country_rank < rank_value:great_power
+        }
+        has_diplomatic_relevance = scope:target_country
+    }
+    
+    pact = {    
+        cost = 100
+    
+        is_two_sided_pact = no
+        show_in_outliner = yes
+
+        monthly_effect = {
+            custom_tooltip = {
+                text = steal_commander_monthly_effect
+                random_list = { 
+                    100 = {}
+                    1 = { 
+                        root = {
+                            trigger_event = {
+                                id = adv_dip_event.91
+                            }
+                        }
+                    }
+                }                                
+            }
+        }
+    
+        should_invalidate = {
+            OR = {
+                has_war_with = scope:target_country                
+                is_country_type = decentralized
+                scope:target_country = { is_country_type = decentralized }
+                in_default = yes
+            }
+        }
+    }
+    
+    ai = {
+        max_influence_spending_fraction = 0.15
+    
+        propose_score = {
+            value = 10
+            if = {
+                limit = {
+                    scope:target_country = {
+                        any_scope_character = {
+                            OR = {
+                                has_trait = expert_offensive_planner
+                                has_trait = expert_artillery_commander
+                                has_trait = expert_convoy_raider
+                                has_trait = expert_naval_commander
+                                has_trait = expert_defensive_strategist 
+                                has_trait = expert_offensive_planner
+                            }
+                        }
+                    }
+                }
+                add = 100
+            }
+        }
+    
+        will_propose = { 
+            scaled_debt <= 0
+            weekly_net_fixed_income >= 25000
+        }
+        
+        will_break = { 
+            OR = {        
+                scaled_debt > 0.25
+                weekly_net_fixed_income < 20000
+            }
+        }            
+    }
+}

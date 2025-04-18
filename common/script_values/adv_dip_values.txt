@@ -87,3 +87,90 @@ medium_espionage_event_costs_value = {
 high_espionage_event_costs_value = {
 	value = 1.2
 }
+
+piracy_cost_multiplier = {
+	value = root.gdp
+	divide = 100000
+	multiply = 0.25
+	round = yes
+	multiply = 100
+	divide = counter_piracy
+	if = {
+		limit = {
+			NOT = {
+				has_modifier = low_espionage_event_costs
+			}
+		}
+		multiply = low_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_modifier = medium_espionage_event_costs
+			}
+		}
+		multiply = medium_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_modifier = high_espionage_event_costs
+			}
+		}
+		multiply = high_espionage_event_costs_value
+	}
+}
+
+piracy_loot_value = {
+	value = scope:piracy_target.gdp
+	divide = 100000
+	multiply = 0.25
+	round = yes
+	multiply = 100
+	divide = counter_piracy
+	if = {
+		limit = {
+			NOT = {
+				has_modifier = low_espionage_event_costs
+			}
+		}
+		multiply = low_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_modifier = medium_espionage_event_costs
+			}
+		}
+		multiply = medium_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_modifier = high_espionage_event_costs
+			}
+		}
+		multiply = high_espionage_event_costs_value
+	}
+}
+
+counter_piracy = {
+	value = 1
+	if = {
+		limit = {
+			scope:spy_target_country.navy_size > 10
+		}
+		multiply = scope:piracy_target.navy_size
+		divide = 10
+		round = yes
+	}
+}
+
+military_cost = {
+	value = scope:spy_target_country.military_expenses
+}
+
+send_armaments_cost = {
+	value = scope:spy_target_country.military_expenses
+	divide = 10
+}

@@ -78,14 +78,14 @@ counterespionage_modifier = {
 
 fund_armaments_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-	country_expenses_add = -5000
+	country_tax_income_add = send_armaments_cost
 	unit_supply_consumption_mult = 1
 	state_conscription_rate_mult = 0.05
 }
 
 armaments_cost_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 5000
+	country_expenses_add = send_armaments_cost
 }
 
 overthrower_modifier {
@@ -146,4 +146,62 @@ recent_assassination_modifier {
 blamed_for_poisoning_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	character_popularity_add = -50
+}
+
+piracy_disruption_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	unit_navy_offense_mult = 0.15
+	country_prestige_add = 5
+}
+
+local_piracy_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_port_connection_cost_mult = 0.15
+}
+
+increased_port_security {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_port_connection_cost_mult = -0.1
+	country_prestige_add = 5
+}
+
+extorting_subjects_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_subject_income_transfer_mult = 0.15
+	country_prestige_add = -5
+}
+
+piracy_cost {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+}
+
+pirate_loot_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	country_tax_income_add = 1
+}
+
+slave_liberation_support_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_add = 10
+}
+
+slave_liberation_disruption_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	country_prestige_add = -10
+}
+
+development_aid_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_add = 10
+}
+
+modernization_program_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+}
+
+modernised_ports_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_prestige_add = 5
+	country_military_tech_research_speed_mult = 0.2
 }
