@@ -38,7 +38,7 @@
 	pact = {	
 		cost = 150
 	
-		is_two_sided_pact = no
+		is_two_sided_pact = yes
 		show_in_outliner = yes
 		can_be_used_in_sway_offers = yes
 		sway_maneuvers_cost = 10
@@ -64,15 +64,19 @@
 			lower_strata_pops = {
 				value = 0
 				max = 1
-				min = 0				
+				min = 0
 			}
+		}
+
+		second_modifier = {
+			country_pact_leverage_generation_add = 200
 		}
 
 		monthly_effect = {
 			custom_tooltip = {
 				text = send_advisors_monthly_effect
-				random_list = { 
-					8 = {}
+				random_list = {
+					16 = {}
 					1 = { 
 						root = {
 							trigger_event = {
@@ -146,7 +150,230 @@
 					is_at_war = yes
 				}
 			}
-		}			
+		}
+
+		accept_score = {
+			value = 0
+			add = {
+				desc = "LOW_RATING_OPINION"
+				if = {
+					limit = {
+						country_rank < rank_value:major_power
+					}
+					value = 50
+				}
+			}
+			add = {
+				desc = "DIPLOMATIC_ACCEPTANCE_ATTITUDE"
+				if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = genial
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = protective
+							}
+						}
+					}
+					value = 100
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = cooperative
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = conciliatory
+							}							
+						}
+					}
+					value = 50
+				}
+				else_if = {
+					limit = {
+						has_attitude = {
+							who = scope:actor
+							attitude = domineering
+						}
+					}
+					value = 25
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = antagonistic
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = belligerent
+							}
+						}
+					}
+					value = -100
+				}
+				else = {
+					value = -25
+				}
+			}
+
+		}
+
+		accept_break_score = {
+			value = 10
+		}
 	}
 }
 
+send_advisors_request = {
+	groups = {
+		general
+	}
+	requires_approval = yes
+	should_notify_third_parties = yes
+	uses_random_approval = yes
+	can_use_obligations = yes
+	confirmation_sound = "event:/SFX/UI/MapInteraction/diplomatic_action_foreign_investment_rights_request"
+
+
+	unlocking_technologies = {
+		rationalism
+	}
+	
+	potential = {
+		NOT = { is_country_type = decentralized }
+		scope:target_country = {
+			country_rank = rank_value:great_power
+		}
+		country_rank < scope:target_country.country_rank
+	}
+	
+	possible = {
+		is_revolutionary = no
+		in_default = no
+		NOT = { has_war_with = scope:target_country }
+		custom_tooltip = {
+			text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS_NOT
+			scope:target_country.relations:root > relations_threshold:poor
+		}
+	}
+	
+	reverse_pact = send_advisors
+
+	decline_effect = {
+		hidden_effect = {
+		}
+	}
+	
+	ai = {
+		max_influence_spending_fraction = 0.10
+		check_acceptance_for_will_propose = yes
+	
+		propose_score = {
+			value = 0
+		}
+
+		evaluation_chance = {
+			value = 1
+		}
+
+		accept_score = {
+			value = 0
+			add = {
+				desc = "DIPLOMATIC_ACCEPTANCE_ATTITUDE"
+				if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = genial
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = protective
+							}
+						}
+					}
+					value = 100
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = cooperative
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = conciliatory
+							}							
+						}
+					}
+					value = 50
+				}
+				else_if = {
+					limit = {
+						has_attitude = {
+							who = scope:actor
+							attitude = domineering
+						}
+					}
+					value = 25
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = antagonistic
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = belligerent
+							}
+						}
+					}
+					value = -100
+				}
+				else = {
+					value = -25
+				}
+			}
+
+		}
+		accept_break_score = {
+			value = 10
+		}
+	
+		will_propose = { 
+			scaled_debt <= 0
+			scope:target_country = {
+				country_rank < rank_value:major_power
+			}
+		}
+		
+		will_break = { 
+			OR = {		
+				scaled_debt > 0.25
+				AND = {
+					scaled_debt > 0
+					is_at_war = yes
+				}
+			}
+		}			
+
+		use_favor_chance = {
+			value = 100
+		}
+		owe_favor_chance = {
+			value = 100
+		}
+	}
+}

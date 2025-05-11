@@ -19,7 +19,7 @@ support_slaves = {
 		}
 		institution_investment_level = {
 			institution = institution_espionage
-			value >= 1
+			value >= 3
 		}
 	}
 	
@@ -27,10 +27,6 @@ support_slaves = {
 		is_revolutionary = no
 		in_default = no
 		NOT = { has_war_with = scope:target_country }
-		custom_tooltip = {
-			text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS_NOT
-			scope:target_country.relations:root > relations_threshold:poor
-		}
 		scope:target_country = {
 			country_rank < rank_value:great_power
 		}
@@ -83,7 +79,7 @@ support_slaves = {
 			custom_tooltip = {
 				text = support_slaves_monthly_effect
 				random_list = { 
-					40 = {}
+					35 = {}
 					1 = { 
 						root = {
 							trigger_event = {
@@ -106,7 +102,7 @@ support_slaves = {
                 # make sure to update is_about_to_auto_break when changing this:
 				scope:target_country.relations:root <= relations_threshold:poor
 			}
-		}		
+		}
 	
 		should_invalidate = {
 			OR = {

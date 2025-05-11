@@ -37,7 +37,7 @@ develop_nation = {
 		}
 	}
 	
-	pact = {	
+	pact = {
 		cost = 200
 	
 		is_two_sided_pact = no
@@ -79,9 +79,16 @@ develop_nation = {
 		monthly_effect = {
 			custom_tooltip = {
 				text = develop_nation_monthly_effect
-				random_list = { 
-					2 = {}
-					1 = { 
+				random_list = {
+					16 = {}
+					1 = {
+						IF = {
+							limit = {
+								NOT = {
+									has_variable = ongoing_development
+								}
+							}
+						}
 						root = {
 							trigger_event = {
 					            id = adv_dip_event.110

@@ -1,0 +1,33 @@
+je_share_technologies = {
+	name = adv_dip_je_share_technologies
+	desc = adv_dip_je_share_technologies_desc
+
+	visible = { always = yes }
+	
+	ai_chance = {
+		base = 5
+		modifier = {
+			trigger = { bureaucracy > 0 }
+			add = 5
+		}
+	}
+
+	possible = {
+	}
+
+	effect = {
+		set_variable = {
+			name = recently_developed_country
+			months = 7
+		}
+        add_modifier = {
+			name = development_share_technology_modifier
+			months = 25
+		}
+		add_modifier = {
+			name = development_cost_modifier
+			months = 25
+			multiplier = development_funding
+		}
+	}
+}

@@ -1,5 +1,59 @@
 ﻿namespace = adv_dip_event
 
+adv_dip_event.1 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.1.t
+	desc = adv_dip_event.1.d
+	flavor = adv_dip_event.1.f
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.1.a
+		custom_tooltip = {
+				text = comet_effect
+		}
+	}
+
+	option = {
+		name = adv_dip_event.1.b
+		custom_tooltip = {
+			text = comet_effect
+	}
+	}
+
+	option = {
+		name = adv_dip_event.1.c
+		custom_tooltip = {
+			text = comet_effect
+	}
+	}
+
+	option = {
+		name = adv_dip_event.1.e
+		custom_tooltip = {
+			text = comet_effect
+	}
+	}
+}
+
 adv_dip_event.11 = {
 	type = country_event
 	placement = root
@@ -1325,12 +1379,6 @@ adv_dip_event.61 = {
 			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
-		scope:spy_target_country = {
-			add_modifier = {
-				name = send_advisors_modifier
-				months = 25
-			}
-		}
 		change_relations = {
 			country = scope:spy_target_country
 			value = 10
@@ -1338,11 +1386,16 @@ adv_dip_event.61 = {
 		ai_chance = {
 			base = 10
 		}
+		scope:spy_target_country = {
+			trigger_event = {
+	            id = adv_dip_event.64
+	        }
+		}
 	}
 	option = {
 		name = adv_dip_event.61.b
 		ai_chance = {
-			base = 0
+			base = 10
 		}
 	}
 }
@@ -1422,15 +1475,14 @@ adv_dip_event.62 = {
 			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
-		scope:spy_target_country = {
-			add_modifier = {
-				name = military_attache_modifier
-				months = 25
-			}
-		}
 		change_relations = {
 			country = scope:spy_target_country
 			value = 10
+		}
+		scope:spy_target_country = {
+			trigger_event = {
+	            id = adv_dip_event.65
+	        }
 		}
 		ai_chance = {
 			base = 10
@@ -1439,7 +1491,7 @@ adv_dip_event.62 = {
 	option = {
 		name = adv_dip_event.62.b
 		ai_chance = {
-			base = 0
+			base = 10
 		}
 	}
 }
@@ -1519,15 +1571,14 @@ adv_dip_event.63 = {
 			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
-		scope:spy_target_country = {
-			add_modifier = {
-				name = cultural_exchange_modifier
-				months = 25
-			}
-		}
 		change_relations = {
 			country = scope:spy_target_country
 			value = 10
+		}
+		scope:spy_target_country = {
+			trigger_event = {
+	            id = adv_dip_event.66
+	        }
 		}
 		ai_chance = {
 			base = 10
@@ -1536,7 +1587,127 @@ adv_dip_event.63 = {
 	option = {
 		name = adv_dip_event.63.b
 		ai_chance = {
-			base = 0
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.64 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.64.t
+	desc = adv_dip_event.64.d
+	flavor = adv_dip_event.64.f
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.64.a
+		default_option = yes
+		ROOT = {
+			add_modifier = {
+				name = send_advisors_modifier
+				months = 25
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.65 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.65.t
+	desc = adv_dip_event.65.d
+	flavor = adv_dip_event.65.f
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.65.a
+		default_option = yes
+		ROOT = {
+			add_modifier = {
+				name = military_attache_modifier
+				months = 25
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.66 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.66.t
+	desc = adv_dip_event.66.d
+	flavor = adv_dip_event.66.f
+
+	event_image = {
+		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.66.a
+		default_option = yes
+		ROOT = {
+			add_modifier = {
+				name = cultural_exchange_modifier
+				months = 25
+			}
+		}
+		ai_chance = {
+			base = 10
 		}
 	}
 }
@@ -2415,6 +2586,209 @@ adv_dip_event.82 = {
 	}
 }
 
+adv_dip_event.91 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.91.t
+	desc = adv_dip_event.91.d
+	flavor = adv_dip_event.91.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = steal_technology
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = steal_technology
+						}
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = steal_technology
+						}
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.91.a
+		add_modifier = {
+			name = stolen_technology_production_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = stolen_technology_cost_modifier
+			multiplier = technology_theft_cost
+			months = 24
+		}
+		random_list = {
+			5 = {}
+			1 = {
+				scope:spy_target_country = {
+					trigger_event = {
+						id = adv_dip_event.92
+						days = 7
+					}
+					change_relations = {
+						country = root
+						value = -5
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	
+	option = {
+		name = adv_dip_event.91.b
+		add_modifier = {
+			name = stolen_technology_military_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = stolen_technology_cost_modifier
+			multiplier = technology_theft_cost
+			months = 24
+		}
+		random_list = {
+			5 = {}
+			1 = {
+				scope:spy_target_country = {
+					trigger_event = {
+						id = adv_dip_event.92
+						days = 7
+					}
+					change_relations = {
+						country = root
+						value = -5
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = adv_dip_event.91.c
+		add_modifier = {
+			name = stolen_technology_society_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = stolen_technology_cost_modifier
+			multiplier = technology_theft_cost
+			months = 24
+		}
+		random_list = {
+			5 = {}
+			1 = {
+				scope:spy_target_country = {
+					trigger_event = {
+						id = adv_dip_event.92
+						days = 7
+					}
+					change_relations = {
+						country = root
+						value = -5
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = adv_dip_event.91.g
+		default_option = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+adv_dip_event.92 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.92.t
+	desc = adv_dip_event.92.d
+	flavor = adv_dip_event.92.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.92.a
+		ai_chance = {
+			base = 10
+		}
+	}
+	
+	option = {
+		name = adv_dip_event.92.b
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
 adv_dip_event.101 = {
 	type = country_event
 	placement = root
@@ -2424,7 +2798,7 @@ adv_dip_event.101 = {
 	flavor = adv_dip_event.101.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "gfx/event_pictures/unspecific_naval_battle.bk2"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -2486,7 +2860,7 @@ adv_dip_event.101 = {
 
 		add_modifier = {
 			name = pirate_loot_modifier
-			months = 13
+			months = 7
 			multiplier = piracy_loot_value
 		}
 
@@ -2505,7 +2879,7 @@ adv_dip_event.102 = {
 	flavor = adv_dip_event.102.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "gfx/event_pictures/unspecific_naval_battle.bk2"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -2593,7 +2967,7 @@ adv_dip_event.103 = {
 	flavor = adv_dip_event.103.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "gfx/event_pictures/unspecific_naval_battle.bk2"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -2677,7 +3051,14 @@ adv_dip_event.110 = {
 	trigger = {
 	}
 
+	cancellation_trigger = {
+		scope:root_country = {
+			has_variable = ongoing_development
+		}
+	}
+
 	immediate = {
+		set_variable = ongoing_development
 	}
 
 	option = {
@@ -2704,7 +3085,7 @@ adv_dip_event.120 = {
 	flavor = adv_dip_event.120.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "gfx/event_pictures/southamerica_slaves_night.bk2"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -2754,6 +3135,28 @@ adv_dip_event.120 = {
 				save_scope_as = spy_target_country
 			}
 		}
+		scope:root_country = {
+			every_state = {
+				limit = {
+					state_has_building_type_levels = {
+						target = bt:building_port
+						value > 0
+					}
+				}
+				save_scope_as = root_states_for_slaves
+			}
+		}
+		scope:root_states_for_slaves = {
+			random_scope_state = {
+				save_scope_as = root_target_state_for_slaves_1
+			}
+			random_scope_state = {
+				save_scope_as = root_target_state_for_slaves_2
+			}
+			random_scope_state = {
+				save_scope_as = root_target_state_for_slaves_3
+			}
+		}
 	}
 
 	option = {
@@ -2766,7 +3169,9 @@ adv_dip_event.120 = {
 					limit = {
 						is_pop_type = slaves
 					}
-					move_partial_pop = {state = root.capital population_ratio = 0.1}
+					move_partial_pop = {state = scope:root_target_state_for_slaves_1 population_ratio = 0.02}
+					move_partial_pop = {state = scope:root_target_state_for_slaves_2 population_ratio = 0.02}
+					move_partial_pop = {state = scope:root_target_state_for_slaves_3 population_ratio = 0.02}
 				}
 			}
 		}

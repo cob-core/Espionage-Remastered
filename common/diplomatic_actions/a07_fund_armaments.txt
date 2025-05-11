@@ -89,7 +89,67 @@
 		max_influence_spending_fraction = 0.05
 	
 		propose_score = {
-			value = 10
+			value = 0
+			add = {
+				desc = "DIPLOMATIC_ACCEPTANCE_ATTITUDE"
+				if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = genial
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = protective
+							}
+						}
+					}
+					value = 100
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = cooperative
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = conciliatory
+							}							
+						}
+					}
+					value = 50
+				}
+				else_if = {
+					limit = {
+						has_attitude = {
+							who = scope:actor
+							attitude = domineering
+						}
+					}
+					value = 25
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = antagonistic
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = belligerent
+							}
+						}
+					}
+					value = -100
+				}
+				else = {
+					value = -25
+				}
+			}
 		}
 	
 		will_propose = {
@@ -118,7 +178,74 @@
 					is_at_war = yes
 				}
 			}
-		}			
+		}
+
+		accept_score = {
+			value = 0
+			add = {
+				desc = "DIPLOMATIC_ACCEPTANCE_ATTITUDE"
+				if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = genial
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = protective
+							}
+						}
+					}
+					value = 100
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = cooperative
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = conciliatory
+							}							
+						}
+					}
+					value = 50
+				}
+				else_if = {
+					limit = {
+						has_attitude = {
+							who = scope:actor
+							attitude = domineering
+						}
+					}
+					value = 25
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_attitude = {
+								who = scope:actor
+								attitude = antagonistic
+							}
+							has_attitude = {
+								who = scope:actor
+								attitude = belligerent
+							}
+						}
+					}
+					value = -100
+				}
+				else = {
+					value = -25
+				}
+			}
+		}
+
+		accept_break_score = {
+			value = 10
+		}
 	}
 }
-

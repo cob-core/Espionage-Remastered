@@ -2,6 +2,11 @@
 	on_actions = {
 		adv_separate_actions
 	}
+	
+	random_events = {
+		100 = adv_dip_event.0
+		1 = adv_dip_event.1
+	}
 }
 
 adv_separate_actions = {

@@ -1,4 +1,4 @@
-﻿adv_dip_je_pirates = {
+﻿adv_dip_je_development = {
 	
 	group = je_group_espionage
 
@@ -6,10 +6,10 @@
     transferable = no
     should_be_pinned_by_default = yes
 
-	scripted_button = je_disrupt_pirates
-	scripted_button = je_extort_subjects
-	scripted_button = je_add_port_security
-	scripted_button = je_modernise_ports
+	scripted_button = je_expand_infrastructure
+	scripted_button = je_share_technologies
+	scripted_button = je_encourage_settlers
+	scripted_button = je_garner_influence
 
 	on_monthly_pulse = {
 	}

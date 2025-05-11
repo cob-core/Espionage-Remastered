@@ -1,5 +1,8 @@
 ﻿l_english:
  
+je_group_espionage: "Espionage Operations"
+LOW_RATING_OPINION: "Wants to be more respected in the global community."
+
 # # # # # LAWS # # # # #
 
 lawgroup_external_security: "External Security"
@@ -27,6 +30,10 @@ steal_commander_monthly_effect: "Our agents may convince enemy commanders to def
 fund_piracy_monthly_effect: "Our funded privateers raid enemy shipping lanes."
 develop_nation_monthly_effect: "Our advisors help implement modernization programs."
 support_slaves_monthly_effect: "Our agents may assist in liberating enslaved individuals from their captors."
+
+comet_effect: "[ROOT.GetCountry.GetName] loses 1 [tooltip_comet_stability]."
+tooltip_comet_stability: "Stability"
+tooltip_comet_stability_desc: "Stability is a measure of the nation's internal peace. Unstable nations are more likely to face revo- #red hang on, what game is this?!#!"
 
 # # # # # MODIFIERS # # # # #
 
@@ -57,6 +64,10 @@ development_aid_modifier: "Foreign Development Aid"
 modernization_program_modifier: "Modernization Program"
 extorting_subjects_modifier: "Extorting Subjects"
 modernised_ports_modifier: "Modernised Ports"
+stolen_technology_production_modifier: "Stolen Production Technology"
+stolen_technology_military_modifier: "Stolen Military Technology"
+stolen_technology_society_modifier: "Stolen Society Technology"
+stolen_technology_cost_modifier: "Technology Theft Costs"
 
 # # # # # ASSASSINATION MODIFIERS # # # # #
 
@@ -69,15 +80,29 @@ cleaned_the_cat_modifier: "Cleaned a Dead Cat Up"
 
 # # # # # GAME RULES # # # # #
 
-rule_espionage_event_cost: "Cost of Espionage Events"
-setting_low_cost: "Lower Costs"
-setting_low_cost_desc: "Lowers the cost of espionage events against other countries."
-setting_medium_cost: "Standard Costs"
-setting_medium_cost_desc: "The cost of espionage events against another country are standard."
-setting_high_cost: "Higher Costs"
-setting_high_cost_desc: "Increases the cost of espionage events against other countries."
+rule_espionage_event_cost: "#blue Espionage Remastered#! Cost of Espionage Events"
+setting_low_espionage_event_costs: "Lower Costs"
+setting_low_espionage_event_costs_desc: "Lowers the cost of espionage events against other countries."
+setting_medium_espionage_event_costs: "Standard Costs"
+setting_medium_espionage_event_costs_desc: "The cost of espionage events against another country are standard."
+setting_high_espionage_event_costs: "Higher Costs"
+setting_high_espionage_event_costs_desc: "Increases the cost of espionage events against other countries."
+
+rule_espionage_tech_stealing: "#blue Espionage Remastered#! Technology Stealing"
+setting_disable_tech_stealing: "Disable Technology Stealing"
+setting_disable_tech_stealing_desc: "Disables the ability to steal technology from other countries."
+setting_enable_tech_stealing: "Enable Technology Stealing"
+setting_enable_tech_stealing_desc: "Enables the ability to steal technology from other countries. \n@warning!This may allow unrecognized countries to catch up in technology with great powers."
 
 # # # # # DIPLOMATIC ACTION EVENTS # # # # #
+
+adv_dip_event.1.t: "Comet Sighted!"
+adv_dip_event.1.d: "A brilliant comet has appeared in the night sky, causing widespread anxiety among the populace. Street corners buzz with dire predictions and apocalyptic interpretations."
+adv_dip_event.1.f: "The Interior Minister's morning briefing was interrupted by an agitated astronomer from the Royal Observatory. \n\n"A comet, sir! Visible to the naked eye!" he exclaimed, spreading star charts across the desk. "The common folk are in quite a state about it. Street preachers claim it heralds the end times, factory workers whisper it portends revolution, and the papers are printing the most sensational theories." \n\nThrough the window, crowds could be seen gathering in the square, pointing at the sky even in broad daylight. The Minister sighed, reaching for his pen. Something would have to be done to maintain order."
+adv_dip_event.1.a: "The economy, fools!"
+adv_dip_event.1.b: "If only we had comet sense..."
+adv_dip_event.1.c: "Let us consult the Royal Observatory."
+adv_dip_event.1.e: "Surely this is a sign of progress!"
 
 adv_dip_event.21.t: "Support Nationalists"
 adv_dip_event.21.d: "The proud [ROOT.GetCountry.GetName] Secret Service's espionage operations against [SCOPE.sCountry('spy_target_country').GetName] have taken a major step forward. They are convinced that with a little support they can achieve the complete success of the operation."
@@ -126,6 +151,21 @@ adv_dip_event.63.f: "The cultural delegation gathered in the Foreign Ministry's 
 adv_dip_event.63.a: "Dispatch."
 adv_dip_event.63.b: "Nevermind."
 
+adv_dip_event.64.t: "Foreign Advisors Arrive"
+adv_dip_event.64.d: "A delegation of advisors has arrived in our capital, offering their expertise in industrial development. While their assistance comes at a cost, their knowledge could prove valuable to our nation's growth."
+adv_dip_event.64.f: "The grand reception hall bustled with activity as the foreign advisors presented their credentials. Engineers, economists, and industrial experts stood in neat rows, their polished appearances matching their prestigious reputations. \n\n"We are honored to receive such distinguished assistance," the Minister of Industry declared, though some of his aides exchanged worried glances. "Your expertise will surely accelerate our development." \n\nYet as the delegation toured our facilities, keen eyes took careful notes, and pointed questions about our infrastructure and resources seemed to probe deeper than mere technical interest warranted. \n\nThe Minister's secretary leaned in close, whispering, "They seem rather... thorough in their assessments, sir." \n\n"Indeed," the Minister replied softly. "One might wonder what other purposes such detailed knowledge might serve.""
+adv_dip_event.64.a: "Welcome our esteemed guests."
+
+adv_dip_event.65.t: "Military Attaché Arrives"
+adv_dip_event.65.d: "A delegation of military attachés has arrived to share their expertise. While they claim their mission is to modernize our armed forces, some of our officers are wary of their true intentions."
+adv_dip_event.65.f: "The War Ministry's grand hall echoed with the sharp click of boots as foreign officers conducted their inspection. Their pristine uniforms and polished decorations drew admiring glances from our junior officers.\n\n"Their tactical doctrine is quite advanced," the Chief of Staff admitted privately. "Yet I can't shake the feeling they're cataloging more than just training deficiencies." \n\nIndeed, the attachés' questions about supply routes, defensive positions, and command structures seemed to probe beyond mere professional courtesy. \n\n"They take such detailed notes," an aide whispered. "One wonders whose desk in [SCOPE.sCountry('spy_target_country').GetName] will eventually see them.""
+adv_dip_event.65.a: "We can learn much from their expertise."
+
+adv_dip_event.66.t: "Cultural Delegation Arrives"
+adv_dip_event.66.d: "Representatives have arrived with promises of cultural exchange and artistic collaboration. Their presence has already begun to influence our society's elite circles."
+adv_dip_event.66.f: "The National Theater buzzed with excitement as foreign artists unpacked crates of books, musical instruments, and paintings. The cultural delegation had barely arrived, yet already the capital's salons were arranging soirées in their honor.\n\n"Such fascinating perspectives they bring," the Minister of Culture observed, watching a foreign composer discuss theory with local musicians. "Though I notice they seem particularly interested in our more... influential families."\n\nIndeed, the delegation's charm offensive appeared carefully targeted. Every exhibition, every concert, every literary discussion somehow attracted those closest to power.\n\nA senior civil servant adjusted his cravat nervously. "They're not just spreading culture, are they? They're building a network.""
+adv_dip_event.66.a: "Art knows no borders!"
+
 adv_dip_event.11.t: "Sprinkle the Seeds of Discontent"
 adv_dip_event.11.d: "The proud [ROOT.GetCountry.GetName] Secret Service's espionage operations against [SCOPE.sCountry('spy_target_country').GetName] have taken a major step forward. They are convinced that with a little support they can achieve the complete success of the operation."
 adv_dip_event.11.f: "The Foreign Minister reviewed the dossier with growing satisfaction. Months of patient work by [ROOT.GetCountry.GetName]'s intelligence services had identified precisely which grievances to exploit in [SCOPE.sCountry('spy_target_country').GetName]. \n\n"Our agents are positioned in key locations," the intelligence director reported. "Union leaders, university professors, newspaper editors—all ready to amplify existing frustrations. A modest investment now will yield considerable civil unrest within weeks." \n\n"And naturally, when their government struggles to maintain order..." \n\n"We'll be positioned to offer alternatives, sir. Economic partnerships, security agreements—whatever serves our interests once they're sufficiently desperate." \n\nThe Minister's pen hovered over the authorization form. One signature to destabilize a nation."
@@ -156,10 +196,19 @@ adv_dip_event.82.f: "The Security Minister slammed the intelligence report onto 
 adv_dip_event.82.a: "I'm sure it's nothing."
 adv_dip_event.82.b: "Shutdown government. Force everyone out now."
 
-adv_dip_event.91.t: "Military Defection"
-adv_dip_event.91.d: "Our agents have successfully convinced a military commander from [SCOPE.sCountry('spy_target_country').GetName] to defect to our side."
-adv_dip_event.91.f: "The Foreign Ministry's clandestine evening meeting was interrupted by an urgent dispatch. A high-ranking [SCOPE.sCountry('spy_target_country').GetName] military commander had accepted our offer of asylum and generous compensation in exchange for their expertise and loyalty.\n\nTheir defection would not only strengthen our own military capabilities but also significantly weaken our rival's command structure. The commander's intimate knowledge of their former nation's military strategies and deployments would prove invaluable."
-adv_dip_event.91.a: "A valuable addition to our forces."
+adv_dip_event.91.t: "Scientific Espionage"
+adv_dip_event.91.d: "Our agents have identified several opportunities to acquire technological secrets from [SCOPE.sCountry('spy_target_country').GetName]. We must decide which field of research to focus our espionage efforts on."
+adv_dip_event.91.f: "The intelligence director spread three dossiers across the desk, each detailing different technological targets within [SCOPE.sCountry('spy_target_country').GetName]. \n\n"First, their industrial innovations—new manufacturing processes that could revolutionize our production methods. Second, their military advancements—particularly in the realm of artillery and naval design. Finally, their social institutions—education systems and civil engineering that have produced remarkable results." \n\nHe tapped each folder in turn. "We have the resources to pursue one avenue thoroughly. The question is: which secrets would best serve our nation's interests?""
+adv_dip_event.91.a: "Their industrial methods could transform our economy."
+adv_dip_event.91.b: "Military technology is vital for our security."
+adv_dip_event.91.c: "Their societal advances could modernize our nation."
+adv_dip_event.91.g: "Leave it for now."
+
+adv_dip_event.92.t: "Technology Theft Discovered"
+adv_dip_event.92.d: "Our security services have uncovered evidence of theft of our technological secrets."
+adv_dip_event.92.f: "The Chief of Security's report made for grim reading. Foreign agents had thoroughly infiltrated our research institutions, making off with valuable technological data. \n\nBlueprints had been copied, research journals photographed, and in some cases, key personnel had been bribed to share sensitive information. The breach appeared systematic and well-organized, bearing all the hallmarks of state-sponsored espionage. \n\nMost concerning was the targeted nature of the theft—the spies knew exactly what they were looking for, suggesting a serious intelligence leak at the highest levels."
+adv_dip_event.92.a: "Increase security immediately!"
+adv_dip_event.92.b: "I'm sure it's nothing."
 
 adv_dip_event.101.t: "Pirates Strike!"
 adv_dip_event.101.d: "Our funded pirates have successfully raided [SCOPE.sCountry('piracy_target').GetName]'s merchant shipping!"
@@ -171,7 +220,7 @@ adv_dip_event.102.d: "Pirates have been wreaking havoc on our merchant shipping!
 adv_dip_event.102.f: "The latest reports from our port authorities paint a grim picture. Pirates have been systematically targeting our merchant vessels, causing severe disruptions to our maritime trade. The attacks seem too coordinated to be mere chance - someone must be supporting these raiders.\n\nOur merchants demand action, but catching the true culprits may prove challenging."
 adv_dip_event.102.a: "Pirates?! I hate those filthy bandits."
 
-adv_dip_event.103.t: "Spoils of War"
+adv_dip_event.103.t: "The Calm After the Storm"
 adv_dip_event.103.d: "The wave of pirate attacks against our shipping has finally begun to subside."
 adv_dip_event.103.f: "After months of disruption, our maritime trade routes are finally returning to normal. The coordinated attacks that plagued our merchant vessels have mysteriously ceased, though the damage to our economy will take time to repair.\n\nWhile some suspect foreign involvement in the raids, proving such allegations would be difficult. For now, our merchants are simply relieved to resume their regular trading operations."
 adv_dip_event.103.a: "Our ports can breathe easier."
@@ -206,6 +255,11 @@ adv_dip_je_pirates_modernise_ports_desc: "Modernise our ports to make them more 
 
 recently_fought_pirates: "Recently Fought Pirates"
 
+# # # # # PIRACY JOURNAL # # # # #
+adv_dip_je_development: "Building Blocks"
+
+adv_dip_je_share_technologies: ""
+adv_dip_je_share_technologies_desc: ""
 
 # # # # # ASSASSINATION EVENTS # # # # #
 
@@ -442,6 +496,26 @@ send_advisors_trigger_false_desc_first: "[COUNTRY.GetAdjectiveNoFlag] no longer 
 send_advisors_trigger_desc_third: "[COUNTRY.GetName] has an advisory agreement with [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 send_advisors_trigger_false_desc_third: "[COUNTRY.GetName] does not have an adivosry agreement with [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 
+send_advisors_request: "Request Foreign Advisors"
+send_advisors_request_action_name: "Request Foreign Advisors"
+send_advisors_request_action_propose_name: "Request Foreign Advisors"
+send_advisors_request_action_break_name: "Dismiss Foreign Advisors"
+send_advisors_request_action_notification_name: "Foreign Advisors Requested"
+send_advisors_request_action_notification_desc: "We have requested foreign advisors from [INITIATOR_COUNTRY.GetName]."
+send_advisors_request_desc: "#header $send_advisors_request$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that requests expert advisors from another nation to assist with our industrial development."
+send_advisors_request_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] has requested advisors from [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+send_advisors_request_proposal_notification_name: "Request for Advisors"
+send_advisors_request_proposal_notification_desc: "[INITIATOR_COUNTRY.GetName] wishes to receive our expert advisors."
+send_advisors_request_proposal_notification_effects_desc: "$send_advisors_request_desc$"
+send_advisors_request_proposal_accepted_name: "Advisor Request Accepted"
+send_advisors_request_proposal_accepted_desc: "[TARGET_COUNTRY.GetName] has agreed to send us their advisors."
+send_advisors_request_proposal_declined_name: "Advisor Request Declined"
+send_advisors_request_proposal_declined_desc: "[TARGET_COUNTRY.GetName] has declined to send us their advisors."
+send_advisors_request_proposal_third_party_accepted_name: "Advisory Agreement Signed"
+send_advisors_request_proposal_third_party_accepted_desc: "[TARGET_COUNTRY.GetName] has agreed to send advisors to [INITIATOR_COUNTRY.GetName]."
+send_advisors_request_proposal_third_party_declined_name: "Advisory Agreement Rejected"
+send_advisors_request_proposal_third_party_declined_desc: "[TARGET_COUNTRY.GetName] has declined to send advisors to [INITIATOR_COUNTRY.GetName]."
+
 send_military_attache: "Send a Military Attaché"
 send_military_attache_action_name: "Send a Military Attaché"
 send_military_attache_action_propose_name: "Send a Military Attaché"
@@ -477,6 +551,27 @@ send_military_attache_trigger_false_desc_first: "[COUNTRY.GetAdjectiveNoFlag] do
 send_military_attache_trigger_desc_third: "[COUNTRY.GetName] has a military attaché agreement with [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 send_military_attache_trigger_false_desc_third: "[COUNTRY.GetName] does not have a military attaché agreement with [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 
+send_military_attache_request: "Request Military Attaché"
+send_military_attache_request_action_name: "Request Military Attaché"
+send_military_attache_request_action_propose_name: "Request Military Attaché"
+send_military_attache_request_action_break_name: "Dismiss Military Attaché"
+send_military_attache_request_action_notification_name: "Military Attaché Requested"
+send_military_attache_request_action_notification_desc: "We have requested a military attaché from [INITIATOR_COUNTRY.GetName]."
+send_military_attache_request_desc: "#header $send_military_attache_request$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that requests military expertise from another nation to assist with our armed forces modernization."
+send_military_attache_request_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] has requested a military attaché from [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+send_military_attache_request_proposal_notification_name: "Request for Military Attaché"
+send_military_attache_request_proposal_notification_desc: "[INITIATOR_COUNTRY.GetName] wishes to receive our military expertise."
+send_military_attache_request_proposal_notification_effects_desc: "$send_military_attache_request_desc$"
+send_military_attache_request_proposal_accepted_name: "Military Attaché Request Accepted"
+send_military_attache_request_proposal_accepted_desc: "[TARGET_COUNTRY.GetName] has agreed to send us their military attaché."
+send_military_attache_request_proposal_declined_name: "Military Attaché Request Declined"
+send_military_attache_request_proposal_declined_desc: "[TARGET_COUNTRY.GetName] has declined to send us their military attaché."
+send_military_attache_request_proposal_third_party_accepted_name: "Military Attaché Agreement Signed"
+send_military_attache_request_proposal_third_party_accepted_desc: "[TARGET_COUNTRY.GetName] has agreed to send a military attaché to [INITIATOR_COUNTRY.GetName]."
+send_military_attache_request_proposal_third_party_declined_name: "Military Attaché Agreement Rejected"
+send_military_attache_request_proposal_third_party_declined_desc: "[TARGET_COUNTRY.GetName] has declined to send a military attaché to [INITIATOR_COUNTRY.GetName]."
+
+
 cultural_exchange: "Cultural Exchange"
 cultural_exchange_action_name: "Propose Cultural Exchange Agreement"
 cultural_exchange_action_propose_name: "Propose a Cultural Exchange"
@@ -511,6 +606,26 @@ cultural_exchange_trigger_desc_first: "[COUNTRY.GetAdjectiveNoFlag] has a cultur
 cultural_exchange_trigger_false_desc_first: "[COUNTRY.GetAdjectiveNoFlag] does not have a cultural exchange agreement with [TARGET_COUNTRY.GetName]"
 cultural_exchange_trigger_desc_third: "[COUNTRY.GetName] has a cultural exchange agreement with [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
 cultural_exchange_trigger_false_desc_third: "[COUNTRY.GetName] does not have a cultural exchange agreement with [AddTextIf(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self),TARGET_COUNTRY.GetNameNoFlag)][AddTextIf(Not(ObjectsEqual(GetMetaPlayer.GetPlayedOrObservedCountry.Self, TARGET_COUNTRY.Self)),TARGET_COUNTRY.GetName)]"
+
+cultural_exchange_request: "Request Cultural Exchange"
+cultural_exchange_request_action_name: "Request Cultural Exchange"
+cultural_exchange_request_action_propose_name: "Request Cultural Exchange"
+cultural_exchange_request_action_break_name: "End Cultural Exchange"
+cultural_exchange_request_action_notification_name: "Cultural Exchange Requested"
+cultural_exchange_request_action_notification_desc: "We have requested a cultural exchange program with [INITIATOR_COUNTRY.GetName]."
+cultural_exchange_request_desc: "#header $cultural_exchange_request$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that requests cultural ambassadors from another nation to assist with our societal development."
+cultural_exchange_request_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] has requested cultural exchange with [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
+cultural_exchange_request_proposal_notification_name: "Request for Cultural Exchange"
+cultural_exchange_request_proposal_notification_desc: "[INITIATOR_COUNTRY.GetName] wishes to establish cultural ties with us."
+cultural_exchange_request_proposal_notification_effects_desc: "$cultural_exchange_request_desc$"
+cultural_exchange_request_proposal_accepted_name: "Cultural Exchange Request Accepted"
+cultural_exchange_request_proposal_accepted_desc: "[TARGET_COUNTRY.GetName] has agreed to establish cultural exchange with us."
+cultural_exchange_request_proposal_declined_name: "Cultural Exchange Request Declined"
+cultural_exchange_request_proposal_declined_desc: "[TARGET_COUNTRY.GetName] has declined to establish cultural exchange with us."
+cultural_exchange_request_proposal_third_party_accepted_name: "Cultural Exchange Agreement Signed"
+cultural_exchange_request_proposal_third_party_accepted_desc: "[TARGET_COUNTRY.GetName] has agreed to establish cultural exchange with [INITIATOR_COUNTRY.GetName]."
+cultural_exchange_request_proposal_third_party_declined_name: "Cultural Exchange Agreement Rejected"
+cultural_exchange_request_proposal_third_party_declined_desc: "[TARGET_COUNTRY.GetName] has declined to establish cultural exchange with [INITIATOR_COUNTRY.GetName]."
 
 support_nationalists: "Support Nationalists"
 support_nationalists_action_name: "Support Nationalists"
@@ -653,10 +768,11 @@ assassinate_political_leader_trigger_false_desc_third: "[COUNTRY.GetName] is no 
 
 steal_technology: "Steal Technology"
 steal_technology_action_name: "Steal Technology"
+steal_technology_action_propose_name: "Steal Technology"
 steal_technology_action_break_name: "End Technology Theft"
 steal_technology_action_notification_name: "Technology Theft Established"
 steal_technology_action_notification_desc: "We have begun stealing technology from [INITIATOR_COUNTRY.GetName]."
-steal_technology_desc: "#header $steal_technology$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that allows covert theft of technological advancements from another [Concept('concept_country', '$concept_countries$')]."
+steal_technology_desc: "#header $steal_technology$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that allows covert theft of technological advancements from other [Concept('concept_country', '$concept_countries$')]."
 steal_technology_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is stealing technology from [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
 steal_technology_action_notification_break_name: "Technology Theft Ended"
 steal_technology_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ceased stealing our technology."
@@ -677,7 +793,7 @@ fund_piracy_action_propose_name: "Fund Piracy"
 fund_piracy_action_break_name: "End Piracy Funding"
 fund_piracy_action_notification_name: "Piracy Operation Established"
 fund_piracy_action_notification_desc: "We have begun funding piracy operations against [INITIATOR_COUNTRY.GetName]'s shipping."
-fund_piracy_desc: "#header $fund_piracy$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that funds privateers to disrupt another [Concept('concept_country', '$concept_countries$')]'s maritime trade."
+fund_piracy_desc: "#header $fund_piracy$#!\n$TOOLTIP_DELIMITER$\nA [concept_diplomatic_pact] that funds privateers to disrupt another [Concept('concept_country', '$concept_countries$')] maritime trade."
 fund_piracy_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is funding pirates to raid [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]'s shipping lanes."
 fund_piracy_action_notification_break_name: "Piracy Funding Ended"
 fund_piracy_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ceased funding pirate operations against our shipping."
@@ -693,7 +809,6 @@ support_slaves_desc: "#header $support_slaves$#!\n$TOOLTIP_DELIMITER$\nA [concep
 support_slaves_pact_desc: "[SCOPE.GetRootScope.GetDiplomaticPact.GetFirstCountry.GetName] is supporting slave liberation in [SCOPE.GetRootScope.GetDiplomaticPact.GetSecondCountry.GetName]."
 support_slaves_action_notification_break_name: "Liberation Support Ended"
 support_slaves_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ended their support for slave liberation."
-support_slaves_monthly_effect: "Our agents work to assist enslaved people in finding routes to freedom."
 
 develop_nation: "Develop Nation"
 develop_nation_action_name: "Develop Nation"

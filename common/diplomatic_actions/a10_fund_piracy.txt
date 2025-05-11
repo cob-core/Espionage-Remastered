@@ -42,15 +42,34 @@ fund_piracy = {
 		is_two_sided_pact = no
 		show_in_outliner = yes
 		
-		income_transfer = 0.05
+		income_transfer = 0.025
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
+		income_transfer_to_pops = {
+			allow_non_fully_accepted = yes
+			upper_strata_pops = {
+				value = 0
+				max = 1
+				min = 0
+			}
+			middle_strata_pops = {
+				value = 0.2
+				max = 1
+				min = 0				
+			}
+			lower_strata_pops = {
+				value = 0.8
+				max = 1
+				min = 0				
+			}
+		}
+
 		monthly_effect = {
 			custom_tooltip = {
 				text = fund_piracy_monthly_effect
 				random_list = { 
-					40 = {}
+					16 = {}
 					1 = { 
 						root = {
 							trigger_event = {
@@ -58,7 +77,7 @@ fund_piracy = {
 					        }
 					    }
 					}
-				}								
+				}
 			}
 		} 	
 	

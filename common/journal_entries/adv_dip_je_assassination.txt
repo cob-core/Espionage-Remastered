@@ -1,6 +1,6 @@
 ﻿adv_dip_je_assassination = {
 	
-	group = je_group_expeditions
+	group = je_group_espionage
 
 	scripted_progress_bar = assassination_progress_bar
 	scripted_progress_bar = assassination_risk_progress_bar

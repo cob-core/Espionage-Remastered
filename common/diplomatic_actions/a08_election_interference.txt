@@ -37,10 +37,10 @@
 		}
 	}
 	
-	pact = {	
+	pact = {
 		cost = 250
 	
-		income_transfer = 0.1
+		income_transfer = 0.05
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = yes
@@ -68,11 +68,11 @@
 			custom_tooltip = {
 				text = election_interference_monthly_effect
 				random_list = { 
-					4 = {}
+					2 = {}
 					1 = {
 						if = {
 							limit = {
-								scope:spy_target_country = {
+								scope:target_country = {
 									in_election_campaign = yes
 								}
 							}

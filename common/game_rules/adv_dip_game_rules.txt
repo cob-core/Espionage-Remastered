@@ -1,12 +1,22 @@
 ﻿espionage_event_cost = {
-	default = medium_cost
+	default = medium_espionage_event_costs
 
-	low_cost {
+	low_espionage_event_costs {
 	}
 
-	medium_cost {
+	medium_espionage_event_costs {
 	}
 
-	high_cost {
+	high_espionage_event_costs {
+	}
+}
+
+espionage_tech_stealing = {
+	default = enable_tech_stealing
+
+	disable_tech_stealing {
+	}
+
+	enable_tech_stealing {
 	}
 }

@@ -14,7 +14,6 @@ high_espionage_event_costs = {
 sow_discontent_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	state_radicals_and_loyalists_from_sol_change_mult = 0.1
-	political_movement_support_add = 0.1
 	political_movement_radicalism_add = 0.1
 }
 
@@ -49,16 +48,19 @@ sabotage_industry_modifier = {
 send_advisors_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	country_production_tech_spread_mult = 1
+	country_leverage_resistance_mult = -0.25
 }
 
 military_attache_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	country_military_tech_spread_mult = 1
+	country_leverage_resistance_mult = -0.25
 }
 
 cultural_exchange_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	country_society_tech_spread_mult = 1
+	country_leverage_resistance_mult = -0.25
 }
 
 spy_network_cost_modifier = {
@@ -97,7 +99,7 @@ overthrower_modifier {
 
 overthrown_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	interest_group_in_government_attraction_mult = 0.25
+	interest_group_in_government_attraction_mult = 0.10
 	country_radicals_from_legitimacy_mult = 0.1
 	state_radicals_and_loyalists_from_sol_change_mult = 0.1
 }
@@ -156,7 +158,7 @@ piracy_disruption_modifier {
 
 local_piracy_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_port_connection_cost_mult = 0.15
+	country_port_connection_cost_mult = 0.2
 }
 
 increased_port_security {
@@ -204,4 +206,34 @@ modernised_ports_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	country_prestige_add = 5
 	country_military_tech_research_speed_mult = 0.2
+}
+
+development_cost_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
+}
+
+development_share_technology_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	
+}
+
+stolen_technology_production_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_production_tech_spread_mult = 1
+}
+
+stolen_technology_military_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_military_tech_spread_mult = 1
+}
+
+stolen_technology_society_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_society_tech_spread_mult = 1
+}
+
+stolen_technology_cost_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	country_expenses_add = 1
 }
