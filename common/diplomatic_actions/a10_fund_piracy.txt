@@ -14,7 +14,7 @@ fund_piracy = {
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
 		}
-		country_rank >= rank_value:great_power
+		country_rank >= rank_value:minor_power
 		institution_investment_level = {
 			institution = institution_espionage
 			value >= 4

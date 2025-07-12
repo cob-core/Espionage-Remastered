@@ -87,13 +87,16 @@ high_espionage_event_costs_value = {
 	value = 2
 }
 
+piracy_naval_difference = {
+	value = scope:piracy_initiator.naval_power_projection
+	divide = scope:piracy_target.naval_power_projection
+}
+
 piracy_cost_multiplier = {
-	value = root.gdp
+	value = scope:piracy_target.gdp
 	divide = 100000
 	multiply = 0.25
-	round = yes
 	multiply = 100
-	divide = counter_piracy
 	if = {
 		limit = {
 			has_game_rule = low_espionage_event_costs
@@ -112,15 +115,14 @@ piracy_cost_multiplier = {
 		}
 		multiply = high_espionage_event_costs_value
 	}
+	multiply = piracy_naval_difference
 }
 
 piracy_loot_value = {
 	value = scope:piracy_target.gdp
 	divide = 100000
 	multiply = 0.25
-	round = yes
 	multiply = 100
-	divide = counter_piracy
 	if = {
 		limit = {
 			has_game_rule = low_espionage_event_costs
@@ -139,18 +141,7 @@ piracy_loot_value = {
 		}
 		multiply = high_espionage_event_costs_value
 	}
-}
-
-counter_piracy = {
-	value = 1
-	if = {
-		limit = {
-			scope:spy_target_country.navy_size > 10
-		}
-		multiply = scope:piracy_target.navy_size
-		divide = 10
-		round = yes
-	}
+	multiply = piracy_naval_difference
 }
 
 military_cost = {

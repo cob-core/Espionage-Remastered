@@ -8,8 +8,8 @@
 
 	scripted_progress_bar = development_progress_bar
 
-	scripted_button = je_expand_infrastructure
-	scripted_button = je_share_technologies
+	scripted_button = je_encourage_political_reform
+	scripted_button = je_encourage_political_
 	scripted_button = je_encourage_settlers
 	scripted_button = je_garner_influence
 
@@ -31,33 +31,20 @@
     }
 	
 	on_complete = {
-		trigger_event = { id = adv_dip_event.111 }
+		trigger_event = { id = adv_dip_event.103 }
 	}
     
     fail = {
-		OR = {
-			custom_tooltip = {
-				text = adv_dip_je_development_failure
-				scope:journal_entry = {
-					"scripted_bar_progress(assassination_progress_bar)" = 0
-				}
-			}
-			custom_tooltip = {
-				text = adv_dip_je_development_failure_no_pact
-				ROOT = {
-					NOT = {
-						has_diplomatic_pact = {
-							who = PREV
-							type = develop_nation
-						}
-					}
-				}
+		custom_tooltip = {
+			text = adv_dip_je_development_failure
+			scope:journal_entry = {
+				"scripted_bar_progress(assassination_progress_bar)" = 0
 			}
 		}
     }
 	
 	on_fail = {
-		trigger_event = { id = adv_dip_event.112 }
+		trigger_event = { id = adv_dip_event.103 }
 	}
 
 }

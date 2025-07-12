@@ -1,6 +1,6 @@
-je_share_technologies = {
-	name = adv_dip_je_share_technologies
-	desc = adv_dip_je_share_technologies_desc
+je_expand_infrastructure = {
+	name = adv_dip_je_expand_infrastructure
+	desc = adv_dip_je_expand_infrastructure_desc
 
 	visible = { always = yes }
 	
@@ -24,7 +24,7 @@ je_share_technologies = {
 			months = 7
 		}
         add_modifier = {
-			name = development_share_technology_modifier
+			name = development_expand_infrastructure_modifier
 			months = 25
 		}
 		add_modifier = {

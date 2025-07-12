@@ -1304,294 +1304,6 @@ adv_dip_event.52 = {
 	}
 }
 
-adv_dip_event.61 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.61.t
-	desc = adv_dip_event.61.d
-	flavor = adv_dip_event.61.f
-
-	event_image = {
-		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_advisors
-						}
-					}
-					NOT = {
-						has_modifier = send_advisors_modifier
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_advisors
-						}
-					}
-					NOT = {
-						has_modifier = send_advisors_modifier
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_advisors
-						}
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		
-	}
-
-	option = {
-		name = adv_dip_event.61.a
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
-		change_relations = {
-			country = scope:spy_target_country
-			value = 10
-		}
-		ai_chance = {
-			base = 10
-		}
-		scope:spy_target_country = {
-			trigger_event = {
-	            id = adv_dip_event.64
-	        }
-		}
-	}
-	option = {
-		name = adv_dip_event.61.b
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-adv_dip_event.62 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.62.t
-	desc = adv_dip_event.62.d
-	flavor = adv_dip_event.62.f
-
-	event_image = {
-		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_military_attache
-						}
-					}
-					NOT = {
-						has_modifier = military_attache_modifier
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_military_attache
-						}
-					}
-					NOT = {
-						has_modifier = military_attache_modifier
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_military_attache
-						}
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		
-	}
-
-	option = {
-		name = adv_dip_event.62.a
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
-		change_relations = {
-			country = scope:spy_target_country
-			value = 10
-		}
-		scope:spy_target_country = {
-			trigger_event = {
-	            id = adv_dip_event.65
-	        }
-		}
-		ai_chance = {
-			base = 10
-		}
-	}
-	option = {
-		name = adv_dip_event.62.b
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-adv_dip_event.63 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.63.t
-	desc = adv_dip_event.63.d
-	flavor = adv_dip_event.63.f
-
-	event_image = {
-		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_advisors
-						}
-					}
-					NOT = {
-						has_modifier = cultural_exchange_modifier
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = send_advisors
-						}
-					}
-					NOT = {
-						has_modifier = cultural_exchange_modifier
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = cultural_exchange
-						}
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		
-	}
-
-	option = {
-		name = adv_dip_event.63.a
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
-		change_relations = {
-			country = scope:spy_target_country
-			value = 10
-		}
-		scope:spy_target_country = {
-			trigger_event = {
-	            id = adv_dip_event.66
-	        }
-		}
-		ai_chance = {
-			base = 10
-		}
-	}
-	option = {
-		name = adv_dip_event.63.b
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
 adv_dip_event.64 = {
 	type = country_event
 	placement = root
@@ -2848,6 +2560,9 @@ adv_dip_event.101 = {
 				save_scope_as = piracy_target
 			}
 		}
+		root = {
+			save_scope_as = piracy_initiator
+		}
 	}
 
 	option = {
@@ -2922,6 +2637,29 @@ adv_dip_event.102 = {
 					root = {
 						has_diplomatic_pact = {
 							who = prev
+							type = fund_piracy
+						}
+					}
+				}
+				save_scope_as = piracy_target
+			}
+		}
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = this
+							type = fund_piracy
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = this
 							type = fund_piracy
 						}
 					}
@@ -3049,6 +2787,11 @@ adv_dip_event.110 = {
 	duration = 1
 
 	trigger = {
+		NOT = {
+			scope:root_country = {
+				has_variable = ongoing_development
+			}
+		}
 	}
 
 	cancellation_trigger = {
@@ -3059,20 +2802,219 @@ adv_dip_event.110 = {
 
 	immediate = {
 		set_variable = ongoing_development
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+				save_scope_as = development_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+				save_scope_as = development_target
+			}
+		}
 	}
 
 	option = {
 		name = adv_dip_event.110.a
 		default_option = yes
 
+		add_journal_entry = {
+			type = adv_dip_je_development
+		}
+
 		ai_chance = {
 			base = 10
 		}
+	}
+}
 
-		scope:develop_nation_target = {
-			activate_law = law_type:law_monarchy
+adv_dip_event.111 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.111.t
+	desc = adv_dip_event.111.d
+	flavor = adv_dip_event.111.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+		scope:root_country = {
+				has_variable = ongoing_development
+			}
+	}
+
+	cancellation_trigger = {
+	}
+
+	immediate = {
+		set_variable = ongoing_development
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+				save_scope_as = development_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+				save_scope_as = development_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.111.a
+		default_option = yes
+
+		remove_variable = ongoing_development
+
+		scope:development_target = {
+			set_country_type = recognized
 		}
 
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.112 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.112.t
+	desc = adv_dip_event.112.d
+	flavor = adv_dip_event.112.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+		scope:root_country = {
+				has_variable = ongoing_development
+			}
+	}
+
+	cancellation_trigger = {
+	}
+
+	immediate = {
+		set_variable = ongoing_development
+		if = {
+			limit = {
+				any_country = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+				save_scope_as = development_target
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
+					}
+				}
+				save_scope_as = development_target
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.112.a
+		default_option = yes
+
+		remove_variable = ongoing_development
+
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 

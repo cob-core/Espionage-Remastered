@@ -63,7 +63,6 @@
 			}
 		}
 		
-		
 		monthly_effect = {
 			custom_tooltip = {
 				text = election_interference_monthly_effect

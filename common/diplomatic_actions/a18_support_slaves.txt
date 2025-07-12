@@ -75,6 +75,8 @@ support_slaves = {
 			state_slaves_internal_migration_disallowed_bool = no
 		}
 
+		target_can_break = false
+
 		monthly_effect = {
 			custom_tooltip = {
 				text = support_slaves_monthly_effect

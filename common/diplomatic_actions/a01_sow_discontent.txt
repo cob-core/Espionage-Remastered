@@ -53,7 +53,6 @@
 			}
 		}
 		
-		
 		monthly_effect = {
 			custom_tooltip = {
 				text = sow_discontent_monthly_effect

@@ -1,0 +1,288 @@
+﻿military_attache = {
+    kind = directed
+    cost = 100
+
+    icon = "gfx/interface/icons/diplomatic_treaties_articles_icons/military_attache.dds"
+    
+    relations_progress_per_day = 0.5
+    relations_improvement_max = 50
+
+    flags = {
+        can_be_enforced
+        can_be_renegotiated
+    }
+
+    unlocked_by_technologies = {
+        empiricism
+    }
+
+    usage_limit = once_per_treaty
+
+    source_modifier = {
+        country_leverage_generation_add = 5
+    }
+
+    target_modifier = {
+        country_military_tech_spread_mult = 1
+        country_leverage_resistance_mult = -0.25
+    }
+
+    visible = {
+        NOT = { is_country_type = decentralized }
+        is_revolutionary = no
+        has_dlc_feature = mp1_treaties
+    }
+
+    possible = {
+        is_revolutionary = no
+        NOT = { has_war_with = scope:target_country }
+        country_rank >= rank_value:great_power
+        institution_investment_level = {
+            institution = institution_espionage
+            value >= 1
+        }
+        NOT = { has_law = law_type:law_isolationism }
+    }
+
+    can_ratify = {
+        custom_tooltip = {
+            text = DUPLICATE_ARTICLE_SAME_INPUTS
+            trigger_if = {
+                NOT = {
+                    scope:source_country = {
+                        any_scope_treaty = {
+                            hidden_trigger = {
+                                OR = {
+                                    scope:treaty = {
+                                        is_renegotiation = no
+                                    }
+                                    scope:treaty.amended_treaty != this
+                                }
+                            }
+                            any_scope_article = {
+                                has_type = send_advisors
+                                input_building_type = root.input_building_type
+                                source_country = scope:source_country
+                            }
+                        }
+                    }
+                }
+            }
+            scope:treaty ?= {
+                NOT = {
+                    any_scope_article_option = {
+                        count > 1
+                        has_type = send_advisors
+                        source_country = scope:source_country
+                    }
+                }
+            }
+        }
+    }
+
+    on_entry_into_force = {}
+
+    on_withdrawal = {}
+    
+    on_break = {
+        scope:withdrawing_country = {
+            change_infamy = {
+                value = {
+                    add = 1
+                    multiply = {
+                        value = scope:treaty_options.remaining_binding_period
+                        min = 365
+                        divide = 365
+                    }
+                    max = 20
+                    min = 5
+                }
+            }
+        }
+        scope:withdrawing_country = {
+            change_relations = { country = scope:non_withdrawing_country value = -10 }
+        }
+    }
+
+    ai = {
+        treaty_categories = {
+            expansion
+        }
+
+        evaluation_chance = {
+            value = 10
+
+            if = {
+                limit = { country_rank >= rank_value:major_power }
+                add = {
+                    value = country_rank
+                    multiply = 0.10
+                }
+            }
+        }
+
+        article_ai_usage = {
+            will_offer
+        }
+
+        inherent_accept_score = {
+            value = -50
+
+            if = {
+                limit = {
+                    scope:source_country ?= this
+                }
+
+                # We are doing this to be able to reuse loc across treaties and diplomatic actions
+                scope:source_country = {
+                    save_temporary_scope_as = target
+                }
+                scope:target_country = {
+                    save_temporary_scope_as = actor
+                }
+
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_RANK"
+                    if = {
+                        limit = {
+                            scope:target_country.country_rank = rank_value:great_power
+                        }
+                        add = 0
+                    }
+                    else_if = {
+                        limit = {
+                            scope:target_country.country_rank = rank_value:major_power
+                        }
+                        add = 5
+                    }
+                    else_if = {
+                        limit = {
+                            scope:target_country.country_rank = rank_value:minor_power
+                        }
+                        add = 40
+                    }
+                    else_if = {
+                        limit = {
+                            scope:target_country.country_rank = rank_value:unrecognized_major_power
+                        }
+                        add = 40
+                    }
+                    else_if = {
+                        limit = {
+                            scope:target_country.country_rank = rank_value:unrecognized_regional_power
+                        }
+                        add = 60
+                    }
+                    else_if = {
+                        limit = {
+                            scope:target_country.country_rank = rank_value:unrecognized_power
+                        }
+                        add = 80
+                    }
+                }
+
+                add = {
+                    desc = "DIPLOMATIC_ACCEPTANCE_ATTITUDE"
+                    if = {
+                        limit = {
+                            OR = {
+                                has_attitude = {
+                                    who = scope:target_country
+                                    attitude = antagonistic
+                                }
+                                has_attitude = {
+                                    who = scope:target_country
+                                    attitude = domineering
+                                }
+                                has_attitude = {
+                                    who = scope:target_country
+                                    attitude = belligerent
+                                }
+                            }
+                        }
+                        value = -200
+                    }
+
+                    ### How the selected identity fits them
+                    add = ai_power_bloc_identity_score_treaties
+
+                    ### Similar to identities but considers selected principles
+                    add = ai_power_bloc_principle_score_treaties
+
+                    # Ideological opinion is always a factor, but much weaker for non ideological unions
+                    # Score for ideological unions is handled in ai_power_bloc_identity_score script value
+                    if = {
+                        limit = {
+                            power_bloc ?= {
+                                NOT = { has_identity = identity:identity_ideological_union }
+                            }
+                        }
+                        add = {
+                            desc = "DIPLOMATIC_ACCEPTANCE_IDEOLOGICAL_OPINION"
+                            value = "scope:target_country.ai_ideological_opinion(scope:source_country)"
+                            multiply = 0.25
+                            max = 10
+                            min = -25
+                        }
+                    }
+
+                    ### Powerful Protectors is always a factor, but less so if not being invited to a sovereign empire
+                    if = {
+                        limit = {
+                            scope:target_country.power_bloc ?= {
+                                NOT = { has_identity = identity:identity_sovereign_empire }
+                            }
+                            has_powerful_protectors = {
+                                ACTOR_SCOPE = scope:source_country
+                            }
+                        }
+                        add = {
+                            desc = "DIPLOMATIC_ACCEPTANCE_POWERFUL_PROTECTORS_THEM"
+                            value = -25
+                        }
+                    }
+
+                    ### Relative rank
+                    add = {
+                        desc = "DIPLOMATIC_ACCEPTANCE_RANK"
+                        value = scope:target_country.country_rank
+                        subtract = 2
+                        subtract = country_rank
+                        multiply = 5
+                    }
+                }
+            }
+
+            wargoal = {
+                execution_priority = 60
+                contestion_type = control_target_country_capital
+
+                maneuvers = {
+                    value = 2.5
+
+                    scope:target_country = {
+                        multiply = {
+                            value = total_population
+                            divide = define:NDiplomacy|SWAY_OFFER_WARGOAL_MANEUVERS_COST_POPULATION_SCALING_FACTOR
+                            multiply = define:NDiplomacy|SWAY_OFFER_WARGOAL_MANEUVERS_COST_POPULATION_SCALING_MULTIPLIER
+                            max = define:NDiplomacy|SWAY_OFFER_WARGOAL_MANEUVERS_COST_POPULATION_SCALING_MULTIPLIER_MAX_TOTAL
+                        }
+                    }
+                }
+
+                infamy = {
+                    value = 0.5
+
+                    scope:target_country = {
+                        multiply = {
+                            value = total_population
+                            divide = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_FACTOR
+                            multiply = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_MULTIPLIER
+                            max = define:NDiplomacy|WAR_GOAL_INFAMY_POPULATION_SCALING_MULTIPLIER_MAX_TOTAL
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

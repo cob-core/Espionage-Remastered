@@ -2,32 +2,38 @@
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
 ## Latest Changelog
-+ Updated event name that didn't make sense.
-+ Reduced the amount of time the piracy modifier gives loot for.
-+ Adjusted Support Slaves to now move slaves to three random states with a port in the root country, rather than just the capital.
-+ Fixed an error with the external security law where it would spam errors due to invalid scope for AI logic.
-+ Added foundations for Develop Nation journal entry and action.
-+ Added events for Send Advisors and its military and cultural equivalents for the target country. Previously it wasn't obvious when you received the bonus.
-+ Added Steal Technology, related events, and AI.
-+ Added the ability to request Send Advisors and related actions from great powers.
-+ Fixed AI acceptance for Fund Armaments.
-+ Fixed AI acceptance for Send Advisors and its military and cultural equivalents.
-+ Fixed the event cost game rule.
-+ Added game rule to disable tech stealing as some may consider it too strong.
-+ Fixed military attache costs to match advisors and cultural exchange.
-+ Updated thumbnail and version number.
-+ Rewrote localisation for the game rules to look better and read better. It now shows which ones are added by the mod.
-+ Rewrote localisation and added a tooltip for the easter egg event.
-
++ Reduced the modifier of advisors and related articles from +100% technology spread to +50%.
++ Reworked treaty article AI to be more transparent, it will now say why a country does/doesn't accept.
++ Adjusted Piracy loot/costs, it will now scale based on the difference in naval power projection between the initiator and target. 
 
 ## Known Issues & Bugs
-+ Election Interference may not auto-end if the country removes voting.  
++ Election Interference may not auto-end if the country removes voting.
 + AI does not make any specific decision regarding election interference, its choice of party is random.  
 
+## Changes in Victoria 3 1.9+
++ Some actions have now been converted into treaty articles.
+
+
 ## To-Do 
-1. Steal Commander events, localisation, and action.  
-1. Develop Nation events and action.  
-1. Level of Espionage institution affects outcome of diplomatic actions.  
+### Current Goals
++ Fix Develop Nations not finding development_target.
++ Fix Development Costs modifier.
++ Incorporate diplomatic catalysts.
++ Write assassination success/failure to notify the target country.
++ Flesh out Agitate for Liberty with journal entries and buttons.
++ Added liberty desire to Agitate for Liberty.
++ Flesh out Sow Discontent.
++ Add loading screen tips.
+
+### Long-Term Goals
++ Create a custom GUI.
++ Hide espionage actions.
++ Merge 'New Frontiers: A Colonization Helper' into the mod.
+
+### Community Suggestions
++ Steal Commander events, localisation, and action.
++ Develop Nation events and action.
++ Level of Espionage institution affects outcome of diplomatic actions.
 
 ## Contributers
 > cob

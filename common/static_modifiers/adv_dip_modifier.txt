@@ -213,11 +213,6 @@ development_cost_modifier {
 	country_expenses_add = 1
 }
 
-development_share_technology_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	
-}
-
 stolen_technology_production_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	country_production_tech_spread_mult = 1
@@ -236,4 +231,27 @@ stolen_technology_society_modifier {
 stolen_technology_cost_modifier {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 	country_expenses_add = 1
+}
+
+development_share_technology_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_tech_research_speed_mult = 1
+	country_production_tech_spread_mult = 1
+	country_military_tech_spread_mult = 1
+	country_society_tech_spread_mult = 1
+}
+
+development_expand_infrastructure_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_construction_add = 25
+}
+
+development_encourage_settlers_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_mass_migration_attraction_mult = 5
+}
+
+development_garner_influence_modifier {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_leverage_resistance_mult = -0.5
 }

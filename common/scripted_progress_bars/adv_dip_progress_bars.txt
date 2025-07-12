@@ -19,3 +19,29 @@ assassination_progress_bar = {
 	min_value = 0
 	max_value = 8
  }
+
+ development_progress_bar = {
+	name = "development_progress_bar"
+	desc = "development_progress_bar_desc"
+
+	default_green = yes
+
+	start_value = 0
+	min_value = 0
+	max_value = 100
+
+	monthly_progress = {
+		add = {
+			desc = "DEVELOPMENT_PROGRESS_BAR_MONTHLY_PROGRESS_DESC"
+			if = {
+				limit = {
+					custom_tooltip = {
+						text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS_NOT
+						scope:development:root > relations_threshold:poor
+					}
+				}
+				value = 3
+			} 
+		}
+	}
+ }

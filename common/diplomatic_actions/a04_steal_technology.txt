@@ -3,7 +3,7 @@ steal_technology = {
         general
     }
     requires_approval = no
-    should_notify_third_parties = yes
+    should_notify_third_parties = no
 
     unlocking_technologies = {
         rationalism
@@ -42,7 +42,7 @@ steal_technology = {
     
         is_two_sided_pact = no
         show_in_outliner = yes
-        can_be_used_in_sway_offers = yes
+        can_be_used_in_sway_offers = no
         sway_maneuvers_cost = 15
         
         first_modifier = {
@@ -55,8 +55,8 @@ steal_technology = {
             custom_tooltip = {
                 text = steal_technology_monthly_effect
                 random_list = {
-                    10 = {}
-                    1 = { 
+                    16 = {}
+                    1 = {
                         root = {
                             trigger_event = {
                                 id = adv_dip_event.91
@@ -82,6 +82,7 @@ steal_technology = {
                         }
                     }
                 }
+                scope:target_country.techs_researched > root.techs_researched
             }
         }
     }
@@ -95,7 +96,6 @@ steal_technology = {
     
         will_propose = {
             scaled_debt <= 0
-            is_at_war = no
             scope:target_country = {
 				has_diplomatic_pact = {
 					who = root
@@ -108,7 +108,6 @@ steal_technology = {
         will_break = { 
             OR = {        
                 scaled_debt > 0.25
-                is_at_war = yes
             }
         }            
     }

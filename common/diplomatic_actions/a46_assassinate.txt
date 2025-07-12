@@ -71,7 +71,7 @@
 				min = 0				
 			}
 		}
-
+		
 		monthly_effect = {
 			if = {
 				limit = {

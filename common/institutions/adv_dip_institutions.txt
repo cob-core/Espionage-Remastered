@@ -3,5 +3,8 @@
 	background_texture = "gfx/interface/illustrations/institutions/home_affairs.dds"
 	modifier = {
 		country_influence_mult = 0.10
+		country_improve_relations_speed_mult = 0.05
+		country_damage_relations_speed_mult = 0.05
+		country_lobby_leverage_generation_mult = 0.05
 	}
 }

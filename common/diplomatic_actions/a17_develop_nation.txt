@@ -45,12 +45,12 @@ develop_nation = {
 		can_be_used_in_sway_offers = yes
 		sway_maneuvers_cost = 10
 
-		relations_progress_per_day = 13
+		relations_progress_per_day = 1
 
 		income_transfer = 0.05
 		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = yes
+		income_transfer_based_on_second_country = no
 		income_transfer_to_pops = {
 			allow_non_fully_accepted = yes
 			upper_strata_pops = {
@@ -110,6 +110,11 @@ develop_nation = {
                 # make sure to update is_about_to_auto_break when changing this:
 				scope:target_country.relations:root <= relations_threshold:poor
 			}
+			NOT = {
+				scope:target_country = {
+					is_country_type = decentralized
+				}
+			}
 		}		
 	
 		should_invalidate = {
@@ -117,6 +122,11 @@ develop_nation = {
 				has_war_with = scope:target_country				
 				is_country_type = decentralized
 				in_default = yes
+				NOT = {
+					scope:target_country = {
+						is_country_type = decentralized
+					}
+				}
 			}
 		}
 	}
