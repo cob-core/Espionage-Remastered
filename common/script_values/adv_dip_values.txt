@@ -87,9 +87,19 @@ high_espionage_event_costs_value = {
 	value = 2
 }
 
-piracy_naval_difference = {
+piracy_initiator = {
 	value = scope:piracy_initiator.naval_power_projection
-	divide = scope:piracy_target.naval_power_projection
+	add = 1
+}
+
+piracy_target = {
+	value = scope:piracy_target.naval_power_projection
+	add = 1
+}
+
+piracy_naval_difference = {
+	value = piracy_initiator
+	divide = piracy_target
 }
 
 piracy_cost_multiplier = {

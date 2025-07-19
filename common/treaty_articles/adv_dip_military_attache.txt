@@ -23,7 +23,7 @@
     }
 
     target_modifier = {
-        country_military_tech_spread_mult = 1
+        country_military_tech_spread_mult = 0.5
         country_leverage_resistance_mult = -0.25
     }
 
@@ -223,22 +223,6 @@
                             multiply = 0.25
                             max = 10
                             min = -25
-                        }
-                    }
-
-                    ### Powerful Protectors is always a factor, but less so if not being invited to a sovereign empire
-                    if = {
-                        limit = {
-                            scope:target_country.power_bloc ?= {
-                                NOT = { has_identity = identity:identity_sovereign_empire }
-                            }
-                            has_powerful_protectors = {
-                                ACTOR_SCOPE = scope:source_country
-                            }
-                        }
-                        add = {
-                            desc = "DIPLOMATIC_ACCEPTANCE_POWERFUL_PROTECTORS_THEM"
-                            value = -25
                         }
                     }
 

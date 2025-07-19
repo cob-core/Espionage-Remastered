@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="279089d5-682b-4317-aa71-f82c61cb6778" name="Changes" comment="" />
+    <list default="true" id="279089d5-682b-4317-aa71-f82c61cb6778" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.metadata/metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/script_values/adv_dip_values.txt" beforeDir="false" afterPath="$PROJECT_DIR$/common/script_values/adv_dip_values.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/treaty_articles/adv_dip_cultural_exchange.txt" beforeDir="false" afterPath="$PROJECT_DIR$/common/treaty_articles/adv_dip_cultural_exchange.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/treaty_articles/adv_dip_military_attache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/common/treaty_articles/adv_dip_military_attache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/treaty_articles/adv_dip_send_advisors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/common/treaty_articles/adv_dip_send_advisors.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mod_info.md" beforeDir="false" afterPath="$PROJECT_DIR$/mod_info.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -22,10 +32,20 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "settings.editor.selected.configurable": "advanced.settings"
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="279089d5-682b-4317-aa71-f82c61cb6778" name="Changes" comment="" />
@@ -33,28 +53,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1750435118980</updated>
+      <workItem from="1752607279633" duration="3000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

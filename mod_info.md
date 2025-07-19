@@ -2,9 +2,8 @@
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
 ## Latest Changelog
-+ Reduced the modifier of advisors and related articles from +100% technology spread to +50%.
-+ Reworked treaty article AI to be more transparent, it will now say why a country does/doesn't accept.
-+ Adjusted Piracy loot/costs, it will now scale based on the difference in naval power projection between the initiator and target. 
++ Fixed outdated modifiers in Cultural Exchange and Military Atache.
++ Cleaned up AI values.
 
 ## Known Issues & Bugs
 + Election Interference may not auto-end if the country removes voting.
