@@ -10,7 +10,6 @@ high_espionage_event_costs = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 }
 
-
 sow_discontent_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 	state_radicals_and_loyalists_from_sol_change_mult = 0.1
