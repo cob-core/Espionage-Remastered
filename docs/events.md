@@ -15,7 +15,7 @@ scans and save the victim as `scope:spy_target_country`.
 | `.41`/`.42` | Sabotage Recruitment (action in `TODO/`, still loaded) |
 | `.51`/`.52` | Sabotage Industry (same) |
 | `.64`/`.65`/`.66` | Fund Armaments family |
-| `.71` | Unpaired — likely Steal Commander half |
+| `.71` | Fund Armaments variant (scans for a `fund_armaments` pact). **Steal Commander has no events** — its `monthly_effect` fires `.91` (Steal Technology) as a placeholder |
 | `.81`/`.82` | **Election Interference** — `.81` is ~680 lines: 13 near-identical per-IG branches setting `adv_loyal_government_leader` |
 | `.91`/`.92` | **Steal Technology** — 3 options (production/military/society) granting `stolen_technology_*_modifier` (24 mo) + cost; 1-in-6 detection chance fires `.92` at target, −5 relations |
 | `.101`/`.102`/`.103` | **Fund Piracy** — `.102` saves `piracy_target`, applies `local_piracy_modifier`, adds `adv_dip_je_pirates` to the victim |
