@@ -1,256 +1,256 @@
-﻿low_espionage_event_costs = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-}
+﻿	low_espionage_event_costs = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	}
 
-medium_espionage_event_costs = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-}
+	medium_espionage_event_costs = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	}
 
-high_espionage_event_costs = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-}
+	high_espionage_event_costs = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+	}
 
-sow_discontent_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	state_radicals_and_loyalists_from_sol_change_mult = 0.1
-	political_movement_radicalism_add = 0.1
-}
+	sow_discontent_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		state_radicals_and_loyalists_from_sol_change_mult = 0.1
+		political_movement_radicalism_add = 0.1
+	}
 
-support_nationalists_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	state_radicals_from_discrimination_mult = 0.1
-}
+	support_nationalists_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		state_radicals_from_discrimination_mult = 0.1
+	}
 
-suppress_nationalists_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	state_turmoil_effects_mult = -0.05
-	state_mortality_turmoil_mult = 0.05
-}
+	suppress_nationalists_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		state_turmoil_effects_mult = -0.05
+		state_mortality_turmoil_mult = 0.05
+	}
 
-agitate_for_liberty_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
-	building_output_small_arms_mult = 0.1
-	building_output_artillery_mult = 0.1
-}
+	agitate_for_liberty_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+		building_output_small_arms_mult = 0.1
+		building_output_artillery_mult = 0.1
+	}
 
-sabotage_recruitment_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	state_conscription_rate_add = -0.05
-	building_training_rate_mult = -0.1
-}
+	sabotage_recruitment_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		state_conscription_rate_add = -0.05
+		building_training_rate_mult = -0.1
+	}
 
-sabotage_industry_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	building_throughput_mult = -0.1
-}
+	sabotage_industry_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		building_throughput_mult = -0.1
+	}
 
-send_advisors_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_production_tech_spread_mult = 1
-	country_leverage_resistance_mult = -0.25
-}
+	send_advisors_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_production_tech_spread_mult = 1
+		country_leverage_resistance_mult = -0.25
+	}
 
-military_attache_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_military_tech_spread_mult = 1
-	country_leverage_resistance_mult = -0.25
-}
+	military_attache_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_military_tech_spread_mult = 1
+		country_leverage_resistance_mult = -0.25
+	}
 
-cultural_exchange_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_society_tech_spread_mult = 1
-	country_leverage_resistance_mult = -0.25
-}
+	cultural_exchange_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_society_tech_spread_mult = 1
+		country_leverage_resistance_mult = -0.25
+	}
 
-spy_network_cost_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1
-}
+	spy_network_cost_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
 
-assassination_cost_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1
-}
+	assassination_cost_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
 
-counterespionage_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1
-}
+	counterespionage_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
 
-fund_armaments_modifier = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-	country_tax_income_add = send_armaments_cost
-	unit_supply_consumption_mult = 1
-	state_conscription_rate_mult = 0.05
-}
+	fund_armaments_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+		country_tax_income_add = send_armaments_cost
+		unit_supply_consumption_mult = 1
+		state_conscription_rate_mult = 0.05
+	}
 
-armaments_cost_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = send_armaments_cost
-}
+	armaments_cost_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = send_armaments_cost
+	}
 
-overthrower_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_influence_mult = 0.1
-	power_bloc_cohesion_add = 10
-	country_improve_relations_speed_mult = 0.2
-}
+	overthrower_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		country_influence_mult = 0.1
+		power_bloc_cohesion_add = 10
+		country_improve_relations_speed_mult = 0.2
+	}
 
-overthrown_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	interest_group_in_government_attraction_mult = 0.10
-	country_radicals_from_legitimacy_mult = 0.1
-	state_radicals_and_loyalists_from_sol_change_mult = 0.1
-}
+	overthrown_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		interest_group_in_government_attraction_mult = 0.10
+		country_radicals_from_legitimacy_mult = 0.1
+		state_radicals_and_loyalists_from_sol_change_mult = 0.1
+	}
 
-suppress_government_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_party_whip_impact_mult = 0.25
-}
+	suppress_government_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		country_party_whip_impact_mult = 0.25
+	}
 
-modifier_failed_assassination {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_influence_mult = -0.1
-	country_prestige_add = -25
-}
+	modifier_failed_assassination = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		country_influence_mult = -0.1
+		country_prestige_add = -25
+	}
 
-modifier_successful_assassination {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_influence_mult = 0.1
-	country_prestige_add = 25
-}
+	modifier_successful_assassination = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_influence_mult = 0.1
+		country_prestige_add = 25
+	}
 
-assassin_paid_off_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1000
-}
+	assassin_paid_off_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1000
+	}
 
-rescue_mission_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 2000
-}
+	rescue_mission_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 2000
+	}
 
-paid_a_witch_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 2000
-}
+	paid_a_witch_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 2000
+	}
 
-cleaned_the_cat_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_prestige_add = 15
-}
+	cleaned_the_cat_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_prestige.dds
+		country_prestige_add = 15
+	}
 
-recent_assassination_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-}
+	recent_assassination_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	}
 
-blamed_for_poisoning_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	character_popularity_add = -50
-}
+	blamed_for_poisoning_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		character_popularity_add = -50
+	}
 
-piracy_disruption_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	unit_navy_offense_mult = 0.15
-	country_prestige_add = 5
-}
+	piracy_disruption_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		unit_navy_offense_mult = 0.15
+		country_prestige_add = 5
+	}
 
-local_piracy_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_port_connection_cost_mult = 0.2
-}
+	local_piracy_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		country_port_connection_cost_mult = 0.2
+	}
 
-increased_port_security {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_port_connection_cost_mult = -0.1
-	country_prestige_add = 5
-}
+	increased_port_security = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_port_connection_cost_mult = -0.1
+		country_prestige_add = 5
+	}
 
-extorting_subjects_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_subject_income_transfer_mult = 0.15
-	country_prestige_add = -5
-}
+	extorting_subjects_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_subject_income_transfer_mult = 0.15
+		country_prestige_add = -5
+	}
 
-piracy_cost {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1
-}
+	piracy_cost = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
 
-pirate_loot_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-	country_tax_income_add = 1
-}
+	pirate_loot_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+		country_tax_income_add = 1
+	}
 
-slave_liberation_support_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_prestige_add = 10
-}
+	slave_liberation_support_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_prestige_add = 10
+	}
 
-slave_liberation_disruption_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	country_prestige_add = -10
-}
+	slave_liberation_disruption_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		country_prestige_add = -10
+	}
 
-development_aid_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_prestige_add = 10
-}
+	development_aid_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_prestige_add = 10
+	}
 
-modernization_program_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-}
+	modernization_program_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	}
 
-modernised_ports_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_prestige_add = 5
-	country_military_tech_research_speed_mult = 0.2
-}
+	modernised_ports_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_prestige_add = 5
+		country_military_tech_research_speed_mult = 0.2
+	}
 
-development_cost_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1
-}
+	development_cost_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
 
-stolen_technology_production_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_production_tech_spread_mult = 1
-}
+	stolen_technology_production_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_production_tech_spread_mult = 1
+	}
 
-stolen_technology_military_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_military_tech_spread_mult = 1
-}
+	stolen_technology_military_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_military_tech_spread_mult = 1
+	}
 
-stolen_technology_society_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_society_tech_spread_mult = 1
-}
+	stolen_technology_society_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_society_tech_spread_mult = 1
+	}
 
-stolen_technology_cost_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-	country_expenses_add = 1
-}
+	stolen_technology_cost_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
 
-development_share_technology_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_tech_research_speed_mult = 1
-	country_production_tech_spread_mult = 1
-	country_military_tech_spread_mult = 1
-	country_society_tech_spread_mult = 1
-}
+	development_share_technology_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_tech_research_speed_mult = 1
+		country_production_tech_spread_mult = 1
+		country_military_tech_spread_mult = 1
+		country_society_tech_spread_mult = 1
+	}
 
-development_expand_infrastructure_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_construction_add = 25
-}
+	development_expand_infrastructure_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_construction_add = 25
+	}
 
-development_encourage_settlers_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_mass_migration_attraction_mult = 5
-}
+	development_encourage_settlers_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_mass_migration_attraction_mult = 5
+	}
 
-development_garner_influence_modifier {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_leverage_resistance_mult = -0.5
-}
+	development_garner_influence_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_leverage_resistance_mult = -0.5
+	}
