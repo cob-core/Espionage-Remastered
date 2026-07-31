@@ -1,59 +1,5 @@
 ﻿namespace = adv_dip_event
 
-adv_dip_event.1 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.1.t
-	desc = adv_dip_event.1.d
-	flavor = adv_dip_event.1.f
-
-	event_image = {
-		video = "gfx/event_pictures/southamerica_aristocrats.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-	}
-
-	option = {
-		name = adv_dip_event.1.a
-		custom_tooltip = {
-				text = comet_effect
-		}
-	}
-
-	option = {
-		name = adv_dip_event.1.b
-		custom_tooltip = {
-			text = comet_effect
-	}
-	}
-
-	option = {
-		name = adv_dip_event.1.c
-		custom_tooltip = {
-			text = comet_effect
-	}
-	}
-
-	option = {
-		name = adv_dip_event.1.e
-		custom_tooltip = {
-			text = comet_effect
-	}
-	}
-}
-
 adv_dip_event.11 = {
 	type = country_event
 	placement = root
@@ -1553,7 +1499,7 @@ adv_dip_event.81 = {
 	trigger = {
 	}
 
-	cancellation_trigger {
+	cancellation_trigger = {
 		scope:spy_target_country = {
 			in_election_campaign = no
 		}
@@ -2269,7 +2215,7 @@ adv_dip_event.82 = {
 		
 		every_active_party = {
 			limit = {
-				NOT {
+				NOT = {
 					has_variable = adv_loyal_government_leader
 				}
 			}
@@ -2787,56 +2733,29 @@ adv_dip_event.110 = {
 	duration = 1
 
 	trigger = {
-		NOT = {
-			scope:root_country = {
-				has_variable = ongoing_development
-			}
-		}
+		NOT = { has_variable = ongoing_development }
 	}
 
 	cancellation_trigger = {
-		scope:root_country = {
-			has_variable = ongoing_development
-		}
+		has_variable = ongoing_development
 	}
 
 	immediate = {
 		set_variable = ongoing_development
-		if = {
+		random_country = {
 			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
+				root = {
+					has_diplomatic_pact = {
+						who = prev
+						type = develop_nation
 					}
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-				save_scope_as = development_target
-			}
+			save_scope_as = development_target
 		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-				save_scope_as = development_target
-			}
+		set_variable = {
+			name = development_target_var
+			value = scope:development_target
 		}
 	}
 
@@ -2846,6 +2765,7 @@ adv_dip_event.110 = {
 
 		add_journal_entry = {
 			type = adv_dip_je_development
+			target = scope:development_target
 		}
 
 		ai_chance = {
@@ -2874,51 +2794,15 @@ adv_dip_event.111 = {
 	duration = 1
 
 	trigger = {
-		scope:root_country = {
-				has_variable = ongoing_development
-			}
+		has_variable = ongoing_development
 	}
 
 	cancellation_trigger = {
 	}
 
 	immediate = {
-		set_variable = ongoing_development
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-				save_scope_as = development_target
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-				save_scope_as = development_target
-			}
+		var:development_target_var ?= {
+			save_scope_as = development_target
 		}
 	}
 
@@ -2927,8 +2811,9 @@ adv_dip_event.111 = {
 		default_option = yes
 
 		remove_variable = ongoing_development
+		remove_variable = development_target_var
 
-		scope:development_target = {
+		scope:development_target ?= {
 			set_country_type = recognized
 		}
 
@@ -2958,51 +2843,15 @@ adv_dip_event.112 = {
 	duration = 1
 
 	trigger = {
-		scope:root_country = {
-				has_variable = ongoing_development
-			}
+		has_variable = ongoing_development
 	}
 
 	cancellation_trigger = {
 	}
 
 	immediate = {
-		set_variable = ongoing_development
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-				save_scope_as = development_target
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
-					}
-				}
-				save_scope_as = development_target
-			}
+		var:development_target_var ?= {
+			save_scope_as = development_target
 		}
 	}
 
@@ -3011,6 +2860,7 @@ adv_dip_event.112 = {
 		default_option = yes
 
 		remove_variable = ongoing_development
+		remove_variable = development_target_var
 
 		ai_chance = {
 			base = 10
@@ -3077,7 +2927,7 @@ adv_dip_event.120 = {
 				save_scope_as = spy_target_country
 			}
 		}
-		scope:root_country = {
+		root = {
 			every_state = {
 				limit = {
 					state_has_building_type_levels = {

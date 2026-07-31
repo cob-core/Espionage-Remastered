@@ -752,7 +752,6 @@ adv_dip_assassination_event.103 = { # Plot Begins
 	option = {
 		name = adv_dip_assassination_event.103.a
 		default_option = yes
-		c
 	}
 }
 

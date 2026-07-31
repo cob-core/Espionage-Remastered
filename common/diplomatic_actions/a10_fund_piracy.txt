@@ -112,8 +112,9 @@ fund_piracy = {
 			}
 		}
 	
-		will_propose = { 
+		will_propose = {
 			scaled_debt <= 0
+			scope:target_country = {
 				relations:root <= relations_threshold:cold
 			}
 		}

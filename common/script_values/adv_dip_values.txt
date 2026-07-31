@@ -122,6 +122,16 @@ piracy_loot_value = {
     multiply = piracy_naval_modifier
 }
 
+# Cost of the counter-piracy journal-entry buttons: 0.015% of own GDP, rounded
+# to nearest 100. Runs on the piracy victim, so it scales off root, not a spy scope.
+piracy_cost_multiplier = {
+	value = root.gdp
+	divide = 100000
+	multiply = 0.15
+	round = yes
+	multiply = 100
+}
+
 piracy_initiator = {
     value = scope:piracy_initiator.naval_power_projection
     add = 1
@@ -182,12 +192,11 @@ send_armaments_cost = {
 }
 
 development_funding = {
-	value = scope:development_target.gdp
+	value = var:development_target_var.gdp
 	divide = 100000
 	multiply = 0.25
 	round = yes
 	multiply = 100
-	divide = counter_piracy
 	if = {
 		limit = {
 			has_game_rule = low_espionage_event_costs

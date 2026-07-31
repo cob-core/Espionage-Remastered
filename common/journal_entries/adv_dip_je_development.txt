@@ -25,32 +25,22 @@
 		custom_tooltip = {
 			text = adv_dip_je_development_success
 			scope:journal_entry = {
-				"scripted_bar_progress(assassination_progress_bar)" >= 8
+				"scripted_bar_progress(development_progress_bar)" >= 100
 			}
 		}
     }
-	
+
 	on_complete = {
 		trigger_event = { id = adv_dip_event.111 }
 	}
-    
+
     fail = {
-		OR = {
-			custom_tooltip = {
-				text = adv_dip_je_development_failure
-				scope:journal_entry = {
-					"scripted_bar_progress(assassination_progress_bar)" = 0
-				}
-			}
-			custom_tooltip = {
-				text = adv_dip_je_development_failure_no_pact
-				ROOT = {
-					NOT = {
-						has_diplomatic_pact = {
-							who = PREV
-							type = develop_nation
-						}
-					}
+		custom_tooltip = {
+			text = adv_dip_je_development_failure_no_pact
+			NOT = {
+				has_diplomatic_pact = {
+					who = scope:target
+					type = develop_nation
 				}
 			}
 		}

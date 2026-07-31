@@ -82,18 +82,18 @@ develop_nation = {
 				random_list = {
 					16 = {}
 					1 = {
-						IF = {
+						if = {
 							limit = {
-								NOT = {
-									has_variable = ongoing_development
+								root = {
+									NOT = { has_variable = ongoing_development }
+								}
+							}
+							root = {
+								trigger_event = {
+									id = adv_dip_event.110
 								}
 							}
 						}
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.110
-					        }
-					    }
 					}
 				}								
 			}

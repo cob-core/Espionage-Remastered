@@ -98,7 +98,7 @@
 					}
 				}
 				in_default = yes
-				NOT {
+				NOT = {
 					has_diplomatic_relevance = scope:target_country
 				}
 			}

@@ -60,7 +60,7 @@
                                 }
                             }
                             any_scope_article = {
-                                has_type = send_advisors
+                                has_type = military_attache
                                 input_building_type = root.input_building_type
                                 source_country = scope:source_country
                             }
@@ -72,7 +72,7 @@
                 NOT = {
                     any_scope_article_option = {
                         count > 1
-                        has_type = send_advisors
+                        has_type = military_attache
                         source_country = scope:source_country
                     }
                 }
