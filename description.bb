@@ -28,7 +28,6 @@ As Better Politics adds and changes ideologies, it requires a compatibility patc
 [list]
 [*]Election Interference may not auto-end if the country removes voting.
 [*]AI does not make any specific decision regarding election interference, its choice of party is random.
-[*]Notification text is incorrect, telling the target they are conducting espionage when they are actually the target.
 [/list]
 
 [h2]Update Progress[/h2]
