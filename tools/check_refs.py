@@ -194,6 +194,47 @@ for p in script_files(MOD, "common/journal_entries"):
         if not re.search(rf'name\s*=\s*"{re.escape(widget_name)}"', read(gui_path)):
             failures.append(f"[widget] {p.relative_to(MOD)}: widget '{widget_name}' not defined in {gui_rel} (CRASHES the game)")
 
+# --- 9. v5 monthly-hook scope invariants (audit regressions) ---
+hook = MOD / "common/on_actions/adv_dip_onactions.txt"
+if hook.is_file():
+    lines = strip_comments(read(hook)).split("\n")
+    # Track the nearest enclosing block opener per depth so we can tell whether a
+    # statement sits directly inside an every_in_list body (target scope) or
+    # inside a root = { } wrapper.
+    stack = []
+    GUARDED = ("root = {", "ROOT = {")
+    for line in lines:
+        stripped = line.strip()
+        in_loop = any(s.startswith("every_in_list") or s.startswith("every_in_local_list") for s in stack)
+        rooted_after_loop = False
+        for s in reversed(stack):
+            if s.startswith("root = {") or s.startswith("ROOT = {"):
+                rooted_after_loop = True
+                break
+            if s.startswith("every_in_list") or s.startswith("every_in_local_list"):
+                break
+        if in_loop and not rooted_after_loop:
+            if "name = adv_dip_upkeep_total" in stripped:
+                failures.append("[scope] adv_dip_onactions.txt: upkeep accrual inside a loop is not root-scoped (charges the target, not us)")
+            if stripped.startswith("has_war_with = scope:spy_target_country"):
+                failures.append("[scope] adv_dip_onactions.txt: has_war_with inside a loop is not root-scoped (checks the target against itself)")
+            if stripped.startswith("has_variable = recently_stole_commander"):
+                failures.append("[scope] adv_dip_onactions.txt: cooldown check inside a loop is not root-scoped (reads the target's variable)")
+        opens = line.count("{")
+        closes = line.count("}")
+        if opens > closes:
+            stack.append(stripped)
+        elif closes > opens:
+            for _ in range(closes - opens):
+                if stack: stack.pop()
+
+# --- 10. journal entries must be reachable (added by something) ---
+all_script = "\n".join(mod_script.values())
+for p in script_files(MOD, "common/journal_entries"):
+    for je in depth0_keys(strip_comments(read(p))):
+        if f"type = {je}" not in all_script:
+            failures.append(f"[reachability] journal entry '{je}' is never added by any effect")
+
 if failures:
     print(f"{len(failures)} reference failures:")
     for f in failures:
