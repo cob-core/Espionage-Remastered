@@ -711,7 +711,7 @@ adv_dip_event.22 = {
 			modifier = {
 				trigger = { 
 					scaled_debt <= 0
-					weekly_net_fixed_income >= 10000
+					fixed_net_income >= 10000
 				}
 				add = 100
 			}
@@ -2103,7 +2103,7 @@ adv_dip_event.82 = {
 			modifier = {
 				trigger = { 
 					scaled_debt <= 0
-					weekly_net_fixed_income >= 10000
+					fixed_net_income >= 10000
 				}
 				add = 100
 			}
@@ -2727,6 +2727,7 @@ adv_dip_event.111 = {
 		add_modifier = {
 			name = successful_development_modifier
 			months = 13
+			is_decaying = yes
 		}
 
 		ai_chance = {
@@ -2929,10 +2930,10 @@ adv_dip_event.131 = {
 			random_scope_character = {
 				limit = {
 					OR = {
-						has_role = general
-						has_role = admiral
+						has_role_of_type = general
+						has_role_of_type = admiral
 					}
-					is_ruler = no
+					is_ruler_of_own_country = no
 					is_busy = no
 				}
 				save_scope_as = steal_commander_target
@@ -3372,10 +3373,6 @@ adv_dip_event.148 = {
 			}
 		}
 		scope:naval_intel_target = {
-			random_scope_ship = {
-				limit = { is_flagship = yes }
-				damage_ship_percent = 0.5
-			}
 			add_modifier = {
 				name = humiliated_navy_modifier
 				months = 12

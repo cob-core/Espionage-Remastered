@@ -10,7 +10,7 @@
 	relations_progress_per_day = -0.5
 	relations_improvement_min = -80
 
-	unlocking_technologies = {
+	unlocked_by_technologies = {
 		international_relations
 	}
 
@@ -87,8 +87,6 @@
 	on_break = {}
 
 	ai = {
-		category = other
-
 		article_ai_usage = {
 			request
 		}

@@ -28,8 +28,8 @@
 		has_diplomatic_relevance = scope:target_country
 		any_scope_character = {
 			OR = {
-				has_role = general
-				has_role = admiral
+				has_role_of_type = general
+				has_role_of_type = admiral
 			}
 			count >= 3
 		}
@@ -85,13 +85,17 @@
 		}
 		
 	
-		should_invalidate = {
+		requirement_to_maintain = {
+			trigger = {
+				NOT = {
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
 				in_default = yes
 				has_modifier = modifier_failed_assassination
 				has_modifier = modifier_successful_assassination
+			}
+				}
 			}
 		}
 	}

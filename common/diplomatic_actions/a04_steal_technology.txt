@@ -1,4 +1,4 @@
-steal_technology = {
+﻿steal_technology = {
     groups = {
         general
     }
@@ -73,7 +73,9 @@ steal_technology = {
             }
         }
     
-        should_invalidate = {
+        requirement_to_maintain = {
+			trigger = {
+				NOT = {
             OR = {
                 scope:target_country.techs_researched <= root.techs_researched
                 has_war_with = scope:target_country
@@ -90,7 +92,9 @@ steal_technology = {
                 }
                 scope:target_country.techs_researched > root.techs_researched
             }
-        }
+				}
+			}
+		}
     }
     
     ai = {

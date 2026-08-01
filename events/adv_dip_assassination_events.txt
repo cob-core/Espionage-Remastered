@@ -51,8 +51,8 @@ adv_dip_assassination_event.101 = { # Select Commander
 		any_scope_character = {
 			is_busy = no
 			OR = {
-				has_role = general
-				has_role = admiral
+				has_role_of_type = general
+				has_role_of_type = admiral
 			}
 		}
 	}
@@ -61,10 +61,10 @@ adv_dip_assassination_event.101 = { # Select Commander
 		random_scope_character = {
 			limit = {
 				is_busy = no
-				is_ruler = no
+				is_ruler_of_own_country = no
 				OR = {
-					has_role = general
-					has_role = admiral
+					has_role_of_type = general
+					has_role_of_type = admiral
 				}
 			}
 			save_scope_as = assassination_leader_1
@@ -72,10 +72,10 @@ adv_dip_assassination_event.101 = { # Select Commander
 		random_scope_character = {
 			limit = {
 				is_busy = no
-				is_ruler = no
+				is_ruler_of_own_country = no
 				OR = {
-					has_role = general
-					has_role = admiral
+					has_role_of_type = general
+					has_role_of_type = admiral
 				}
 				NOT = {
 					this = scope:assassination_leader_1
@@ -87,10 +87,10 @@ adv_dip_assassination_event.101 = { # Select Commander
 		random_scope_character = {
 			limit = {
 				is_busy = no
-				is_ruler = no
+				is_ruler_of_own_country = no
 				OR = {
-					has_role = general
-					has_role = admiral
+					has_role_of_type = general
+					has_role_of_type = admiral
 				}
 				NOR = {
 					this = scope:assassination_leader_1

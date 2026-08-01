@@ -69,11 +69,15 @@
 			}
 		} 	
 	
-		should_invalidate = {
+		requirement_to_maintain = {
+			trigger = {
+				NOT = {
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
 				in_default = yes
+			}
+				}
 			}
 		}
 	}

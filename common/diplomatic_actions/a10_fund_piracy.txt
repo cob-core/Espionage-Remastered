@@ -1,4 +1,4 @@
-fund_piracy = {
+﻿fund_piracy = {
 	groups = {
 		general
 	}
@@ -81,7 +81,9 @@ fund_piracy = {
 			}
 		} 	
 	
-		should_invalidate = {
+		requirement_to_maintain = {
+			trigger = {
+				NOT = {
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
@@ -91,6 +93,8 @@ fund_piracy = {
 						who = root
 						type = humiliation
 					}								
+				}
+			}
 				}
 			}
 		}

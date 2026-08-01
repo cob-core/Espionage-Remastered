@@ -1,13 +1,52 @@
 # Known Issues & Defect History
 
-## Runtime-unverified (v4.0, flag for first play-test)
+## Fixed in the error.log remediation (2026-08-01, first real launch)
 
-1. `damage_ship_percent = 0.5` syntax in `.148.b` — effect exists (effect-localization)
-   but has zero vanilla usages; verify in-game with The Great Wave.
-2. All `has_dlc_feature = ep2_content` paths (flagship sabotage, corsair patronage) —
-   The Great Wave installed 2026-08-01; now testable in-game (console checklist below).
-3. Blackmail article AI acceptance behavior and the `non_fulfillment` weekly check.
-4. `transfer_character` on a commander (vanilla uses it on IG leaders/agitators).
+The 01:23 launch produced 155 mod-related error lines. Fixed:
+1. **`should_invalidate` / `should_auto_break` do not exist in 1.13** — every pact's
+   auto-cancel logic was silently dead. All 13 actions converted to
+   `requirement_to_maintain = { trigger = { NOT = {...} } }` (a17/a18's warning blocks
+   became `show_about_to_break_warning`).
+2. **`has_role = general/admiral` fails PostValidate** (1.13 role rework) → 16 sites
+   renamed to `has_role_of_type`; commander selection in assassination and steal
+   commander was broken without this.
+3. **`is_ruler` unknown** → `is_ruler_of_own_country` (5 sites).
+4. **`weekly_net_fixed_income` unknown** (1.12 rename) → `fixed_net_income` (5 sites).
+5. **`should_be_pinned_by_default` renamed** → `_involved` variant (4 JEs).
+6. **`damage_ship_percent` is not a real effect** (effect-loc entry only) — flagship
+   sabotage now applies `humiliated_navy_modifier` (prestige + readiness + supply
+   debuffs) instead.
+7. Blackmail article: `unlocking_technologies` → `unlocked_by_technologies`; invalid
+   `category` ai field removed.
+8. `is_decaying` invalid in static modifier definitions → moved to the `.111`
+   `add_modifier` call site (valid there).
+9. `on_secession_start` `effect` blocks don't merge with vanilla's — ours moved to an
+   appended `adv_dip_secession_hook` on_action (compat fix).
+10. Dead pre-1.12 law-group fields (`progressive/regressive_movement_chance`) removed.
+11. Missing `adv_dip_je_expand_infrastructure(_desc)` button loc added (en+fr).
+12. Checker now bans all error.log-proven legacy tokens.
+
+## Remaining runtime checks
+
+1. Blackmail article AI acceptance and the `non_fulfillment` weekly check.
+2. `transfer_character` on a commander (vanilla uses it on IG leaders/agitators).
+3. Re-launch and confirm the error.log deltas are gone; `.120` orphan warning should
+   clear now that a18 parses fully.
+
+## Known legacy errors NOT yet fixed (need a scoping decision)
+
+1. **Fund Armaments cluster is dead code**: no action defines the `fund_armaments`
+   pact type, events `.64`–`.66`/`.71` are orphaned, `.64` uses the removed
+   `create_trade_route` effect, and its two modifiers use a script value as a
+   magnitude ("Malformed token") plus removed `building_output_*_mult` types.
+   Recommend full removal (same principle as Sabotage Industry) or a rebuild.
+2. `sow_discontent_modifier` still carries `state_radicals_from_discrimination_mult`
+   (removed in the 1.10 discrimination rework) — needs a modern replacement choice.
+3. `suppress_government_modifier` region uses removed `country_party_whip_impact_mult`.
+4. Event-option `ai_chance` blocks using `modifier = { add = ... }` log "unknown
+   command 'add' for MTTH" (~25 sites, election interference + support nationalists) —
+   the AI ignores those weights; needs a rewrite to the supported form.
+5. ~15 events lack a `default_option = yes` (warnings only).
 
 ### ep2 console test checklist
 `event adv_dip_event.148` on a country with an active naval-intel JE against a

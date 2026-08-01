@@ -68,7 +68,9 @@
 			}
 		} 	
 	
-		should_invalidate = {
+		requirement_to_maintain = {
+			trigger = {
+				NOT = {
 			OR = {		
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
@@ -82,6 +84,8 @@
 				}
 				scope:target_country.overlord = {
 					has_truce_with = scope:target_country							
+				}
+			}
 				}
 			}
 		}

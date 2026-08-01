@@ -54,13 +54,17 @@
 			}
 		}
 
-		should_invalidate = {
+		requirement_to_maintain = {
+			trigger = {
+				NOT = {
 			OR = {
 				has_war_with = scope:target_country
 				is_country_type = decentralized
 				scope:target_country = { is_country_type = decentralized }
 				in_default = yes
 				has_variable = recently_ran_naval_intel
+			}
+				}
 			}
 		}
 	}

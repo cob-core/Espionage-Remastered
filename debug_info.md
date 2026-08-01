@@ -38,14 +38,22 @@ to main menu. `switchlanguage english` re-reads localization in place.
 | `money [amount]` | Afford the pacts and event costs |
 | `add_relations <TAG> <amount>` | Hit relations thresholds (e.g. auto-break at poor) |
 | `research <tech>` | Unlock action tech requirements quickly |
+| `activate_law <law_key> [TAG]` | Instantly enact a law — e.g. `activate_law law_spy_agency` skips the whole enactment cycle (the required Spy Agency law in one command) |
 | `tweak` | Tweaker GUI — inspect country variables (the `ongoing_*`/`recently_*` cooldowns live here) |
 
 ## Setup for espionage testing
 
-Every action gates on the espionage institution: `research international_relations`,
-enact **Spy Agency** (Power Structure law group), then invest bureaucracy until the
-institution reaches the level you're testing (1–5; see docs/espionage-actions.md for
-the per-action table).
+Every action gates on the espionage institution. Fast path:
+```
+research international_relations
+activate_law law_spy_agency
+```
+then invest bureaucracy until the institution reaches the level you're testing
+(1–5; see docs/espionage-actions.md for the per-action table).
+
+Pact auto-cancel logic uses `requirement_to_maintain` (since the error.log
+remediation): to test it, violate a maintenance condition (e.g. declare war on the
+target) and confirm the pact breaks on the next tick.
 
 ## Per-feature test recipes
 
@@ -96,9 +104,9 @@ comes up empty.
   their options. Buttons: Fund Informants (+2 progress, cost, 6-mo cooldown), Burn
   Contacts (−3 risk/−1 progress, 12-mo cooldown).
 - Capstone: `event adv_dip_event.148` — option A codes modifier; option B **(needs The
-  Great Wave + target flagship)**: watch `error.log` when it fires —
-  `damage_ship_percent` has no vanilla usage precedent and is the single riskiest line
-  in the mod; option C landing-charts modifier.
+  Great Wave + target flagship)**: target navy takes the `humiliated_navy_modifier`
+  readiness/supply/prestige debuff (`damage_ship_percent` turned out not to exist —
+  the error.log remediation replaced it); option C landing-charts modifier.
 - Exposure: `event adv_dip_event.149` → −30 relations, `exposed_spy_ring_modifier`.
 - All endings: pact removed, `recently_ran_naval_intel` (36 mo) in `tweak`.
 

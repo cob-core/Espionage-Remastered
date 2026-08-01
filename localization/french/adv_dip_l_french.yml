@@ -824,3 +824,5 @@ develop_nation_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has 
  BLACKMAIL_RANK_DEFIANCE: "Défi d'une puissance moindre"
  setting_players_only_tech_stealing: "Joueurs uniquement"
  setting_players_only_tech_stealing_desc: "Seuls les joueurs humains peuvent voler des technologies. L'IA n'utilisera jamais cette action."
+ adv_dip_je_expand_infrastructure: "Développer les infrastructures"
+ adv_dip_je_expand_infrastructure_desc: "Financez chemins de fer, routes et ports en [SCOPE.gsCountry('target').GetName] pour accélérer leur développement."

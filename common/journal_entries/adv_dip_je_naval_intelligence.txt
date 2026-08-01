@@ -4,7 +4,7 @@
 
 	weight = 200
 	transferable = no
-	should_be_pinned_by_default = yes
+	should_be_pinned_by_default_involved = yes
 
 	scripted_progress_bar = naval_intel_progress_bar
 	scripted_progress_bar = naval_intel_risk_bar

@@ -1,7 +1,13 @@
-
+﻿
 # Root = Country
 # scope:target = Uprising country
 on_secession_start = {
+	on_actions = {
+		adv_dip_secession_hook
+	}
+}
+
+adv_dip_secession_hook = {
 	effect = {
 		if = {
 			limit = {

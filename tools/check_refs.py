@@ -126,6 +126,19 @@ for p in script_files(MOD, "common/diplomatic_actions"):
         for suffix in ACTION_KEYS:
             need(action + suffix, f"action {action}")
 
+# --- 5b. banned legacy tokens (proven invalid in 1.13 via error.log) ---
+LEGACY = ["should_invalidate", "should_auto_break", "is_about_to_auto_break",
+          "has_role = general", "has_role = admiral", "is_ruler = ",
+          "weekly_net_fixed_income", "should_be_pinned_by_default = ",
+          "damage_ship_percent", "unlocking_technologies = {"]
+for p, t in mod_script.items():
+    hay = t
+    for tok in LEGACY:
+        if tok == "unlocking_technologies = {" and "treaty_articles" not in str(p):
+            continue
+        if tok in hay:
+            failures.append(f"[legacy] {p.relative_to(MOD)}: banned 1.13-invalid token '{tok.strip()}'")
+
 # --- 6. icons ---
 for p, t in mod_script.items():
     for icon in re.findall(r"[a-zA-Z_/]+\.dds", t):

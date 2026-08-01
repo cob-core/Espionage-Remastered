@@ -260,7 +260,6 @@
 
 	successful_development_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
-		is_decaying = yes
 		country_prestige_add = 25
 	}
 
@@ -290,6 +289,8 @@
 	humiliated_navy_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
 		country_prestige_mult = -0.05
+		ship_readiness_gain_mult = -0.25
+		ship_supply_efficiency_mult = -0.10
 	}
 
 	exposed_spy_ring_modifier = {
