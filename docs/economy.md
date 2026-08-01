@@ -73,3 +73,10 @@ Custom types required by the institution:
 - `espionage_tech_stealing`: `enable_/players_only_/disable_tech_stealing` (default
   enabled) — gates `steal_technology`'s `potential`; `players_only` adds an
   `is_player = yes` requirement so the AI never takes the action.
+
+## Espionage differential (v4.1)
+
+`target_espionage_plus/minus_1..3` and `spy_target_espionage_plus/minus_1..3` are
+threshold values for the dynamic-odds factor stacks: every pact die and detection
+roll compares `institution_investment_level:institution_espionage` against them
+(~±15% success per level of edge, inverse on detection).

@@ -1,6 +1,6 @@
 # Architecture — Espionage Remastered
 
-Victoria 3 mod (Workshop ID 3432409401, GitHub `cob-core/Espionage-Remastered`), v4.0.
+Victoria 3 mod (Workshop ID 3432409401, GitHub `cob-core/Espionage-Remastered`), v4.1.
 A revival of koa's "Espionage" mod. Adds an espionage system built entirely from
 vanilla-moddable primitives — **no custom GUI, no code, no vanilla file overrides by filename**.
 
@@ -39,17 +39,17 @@ vanilla-moddable primitives — **no custom GUI, no code, no vanilla file overri
 |---|---|---|
 | Institution | `common/institutions/adv_dip_institutions.txt` | `institution_espionage` — the central resource |
 | Laws | `common/law_groups/`, `common/laws/` | `lawgroup_external_security`, `law_no_external_security`, `law_spy_agency` |
-| Diplomatic actions | `common/diplomatic_actions/aNN_*.txt` | 13 actions (TODO/ dissolved in v4.0; naval_intelligence + steal_ship_designs added) |
+| Diplomatic actions | `common/diplomatic_actions/aNN_*.txt` | 16 actions (v4.1 adds clandestine_arms_pipeline, sealed_train, false_flag_directive) |
 | Treaty articles | `common/treaty_articles/` (4 files) | Military Attaché, Cultural Exchange, Send Advisors, **Blackmailed Concession** (espionage-network-gated, self-collapsing) |
-| Journal entries | `common/journal_entries/`, `journal_entry_groups/` | `je_group_espionage`: assassination, pirates, development, **naval intelligence** |
+| Journal entries | `common/journal_entries/`, `journal_entry_groups/` | `je_group_espionage`: assassination, pirates, development, naval intelligence, **the Great Game** |
 | Scripted buttons | `common/scripted_buttons/` (10 files) | Piracy ×4, development ×4, naval intel ×2 (fund informants / burn contacts) |
 | Progress bars | `common/scripted_progress_bars/` | assassination progress/risk (0–8), development (0–100), naval intel infiltration/exposure (0–10) |
-| Scripted effects | `common/scripted_effects/` (2 files) | assassination + naval-intel bar mutators, centralized cleanup effects |
+| Scripted effects | `common/scripted_effects/` (3 files) | assassination + naval-intel bar mutators, Great Game scoring/leadership, cleanup effects |
 | Script values | `common/script_values/adv_dip_values.txt` | GDP-scaled cost engine (see `economy.md`) |
 | Static modifiers | `common/static_modifiers/adv_dip_modifier.txt` | ~60 modifiers: cost sinks, effect debuffs, flavor |
 | Modifier types | `common/modifier_type_definitions/` | 3 custom types for the institution |
 | Game rules | `common/game_rules/adv_dip_game_rules.txt` | `espionage_event_cost` (low/med/high), `espionage_tech_stealing` (on/off) |
-| On-actions | `common/on_actions/adv_dip_onactions.txt` | `on_secession_start` payoff for Support Nationalists |
+| On-actions | `common/on_actions/adv_dip_onactions.txt` | appended hooks: secession payoff, yearly espionage pulse (Great Game decay, kompromat, turned-network reviews) |
 | Ideologies | `common/ideologies/adv_dip_ig_ideologies.txt` | `INJECT:` patches adding law-group stances to 7 vanilla ideologies |
 | Catalysts | `common/diplomatic_catalysts/` | `catalyst_pact_formed` — not yet wired to espionage pacts (TODO) |
 | Defines | `common/defines/adv_dip_defines.txt` | One live override: `NPolitics.SECESSION_WEEKLY_BASE_CHANCE = 0.01` |

@@ -129,6 +129,21 @@ No console shortcut — test through the treaty UI:
 3. **The collapse check:** after ratifying, cancel the underlying espionage pact and
    let 1–2 weeks tick — the article must withdraw itself (`non_fulfillment`).
 
+### v4.1 Shadow War recipes
+- **Pipeline:** pact on a country at war, `event adv_dip_event.150` three times → `.151`
+  should reach their enemy, then `.152`'s ultimatum reaches you. Peace out the war →
+  `.153` payoff (obligation + prestige).
+- **Turned networks:** as a high-espionage victim, take option c on `.12`/`.82`/`.92`;
+  as the spymaster confirm dice now route to `.163` (fake success) and the yearly
+  review (`event adv_dip_event.160`) can expose it.
+- **Great Game:** any success option now scores; check `great_game_score` in `tweak`;
+  crowning fires `.165`.
+- **Sealed Train / False flags / Kompromat:** `event adv_dip_event.170` (roll),
+  `.180` (dossier spend); set a patsy with the False Flag Directive action, then force
+  a detection (`event adv_dip_event.91`) and confirm `.175` blames the patsy.
+- **Dynamic odds:** compare monthly hit rates at institution 5-vs-1 and 1-vs-5 — the
+  differential should be visibly decisive over a decade.
+
 ## Multiplayer note
 
 `.metadata` declares `multiplayer_synchronized: true`. Console testing desyncs MP —

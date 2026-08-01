@@ -24,6 +24,12 @@ scans and save the victim as `scope:spy_target_country`.
 | `.141`–`.146` | Naval intel flavor loop (clerk, signals, valet, counterintel sweep, drunken attaché, photographer) — nudge the two bars |
 | `.148` | Naval intel capstone — codes / flagship sabotage (ep2, `damage_ship_percent` **runtime-unverified**) / landing charts |
 | `.149` | Naval intel exposure — −30 relations, `exposed_spy_ring_modifier`, cleanup |
+| `.150`–`.153` | **Pipeline** — interception (attribution +1), enemy reveal, ultimatum (comply/refuse), survivor payoff (obligation + prestige) |
+| `.160`/`.161`/`.163` | **Turned networks** — spymaster's audit (edge-weighted), defender's exposure notice, generic poisoned "success" |
+| `.165`/`.166` | **Great Game** — crowned / deposed |
+| `.170`–`.172` | **Sealed Train** — edge-weighted roll, ferment + spark, crackdown |
+| `.175`/`.176` | **False flags** — patsy blamed (with unravel roll), forgery exposed |
+| `.180`/`.181` | **Kompromat** — dossier spend (disgrace/ruin/scandal), scandal fades |
 
 
 ## `adv_dip_assassination_events.txt` (~1,650 lines) — namespace `adv_dip_assassination_event`

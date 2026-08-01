@@ -92,3 +92,11 @@ buttons `je_fund_informants` (+2 progress, cost `naval_intel_funding` from
 fail (risk ≥10 or pact gone) → `.149`. Cleanup centralized in
 `remove_naval_intel_effect` (vars + pact + 36-mo cooldown) — never tear down piecemeal.
 Scripted effects live in `common/scripted_effects/adv_dip_naval_intel_effects.txt`.
+
+## The Great Game (`adv_dip_je_great_game`, v4.1)
+
+Permanent JE for any country with the Spy Agency law. Scores live in
+`great_game_score` (country variable, +1 minor / +3 major via the shared scoring
+effects, ×0.9 yearly decay); `global_var:great_game_leader` holds the current Master
+(`master_of_the_great_game_modifier`), swapped by the leadership-check effect with
+crowned/deposed events `.165`/`.166`.

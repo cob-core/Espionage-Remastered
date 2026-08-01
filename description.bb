@@ -14,7 +14,18 @@ Currently, this mod adds a new law group, a new institution, thirteen diplomatic
 See the full list [url=https://github.com/cob-core/Espionage-Remastered/wiki/Espionage-Remastered:-How%E2%80%90To,-Action-Requirements,-and-Action-Effects]here[/url].
 
 
-[h2]What's New in 4.0 — Completion & The Great Wave[/h2]
+[h2]What's New in 4.1 — Shadow War[/h2]
+[list]
+[*][b]Clandestine Arms Pipeline[/b] — bankroll a belligerent's war without joining it. Run the blockade, survive the ultimatum when you're named, and collect a survivor's debt.
+[*][b]Turned Networks[/b] — out-spy the spies: victims with superior espionage can secretly turn a network and feed its master nothing — or poisoned technology — while the bills keep coming.
+[*][b]The Great Game[/b] — a living scoreboard of the world's intelligence services. Every operation counts; the leading service holds Master of the Great Game.
+[*][b]The Sealed Train[/b] — smuggle a professional revolutionary into a rival power and choose the moment their tinder catches.
+[*][b]False Flag Directive[/b] — frame a patsy for your operations, until the forgery unravels.
+[*][b]Kompromat[/b] — your networks compile dossiers on enemy commanders: disgrace, ruin, or humiliate.
+[*][b]Dynamic odds[/b] — espionage institution investment now decisively drives success and detection odds (the long-requested feature).
+[/list]
+
+[h2]Previously in 4.0 — Completion & The Great Wave[/h2]
 [list]
 [*][b]Naval Intelligence Network[/b] — infiltrate a rival admiralty in a journal-entry operation: balance Infiltration against Exposure through flavour events, fund informants or burn compromised contacts, then choose your coup — crack their naval codes, cripple their flagship (requires The Great Wave), or copy their coastal landing charts. Get caught, and your network is paraded before tribunals.
 [*][b]Steal Ship Designs[/b] — turn a superior navy's own drawing offices against it for cheaper ship construction and faster military tech spread.
@@ -60,6 +71,7 @@ As Better Politics adds and changes ideologies, it requires a compatibility patc
 [*][strike]Naval Intelligence Network.[/strike] [b]ADDED IN 4.0[/b]
 [*][strike]Steal Ship Designs.[/strike] [b]ADDED IN 4.0[/b]
 [*][strike]Blackmail via treaty articles.[/strike] [b]ADDED IN 4.0[/b]
+[*][strike]Espionage level affects action outcomes.[/strike] [b]ADDED IN 4.1[/b]
 [/list]
 
 [h3]Future Updates[/h3]

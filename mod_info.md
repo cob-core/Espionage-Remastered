@@ -65,7 +65,7 @@
 + Merge 'New Frontiers: A Colonization Helper' into the mod.
 
 ### Community Suggestions
-+ Level of Espionage institution affects outcome of diplomatic actions.
++ ~~Level of Espionage institution affects outcome of diplomatic actions.~~ **Shipped in v4.1 as dynamic odds.**
 
 ## Contributers
 > cob
