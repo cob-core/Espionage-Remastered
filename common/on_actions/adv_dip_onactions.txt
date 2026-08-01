@@ -73,6 +73,15 @@ on_yearly_pulse_country = {
 
 adv_dip_espionage_yearly = {
 	effect = {
+		if = {
+			limit = {
+				has_law = law_type:law_spy_agency
+				NOT = { has_journal_entry = adv_dip_je_great_game }
+			}
+			add_journal_entry = {
+				type = adv_dip_je_great_game
+			}
+		}
 		# Great Game score decay
 		if = {
 			limit = { has_variable = great_game_score }
@@ -130,6 +139,26 @@ adv_dip_turned_network_review = {
 				}
 			}
 			trigger_event = { id = adv_dip_event.160 }
+		}
+	}
+}
+
+on_law_enactment_pass = {
+	on_actions = {
+		adv_dip_law_enacted_hook
+	}
+}
+
+adv_dip_law_enacted_hook = {
+	effect = {
+		if = {
+			limit = {
+				has_law = law_type:law_spy_agency
+				NOT = { has_journal_entry = adv_dip_je_great_game }
+			}
+			add_journal_entry = {
+				type = adv_dip_je_great_game
+			}
 		}
 	}
 }
