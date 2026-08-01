@@ -70,5 +70,6 @@ Custom types required by the institution:
 - `espionage_event_cost`: `low_/medium_/high_espionage_event_costs` (default medium) —
   multiplies every `spy_cost_multiplier_*` by 0.5/1/2. (Options were silently unparsed
   until v3.6 — the rule never applied before then.)
-- `espionage_tech_stealing`: `enable_/disable_tech_stealing` (default enabled) — gates the
-  `steal_technology` action's `potential`.
+- `espionage_tech_stealing`: `enable_/players_only_/disable_tech_stealing` (default
+  enabled) — gates `steal_technology`'s `potential`; `players_only` adds an
+  `is_player = yes` requirement so the AI never takes the action.

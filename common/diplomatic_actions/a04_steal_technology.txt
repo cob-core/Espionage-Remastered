@@ -26,7 +26,13 @@ steal_technology = {
         scope:target_country = {
 			country_rank > rank_value:minor_power
 		}
-        has_game_rule = enable_tech_stealing
+        OR = {
+            has_game_rule = enable_tech_stealing
+            AND = {
+                has_game_rule = players_only_tech_stealing
+                is_player = yes
+            }
+        }
     }
     
     possible = {

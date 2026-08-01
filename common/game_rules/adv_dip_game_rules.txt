@@ -17,6 +17,9 @@ espionage_tech_stealing = {
 	disable_tech_stealing = {
 	}
 
+	players_only_tech_stealing = {
+	}
+
 	enable_tech_stealing = {
 	}
 }

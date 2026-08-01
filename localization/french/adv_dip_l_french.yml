@@ -822,3 +822,5 @@ develop_nation_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has 
  TREATY_DRAFT_ARTICLE_FLAG_IS_blackmail_concession_EFFECT: "Est une concession extorquée"
  BLACKMAIL_DOSSIER_ACCEPTANCE: "Dossier compromettant"
  BLACKMAIL_RANK_DEFIANCE: "Défi d'une puissance moindre"
+ setting_players_only_tech_stealing: "Joueurs uniquement"
+ setting_players_only_tech_stealing_desc: "Seuls les joueurs humains peuvent voler des technologies. L'IA n'utilisera jamais cette action."

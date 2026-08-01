@@ -11,6 +11,7 @@
 + Fund Piracy reworked — victim modifiers re-expressed with real 1.13 effects (port throughput, power-projection prestige); with The Great Wave, a new "Arm the corsairs" option pays you a cut of real piracy income.
 + Sabotage Industry fully removed (redundant with 1.13 naval mechanics).
 + Fixed two more invalid modifier types (navy offense, icon paths) and added a reference-integrity checker to the release process.
++ Technology Stealing game rule gains a 'Players Only' setting — humans may steal technology, the AI never will.
 
 ## Previous Changelog (v3.6 — Stabilization)
 + Fixed 32 modifiers that silently never parsed (missing `=`), restoring all assassination-flavor, piracy, development, and stolen-technology modifiers.
