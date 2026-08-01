@@ -39,11 +39,6 @@
 		building_training_rate_mult = -0.1
 	}
 
-	sabotage_industry_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-		building_throughput_mult = -0.1
-	}
-
 	send_advisors_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 		country_production_tech_spread_mult = 1
@@ -136,7 +131,7 @@
 	}
 
 	cleaned_the_cat_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_prestige.dds
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
 		country_prestige_add = 15
 	}
 
@@ -253,4 +248,22 @@
 	development_garner_influence_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 		country_leverage_resistance_mult = -0.5
+	}
+
+	recent_defection_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
+		country_prestige_mult = -0.05
+		interest_group_ig_armed_forces_approval_add = -2
+	}
+
+	successful_development_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+		is_decaying = yes
+		country_prestige_add = 25
+	}
+
+	development_gratitude_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+		country_leverage_resistance_mult = -0.25
+		country_improve_relations_speed_mult = 0.10
 	}

@@ -1,4 +1,7 @@
-﻿sabotage_industry = {
+﻿sabotage_recruitment = {
+	groups = {
+		general
+	}
 	requires_approval = no
 	should_notify_third_parties = no
 
@@ -10,16 +13,22 @@
 		NOT = { is_country_type = decentralized }
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
-		}	
+		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 3
+		}
 	}
 	
 	possible = {
 		is_revolutionary = no
 		in_default = no
+		NOT = { has_war_with = scope:target_country }
+		has_diplomatic_relevance = scope:target_country
 	}
 	
 	pact = {	
-		cost = 100
+		cost = 150
 	
 		is_two_sided_pact = no
 		show_in_outliner = yes
@@ -27,13 +36,13 @@
 		
 		monthly_effect = {
 			custom_tooltip = {
-				text = sabotage_industry_monthly_effect
+				text = sabotage_recruitment_monthly_effect
 				random_list = { 
 					35 = {}
 					1 = { 
 						root = {
 							trigger_event = {
-					            id = adv_dip_event.51
+					            id = adv_dip_event.41
 					        }
 					    }
 					}

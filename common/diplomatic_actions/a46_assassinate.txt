@@ -73,11 +73,14 @@
 		}
 		
 		monthly_effect = {
-			if = {
-				limit = {
-					NOT = { has_variable = ongoing_plans }
+			custom_tooltip = {
+				text = assassinate_political_leader_monthly_effect
+				if = {
+					limit = {
+						NOT = { has_variable = ongoing_plans }
+					}
+					trigger_event = { id = adv_dip_assassination_event.100 }
 				}
-				trigger_event = { id = adv_dip_assassination_event.100 }
 			}
 		}
 		

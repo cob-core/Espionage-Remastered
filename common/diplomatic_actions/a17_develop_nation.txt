@@ -1,4 +1,4 @@
-develop_nation = {
+﻿develop_nation = {
 	groups = {
 		general
 	}
@@ -31,12 +31,6 @@ develop_nation = {
 		has_diplomatic_relevance = scope:target_country
 	}
 
-	effect = {
-		scope:target_country = {
-			save_scope_as = develop_nation_target
-		}
-	}
-	
 	pact = {
 		cost = 200
 	
