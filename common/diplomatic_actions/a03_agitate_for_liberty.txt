@@ -16,6 +16,11 @@
 			is_subject = yes
 			NOT = { is_subject_of = root}
 		}
+		OR = {
+			has_law = law_type:law_spy_agency
+			has_law = law_type:law_directorate_of_state_security
+			has_law = law_type:law_deniable_assets
+		}
 		institution_investment_level = {
 			institution = institution_espionage
 			value >= 3

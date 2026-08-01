@@ -67,9 +67,67 @@ on_yearly_pulse_country = {
 
 adv_dip_espionage_yearly = {
 	effect = {
+		# AI operative management: the console is player-only, so the AI recruits
+		# and appoints through script or it could never run character-led operations.
 		if = {
 			limit = {
-				has_law = law_type:law_spy_agency
+				is_player = no
+				OR = {
+			has_law = law_type:law_consular_intelligence
+			has_law = law_type:law_spy_agency
+			has_law = law_type:law_directorate_of_state_security
+			has_law = law_type:law_deniable_assets
+		}
+				scaled_debt <= 0
+				NOT = {
+					list_size = {
+						name = adv_dip_operatives
+						value >= institution_investment_level:institution_espionage
+					}
+				}
+			}
+			create_character = {
+				role = character_role_operative
+				culture = primary_culture
+				on_created = {
+					save_scope_as = adv_dip_ai_operative
+					owner = {
+						add_to_variable_list = {
+							name = adv_dip_operatives
+							target = scope:adv_dip_ai_operative
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_player = no
+				NOT = { has_variable_list = adv_dip_director }
+				has_variable_list = adv_dip_operatives
+			}
+			random_in_list = {
+				variable = adv_dip_operatives
+				save_scope_as = adv_dip_new_director
+				add_character_role = character_role_spymaster
+			}
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:adv_dip_new_director
+			}
+			add_to_variable_list = {
+				name = adv_dip_director
+				target = scope:adv_dip_new_director
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+			has_law = law_type:law_consular_intelligence
+			has_law = law_type:law_spy_agency
+			has_law = law_type:law_directorate_of_state_security
+			has_law = law_type:law_deniable_assets
+		}
 				NOT = { has_journal_entry = adv_dip_je_great_game }
 			}
 			add_journal_entry = {
@@ -146,7 +204,12 @@ adv_dip_law_enacted_hook = {
 	effect = {
 		if = {
 			limit = {
-				has_law = law_type:law_spy_agency
+				OR = {
+			has_law = law_type:law_consular_intelligence
+			has_law = law_type:law_spy_agency
+			has_law = law_type:law_directorate_of_state_security
+			has_law = law_type:law_deniable_assets
+		}
 				NOT = { has_journal_entry = adv_dip_je_great_game }
 			}
 			add_journal_entry = {

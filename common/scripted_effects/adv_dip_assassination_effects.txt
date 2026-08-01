@@ -103,6 +103,7 @@ assassination_lose_progress_effect = {
 }
 
 remove_assassination_events_effect = {
+	adv_dip_release_operative = yes
 	remove_variable = active_assassination
 	remove_variable = ongoing_plans
 	
@@ -150,4 +151,44 @@ assassination_success = {
 		}
 	}
 	custom_tooltip = assassination_success_tt
+}
+
+# Releases the operative used by an assassination plot. On exposure the operative
+# may be captured (held by the target) or killed outright.
+adv_dip_release_operative = {
+	every_scope_character = {
+		limit = { has_variable = assassination_leader_var }
+		remove_variable = assassination_leader_var
+		set_character_busy_and_immortal = no
+	}
+}
+
+adv_dip_lose_operative = {
+	every_scope_character = {
+		limit = { has_variable = assassination_leader_var }
+		save_scope_as = adv_dip_exposed_operative
+		root = {
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:adv_dip_exposed_operative
+			}
+		}
+		random_list = {
+			50 = {
+				custom_tooltip = adv_dip_operative_captured_tt
+				remove_variable = assassination_leader_var
+				set_character_busy_and_immortal = no
+				set_variable = {
+					name = adv_dip_captured
+					months = 60
+				}
+			}
+			50 = {
+				custom_tooltip = adv_dip_operative_executed_tt
+				remove_variable = assassination_leader_var
+				set_character_busy_and_immortal = no
+				kill_character = yes
+			}
+		}
+	}
 }

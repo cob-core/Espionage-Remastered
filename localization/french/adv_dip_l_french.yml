@@ -881,3 +881,5 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA [concep
  ADV_DIP_CONSOLE_OPERATIVE_ROW: "[Character.GetFullNameNoTooltip] — [Character.GetCulture.GetName]"
  adv_dip_appoint_director_tt: "Nomme cet agent à la tête du service. Il ne prendra plus de missions de terrain."
  character_role_spymaster: "Directeur du renseignement"
+ adv_dip_operative_captured_tt: "#N Notre agent a été capturé et emprisonné par la cible.#!"
+ adv_dip_operative_executed_tt: "#N Notre agent a été exécuté.#!"

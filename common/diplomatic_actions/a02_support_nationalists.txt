@@ -15,6 +15,11 @@
 			NOT = { is_country_type = decentralized }
 		}
 		country_rank >= rank_value:great_power
+		OR = {
+			has_law = law_type:law_spy_agency
+			has_law = law_type:law_directorate_of_state_security
+			has_law = law_type:law_deniable_assets
+		}
 		institution_investment_level = {
 			institution = institution_espionage
 			value >= 4
