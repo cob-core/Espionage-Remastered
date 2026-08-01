@@ -1,15 +1,23 @@
-﻿adv_dip_sgui_console_test = {
+﻿adv_dip_sgui_recruit_operative = {
 	scope = country
 
 	is_shown = {
-		always = yes
+		has_law = law_type:law_spy_agency
 	}
 
 	is_valid = {
-		always = yes
+		custom_tooltip = {
+			text = adv_dip_recruit_cap_tt
+			NOT = {
+				list_size = {
+					name = adv_dip_operatives
+					value >= institution_investment_level:institution_espionage
+				}
+			}
+		}
 	}
 
 	effect = {
-		add_treasury = 10000
+		trigger_event = { id = adv_dip_event.190 }
 	}
 }

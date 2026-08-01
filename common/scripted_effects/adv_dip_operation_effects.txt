@@ -1,0 +1,48 @@
+﻿# Core secret-operation machinery (v5.0). Operations live in per-type variable
+# lists on the initiator; pacts are gone.
+
+adv_dip_start_operation = {
+	add_to_variable_list = {
+		name = adv_dip_op_$ACTION$
+		target = scope:target_country
+	}
+}
+
+# Stops one operation. TARGET must be a saved scope name (without scope: prefix).
+adv_dip_stop_operation = {
+	remove_list_variable = {
+		name = adv_dip_op_$ACTION$
+		target = scope:$TARGET$
+	}
+}
+
+# Monthly die for one target of one operation type. Call with spy_target_country
+# already saved. MISS/HIT define the odds; EVENT is the X1 event id.
+adv_dip_operation_die = {
+	if = {
+		limit = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
+		random_list = {
+			$MISS$ = {}
+			150 = {
+				root = { trigger_event = { id = $EVENT$ } }
+			}
+		}
+	}
+	else_if = {
+		limit = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
+		random_list = {
+			$MISS$ = {}
+			65 = {
+				root = { trigger_event = { id = $EVENT$ } }
+			}
+		}
+	}
+	else = {
+		random_list = {
+			$MISS$ = {}
+			100 = {
+				root = { trigger_event = { id = $EVENT$ } }
+			}
+		}
+	}
+}

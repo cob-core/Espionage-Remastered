@@ -1,27 +1,69 @@
-### WIDGETS
+### ESPIONAGE CONSOLE
 flowcontainer = {
-	name = "widget_adv_dip_console_test"
+	name = "widget_adv_dip_console"
 	direction = vertical
 	ignoreinvisible = yes
 
-	textbox = {
-		autoresize = yes
-		text = "ADV_DIP_CONSOLE_TEST_HEADER"
-		using = fontsize_large
-	}
+	### OPERATIVES
+	flowcontainer = {
+		direction = vertical
 
-	button = {
-		size = { 280 40 }
-		using = default_button_action
-		visible = "[GetScriptedGui('adv_dip_sgui_console_test').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-		enabled = "[GetScriptedGui('adv_dip_sgui_console_test').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-		onclick = "[GetScriptedGui('adv_dip_sgui_console_test').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-		tooltip = "[GetScriptedGui('adv_dip_sgui_console_test').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+		section_header_button = {
+			blockoverride "layout" {
+				size = { 520 38 }
+			}
+			blockoverride "left_text" {
+				text = "ADV_DIP_CONSOLE_OPERATIVES"
+			}
+			blockoverride "onclick" {
+				onclick = "[GetVariableSystem.Toggle('adv_dip_operatives_toggle')]"
+			}
+			blockoverride "onclick_showmore" {
+				visible = "[Not(GetVariableSystem.Exists('adv_dip_operatives_toggle'))]"
+			}
+			blockoverride "onclick_showless" {
+				visible = "[GetVariableSystem.Exists('adv_dip_operatives_toggle')]"
+			}
+		}
 
-		textbox = {
-			parentanchor = center
-			autoresize = yes
-			text = "ADV_DIP_CONSOLE_TEST_BUTTON"
+		fixedgridbox = {
+			visible = "[GetVariableSystem.Exists('adv_dip_operatives_toggle')]"
+			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives')]"
+			addcolumn = 500
+			addrow = 40
+			datamodel_wrap = 1
+
+			item = {
+				hbox = {
+					datacontext = "[Scope.GetCharacter]"
+					spacing = 8
+					margin_left = 10
+
+					textbox = {
+						autoresize = yes
+						text = "[Character.GetFullNameNoTooltip]"
+						using = fontsize_medium
+					}
+
+					textbox = {
+						autoresize = yes
+						text = "ADV_DIP_CONSOLE_OPERATIVE_STATUS"
+						using = fontsize_small
+					}
+				}
+			}
+		}
+
+		button_standard = {
+			size = { 280 34 }
+			visible = "[GetScriptedGui('adv_dip_sgui_recruit_operative').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+			enabled = "[GetScriptedGui('adv_dip_sgui_recruit_operative').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+			onclick = "[GetScriptedGui('adv_dip_sgui_recruit_operative').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+			tooltip = "[GetScriptedGui('adv_dip_sgui_recruit_operative').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+
+			blockoverride "text" {
+				text = "ADV_DIP_CONSOLE_RECRUIT"
+			}
 		}
 	}
 }

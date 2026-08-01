@@ -20,6 +20,13 @@ adv_dip_assassination_event.100 = { # Start Event
 
 	immediate = {
 		set_variable = ongoing_plans
+		if = {
+			limit = { exists = scope:spy_target_country }
+			set_variable = {
+				name = assassination_target_country
+				value = scope:spy_target_country
+			}
+		}
 	}
 
 	option = {
@@ -50,33 +57,22 @@ adv_dip_assassination_event.101 = { # Select Commander
 	trigger = {
 		any_scope_character = {
 			is_busy = no
-			OR = {
-				has_role_of_type = general
-				has_role_of_type = admiral
-			}
+			has_role = character_role_operative
 		}
 	}
 
 	immediate = {
 		random_scope_character = {
 			limit = {
-				is_busy = no
-				is_ruler_of_own_country = no
-				OR = {
-					has_role_of_type = general
-					has_role_of_type = admiral
-				}
+					is_busy = no
+					has_role = character_role_operative
 			}
 			save_scope_as = assassination_leader_1
 		}
 		random_scope_character = {
 			limit = {
-				is_busy = no
-				is_ruler_of_own_country = no
-				OR = {
-					has_role_of_type = general
-					has_role_of_type = admiral
-				}
+					is_busy = no
+					has_role = character_role_operative
 				NOT = {
 					this = scope:assassination_leader_1
 				}
@@ -86,12 +82,8 @@ adv_dip_assassination_event.101 = { # Select Commander
 		}
 		random_scope_character = {
 			limit = {
-				is_busy = no
-				is_ruler_of_own_country = no
-				OR = {
-					has_role_of_type = general
-					has_role_of_type = admiral
-				}
+					is_busy = no
+					has_role = character_role_operative
 				NOR = {
 					this = scope:assassination_leader_1
 					this = scope:assassination_leader_2
@@ -166,48 +158,7 @@ adv_dip_assassination_event.102 = { # Select Target
 	immediate = {
 		if = {
 			limit = { NOT = { exists = scope:spy_target_country } }
-	if = {
-				limit = {
-					any_country = {
-						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = assassinate_political_leader
-							}
-						}
-						NOT = {
-							has_modifier = recent_assassination_modifier
-						}
-					}
-				}
-				random_country = {
-					limit = {
-						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = assassinate_political_leader
-							}
-						}
-						NOT = {
-							has_modifier = recent_assassination_modifier
-						}
-					}
-					save_scope_as = spy_target_country
-				}
-			}
-			else = {
-				random_country = {
-					limit = {
-						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = assassinate_political_leader
-							}
-						}
-					}
-					save_scope_as = spy_target_country
-				}
-			}
+			var:assassination_target_country ?= { save_scope_as = spy_target_country }
 		}
 
 		scope:spy_target_country = {
@@ -796,10 +747,7 @@ adv_dip_assassination_event.198 = { #Successful
 			is_decaying = yes
 		}
 		root = {
-			remove_diplomatic_pact = {
-				country = scope:spy_target_country
-				type = assassinate_political_leader
-			}
+			remove_variable = assassination_target_country
 		}
 		scope:spy_target_country = {
 			add_modifier = {
@@ -855,10 +803,7 @@ adv_dip_assassination_event.199 = { #Failed
 			is_decaying = yes
 		}
 		root = {
-			remove_diplomatic_pact = {
-				country = scope:spy_target_country
-				type = assassinate_political_leader
-			}
+			remove_variable = assassination_target_country
 		}
 		scope:spy_target_country = {
 			add_modifier = {
@@ -1626,12 +1571,7 @@ adv_dip_assassination_event.135 = {
 		random_country = {
 			limit = {
 				country_rank >= rank_value:great_power
-				NOT = {
-					has_diplomatic_pact = {
-						who = THIS
-						type = assassinate_political_leader
-					}
-				}
+				NOT = { this = root }
 			}
 			ruler = {
 				save_scope_as = assassination_rival_country_leader

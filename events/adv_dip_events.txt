@@ -3757,16 +3757,39 @@ adv_dip_event.190 = {
 	placement = root
 	title = adv_dip_event.190.t
 	desc = adv_dip_event.190.d
+	flavor = adv_dip_event.190.f
 	event_image = { video = "unspecific_politicians_arguing" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 	duration = 1
-	option = {
-		name = adv_dip_event.190.a
-		default_option = yes
+
+	immediate = {
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_small
+			months = 13
+		}
 		create_character = {
 			role = character_role_operative
 			culture = primary_culture
+			traits = {
+				cryptographer
+			}
+			on_created = {
+				save_scope_as = new_operative
+				owner = {
+					add_to_variable_list = {
+						name = adv_dip_operatives
+						target = scope:new_operative
+					}
+				}
+			}
 		}
 	}
+
+	option = {
+		name = adv_dip_event.190.a
+		default_option = yes
+	}
 }
+

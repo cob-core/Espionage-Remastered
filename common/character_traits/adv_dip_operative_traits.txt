@@ -1,0 +1,59 @@
+﻿cryptographer = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/expert_political_operator.dds"
+	character_modifier = {
+		character_prominence_add = 5
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 10
+	}
+	value = 2
+}
+
+master_of_disguise = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/meticulous.dds"
+	character_modifier = {
+		character_prominence_add = 5
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 10
+	}
+	value = 2
+}
+
+saboteur = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/expert_offensive_planner.dds"
+	character_modifier = {
+		character_prominence_add = 5
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 10
+	}
+	value = 2
+}
+
+silver_tongue = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/charismatic.dds"
+	character_modifier = {
+		character_prominence_add = 5
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 10
+	}
+	value = 2
+}

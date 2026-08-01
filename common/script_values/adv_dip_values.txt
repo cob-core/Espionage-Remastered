@@ -227,3 +227,34 @@ spy_target_espionage_minus_3 = {
 	value = scope:spy_target_country.institution_investment_level:institution_espionage
 	subtract = 3
 }
+
+# v5.0: monthly network upkeep, accrued per active operation target into
+# adv_dip_upkeep_total during the monthly hook, then applied as one modifier.
+adv_dip_network_upkeep_value = {
+	value = 0
+	if = {
+		limit = { has_variable = adv_dip_upkeep_total }
+		add = var:adv_dip_upkeep_total
+	}
+}
+
+# Per-target monthly upkeep tiers (replaces pact influence cost + income transfer).
+adv_dip_upkeep_small = {
+	value = scope:spy_target_country.gdp
+	divide = 1200000
+	round = yes
+	multiply = 1
+	min = 25
+}
+adv_dip_upkeep_medium = {
+	value = scope:spy_target_country.gdp
+	divide = 600000
+	round = yes
+	min = 50
+}
+adv_dip_upkeep_large = {
+	value = scope:spy_target_country.gdp
+	divide = 300000
+	round = yes
+	min = 100
+}

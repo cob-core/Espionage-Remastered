@@ -23,6 +23,11 @@
 	}
 	
 	possible = {
+		NOT = { has_variable = ongoing_plans }
+		any_scope_character = {
+			has_role = character_role_operative
+			is_busy = no
+		}
 		is_revolutionary = no
 		in_default = no
 		has_diplomatic_relevance = scope:target_country
@@ -44,62 +49,19 @@
 
 
 	
-	pact = {	
-		cost = 250
-	
-		is_two_sided_pact = no
-		show_in_outliner = yes
-		income_transfer = 0.1
-		max_paying_country_income_to_transfer = 1
-		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = yes
-		income_transfer_to_pops = {
-			allow_non_fully_accepted = no
-			upper_strata_pops = {
-				value = 1
-				max = 1
-				min = 0
-			}
-			middle_strata_pops = {
-				value = 0
-				max = 1
-				min = 0				
-			}
-			lower_strata_pops = {
-				value = 0
-				max = 1
-				min = 0				
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
 		}
-		
-		monthly_effect = {
-			custom_tooltip = {
-				text = assassinate_political_leader_monthly_effect
-				if = {
-					limit = {
-						NOT = { has_variable = ongoing_plans }
-					}
-					scope:target_country = { save_scope_as = spy_target_country }
-					trigger_event = { id = adv_dip_assassination_event.100 }
-				}
-			}
+		set_variable = ongoing_plans
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_large
+			months = 25
 		}
-		
-	
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {		
-				is_country_type = decentralized
-				scope:target_country = { is_country_type = decentralized }
-				in_default = yes
-				has_modifier = modifier_failed_assassination
-				has_modifier = modifier_successful_assassination
-			}
-				}
-			}
-		}
+		trigger_event = { id = adv_dip_assassination_event.100 }
 	}
+
 	
 	ai = {
 

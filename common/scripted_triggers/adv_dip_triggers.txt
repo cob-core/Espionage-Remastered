@@ -1,0 +1,35 @@
+﻿# True if root runs ANY espionage operation against $TARGET$ (a saved scope name
+# without the scope: prefix). The v5 replacement for the old 11-pact dossier check.
+adv_dip_has_network_against = {
+	OR = {
+		is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_steal_technology target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_election_interference target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_support_slaves target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_steal_commander target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_clandestine_arms_pipeline target = scope:$TARGET$ }
+		is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = scope:$TARGET$ }
+	}
+}
+
+# True if root has ANY espionage operation running at all.
+adv_dip_has_any_operation = {
+	OR = {
+		has_variable_list = adv_dip_op_sow_discontent
+		has_variable_list = adv_dip_op_support_nationalists
+		has_variable_list = adv_dip_op_agitate_for_liberty
+		has_variable_list = adv_dip_op_steal_technology
+		has_variable_list = adv_dip_op_election_interference
+		has_variable_list = adv_dip_op_support_slaves
+		has_variable_list = adv_dip_op_sabotage_recruitment
+		has_variable_list = adv_dip_op_steal_commander
+		has_variable_list = adv_dip_op_clandestine_arms_pipeline
+		has_variable_list = adv_dip_op_fund_black_market_slavery
+		has_variable = ongoing_plans
+		has_variable = ongoing_naval_intel
+		has_variable = ongoing_development
+	}
+}

@@ -41,17 +41,8 @@
 			}
 			save_scope_as = assassination_leader
 		}
-		random_country = {
-			limit = {
-				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = assassinate_political_leader
-					}
-				}
-			}
-			save_scope_as = spy_target_country
-		}
+
+		var:assassination_target_country ?= { save_scope_as = spy_target_country }
 		scope:spy_target_country = {
 			random_scope_character = {
 				limit = {
@@ -114,12 +105,8 @@
 				scope:journal_entry = {
 					"scripted_bar_progress(assassination_risk_progress_bar)" >= 8
 				}
-				NOT = {
-					has_diplomatic_pact = {
-						who = scope:spy_target_country
-						type = assassinate_political_leader
-					}
-				}
+
+				NOT = { has_variable = ongoing_plans }
 			}
 		}
     }

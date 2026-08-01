@@ -161,3 +161,440 @@ adv_dip_law_enacted_hook = {
 		}
 	}
 }
+
+on_monthly_pulse_country = {
+	on_actions = {
+		adv_dip_espionage_monthly
+	}
+}
+
+adv_dip_espionage_monthly = {
+	effect = {
+		set_variable = {
+			name = adv_dip_upkeep_total
+			value = 0
+		}
+		# AI solvency abort: a broke AI winds down its networks
+		if = {
+			limit = {
+				is_player = no
+				OR = {
+					scaled_debt > 0.25
+					in_default = yes
+				}
+			}
+			clear_variable_list = adv_dip_op_sow_discontent
+			clear_variable_list = adv_dip_op_support_nationalists
+			clear_variable_list = adv_dip_op_agitate_for_liberty
+			clear_variable_list = adv_dip_op_steal_technology
+			clear_variable_list = adv_dip_op_sabotage_recruitment
+			clear_variable_list = adv_dip_op_election_interference
+			clear_variable_list = adv_dip_op_steal_commander
+			clear_variable_list = adv_dip_op_clandestine_arms_pipeline
+			clear_variable_list = adv_dip_op_fund_black_market_slavery
+			clear_variable_list = adv_dip_op_support_slaves
+		}
+		# --- sow_discontent ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_sow_discontent }
+			every_in_list = {
+				variable = adv_dip_op_sow_discontent
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_sow_discontent
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_medium
+					}
+					if = {
+							limit = {
+								scope:spy_target_country = { var:turned_sow_discontent_by ?= root }
+							}
+							root = { trigger_event = { id = adv_dip_event.163 } }
+						}
+						else = {
+							adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.11 }
+						}
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_sow_discontent
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = sow_discontent TARGET = stopped_target }
+				}
+			}
+		}
+		# --- support_nationalists ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_support_nationalists }
+			every_in_list = {
+				variable = adv_dip_op_support_nationalists
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_support_nationalists
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_medium
+					}
+					adv_dip_operation_die = { MISS = 8000 EVENT = adv_dip_event.21 }
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_support_nationalists
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = support_nationalists TARGET = stopped_target }
+				}
+			}
+		}
+		# --- agitate_for_liberty ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_agitate_for_liberty }
+			every_in_list = {
+				variable = adv_dip_op_agitate_for_liberty
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_agitate_for_liberty
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_medium
+					}
+					adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.31 }
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_agitate_for_liberty
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = stopped_target }
+				}
+			}
+		}
+		# --- steal_technology ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_steal_technology }
+			every_in_list = {
+				variable = adv_dip_op_steal_technology
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						scope:spy_target_country = { NOT = { techs_researched > root.techs_researched } }
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_steal_technology
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_small
+					}
+					if = {
+							limit = {
+								scope:spy_target_country = { var:turned_steal_technology_by ?= root }
+							}
+							root = { trigger_event = { id = adv_dip_event.163 } }
+						}
+						else = {
+							adv_dip_operation_die = { MISS = 1600 EVENT = adv_dip_event.91 }
+						}
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_steal_technology
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = steal_technology TARGET = stopped_target }
+				}
+			}
+		}
+		# --- sabotage_recruitment ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_sabotage_recruitment }
+			every_in_list = {
+				variable = adv_dip_op_sabotage_recruitment
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_sabotage_recruitment
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_small
+					}
+					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.41 }
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_sabotage_recruitment
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = stopped_target }
+				}
+			}
+		}
+		# --- election_interference ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_election_interference }
+			every_in_list = {
+				variable = adv_dip_op_election_interference
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						scope:spy_target_country = { NOT = { any_interest_group = { has_party = yes } } }
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_election_interference
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_medium
+					}
+					if = {
+						limit = { scope:spy_target_country = { in_election_campaign = yes } }
+						if = {
+							limit = {
+								scope:spy_target_country = { var:turned_election_interference_by ?= root }
+							}
+							root = { trigger_event = { id = adv_dip_event.163 } }
+						}
+						else = {
+							adv_dip_operation_die = { MISS = 200 EVENT = adv_dip_event.81 }
+						}
+					}
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_election_interference
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = election_interference TARGET = stopped_target }
+				}
+			}
+		}
+		# --- steal_commander ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_steal_commander }
+			every_in_list = {
+				variable = adv_dip_op_steal_commander
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						scope:spy_target_country = {
+							NOT = {
+								any_scope_character = {
+									OR = {
+										has_role_of_type = general
+										has_role_of_type = admiral
+									}
+									is_ruler_of_own_country = no
+									is_busy = no
+								}
+							}
+						}
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_steal_commander
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_small
+					}
+					if = {
+						limit = { NOT = { has_variable = recently_stole_commander } }
+						adv_dip_operation_die = { MISS = 3300 EVENT = adv_dip_event.131 }
+					}
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_steal_commander
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = steal_commander TARGET = stopped_target }
+				}
+			}
+		}
+		# --- clandestine_arms_pipeline ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_clandestine_arms_pipeline }
+			every_in_list = {
+				variable = adv_dip_op_clandestine_arms_pipeline
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						is_at_war = yes
+						scope:spy_target_country = { is_at_war = no }
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_clandestine_arms_pipeline
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_medium
+					}
+					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.150 }
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_clandestine_arms_pipeline
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = stopped_target }
+				}
+			}
+		}
+		# --- fund_black_market_slavery ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_fund_black_market_slavery }
+			every_in_list = {
+				variable = adv_dip_op_fund_black_market_slavery
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						scope:spy_target_country = {
+							NOR = {
+								has_law = law_type:law_slave_trade
+								has_law = law_type:law_legacy_slavery
+								has_law = law_type:law_debt_slavery
+							}
+						}
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_fund_black_market_slavery
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_medium
+					}
+					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.155 }
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_fund_black_market_slavery
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = stopped_target }
+				}
+			}
+		}
+		# --- support_slaves ---
+		if = {
+			limit = { has_variable_list = adv_dip_op_support_slaves }
+			every_in_list = {
+				variable = adv_dip_op_support_slaves
+				save_scope_as = spy_target_country
+				if = {
+					limit = {
+						OR = {
+							scope:spy_target_country = { is_country_type = decentralized }
+						has_war_with = scope:spy_target_country
+						}
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_support_slaves
+						target = scope:spy_target_country
+					}
+				}
+				else = {
+					change_variable = {
+						name = adv_dip_upkeep_total
+						add = adv_dip_upkeep_small
+					}
+					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.120 }
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stop_support_slaves
+				save_scope_as = stopped_target
+				root = {
+					adv_dip_stop_operation = { ACTION = support_slaves TARGET = stopped_target }
+				}
+			}
+		}
+
+		if = {
+			limit = { var:adv_dip_upkeep_total > 0 }
+			add_modifier = {
+				name = adv_dip_network_upkeep_modifier
+				multiplier = adv_dip_network_upkeep_value
+				months = 1
+			}
+		}
+	}
+}
