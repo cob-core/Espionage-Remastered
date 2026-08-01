@@ -5,9 +5,15 @@
 1. `damage_ship_percent = 0.5` syntax in `.148.b` — effect exists (effect-localization)
    but has zero vanilla usages; verify in-game with The Great Wave.
 2. All `has_dlc_feature = ep2_content` paths (flagship sabotage, corsair patronage) —
-   statically verified only; The Great Wave is not installed locally.
+   The Great Wave installed 2026-08-01; now testable in-game (console checklist below).
 3. Blackmail article AI acceptance behavior and the `non_fulfillment` weekly check.
 4. `transfer_character` on a commander (vanilla uses it on IG leaders/agitators).
+
+### ep2 console test checklist
+`event adv_dip_event.148` on a country with an active naval-intel JE against a
+flagship-owning navy → pick option b, confirm the flagship takes damage and no
+error.log entries; `event adv_dip_event.101` → option b visible, corsair modifier
+applies; ratify a Blackmailed Concession with and without an active espionage pact.
 
 ## Open
 

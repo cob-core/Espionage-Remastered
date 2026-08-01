@@ -45,7 +45,7 @@
 + Election Interference auto-end when voting is removed; targeted AI party choice.
 + Add loading screen tips.
 + Real lens icons for Naval Intelligence and Steal Ship Designs (placeholders reuse existing art).
-+ In-game verification of the ep2-gated paths (flagship sabotage, corsair patronage) — untestable locally without The Great Wave.
++ In-game verification of the ep2-gated paths (flagship sabotage, corsair patronage) — DLC now installed, pending a play-test.
 
 ### Long-Term Goals
 + Create a custom GUI.

@@ -3046,7 +3046,7 @@ adv_dip_event.135 = {
 	flavor = adv_dip_event.135.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "unspecific_steam_ship"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -3117,7 +3117,7 @@ adv_dip_event.136 = {
 	flavor = adv_dip_event.136.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "unspecific_steam_ship"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -3148,7 +3148,7 @@ adv_dip_event.140 = {
 	flavor = adv_dip_event.140.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "unspecific_steam_ship"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -3206,7 +3206,7 @@ adv_dip_event.141 = {
 	title = adv_dip_event.141.t
 	desc = adv_dip_event.141.d
 	flavor = adv_dip_event.141.f
-	event_image = { video = "unspecific_politicians_arguing" }
+	event_image = { video = "unspecific_steam_ship" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
@@ -3224,7 +3224,7 @@ adv_dip_event.142 = {
 	title = adv_dip_event.142.t
 	desc = adv_dip_event.142.d
 	flavor = adv_dip_event.142.f
-	event_image = { video = "unspecific_politicians_arguing" }
+	event_image = { video = "unspecific_steam_ship" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
@@ -3247,7 +3247,7 @@ adv_dip_event.143 = {
 	title = adv_dip_event.143.t
 	desc = adv_dip_event.143.d
 	flavor = adv_dip_event.143.f
-	event_image = { video = "unspecific_politicians_arguing" }
+	event_image = { video = "unspecific_steam_ship" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
@@ -3269,7 +3269,7 @@ adv_dip_event.144 = {
 	title = adv_dip_event.144.t
 	desc = adv_dip_event.144.d
 	flavor = adv_dip_event.144.f
-	event_image = { video = "unspecific_politicians_arguing" }
+	event_image = { video = "unspecific_steam_ship" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
@@ -3292,7 +3292,7 @@ adv_dip_event.145 = {
 	title = adv_dip_event.145.t
 	desc = adv_dip_event.145.d
 	flavor = adv_dip_event.145.f
-	event_image = { video = "unspecific_politicians_arguing" }
+	event_image = { video = "unspecific_steam_ship" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
@@ -3310,7 +3310,7 @@ adv_dip_event.146 = {
 	title = adv_dip_event.146.t
 	desc = adv_dip_event.146.d
 	flavor = adv_dip_event.146.f
-	event_image = { video = "unspecific_politicians_arguing" }
+	event_image = { video = "unspecific_steam_ship" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
@@ -3332,7 +3332,7 @@ adv_dip_event.148 = {
 	flavor = adv_dip_event.148.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "unspecific_naval_battle"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -3407,7 +3407,7 @@ adv_dip_event.149 = {
 	flavor = adv_dip_event.149.f
 
 	event_image = {
-		video = "unspecific_politicians_arguing"
+		video = "unspecific_naval_battle"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
