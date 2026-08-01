@@ -2,6 +2,12 @@
 
 	group = je_group_espionage
 
+	widget = {
+		gui = "gui/journal_entry_widgets/adv_dip_console_widgets.gui"
+		name = "widget_adv_dip_console_test"
+		container = "custom_widget_container_1"
+	}
+
 	weight = 100
 	transferable = no
 	should_be_pinned_by_default_involved = no

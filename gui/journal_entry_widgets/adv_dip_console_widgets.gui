@@ -1,0 +1,27 @@
+### WIDGETS
+flowcontainer = {
+	name = "widget_adv_dip_console_test"
+	direction = vertical
+	ignoreinvisible = yes
+
+	textbox = {
+		autoresize = yes
+		text = "ADV_DIP_CONSOLE_TEST_HEADER"
+		using = fontsize_large
+	}
+
+	button = {
+		size = { 280 40 }
+		using = default_button_action
+		visible = "[GetScriptedGui('adv_dip_sgui_console_test').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+		enabled = "[GetScriptedGui('adv_dip_sgui_console_test').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+		onclick = "[GetScriptedGui('adv_dip_sgui_console_test').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+		tooltip = "[GetScriptedGui('adv_dip_sgui_console_test').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+
+		textbox = {
+			parentanchor = center
+			autoresize = yes
+			text = "ADV_DIP_CONSOLE_TEST_BUTTON"
+		}
+	}
+}

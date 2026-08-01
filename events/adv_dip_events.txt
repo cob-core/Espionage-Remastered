@@ -3751,3 +3751,22 @@ adv_dip_event.156 = {
 		default_option = yes
 	}
 }
+
+adv_dip_event.190 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.190.t
+	desc = adv_dip_event.190.d
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	duration = 1
+	option = {
+		name = adv_dip_event.190.a
+		default_option = yes
+		create_character = {
+			role = character_role_operative
+			culture = primary_culture
+		}
+	}
+}
