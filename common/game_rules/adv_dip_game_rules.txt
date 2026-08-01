@@ -23,3 +23,13 @@ espionage_tech_stealing = {
 	enable_tech_stealing = {
 	}
 }
+
+black_market_slavery = {
+	default = enable_black_market_slavery
+
+	disable_black_market_slavery = {
+	}
+
+	enable_black_market_slavery = {
+	}
+}

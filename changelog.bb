@@ -8,6 +8,7 @@
 [*][b]NEW: The Sealed Train[/b] — smuggle a professional revolutionary into a rival power: a massive radicalism surge with a chance of open revolt, or a border arrest that rallies their loyalists and stains your name.
 [*][b]NEW: False Flag Directive[/b] — choose a patsy and your detected operations are blamed on them instead; if the forgery ever unravels, both powers turn on you.
 [*][b]NEW: Kompromat[/b] — active spy networks compile yearly dossiers on enemy commanders: disgrace them for a year, end their career outright, or publish selectively to humiliate their government.
+[*][b]NEW: Fund Black Market Slavery[/b] — covertly bankroll the contraband slave trade supplying a slaver power. Hugely increases their slave imports, at mounting cost and the risk of exposure before every abolitionist navy. Can be disabled via game rule.
 [*][b]NEW: Dynamic odds[/b] — every operation's monthly success odds now scale with the espionage institution differential. Investment is finally tradecraft.
 [*]Fixed a bug as old as the mod: running espionage against several countries at once could fire events against the wrong target. Every operation now tracks its own target.
 [*]Fund Piracy has been removed — superseded by the base game's naval piracy mechanics and the new espionage systems.

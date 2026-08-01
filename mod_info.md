@@ -8,6 +8,7 @@
 + NEW: The Sealed Train — smuggle a revolutionary into a rival power: massive radicalism surge and possible spark, or a border arrest that rallies their loyalists.
 + NEW: False Flag Directive — route detections through a patsy of your choice; if the forgery unravels, both powers turn on you.
 + NEW: Kompromat — active networks compile dossiers on enemy commanders: disgrace them for a year, end their career, or humiliate their government.
++ NEW: Fund Black Market Slavery — covertly finance the contraband slave trade supplying a slaver power, doubling vanilla's import ceiling, with suppression-squadron interceptions, abolitionist backlash, and a lobby game rule to disable it.
 + NEW: Dynamic odds — every operation's monthly success odds now scale with the espionage institution differential, fulfilling the long-standing community suggestion.
 + Fund Piracy removed — superseded by the 1.13 naval piracy mechanics and the new espionage systems.
 + Fixed a bug as old as the mod: running operations against multiple countries at once could resolve events against the wrong target — each operation now carries its own target through its event chain.

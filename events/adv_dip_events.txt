@@ -2461,6 +2461,25 @@ adv_dip_event.120 = {
 
 	option = {
 		name = adv_dip_event.120.a
+		if = {
+			limit = {
+				scope:spy_target_country ?= {
+					any_country = {
+						has_diplomatic_pact = {
+							who = scope:spy_target_country
+							type = fund_black_market_slavery
+						}
+					}
+				}
+			}
+			custom_tooltip = black_market_backlash_tt
+			scope:spy_target_country = {
+				add_radicals = {
+					value = 0.03
+					strata = lower
+				}
+			}
+		}
 		default_option = yes
 
 		scope:spy_target_country = {
@@ -3718,5 +3737,139 @@ adv_dip_event.181 = {
 		scope:kompromat_target = {
 			set_character_busy_and_immortal = no
 		}
+	}
+}
+
+adv_dip_event.155 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.155.t
+	desc = adv_dip_event.155.d
+	flavor = adv_dip_event.155.f
+	event_image = { video = "unspecific_steam_ship" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	immediate = {
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = fund_black_market_slavery
+						}
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+	}
+	option = {
+		name = adv_dip_event.155.a
+		default_option = yes
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 13
+		}
+		random_list = {
+			500 = {
+				custom_tooltip = black_market_quiet_tt
+			}
+			200 = {
+				custom_tooltip = black_market_intercepted_tt
+				change_variable = {
+					name = black_market_attribution
+					add = 1
+				}
+				add_modifier = {
+					name = pipeline_interception_modifier
+					multiplier = spy_cost_multiplier_small
+					months = 13
+				}
+				if = {
+					limit = {
+						var:black_market_attribution >= 3
+					}
+					remove_variable = black_market_attribution
+					save_scope_as = spymaster_slaver
+					set_variable = {
+						name = recently_black_market
+						months = 36
+					}
+					change_infamy = 10
+					every_country = {
+						limit = {
+							has_law = law_type:law_slavery_banned
+							country_rank >= rank_value:great_power
+						}
+						change_relations = {
+							country = root
+							value = -30
+						}
+						trigger_event = {
+							id = adv_dip_event.156
+							days = 5
+						}
+					}
+					every_country = {
+						limit = {
+							root = {
+								has_diplomatic_pact = {
+									who = prev
+									type = fund_black_market_slavery
+								}
+							}
+						}
+						remove_diplomatic_pact = {
+							country = root
+							type = fund_black_market_slavery
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = adv_dip_event.155.b
+		set_variable = {
+			name = recently_black_market
+			months = 36
+		}
+		every_country = {
+			limit = {
+				root = {
+					has_diplomatic_pact = {
+						who = prev
+						type = fund_black_market_slavery
+					}
+				}
+			}
+			remove_diplomatic_pact = {
+				country = root
+				type = fund_black_market_slavery
+			}
+		}
+	}
+}
+
+adv_dip_event.156 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.156.t
+	desc = adv_dip_event.156.d
+	flavor = adv_dip_event.156.f
+	event_image = { video = "unspecific_naval_battle" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = {
+		exists = scope:spymaster_slaver
+	}
+	option = {
+		name = adv_dip_event.156.a
+		default_option = yes
 	}
 }
