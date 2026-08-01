@@ -32,6 +32,12 @@
     }
     
     possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_steal_commander
+				target = scope:target_country
+			}
+		}
         is_revolutionary = no
         in_default = no
         NOT = { has_war_with = scope:target_country }
@@ -41,110 +47,20 @@
         has_diplomatic_relevance = scope:target_country
     }
     
-    pact = {    
-        cost = 150
+
     
-        is_two_sided_pact = no
-        show_in_outliner = yes
-
-        monthly_effect = {
-            custom_tooltip = {
-                text = steal_commander_monthly_effect
-                if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						3300 = {}
-						150 = {
-
-                        scope:target_country = { save_scope_as = spy_target_country }
-                        if = {
-                            limit = {
-                                root = {
-                                    NOT = { has_variable = recently_stole_commander }
-                                }
-                            }
-                            root = {
-                                trigger_event = {
-                                    id = adv_dip_event.131
-                                }
-                            }
-                        }
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						3300 = {}
-						65 = {
-
-                        scope:target_country = { save_scope_as = spy_target_country }
-                        if = {
-                            limit = {
-                                root = {
-                                    NOT = { has_variable = recently_stole_commander }
-                                }
-                            }
-                            root = {
-                                trigger_event = {
-                                    id = adv_dip_event.131
-                                }
-                            }
-                        }
-						}
-					}
-				}
-				else = {
-					random_list = {
-						3300 = {}
-						100 = {
-
-                        scope:target_country = { save_scope_as = spy_target_country }
-                        if = {
-                            limit = {
-                                root = {
-                                    NOT = { has_variable = recently_stole_commander }
-                                }
-                            }
-                            root = {
-                                trigger_event = {
-                                    id = adv_dip_event.131
-                                }
-                            }
-                        }
-						}
-					}
-				}                                
-            }
-        }
-    
-        requirement_to_maintain = {
-			trigger = {
-				NOT = {
-            OR = {
-                has_war_with = scope:target_country
-                is_country_type = decentralized
-                scope:target_country = { is_country_type = decentralized }
-                in_default = yes
-                has_variable = recently_stole_commander
-                NOT = {
-                    scope:target_country = {
-                        any_scope_character = {
-                            OR = {
-                                has_role_of_type = general
-                                has_role_of_type = admiral
-                            }
-                            is_ruler_of_own_country = no
-                            is_busy = no
-                        }
-                    }
-                }
-            }
-				}
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
 		}
-    }
-    
+		adv_dip_start_operation = { ACTION = steal_commander }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_small
+			months = 13
+		}
+	}
+
     ai = {
         max_influence_spending_fraction = 0.15
     
@@ -173,11 +89,6 @@
             net_fixed_income >= 25000
         }
         
-        will_break = { 
-            OR = {        
-                scaled_debt > 0.25
-                net_fixed_income < 20000
-            }
-        }            
+            
     }
 }

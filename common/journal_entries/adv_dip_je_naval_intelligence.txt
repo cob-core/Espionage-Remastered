@@ -48,15 +48,8 @@
 					"scripted_bar_progress(naval_intel_risk_bar)" >= 10
 				}
 			}
-			custom_tooltip = {
-				text = adv_dip_je_naval_intelligence_no_pact
-				NOT = {
-					has_diplomatic_pact = {
-						who = scope:target
-						type = naval_intelligence
-					}
-				}
-			}
+
+			NOT = { has_variable = naval_intel_target_var }
 		}
 	}
 

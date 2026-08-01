@@ -1,7 +1,16 @@
 # Espionage Remastered
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
-## Latest Changelog (v4.1 — Shadow War)
+## Latest Changelog (v5.0 — Operatives)
++ ESPIONAGE IS NOW SECRET. Operations no longer create diplomatic pacts, so nothing appears in anyone's diplomacy panel and targets receive no notification. The only way anyone learns of your work is if your agents are caught.
++ NEW: Operatives — recruit named spies with tradecraft traits from the Shadow War journal entry. Assassinations are carried out by your operatives rather than borrowed generals; operatives can be debriefed, and can be lost.
++ NEW: The Intelligence Console — a custom panel in the Shadow War journal entry listing your operatives and every active operation, with recruitment and wind-down buttons.
++ NEW: Three additional External Security laws — Consular Intelligence (early, limited), Directorate of State Security (inward-facing counterespionage), and Deniable Assets (private networks, less infamy).
++ Removed Steal Ship Designs.
++ The Shadow War journal entry (formerly The Great Game) is now pinned by default.
++ NOTE: v5.0 is not save-compatible with earlier versions; please start a new campaign.
+
+## Previous Changelog (v4.1 — Shadow War)
 + NEW: Clandestine Arms Pipeline — covertly bankroll a belligerent's war without joining it; run the blockade gauntlet, survive the ultimatum when named, and collect an obligation from the survivor.
 + NEW: Turned Networks — victims with superior espionage can secretly turn sow-discontent, election and tech-theft networks: the spymaster keeps paying while receiving nothing (or poisoned technology); counterintelligence reviews eventually smell the rot.
 + NEW: The Great Game — a global intelligence scoreboard; every operation scores, scores decay, and the leading service holds Master of the Great Game.

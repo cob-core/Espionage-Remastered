@@ -1,5 +1,16 @@
 [h1]Changelog[/h1]
 
+[h2]5.0 — Operatives[/h2]
+[list]
+[*][b]Espionage is now genuinely secret.[/b] Operations no longer create diplomatic pacts. Nothing appears in any diplomacy panel, and target countries are never notified that they are being worked on. The only way the world learns of your operations is when your agents are caught.
+[*][b]NEW: Operatives.[/b] Recruit named spies with tradecraft traits and send them into foreign capitals. Assassinations are run by your own operatives rather than borrowed generals, and an operative who is exposed is an operative you may lose.
+[*][b]NEW: The Intelligence Console.[/b] A custom panel inside the Shadow War journal entry listing your operatives and every operation you have running, with recruitment and wind-down controls.
+[*][b]NEW: Three new External Security laws.[/b] Consular Intelligence for the respectable early game, the Directorate of State Security for inward-facing regimes, and Deniable Assets for those who prefer their espionage contracted out.
+[*]Steal Ship Designs has been removed.
+[*]The Shadow War journal entry (formerly The Great Game) is pinned by default.
+[*][b]This release is not save-compatible.[/b] Please start a new campaign.
+[/list]
+
 [h2]4.1 — Shadow War[/h2]
 [list]
 [*][b]NEW: Clandestine Arms Pipeline[/b] — covertly fund and arm a belligerent without joining their war: real war modifiers for them, a blockade-running interception gauntlet for you, an ultimatum when the enemy finally names you, and an obligation from the survivor when peace comes.

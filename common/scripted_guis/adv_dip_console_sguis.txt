@@ -21,3 +21,213 @@
 		trigger_event = { id = adv_dip_event.190 }
 	}
 }
+
+adv_dip_sgui_cancel_sow_discontent = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_sow_discontent
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = sow_discontent TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_support_nationalists = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_support_nationalists
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = support_nationalists TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_agitate_for_liberty = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_agitate_for_liberty
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_steal_technology = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_steal_technology
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = steal_technology TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_sabotage_recruitment = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_sabotage_recruitment
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_election_interference = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_election_interference
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = election_interference TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_steal_commander = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_steal_commander
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = steal_commander TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_clandestine_arms_pipeline = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_clandestine_arms_pipeline
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_fund_black_market_slavery = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_fund_black_market_slavery
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = op_target }
+	}
+}
+
+adv_dip_sgui_cancel_support_slaves = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_support_slaves
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_operation_tt
+		adv_dip_stop_operation = { ACTION = support_slaves TARGET = op_target }
+	}
+}

@@ -36,134 +36,32 @@
     }
     
     possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_steal_technology
+				target = scope:target_country
+			}
+		}
         is_revolutionary = no
         in_default = no
         NOT = { has_war_with = scope:target_country }
         has_diplomatic_relevance = scope:target_country
     }
     
-    pact = {
-        cost = 150
+
     
-        is_two_sided_pact = no
-        show_in_outliner = yes
-        can_be_used_in_sway_offers = no
-        sway_maneuvers_cost = 15
-        
-        first_modifier = {
-        }
-
-        second_modifier = {
-        }
-
-        monthly_effect = {
-            custom_tooltip = {
-                text = steal_technology_monthly_effect
-                if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						1600 = {}
-						150 = {
-
-                        scope:target_country = { save_scope_as = spy_target_country }
-                        if = {
-							limit = {
-								scope:target_country = {
-									var:turned_steal_technology_by ?= root
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.163
-								}
-							}
-						}
-						else = {
-							root = {
-								trigger_event = {
-									id = adv_dip_event.91
-								}
-							}
-						}
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						1600 = {}
-						65 = {
-
-                        scope:target_country = { save_scope_as = spy_target_country }
-                        if = {
-							limit = {
-								scope:target_country = {
-									var:turned_steal_technology_by ?= root
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.163
-								}
-							}
-						}
-						else = {
-							root = {
-								trigger_event = {
-									id = adv_dip_event.91
-								}
-							}
-						}
-						}
-					}
-				}
-				else = {
-					random_list = {
-						1600 = {}
-						100 = {
-
-                        scope:target_country = { save_scope_as = spy_target_country }
-                        if = {
-							limit = {
-								scope:target_country = {
-									var:turned_steal_technology_by ?= root
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.163
-								}
-							}
-						}
-						else = {
-							root = {
-								trigger_event = {
-									id = adv_dip_event.91
-								}
-							}
-						}
-						}
-					}
-				}
-            }
-        }
-    
-        requirement_to_maintain = {
-			trigger = {
-				NOT = {
-            OR = {
-                scope:target_country.techs_researched <= root.techs_researched
-                has_war_with = scope:target_country
-                is_country_type = decentralized
-                scope:target_country = { is_country_type = decentralized }
-                in_default = yes
-                scope:target_country.techs_researched > root.techs_researched
-            }
-				}
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
 		}
-    }
-    
+		adv_dip_start_operation = { ACTION = steal_technology }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_small
+			months = 13
+		}
+	}
+
     ai = {
         max_influence_spending_fraction = 0.15
     
@@ -182,10 +80,6 @@
 			}
         }
         
-        will_break = { 
-            OR = {        
-                scaled_debt > 0.25
-            }
-        }            
+            
     }
 }

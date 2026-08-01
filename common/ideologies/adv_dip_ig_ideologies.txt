@@ -1,5 +1,8 @@
 ﻿INJECT:ideology_paternalistic = {
     lawgroup_external_security = {
+		law_consular_intelligence = neutral
+		law_directorate_of_state_security = approve
+		law_deniable_assets = disapprove
         law_no_external_security = disapprove
         law_spy_agency = strongly_approve
     }
@@ -7,6 +10,9 @@
 
 INJECT:ideology_individualist = {
 	lawgroup_external_security = {
+		law_consular_intelligence = approve
+		law_directorate_of_state_security = strongly_disapprove
+		law_deniable_assets = approve
 		law_no_external_security = approve
 		law_spy_agency = strongly_disapprove
 	}
@@ -14,6 +20,9 @@ INJECT:ideology_individualist = {
 
 INJECT:ideology_oligarchic = {
 	lawgroup_external_security = {
+		law_consular_intelligence = neutral
+		law_directorate_of_state_security = approve
+		law_deniable_assets = strongly_approve
 		law_no_external_security = disapprove
 		law_spy_agency = strongly_approve
 	}
@@ -21,6 +30,9 @@ INJECT:ideology_oligarchic = {
 
 INJECT:ideology_isolationist = {
 	lawgroup_external_security = {
+		law_consular_intelligence = disapprove
+		law_directorate_of_state_security = approve
+		law_deniable_assets = disapprove
 		law_no_external_security = approve
 		law_spy_agency = strongly_disapprove
 	}
@@ -28,6 +40,9 @@ INJECT:ideology_isolationist = {
 
 INJECT:ideology_patriotic = {
 	lawgroup_external_security = {
+		law_consular_intelligence = neutral
+		law_directorate_of_state_security = strongly_approve
+		law_deniable_assets = neutral
 		law_no_external_security = disapprove
 		law_spy_agency = strongly_approve
 	}
@@ -35,6 +50,9 @@ INJECT:ideology_patriotic = {
 
 INJECT:ideology_jingoist = {
 	lawgroup_external_security = {
+		law_consular_intelligence = disapprove
+		law_directorate_of_state_security = strongly_approve
+		law_deniable_assets = approve
 		law_no_external_security = disapprove
 		law_spy_agency = strongly_approve
 	}
@@ -42,6 +60,9 @@ INJECT:ideology_jingoist = {
 
 INJECT:ideology_reactionary = {
 	lawgroup_external_security = {
+		law_consular_intelligence = neutral
+		law_directorate_of_state_security = strongly_approve
+		law_deniable_assets = disapprove
 		law_no_external_security = disapprove
 		law_spy_agency = approve
 	}

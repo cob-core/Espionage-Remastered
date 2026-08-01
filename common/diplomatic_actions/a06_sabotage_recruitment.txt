@@ -21,82 +21,32 @@
 	}
 	
 	possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_sabotage_recruitment
+				target = scope:target_country
+			}
+		}
 		is_revolutionary = no
 		in_default = no
 		NOT = { has_war_with = scope:target_country }
 		has_diplomatic_relevance = scope:target_country
 	}
 	
-	pact = {	
-		cost = 150
+
 	
-		is_two_sided_pact = no
-		show_in_outliner = yes
-		
-		
-		monthly_effect = {
-			custom_tooltip = {
-				text = sabotage_recruitment_monthly_effect
-				if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						3500 = {}
-						150 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.41
-					        }
-					    }
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						3500 = {}
-						65 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.41
-					        }
-					    }
-						}
-					}
-				}
-				else = {
-					random_list = {
-						3500 = {}
-						100 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.41
-					        }
-					    }
-						}
-					}
-				}								
-			}
-		} 	
-	
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {		
-				is_country_type = decentralized
-				scope:target_country = { is_country_type = decentralized }
-				in_default = yes
-			}
-				}
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
+		}
+		adv_dip_start_operation = { ACTION = sabotage_recruitment }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_small
+			months = 13
 		}
 	}
-	
+
 	ai = {
 
 		propose_score = {
@@ -116,23 +66,7 @@
 			country_rank >= rank_value:great_power
 		}
 		
-		will_break = { 
-			OR = {		
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}
-				NOT = {
-					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
-						}										
-					}
-				}						
-			}					
-		}			
+			
 	}
 }
 

@@ -24,6 +24,12 @@
 	}
 	
 	possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_support_slaves
+				target = scope:target_country
+			}
+		}
 		is_revolutionary = no
 		in_default = no
 		NOT = { has_war_with = scope:target_country }
@@ -33,130 +39,25 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 	
-	pact = {
-		cost = 150
+
 	
-		is_two_sided_pact = no
-		show_in_outliner = yes
-		can_be_used_in_sway_offers = no
-		sway_maneuvers_cost = 10
-		
-		income_transfer = 0.05
-		max_paying_country_income_to_transfer = 1
-		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = yes
-		income_transfer_to_pops = {
-			allow_non_fully_accepted = yes
-			upper_strata_pops = {
-				value = 0
-				max = 1
-				min = 0
-			}
-			middle_strata_pops = {
-				value = 0
-				max = 1
-				min = 0				
-			}
-			lower_strata_pops = {
-				value = 1
-				max = 1
-				min = 0				
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
 		}
-
-		first_modifier = {
-			
+		adv_dip_start_operation = { ACTION = support_slaves }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_small
+			months = 13
 		}
-
-		second_modifier = {
-			state_slave_import_mult = -0.5
-		}
-
-		target_can_break = {
-			always = no
-		}
-
-		monthly_effect = {
-			custom_tooltip = {
-				text = support_slaves_monthly_effect
-				if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						3500 = {}
-						150 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.120
-					        }
-					    }
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						3500 = {}
-						65 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.120
-					        }
-					    }
-						}
-					}
-				}
-				else = {
-					random_list = {
-						3500 = {}
-						100 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.120
-					        }
-					    }
-						}
-					}
-				}								
-			}
-		} 	
-	
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-					AND = {
-			custom_tooltip = {
-				text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS
-
-				scope:target_country.relations:root <= relations_threshold:poor
-			}
-					}
-				}
-			}
-			show_about_to_break_warning = {
-            scope:target_country.relations:root <= -17 # this: poor + 3
-			}
-		}
-
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {
-				has_war_with = scope:target_country				
-				is_country_type = decentralized
-				scope:target_country = { is_country_type = decentralized }
-				in_default = yes
-			}
-				}
+		scope:target_country = {
+			add_modifier = {
+				name = adv_dip_support_slaves_target_modifier
 			}
 		}
 	}
-	
+
 	ai = {
 
 		propose_score = {
@@ -175,23 +76,7 @@
 			}
 		}
 		
-		will_break = { 
-			OR = {		
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}
-				NOT = {
-					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
-						}										
-					}
-				}						
-			}					
-		}			
+			
 	}
 }
 

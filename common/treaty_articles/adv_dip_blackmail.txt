@@ -28,15 +28,15 @@
 			custom_tooltip = {
 				text = blackmail_requires_network_tt
 				OR = {
-					has_diplomatic_pact = { who = scope:target_country type = sow_discontent }
-					has_diplomatic_pact = { who = scope:target_country type = support_nationalists }
-					has_diplomatic_pact = { who = scope:target_country type = agitate_for_liberty }
-					has_diplomatic_pact = { who = scope:target_country type = steal_technology }
-					has_diplomatic_pact = { who = scope:target_country type = election_interference }
-					has_diplomatic_pact = { who = scope:target_country type = support_slaves }
-					has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
-					has_diplomatic_pact = { who = scope:target_country type = steal_commander }
-					has_diplomatic_pact = { who = scope:target_country type = naval_intelligence }
+					is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_steal_technology target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_election_interference target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_support_slaves target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = scope:target_country }
+					is_target_in_variable_list = { name = adv_dip_op_steal_commander target = scope:target_country }
+					has_variable = ongoing_naval_intel
 				}
 			}
 		}
@@ -51,15 +51,15 @@
 					source_country = {
 						NOT = {
 							OR = {
-								has_diplomatic_pact = { who = scope:target_country type = sow_discontent }
-								has_diplomatic_pact = { who = scope:target_country type = support_nationalists }
-								has_diplomatic_pact = { who = scope:target_country type = agitate_for_liberty }
-								has_diplomatic_pact = { who = scope:target_country type = steal_technology }
-								has_diplomatic_pact = { who = scope:target_country type = election_interference }
-								has_diplomatic_pact = { who = scope:target_country type = support_slaves }
-								has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
-								has_diplomatic_pact = { who = scope:target_country type = steal_commander }
-								has_diplomatic_pact = { who = scope:target_country type = naval_intelligence }
+								is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_steal_technology target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_election_interference target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_support_slaves target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = scope:target_country }
+								is_target_in_variable_list = { name = adv_dip_op_steal_commander target = scope:target_country }
+								has_variable = ongoing_naval_intel
 							}
 						}
 					}

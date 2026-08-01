@@ -26,6 +26,12 @@
 	}
 
 	possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_clandestine_arms_pipeline
+				target = scope:target_country
+			}
+		}
 		is_revolutionary = no
 		in_default = no
 		is_at_war = no
@@ -36,98 +42,21 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 
-	pact = {
-		cost = 150
 
-		is_two_sided_pact = no
-		show_in_outliner = yes
 
-		income_transfer = 0.10
-		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = no
-
-		second_modifier = {
-			country_military_goods_cost_mult = -0.15
-			building_training_rate_mult = 0.10
-			goods_output_small_arms_mult = 0.10
-			goods_output_ammunition_mult = 0.10
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
 		}
-
-		monthly_effect = {
-			custom_tooltip = {
-				text = clandestine_arms_pipeline_monthly_effect
-				if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						800 = {}
-						150 = {
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-								id = adv_dip_event.150
-							}
-						}
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						800 = {}
-						65 = {
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-								id = adv_dip_event.150
-							}
-						}
-						}
-					}
-				}
-				else = {
-					random_list = {
-						800 = {}
-						100 = {
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-								id = adv_dip_event.150
-							}
-						}
-						}
-					}
-				}
-			}
+		adv_dip_start_operation = { ACTION = clandestine_arms_pipeline }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 13
 		}
-
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-					OR = {
-						is_country_type = decentralized
-						scope:target_country = { is_country_type = decentralized }
-						in_default = yes
-						is_at_war = yes
-						scope:target_country = { is_at_war = no }
-					}
-				}
-			}
-		}
-
-		auto_break_effect = {
-			if = {
-				limit = {
-					scope:target_country = {
-						is_at_war = no
-						NOT = { is_country_type = decentralized }
-					}
-				}
-				scope:target_country = {
-					save_scope_as = spy_target_country
-				}
-				root = {
-					trigger_event = { id = adv_dip_event.153 }
-				}
+		scope:target_country = {
+			add_modifier = {
+				name = adv_dip_arms_pipeline_target_modifier
 			}
 		}
 	}
@@ -152,11 +81,6 @@
 			gold_reserves > 50000
 		}
 
-		will_break = {
-			OR = {
-				scaled_debt > 0.25
-				in_default = yes
-			}
-		}
+
 	}
 }

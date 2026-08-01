@@ -36,38 +36,22 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 
-	pact = {
-		cost = 200
 
-		is_two_sided_pact = no
-		show_in_outliner = yes
 
-		monthly_effect = {
-			custom_tooltip = {
-				text = naval_intelligence_monthly_effect
-				if = {
-					limit = {
-						NOT = { has_variable = ongoing_naval_intel }
-					}
-					scope:target_country = { save_scope_as = naval_intel_target }
-					trigger_event = { id = adv_dip_event.140 }
-				}
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = naval_intel_target
 		}
-
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {
-				has_war_with = scope:target_country
-				is_country_type = decentralized
-				scope:target_country = { is_country_type = decentralized }
-				in_default = yes
-				has_variable = recently_ran_naval_intel
-			}
-				}
-			}
+		set_variable = {
+			name = naval_intel_target_var
+			value = scope:naval_intel_target
 		}
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 13
+		}
+		trigger_event = { id = adv_dip_event.140 }
 	}
 
 	ai = {
@@ -93,14 +77,6 @@
 			}
 		}
 
-		will_break = {
-			OR = {
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}
-			}
-		}
+
 	}
 }

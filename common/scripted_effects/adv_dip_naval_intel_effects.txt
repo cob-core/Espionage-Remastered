@@ -64,18 +64,5 @@ remove_naval_intel_effect = {
 		name = recently_ran_naval_intel
 		months = 36
 	}
-	every_country = {
-		limit = {
-			root = {
-				has_diplomatic_pact = {
-					who = prev
-					type = naval_intelligence
-				}
-			}
-		}
-		remove_diplomatic_pact = {
-			country = root
-			type = naval_intelligence
-		}
-	}
+	remove_variable = naval_intel_target_var
 }

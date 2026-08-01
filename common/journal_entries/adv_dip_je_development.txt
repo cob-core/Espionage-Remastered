@@ -35,15 +35,8 @@
 	}
 
     fail = {
-		custom_tooltip = {
-			text = adv_dip_je_development_failure_no_pact
-			NOT = {
-				has_diplomatic_pact = {
-					who = scope:target
-					type = develop_nation
-				}
-			}
-		}
+
+		NOT = { has_variable = development_target_var }
     }
 	
 	on_fail = {

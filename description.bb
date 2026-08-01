@@ -14,7 +14,16 @@ Currently, this mod adds a new law group, a new institution, over a dozen diplom
 See the full list [url=https://github.com/cob-core/Espionage-Remastered/wiki/Espionage-Remastered:-How%E2%80%90To,-Action-Requirements,-and-Action-Effects]here[/url].
 
 
-[h2]What's New in 4.1 — Shadow War[/h2]
+[h2]What's New in 5.0 — Operatives[/h2]
+[list]
+[*][b]Espionage is finally secret.[/b] No more public pacts announcing your intentions: operations leave no trace in any diplomacy panel, and your target learns nothing until your people are caught.
+[*][b]Recruit operatives.[/b] Named agents with tradecraft traits who carry out your operations in person — and who can be exposed, imprisoned, or turned against you.
+[*][b]The Intelligence Console.[/b] Your operatives and active operations, all in one panel with recruitment and wind-down controls.
+[*][b]Three new External Security laws[/b] give each espionage playthrough its own character.
+[/list]
+[i]5.0 is not save-compatible — please start a new campaign.[/i]
+
+[h2]Previously in 4.1 — Shadow War[/h2]
 [list]
 [*][b]Clandestine Arms Pipeline[/b] — bankroll a belligerent's war without joining it. Run the blockade, survive the ultimatum when you're named, and collect a survivor's debt.
 [*][b]Turned Networks[/b] — out-spy the spies: victims with superior espionage can secretly turn a network and feed its master nothing — or poisoned technology — while the bills keep coming.

@@ -12,18 +12,12 @@ adv_dip_secession_hook = {
 		if = {
 			limit = {
 				any_country = {
-					has_diplomatic_pact = {
-						who = root
-						type = support_nationalists
-					}
+					is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = root }
 				}
 			}
 			every_country = {
 				limit = {
-					has_diplomatic_pact = {
-						who = root
-						type = support_nationalists
-					}
+					is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = root }
 				}
 				change_relations = {
 					country = scope:target
@@ -95,15 +89,15 @@ adv_dip_espionage_yearly = {
 			limit = {
 				any_country = {
 					OR = {
-						has_diplomatic_pact = { who = prev type = sow_discontent }
-						has_diplomatic_pact = { who = prev type = support_nationalists }
-						has_diplomatic_pact = { who = prev type = agitate_for_liberty }
-						has_diplomatic_pact = { who = prev type = steal_technology }
-						has_diplomatic_pact = { who = prev type = election_interference }
-						has_diplomatic_pact = { who = prev type = support_slaves }
-						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
-						has_diplomatic_pact = { who = prev type = steal_commander }
-						has_diplomatic_pact = { who = prev type = naval_intelligence }
+						is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_steal_commander target = prev }
+						has_variable = ongoing_naval_intel
 					}
 				}
 			}

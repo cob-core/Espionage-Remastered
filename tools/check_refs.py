@@ -139,7 +139,8 @@ for p in script_files(MOD, "common/static_modifiers"):
         depth += line.count("{") - line.count("}")
 
 # --- 5b. banned legacy tokens (proven invalid in 1.13 via error.log) ---
-LEGACY = ["should_invalidate", "should_auto_break", "is_about_to_auto_break",
+LEGACY = ["has_diplomatic_pact = { who = root type = adv_dip",
+          "GetDiplomaticPact", "should_invalidate", "should_auto_break", "is_about_to_auto_break",
           "has_role = general", "has_role = admiral", "is_ruler = ",
           "weekly_net_fixed_income", "fixed_net_income <", "fixed_net_income >", "should_be_pinned_by_default = ",
           "damage_ship_percent", "unlocking_technologies = {"]
@@ -157,6 +158,30 @@ for p, t in mod_script.items():
         rel = icon.lstrip("/")
         if not (MOD / rel).is_file() and not (VANILLA / rel).is_file():
             failures.append(f"[icon] {p.relative_to(MOD)}: '{rel}' not found in mod or vanilla")
+
+# --- 7. v5 secrecy invariants ---
+for p, t in mod_script.items():
+    if "diplomatic_actions" in str(p):
+        if re.search(r"^\s*pact\s*=\s*\{", t, re.M):
+            failures.append(f"[secrecy] {p.relative_to(MOD)}: still defines a pact block (operations must be secret)")
+
+loc_all = en | fr
+for p in script_files(MOD, "common/diplomatic_actions"):
+    text = strip_comments(read(p))
+    for action in depth0_keys(text):
+        for suffix in ("_action_notification_name", "_action_notification_desc"):
+            if action + suffix in loc_all:
+                failures.append(f"[secrecy] {action}{suffix} exists in localization — would break silence")
+
+sgui_dir = MOD / "common/scripted_guis"
+gui_file = MOD / "gui/journal_entry_widgets/adv_dip_console_widgets.gui"
+if sgui_dir.is_dir() and gui_file.is_file():
+    defined_sguis = set()
+    for p in sorted(sgui_dir.glob("*.txt")):
+        defined_sguis |= set(depth0_keys(strip_comments(read(p))))
+    for name in set(re.findall(r"GetScriptedGui\('([a-z_0-9]+)'\)", read(gui_file))):
+        if name not in defined_sguis:
+            failures.append(f"[gui] console references undefined scripted gui '{name}'")
 
 if failures:
     print(f"{len(failures)} reference failures:")

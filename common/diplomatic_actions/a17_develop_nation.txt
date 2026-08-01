@@ -23,7 +23,7 @@
 		is_revolutionary = no
 		in_default = no
 		NOT = { has_war_with = scope:target_country }
-		NOT = { has_diplomatic_pact = { who = scope:country type = develop_nation } }
+		NOT = { has_variable = ongoing_development }
 		custom_tooltip = {
 			text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS_NOT
 			scope:target_country.relations:root > relations_threshold:poor
@@ -31,155 +31,20 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 
-	pact = {
-		cost = 200
+
 	
-		is_two_sided_pact = no
-		show_in_outliner = yes
-		can_be_used_in_sway_offers = yes
-		sway_maneuvers_cost = 10
-
-		relations_progress_per_day = 1
-
-		income_transfer = 0.05
-		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = no
-		income_transfer_to_pops = {
-			allow_non_fully_accepted = yes
-			upper_strata_pops = {
-				value = 0.33
-				max = 1
-				min = 0
-			}
-			middle_strata_pops = {
-				value = 0.33
-				max = 1
-				min = 0				
-			}
-			lower_strata_pops = {
-				value = 0.33
-				max = 1
-				min = 0				
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = development_target
 		}
-
-		first_modifier = {
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 13
 		}
-
-		second_modifier = {
-		}
-
-		monthly_effect = {
-			custom_tooltip = {
-				text = develop_nation_monthly_effect
-				if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						1600 = {}
-						150 = {
-
-						scope:target_country = { save_scope_as = development_target }
-						if = {
-							limit = {
-								root = {
-									NOT = { has_variable = ongoing_development }
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.110
-								}
-							}
-						}
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						1600 = {}
-						65 = {
-
-						scope:target_country = { save_scope_as = development_target }
-						if = {
-							limit = {
-								root = {
-									NOT = { has_variable = ongoing_development }
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.110
-								}
-							}
-						}
-						}
-					}
-				}
-				else = {
-					random_list = {
-						1600 = {}
-						100 = {
-
-						scope:target_country = { save_scope_as = development_target }
-						if = {
-							limit = {
-								root = {
-									NOT = { has_variable = ongoing_development }
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.110
-								}
-							}
-						}
-						}
-					}
-				}								
-			}
-		} 	
-	
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-					AND = {
-			custom_tooltip = {
-				text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS
-
-				scope:target_country.relations:root <= relations_threshold:poor
-			}
-			NOT = {
-				scope:target_country = {
-					is_country_type = decentralized
-				}
-			}
-					}
-				}
-			}
-			show_about_to_break_warning = {
-            scope:target_country.relations:root <= -17 # this: poor + 3
-			}
-		}
-
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {
-				has_war_with = scope:target_country				
-				is_country_type = decentralized
-				in_default = yes
-				NOT = {
-					scope:target_country = {
-						is_country_type = decentralized
-					}
-				}
-			}
-				}
-			}
-		}
+		trigger_event = { id = adv_dip_event.110 }
 	}
-	
+
 	ai = {
 		max_influence_spending_fraction = 0.10
 	
@@ -207,15 +72,7 @@
 			}	
 		}
 		
-		will_break = { 
-			OR = {		
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}
-			}
-		}			
+			
 	}
 }
 

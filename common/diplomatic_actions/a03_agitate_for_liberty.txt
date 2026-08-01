@@ -23,6 +23,12 @@
 	}
 	
 	possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_agitate_for_liberty
+				target = scope:target_country
+			}
+		}
 		is_revolutionary = no
 		in_default = no
 		NOT = {
@@ -41,90 +47,20 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 	
-	pact = {	
-		cost = 200
+
 	
-		is_two_sided_pact = no
-		show_in_outliner = yes
-		income_transfer = 0.1
-		max_paying_country_income_to_transfer = 1
-		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = yes
-		relations_progress_per_day = 13
-		
-		monthly_effect = {
-			custom_tooltip = {
-				text = agitate_for_liberty_monthly_effect
-				if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						3200 = {}
-						150 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.31
-					        }
-					    }
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						3200 = {}
-						65 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.31
-					        }
-					    }
-						}
-					}
-				}
-				else = {
-					random_list = {
-						3200 = {}
-						100 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						root = {
-							trigger_event = {
-					            id = adv_dip_event.31
-					        }
-					    }
-						}
-					}
-				}								
-			}
-		} 	
-	
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {		
-				is_country_type = decentralized
-				scope:target_country = { is_country_type = decentralized }
-				scope:target_country = { is_subject = no }
-				in_default = yes
-				scope:target_country.overlord = {
-					has_diplomatic_pact = {
-						who = root
-						type = humiliation
-					}								
-				}
-				scope:target_country.overlord = {
-					has_truce_with = scope:target_country							
-				}
-			}
-				}
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
+		}
+		adv_dip_start_operation = { ACTION = agitate_for_liberty }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 13
 		}
 	}
-	
+
 	ai = {
 		propose_score = {
 			value = 100
@@ -145,27 +81,6 @@
 			}
 		}
 		
-		will_break = { 
-			OR = {		
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}
-				NOT = {
-					scope:target_country.overlord = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
-						}
-					}
-				}
-				NOT = {
-					scope:target_country.overlord = {
-						relations:root <= relations_threshold:cold
-					}
-				}
-			}					
-		}			
+			
 	}
 }

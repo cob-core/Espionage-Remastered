@@ -21,143 +21,30 @@
 	}
 	
 	possible = {
+		NOT = {
+			is_target_in_variable_list = {
+				name = adv_dip_op_sow_discontent
+				target = scope:target_country
+			}
+		}
 		is_revolutionary = no
 		in_default = no
 	}
 	
-	pact = {	
-		cost = 250
+
 	
-		is_two_sided_pact = no
-		show_in_outliner = yes
-		income_transfer = 0.15
-		max_paying_country_income_to_transfer = 1
-		second_country_gets_income_transfer = yes
-		income_transfer_based_on_second_country = yes
-		income_transfer_to_pops = {
-			allow_non_fully_accepted = no
-			upper_strata_pops = {
-				value = 0.8
-				max = 1
-				min = 0
-			}
-			middle_strata_pops = {
-				value = 0.2
-				max = 1
-				min = 0				
-			}
-			lower_strata_pops = {
-				value = 0
-				max = 1
-				min = 0				
-			}
+	accept_effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
 		}
-		
-		monthly_effect = {
-			custom_tooltip = {
-				text = sow_discontent_monthly_effect
-				if = {
-					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-					random_list = {
-						3200 = {}
-						150 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						if = {
-							limit = {
-								scope:target_country = {
-									var:turned_sow_discontent_by ?= root
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.163
-								}
-							}
-						}
-						else = {
-							root = {
-								trigger_event = {
-									id = adv_dip_event.11
-								}
-							}
-						}
-						}
-					}
-				}
-				else_if = {
-					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-					random_list = {
-						3200 = {}
-						65 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						if = {
-							limit = {
-								scope:target_country = {
-									var:turned_sow_discontent_by ?= root
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.163
-								}
-							}
-						}
-						else = {
-							root = {
-								trigger_event = {
-									id = adv_dip_event.11
-								}
-							}
-						}
-						}
-					}
-				}
-				else = {
-					random_list = {
-						3200 = {}
-						100 = {
- 
-						scope:target_country = { save_scope_as = spy_target_country }
-						if = {
-							limit = {
-								scope:target_country = {
-									var:turned_sow_discontent_by ?= root
-								}
-							}
-							root = {
-								trigger_event = {
-									id = adv_dip_event.163
-								}
-							}
-						}
-						else = {
-							root = {
-								trigger_event = {
-									id = adv_dip_event.11
-								}
-							}
-						}
-						}
-					}
-				}								
-			}
-		} 	
-	
-		requirement_to_maintain = {
-			trigger = {
-				NOT = {
-			OR = {		
-				is_country_type = decentralized
-				scope:target_country = { is_country_type = decentralized }
-				in_default = yes
-			}
-				}
-			}
+		adv_dip_start_operation = { ACTION = sow_discontent }
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 13
 		}
 	}
-	
+
 	ai = {
 
 		propose_score = {
@@ -176,23 +63,7 @@
 			}
 		}
 		
-		will_break = { 
-			OR = {		
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}
-				NOT = {
-					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
-						}										
-					}
-				}						
-			}					
-		}			
+			
 	}
 }
 

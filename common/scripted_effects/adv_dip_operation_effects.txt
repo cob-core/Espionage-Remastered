@@ -14,6 +14,11 @@ adv_dip_stop_operation = {
 		name = adv_dip_op_$ACTION$
 		target = scope:$TARGET$
 	}
+	scope:$TARGET$ ?= {
+		remove_modifier = adv_dip_arms_pipeline_target_modifier
+		remove_modifier = adv_dip_black_market_target_modifier
+		remove_modifier = adv_dip_support_slaves_target_modifier
+	}
 }
 
 # Monthly die for one target of one operation type. Call with spy_target_country

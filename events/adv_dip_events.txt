@@ -30,10 +30,7 @@ adv_dip_event.11 = {
 				limit = {
 					any_country = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = sow_discontent
-							}
+							is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
 						}
 						NOT = {
 							has_modifier = sow_discontent_modifier
@@ -43,10 +40,7 @@ adv_dip_event.11 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = sow_discontent
-							}
+							is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
 						}
 						NOT = {
 							has_modifier = sow_discontent_modifier
@@ -59,10 +53,7 @@ adv_dip_event.11 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = sow_discontent
-							}
+							is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -194,10 +185,7 @@ adv_dip_event.21 = {
 				limit = {
 					any_country = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = support_nationalists
-							}
+							is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
 						}
 						NOT = {
 							has_modifier = support_nationalists_modifier
@@ -207,10 +195,7 @@ adv_dip_event.21 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = support_nationalists
-							}
+							is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
 						}
 						NOT = {
 							has_modifier = support_nationalists_modifier
@@ -223,10 +208,7 @@ adv_dip_event.21 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = support_nationalists
-							}
+							is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -778,10 +760,7 @@ adv_dip_event.31 = {
 			limit = {
 				any_country = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = agitate_for_liberty
-						}
+						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
 					}
 					NOT = {
 						has_modifier = agitate_for_liberty_modifier
@@ -791,10 +770,7 @@ adv_dip_event.31 = {
 			random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = agitate_for_liberty
-						}
+						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
 					}
 					NOT = {
 						has_modifier = agitate_for_liberty_modifier
@@ -807,10 +783,7 @@ adv_dip_event.31 = {
 			random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = agitate_for_liberty
-						}
+						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
 					}
 				}
 				save_scope_as = spy_target_country
@@ -1044,10 +1017,7 @@ adv_dip_event.41 = {
 				limit = {
 					any_country = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = sabotage_recruitment
-							}
+							is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
 						}
 						NOT = {
 							has_modifier = sabotage_recruitment_modifier
@@ -1057,10 +1027,7 @@ adv_dip_event.41 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = sabotage_recruitment
-							}
+							is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
 						}
 						NOT = {
 							has_modifier = sabotage_recruitment_modifier
@@ -1073,10 +1040,7 @@ adv_dip_event.41 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = sabotage_recruitment
-							}
+							is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -1200,10 +1164,7 @@ adv_dip_event.81 = {
 				limit = {
 					any_country = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = election_interference
-							}
+							is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
 						}
 						NOT = {
 							has_modifier = overthrown_modifier
@@ -1214,10 +1175,7 @@ adv_dip_event.81 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = election_interference
-							}
+							is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
 						}
 						NOT = {
 							has_modifier = overthrown_modifier
@@ -1231,10 +1189,7 @@ adv_dip_event.81 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = election_interference
-							}
+							is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -1953,20 +1908,14 @@ adv_dip_event.91 = {
 				limit = {
 					any_country = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = steal_technology
-							}
+							is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
 						}
 					}
 				}
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = steal_technology
-							}
+							is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -1976,10 +1925,7 @@ adv_dip_event.91 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = steal_technology
-							}
+							is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -2231,10 +2177,7 @@ adv_dip_event.110 = {
 			random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = develop_nation
-						}
+						has_variable = ongoing_development
 					}
 				}
 				save_scope_as = development_target
@@ -2402,20 +2345,14 @@ adv_dip_event.120 = {
 				limit = {
 					any_country = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = support_slaves
-							}
+							is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
 						}
 					}
 				}
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = support_slaves
-							}
+							is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -2425,10 +2362,7 @@ adv_dip_event.120 = {
 				random_country = {
 					limit = {
 						root = {
-							has_diplomatic_pact = {
-								who = prev
-								type = support_slaves
-							}
+							is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
 						}
 					}
 					save_scope_as = spy_target_country
@@ -2465,10 +2399,7 @@ adv_dip_event.120 = {
 			limit = {
 				scope:spy_target_country ?= {
 					any_country = {
-						has_diplomatic_pact = {
-							who = scope:spy_target_country
-							type = fund_black_market_slavery
-						}
+						is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = scope:spy_target_country }
 					}
 				}
 			}
@@ -2534,10 +2465,7 @@ adv_dip_event.131 = {
 	random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = steal_commander
-						}
+						is_target_in_variable_list = { name = adv_dip_op_steal_commander target = prev }
 					}
 				}
 				save_scope_as = spy_target_country
@@ -2706,10 +2634,7 @@ adv_dip_event.140 = {
 	random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = naval_intelligence
-						}
+						has_variable = ongoing_naval_intel
 					}
 				}
 				save_scope_as = naval_intel_target
@@ -2994,10 +2919,7 @@ adv_dip_event.150 = {
 	random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = clandestine_arms_pipeline
-						}
+						is_target_in_variable_list = { name = adv_dip_op_clandestine_arms_pipeline target = prev }
 					}
 				}
 				save_scope_as = spy_target_country
@@ -3505,15 +3427,15 @@ adv_dip_event.180 = {
 			limit = {
 				root = {
 					OR = {
-						has_diplomatic_pact = { who = prev type = sow_discontent }
-						has_diplomatic_pact = { who = prev type = support_nationalists }
-						has_diplomatic_pact = { who = prev type = agitate_for_liberty }
-						has_diplomatic_pact = { who = prev type = steal_technology }
-						has_diplomatic_pact = { who = prev type = election_interference }
-						has_diplomatic_pact = { who = prev type = support_slaves }
-						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
-						has_diplomatic_pact = { who = prev type = steal_commander }
-						has_diplomatic_pact = { who = prev type = naval_intelligence }
+						is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
+						is_target_in_variable_list = { name = adv_dip_op_steal_commander target = prev }
+						has_variable = ongoing_naval_intel
 					}
 				}
 			}
@@ -3634,10 +3556,7 @@ adv_dip_event.155 = {
 			random_country = {
 				limit = {
 					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_black_market_slavery
-						}
+						is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = prev }
 					}
 				}
 				save_scope_as = spy_target_country
@@ -3695,10 +3614,7 @@ adv_dip_event.155 = {
 					every_country = {
 						limit = {
 							root = {
-								has_diplomatic_pact = {
-									who = prev
-									type = fund_black_market_slavery
-								}
+								is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = prev }
 							}
 						}
 						remove_diplomatic_pact = {
@@ -3719,10 +3635,7 @@ adv_dip_event.155 = {
 		every_country = {
 			limit = {
 				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = fund_black_market_slavery
-					}
+					is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = prev }
 				}
 			}
 			remove_diplomatic_pact = {
