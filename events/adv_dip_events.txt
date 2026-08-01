@@ -1232,16 +1232,12 @@ adv_dip_event.81 = {
 
 		scope:spy_target_country = {
 			every_potential_party = {
-				order_by = momentum
-				position = int
 				add_to_local_variable_list = {
 					name = interference_government_party_candidates
 					target = this
 				}
 				}
 			every_active_party = {
-				order_by = momentum
-				position = int
 				add_to_local_variable_list = {
 					name = interference_government_party_candidates
 					target = this
@@ -1883,15 +1879,15 @@ adv_dip_event.82 = {
 	option = {
 		name = adv_dip_event.82.b
 		
+		add_modifier = {
+			name = suppress_government_modifier
+			months = 25
+		}
 		every_active_party = {
 			limit = {
 				NOT = {
 					has_variable = adv_loyal_government_leader
 				}
-			}
-			add_modifier = {
-				name = suppress_government_modifier
-				months = 25
 			}
 			add_momentum = 0.25
 		}
@@ -2008,30 +2004,6 @@ adv_dip_event.91 = {
 		random_list = {
 			5 = {}
 			1 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_2 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_2 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_3 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_3 }
-					factor = 1.1
-				}
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
 					scope:spy_target_country = {
@@ -2079,30 +2051,6 @@ adv_dip_event.91 = {
 		random_list = {
 			5 = {}
 			1 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_2 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_2 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_3 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_3 }
-					factor = 1.1
-				}
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
 					scope:spy_target_country = {
@@ -2150,30 +2098,6 @@ adv_dip_event.91 = {
 		random_list = {
 			5 = {}
 			1 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_2 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_2 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_3 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_3 }
-					factor = 1.1
-				}
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
 					scope:spy_target_country = {
@@ -2270,303 +2194,6 @@ adv_dip_event.92 = {
 			name = counterespionage_modifier
 			multiplier = counterespionage_cost
 			months = 60
-		}
-	}
-}
-
-adv_dip_event.101 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.101.t
-	desc = adv_dip_event.101.d
-	flavor = adv_dip_event.101.f
-
-	event_image = {
-		video = "gfx/event_pictures/unspecific_naval_battle.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-		root = {
-			save_scope_as = piracy_initiator
-		}
-	}
-
-	option = {
-		name = adv_dip_event.101.a
-		great_game_score_minor_effect = yes
-		default_option = yes
-
-		scope:piracy_target = {
-			trigger_event = adv_dip_event.102
-		}
-
-		add_modifier = {
-			name = pirate_loot_modifier
-			months = 7
-			multiplier = piracy_loot_value
-		}
-
-		ai_chance = {
-			base = 10
-		}
-	}
-
-	option = {
-		name = adv_dip_event.101.b
-		great_game_score_minor_effect = yes
-		trigger = {
-			has_dlc_feature = ep2_content
-		}
-
-		scope:piracy_target = {
-			trigger_event = adv_dip_event.102
-			change_relations = {
-				country = root
-				value = -5
-			}
-		}
-
-		add_modifier = {
-			name = corsair_patron_modifier
-			months = 24
-		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_large
-			months = 25
-		}
-
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-adv_dip_event.102 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.102.t
-	desc = adv_dip_event.102.d
-	flavor = adv_dip_event.102.f
-
-	event_image = {
-		video = "gfx/event_pictures/unspecific_naval_battle.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = this
-							type = fund_piracy
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = this
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-	}
-
-	option = {
-		name = adv_dip_event.102.a
-		default_option = yes
-
-		add_modifier = {
-			name = local_piracy_modifier
-			months = 13
-		}
-
-		add_modifier = {
-			name = piracy_cost
-			months = 13
-			multiplier = piracy_cost_multiplier
-		}
-		
-		scope:piracy_target = {
-			add_journal_entry = {
-				type = adv_dip_je_pirates
-			}
-		}
-
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-adv_dip_event.103 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.103.t
-	desc = adv_dip_event.103.d
-	flavor = adv_dip_event.103.f
-
-	event_image = {
-		video = "gfx/event_pictures/unspecific_naval_battle.bk2"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = fund_piracy
-						}
-					}
-				}
-				save_scope_as = piracy_target
-			}
-		}
-	}
-
-	option = {
-		name = adv_dip_event.103.a
-		default_option = yes
-
-		ai_chance = {
-			base = 10
 		}
 	}
 }
@@ -2934,30 +2561,6 @@ adv_dip_event.131 = {
 		}
 		random_list = {
 			1 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_2 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_2 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_3 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_3 }
-					factor = 1.1
-				}
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
 					scope:spy_target_country = {
@@ -3093,30 +2696,6 @@ adv_dip_event.135 = {
 		}
 		random_list = {
 			1 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_2 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_2 }
-					factor = 1.1
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_3 }
-					factor = 0.9
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_3 }
-					factor = 1.1
-				}
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
 					scope:spy_target_country = {
@@ -3680,14 +3259,6 @@ adv_dip_event.160 = {
 		default_option = yes
 		random_list = {
 			50 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 1.5
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 0.6
-				}
 				custom_tooltip = turned_network_discovered_tt
 				scope:spy_target_country = {
 					remove_variable = turned_steal_technology_by
@@ -3828,14 +3399,6 @@ adv_dip_event.170 = {
 		default_option = yes
 		random_list = {
 			200 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 1.15
-				}
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-					factor = 0.85
-				}
 				custom_tooltip = sealed_train_success_tt
 				scope:spy_target_country = {
 					trigger_event = {
@@ -3955,10 +3518,6 @@ adv_dip_event.175 = {
 				}
 			}
 			100 = {
-				modifier = {
-					trigger = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-					factor = 1.5
-				}
 				custom_tooltip = false_flag_unravels_tt
 				change_relations = {
 					country = scope:spymaster
@@ -4018,7 +3577,6 @@ adv_dip_event.180 = {
 						has_diplomatic_pact = { who = prev type = agitate_for_liberty }
 						has_diplomatic_pact = { who = prev type = steal_technology }
 						has_diplomatic_pact = { who = prev type = election_interference }
-						has_diplomatic_pact = { who = prev type = fund_piracy }
 						has_diplomatic_pact = { who = prev type = support_slaves }
 						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
 						has_diplomatic_pact = { who = prev type = steal_commander }

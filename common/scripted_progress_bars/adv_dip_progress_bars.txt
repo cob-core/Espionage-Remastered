@@ -31,18 +31,7 @@
 	max_value = 100
 
 	monthly_progress = {
-		add = {
-			desc = "DEVELOPMENT_PROGRESS_BAR_MONTHLY_PROGRESS_DESC"
-			if = {
-				limit = {
-					custom_tooltip = {
-						text = DIPLO_ACTION_RELATIONS_POOR_OR_LESS_NOT
-						scope:development:root > relations_threshold:poor
-					}
-				}
-				value = 3
-			} 
-		}
+		value = 3
 	}
  }
 naval_intel_progress_bar = {

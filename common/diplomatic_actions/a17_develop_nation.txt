@@ -73,33 +73,11 @@
 		monthly_effect = {
 			custom_tooltip = {
 				text = develop_nation_monthly_effect
-				random_list = {
-					1600 = {}
-					100 = {
-						modifier = {
-							trigger = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
-							factor = 1.15
-						}
-						modifier = {
-							trigger = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
-							factor = 0.85
-						}
-						modifier = {
-							trigger = { institution_investment_level:institution_espionage >= target_espionage_plus_2 }
-							factor = 1.15
-						}
-						modifier = {
-							trigger = { institution_investment_level:institution_espionage <= target_espionage_minus_2 }
-							factor = 0.85
-						}
-						modifier = {
-							trigger = { institution_investment_level:institution_espionage >= target_espionage_plus_3 }
-							factor = 1.15
-						}
-						modifier = {
-							trigger = { institution_investment_level:institution_espionage <= target_espionage_minus_3 }
-							factor = 0.85
-						}
+				if = {
+					limit = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
+					random_list = {
+						1600 = {}
+						150 = {
 
 						if = {
 							limit = {
@@ -112,6 +90,48 @@
 									id = adv_dip_event.110
 								}
 							}
+						}
+						}
+					}
+				}
+				else_if = {
+					limit = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
+					random_list = {
+						1600 = {}
+						65 = {
+
+						if = {
+							limit = {
+								root = {
+									NOT = { has_variable = ongoing_development }
+								}
+							}
+							root = {
+								trigger_event = {
+									id = adv_dip_event.110
+								}
+							}
+						}
+						}
+					}
+				}
+				else = {
+					random_list = {
+						1600 = {}
+						100 = {
+
+						if = {
+							limit = {
+								root = {
+									NOT = { has_variable = ongoing_development }
+								}
+							}
+							root = {
+								trigger_event = {
+									id = adv_dip_event.110
+								}
+							}
+						}
 						}
 					}
 				}								

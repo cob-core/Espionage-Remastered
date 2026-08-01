@@ -91,7 +91,6 @@ adv_dip_espionage_yearly = {
 						has_diplomatic_pact = { who = prev type = agitate_for_liberty }
 						has_diplomatic_pact = { who = prev type = steal_technology }
 						has_diplomatic_pact = { who = prev type = election_interference }
-						has_diplomatic_pact = { who = prev type = fund_piracy }
 						has_diplomatic_pact = { who = prev type = support_slaves }
 						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
 						has_diplomatic_pact = { who = prev type = steal_commander }

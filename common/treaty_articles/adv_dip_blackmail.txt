@@ -33,7 +33,6 @@
 					has_diplomatic_pact = { who = scope:target_country type = agitate_for_liberty }
 					has_diplomatic_pact = { who = scope:target_country type = steal_technology }
 					has_diplomatic_pact = { who = scope:target_country type = election_interference }
-					has_diplomatic_pact = { who = scope:target_country type = fund_piracy }
 					has_diplomatic_pact = { who = scope:target_country type = support_slaves }
 					has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
 					has_diplomatic_pact = { who = scope:target_country type = steal_commander }
@@ -58,7 +57,6 @@
 								has_diplomatic_pact = { who = scope:target_country type = agitate_for_liberty }
 								has_diplomatic_pact = { who = scope:target_country type = steal_technology }
 								has_diplomatic_pact = { who = scope:target_country type = election_interference }
-								has_diplomatic_pact = { who = scope:target_country type = fund_piracy }
 								has_diplomatic_pact = { who = scope:target_country type = support_slaves }
 								has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
 								has_diplomatic_pact = { who = scope:target_country type = steal_commander }

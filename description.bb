@@ -10,7 +10,7 @@ It adds espionage actions each with their own strengths and weaknesses. Once you
 
 [i]The AI can use these actions also, so be careful![/i]
 
-Currently, this mod adds a new law group, a new institution, thirteen diplomatic actions with their event chains, four treaty articles, and three journal-entry operations with progress bars.
+Currently, this mod adds a new law group, a new institution, over a dozen diplomatic actions with their event chains, four treaty articles, and three journal-entry operations with progress bars.
 See the full list [url=https://github.com/cob-core/Espionage-Remastered/wiki/Espionage-Remastered:-How%E2%80%90To,-Action-Requirements,-and-Action-Effects]here[/url].
 
 
@@ -62,7 +62,6 @@ As Better Politics adds and changes ideologies, it requires a compatibility patc
 [*][strike]Regime Change, with journal entries and progress bars.[/strike] [b]ADDED AS ELECTION INTERFERENCE, MAY EXPAND IN FUTURE[/b]
 [*][strike]Military Attache.[/strike]   [b]ADDED[/b]
 [*][strike]Cultural Exchange.[/strike]   [b]ADDED[/b]
-[*][strike]Fund Piracy.[/strike]   [b]ADDED[/b]
 [*][strike]Support Slaves.[/strike]   [b]ADDED[/b]
 [*][strike]Steal technology.[/strike] [b]ADDED[/b]
 [*][strike]Steal Commanders.[/strike] [b]ADDED IN 4.0[/b]

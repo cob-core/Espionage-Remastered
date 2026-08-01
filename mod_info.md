@@ -8,7 +8,9 @@
 + NEW: The Sealed Train — smuggle a revolutionary into a rival power: massive radicalism surge and possible spark, or a border arrest that rallies their loyalists.
 + NEW: False Flag Directive — route detections through a patsy of your choice; if the forgery unravels, both powers turn on you.
 + NEW: Kompromat — active networks compile dossiers on enemy commanders: disgrace them for a year, end their career, or humiliate their government.
-+ NEW: Dynamic odds — every operation's success and detection odds now scale with the espionage institution differential (±~15%/level), fulfilling the long-standing community suggestion.
++ NEW: Dynamic odds — every operation's monthly success odds now scale with the espionage institution differential, fulfilling the long-standing community suggestion.
++ Fund Piracy removed — superseded by the 1.13 naval piracy mechanics and the new espionage systems.
++ Post-test polish: vanilla lens icons for the new actions, hover effect descriptions, Smuggle Revolutionary rename, journal entries correctly country-scoped, and a full error.log cleanup.
 
 ## Previous Changelog (v4.0 — Completion & The Great Wave)
 + NEW: Naval Intelligence Network — an assassination-style journal-entry operation: infiltrate an admiralty, balance Infiltration against Exposure through flavor events and buttons, then choose your coup: crack their codes, cripple their flagship (The Great Wave), or copy their coastal surveys.
