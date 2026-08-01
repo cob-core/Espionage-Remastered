@@ -183,6 +183,17 @@ if sgui_dir.is_dir() and gui_file.is_file():
         if name not in defined_sguis:
             failures.append(f"[gui] console references undefined scripted gui '{name}'")
 
+# --- 8. journal-entry widget bindings must resolve (crash-class bug) ---
+for p in script_files(MOD, "common/journal_entries"):
+    text = strip_comments(read(p))
+    for gui_rel, widget_name in re.findall(r'widget\s*=\s*\{[^}]*?gui\s*=\s*"([^"]+)"[^}]*?name\s*=\s*"([^"]+)"', text, re.S):
+        gui_path = MOD / gui_rel
+        if not gui_path.is_file():
+            failures.append(f"[widget] {p.relative_to(MOD)}: gui file '{gui_rel}' not found")
+            continue
+        if not re.search(rf'name\s*=\s*"{re.escape(widget_name)}"', read(gui_path)):
+            failures.append(f"[widget] {p.relative_to(MOD)}: widget '{widget_name}' not defined in {gui_rel} (CRASHES the game)")
+
 if failures:
     print(f"{len(failures)} reference failures:")
     for f in failures:

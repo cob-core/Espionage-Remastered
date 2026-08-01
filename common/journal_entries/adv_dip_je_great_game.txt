@@ -4,7 +4,7 @@
 
 	widget = {
 		gui = "gui/journal_entry_widgets/adv_dip_console_widgets.gui"
-		name = "widget_adv_dip_console_test"
+		name = "widget_adv_dip_console"
 		container = "custom_widget_container_1"
 	}
 
