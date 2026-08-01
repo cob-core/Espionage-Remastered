@@ -168,6 +168,34 @@ adv_dip_espionage_monthly = {
 			name = adv_dip_upkeep_total
 			value = 0
 		}
+		# Director of Intelligence bonus, maintained while one is seated
+		if = {
+			limit = { has_variable_list = adv_dip_director }
+			add_modifier = {
+				name = adv_dip_director_modifier
+				months = 2
+			}
+		}
+		# Prune operatives who have died or left our service
+		if = {
+			limit = { has_variable_list = adv_dip_operatives }
+			every_in_list = {
+				variable = adv_dip_operatives
+				limit = {
+					OR = {
+						is_character_alive = no
+						NOT = { owner ?= root }
+					}
+				}
+				save_scope_as = adv_dip_lost_operative
+				root = {
+					remove_list_variable = {
+						name = adv_dip_operatives
+						target = scope:adv_dip_lost_operative
+					}
+				}
+			}
+		}
 		# AI solvency abort: a broke AI winds down its networks
 		if = {
 			limit = {

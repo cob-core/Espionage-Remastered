@@ -324,3 +324,9 @@
 		state_slave_import_mult = -0.5
 	}
 
+	adv_dip_director_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+		country_influence_mult = 0.05
+		country_infamy_generation_mult = -0.10
+	}
+

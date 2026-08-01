@@ -22,6 +22,48 @@
 	}
 }
 
+adv_dip_sgui_appoint_director = {
+	scope = country
+	saved_scopes = { candidate }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = adv_dip_appoint_director_tt
+			scope:candidate ?= {
+				is_busy = no
+			}
+		}
+	}
+
+	effect = {
+		every_in_list = {
+			variable = adv_dip_director
+			remove_character_role = character_role_spymaster
+			owner ?= {
+				remove_list_variable = {
+					name = adv_dip_director
+					target = prev
+				}
+			}
+		}
+		remove_list_variable = {
+			name = adv_dip_operatives
+			target = scope:candidate
+		}
+		add_to_variable_list = {
+			name = adv_dip_director
+			target = scope:candidate
+		}
+		scope:candidate = {
+			add_character_role = character_role_spymaster
+		}
+	}
+}
+
 adv_dip_sgui_cancel_sow_discontent = {
 	scope = country
 	saved_scopes = { op_target }

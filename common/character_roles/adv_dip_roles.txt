@@ -11,3 +11,18 @@
 		character_prominence_add = 20
 	}
 }
+
+character_role_spymaster = {
+	texture = "gfx/interface/icons/character_role_icons/agitator.dds"
+
+	type = other
+	priority = 45
+
+	title_format = from_name
+	title_preposition = PREP_OF
+
+	character_modifier = {
+		character_prominence_add = 40
+	}
+}
+
