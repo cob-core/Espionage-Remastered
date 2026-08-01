@@ -31,13 +31,6 @@
 		is_revolutionary = no
 		in_default = no
 		has_diplomatic_relevance = scope:target_country
-		any_scope_character = {
-			OR = {
-				has_role_of_type = general
-				has_role_of_type = admiral
-			}
-			count >= 3
-		}
 		scope:target_country = {
 			NOT = {
 				OR = {
