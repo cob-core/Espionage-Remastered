@@ -37,7 +37,6 @@
 					has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
 					has_diplomatic_pact = { who = scope:target_country type = steal_commander }
 					has_diplomatic_pact = { who = scope:target_country type = naval_intelligence }
-					has_diplomatic_pact = { who = scope:target_country type = steal_ship_designs }
 				}
 			}
 		}
@@ -61,7 +60,6 @@
 								has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
 								has_diplomatic_pact = { who = scope:target_country type = steal_commander }
 								has_diplomatic_pact = { who = scope:target_country type = naval_intelligence }
-								has_diplomatic_pact = { who = scope:target_country type = steal_ship_designs }
 							}
 						}
 					}

@@ -16,7 +16,6 @@
 
 ## Previous Changelog (v4.0 — Completion & The Great Wave)
 + NEW: Naval Intelligence Network — an assassination-style journal-entry operation: infiltrate an admiralty, balance Infiltration against Exposure through flavor events and buttons, then choose your coup: crack their codes, cripple their flagship (The Great Wave), or copy their coastal surveys.
-+ NEW: Steal Ship Designs — a pact against superior naval powers granting stolen construction efficiency and military tech spread, with detection risk.
 + NEW: Blackmailed Concession treaty article — an intelligence dossier (any active espionage pact) compels the target's cooperation; the article collapses if your spy network is rolled up.
 + Steal Commander completed — true defection via character transfer, with its own event chain, an asset-in-place alternative, and a five-year cooldown. No longer fires the Steal Technology placeholder.
 + Sabotage Recruitment completed — espionage gate, full localization (it had none), conscript unrest.

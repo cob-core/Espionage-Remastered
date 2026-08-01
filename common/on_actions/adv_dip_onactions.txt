@@ -104,7 +104,6 @@ adv_dip_espionage_yearly = {
 						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
 						has_diplomatic_pact = { who = prev type = steal_commander }
 						has_diplomatic_pact = { who = prev type = naval_intelligence }
-						has_diplomatic_pact = { who = prev type = steal_ship_designs }
 					}
 				}
 			}

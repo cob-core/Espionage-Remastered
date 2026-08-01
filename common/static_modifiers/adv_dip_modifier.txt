@@ -245,12 +245,6 @@
 		country_influence_mult = -0.10
 	}
 
-	stolen_ship_designs_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
-		country_ship_construction_efficiency_add = 0.15
-		country_military_tech_spread_mult = 0.25
-	}
-
 	pipeline_interception_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 		country_expenses_add = 1

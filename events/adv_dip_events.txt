@@ -2672,127 +2672,6 @@ adv_dip_event.132 = {
 	}
 }
 
-adv_dip_event.135 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.135.t
-	desc = adv_dip_event.135.d
-	flavor = adv_dip_event.135.f
-
-	event_image = {
-		video = "unspecific_steam_ship"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_map.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		save_scope_as = design_thief
-		if = {
-			limit = { NOT = { exists = scope:spy_target_country } }
-	random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = steal_ship_designs
-						}
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-	}
-
-	option = {
-		name = adv_dip_event.135.a
-		great_game_score_minor_effect = yes
-		add_modifier = {
-			name = stolen_ship_designs_modifier
-			months = 24
-		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
-		random_list = {
-			1 = {
-				if = {
-					limit = { NOT = { has_variable = false_flag_patsy } }
-					scope:spy_target_country = {
-						trigger_event = {
-							id = adv_dip_event.136
-							days = 5
-						}
-						change_relations = {
-							country = root
-							value = -10
-						}
-					}
-				}
-				else = {
-					save_scope_as = spymaster
-					var:false_flag_patsy = {
-						save_scope_as = framed_patsy
-					}
-					scope:spy_target_country = {
-						trigger_event = {
-							id = adv_dip_event.175
-							days = 5
-						}
-					}
-				}
-			}
-			5 = {}
-		}
-	}
-
-	option = {
-		name = adv_dip_event.135.b
-		default_option = yes
-	}
-}
-
-adv_dip_event.136 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.136.t
-	desc = adv_dip_event.136.d
-	flavor = adv_dip_event.136.f
-
-	event_image = {
-		video = "unspecific_steam_ship"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_map.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-	}
-
-	option = {
-		name = adv_dip_event.136.a
-		default_option = yes
-	}
-}
-
 adv_dip_event.140 = {
 	type = country_event
 	placement = root
@@ -3635,7 +3514,6 @@ adv_dip_event.180 = {
 						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
 						has_diplomatic_pact = { who = prev type = steal_commander }
 						has_diplomatic_pact = { who = prev type = naval_intelligence }
-						has_diplomatic_pact = { who = prev type = steal_ship_designs }
 					}
 				}
 			}
