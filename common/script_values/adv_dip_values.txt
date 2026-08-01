@@ -243,3 +243,30 @@ technology_theft_cost = {
 		multiply = high_espionage_event_costs_value
 	}
 }
+# Naval intelligence informant funding: 0.025% of the surveilled navy's GDP,
+# read from the persistent variable so JE buttons work months after the start event.
+naval_intel_funding = {
+	value = var:naval_intel_target_var.gdp
+	divide = 100000
+	multiply = 0.25
+	round = yes
+	multiply = 100
+	if = {
+		limit = {
+			has_game_rule = low_espionage_event_costs
+		}
+		multiply = low_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			has_game_rule = medium_espionage_event_costs
+		}
+		multiply = medium_espionage_event_costs_value
+	}
+	else_if = {
+		limit = {
+			has_game_rule = high_espionage_event_costs
+		}
+		multiply = high_espionage_event_costs_value
+	}
+}

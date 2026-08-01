@@ -1,0 +1,66 @@
+﻿adv_dip_je_naval_intelligence = {
+
+	group = je_group_espionage
+
+	weight = 200
+	transferable = no
+	should_be_pinned_by_default = yes
+
+	scripted_progress_bar = naval_intel_progress_bar
+	scripted_progress_bar = naval_intel_risk_bar
+
+	scripted_button = je_fund_informants
+	scripted_button = je_burn_contacts
+
+	on_monthly_pulse = {
+		random_events = {
+			30 = 0
+			8 = adv_dip_event.141
+			8 = adv_dip_event.142
+			6 = adv_dip_event.143
+			6 = adv_dip_event.144
+			5 = adv_dip_event.145
+			4 = adv_dip_event.146
+		}
+	}
+
+	immediate = {
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = adv_dip_je_naval_intelligence_success
+			scope:journal_entry = {
+				"scripted_bar_progress(naval_intel_progress_bar)" >= 10
+			}
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = adv_dip_event.148 }
+	}
+
+	fail = {
+		OR = {
+			custom_tooltip = {
+				text = adv_dip_je_naval_intelligence_exposed
+				scope:journal_entry = {
+					"scripted_bar_progress(naval_intel_risk_bar)" >= 10
+				}
+			}
+			custom_tooltip = {
+				text = adv_dip_je_naval_intelligence_no_pact
+				NOT = {
+					has_diplomatic_pact = {
+						who = scope:target
+						type = naval_intelligence
+					}
+				}
+			}
+		}
+	}
+
+	on_fail = {
+		trigger_event = { id = adv_dip_event.149 }
+	}
+}

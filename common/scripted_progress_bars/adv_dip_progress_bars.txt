@@ -1,4 +1,4 @@
-assassination_progress_bar = {
+﻿assassination_progress_bar = {
 	name = "assassination_progress_bar"
 	desc = "assassination_progress_bar_desc"
 
@@ -45,3 +45,24 @@ assassination_progress_bar = {
 		}
 	}
  }
+naval_intel_progress_bar = {
+	name = naval_intel_progress_bar
+	desc = naval_intel_progress_bar_desc
+
+	default_green = yes
+
+	start_value = 0
+	min_value = 0
+	max_value = 10
+}
+
+naval_intel_risk_bar = {
+	name = naval_intel_risk_bar
+	desc = naval_intel_risk_bar_desc
+
+	default_bad = yes
+
+	start_value = 0
+	min_value = 0
+	max_value = 10
+}

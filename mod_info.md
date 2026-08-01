@@ -1,7 +1,18 @@
 # Espionage Remastered
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
-## Latest Changelog (v3.6 — Stabilization)
+## Latest Changelog (v4.0 — Completion & The Great Wave)
++ NEW: Naval Intelligence Network — an assassination-style journal-entry operation: infiltrate an admiralty, balance Infiltration against Exposure through flavor events and buttons, then choose your coup: crack their codes, cripple their flagship (The Great Wave), or copy their coastal surveys.
++ NEW: Steal Ship Designs — a pact against superior naval powers granting stolen construction efficiency and military tech spread, with detection risk.
++ NEW: Blackmailed Concession treaty article — an intelligence dossier (any active espionage pact) compels the target's cooperation; the article collapses if your spy network is rolled up.
++ Steal Commander completed — true defection via character transfer, with its own event chain, an asset-in-place alternative, and a five-year cooldown. No longer fires the Steal Technology placeholder.
++ Sabotage Recruitment completed — espionage gate, full localization (it had none), conscript unrest.
++ Develop Nation completed — sweetened ending: recognition plus relations, an obligation, gratitude and prestige rewards.
++ Fund Piracy reworked — victim modifiers re-expressed with real 1.13 effects (port throughput, power-projection prestige); with The Great Wave, a new "Arm the corsairs" option pays you a cut of real piracy income.
++ Sabotage Industry fully removed (redundant with 1.13 naval mechanics).
++ Fixed two more invalid modifier types (navy offense, icon paths) and added a reference-integrity checker to the release process.
+
+## Previous Changelog (v3.6 — Stabilization)
 + Fixed 32 modifiers that silently never parsed (missing `=`), restoring all assassination-flavor, piracy, development, and stolen-technology modifiers.
 + Fixed the espionage cost game rule never applying — its options were also silently unparsed. Low/Medium/High cost settings now work for the first time.
 + Fixed Develop Nation: the journal entry was hijacked by a misnamed duplicate, read the wrong progress bar, and lost its target country between events. It now has a proper JE target and completes/fails correctly.
@@ -25,16 +36,16 @@
 
 
 ## To-Do 
-### Current Goals (v4.0 — Completion)
-+ Finish and officially ship the four TODO/ actions (Sabotage Recruitment, Sabotage Industry, Steal Commander, Develop Nation).
+### Current Goals
 + Incorporate diplomatic catalysts.
 + Write assassination success/failure to notify the target country.
 + Flesh out Agitate for Liberty with journal entries and buttons.
 + Add liberty desire to Agitate for Liberty.
 + Flesh out Sow Discontent.
 + Election Interference auto-end when voting is removed; targeted AI party choice.
-+ Rework Fund Piracy onto the 1.13 naval piracy mechanics (redundant-with-vanilla features get removed, not maintained).
 + Add loading screen tips.
++ Real lens icons for Naval Intelligence and Steal Ship Designs (placeholders reuse existing art).
++ In-game verification of the ep2-gated paths (flagship sabotage, corsair patronage) — untestable locally without The Great Wave.
 
 ### Long-Term Goals
 + Create a custom GUI.
@@ -42,8 +53,6 @@
 + Merge 'New Frontiers: A Colonization Helper' into the mod.
 
 ### Community Suggestions
-+ Steal Commander events, localisation, and action.
-+ Develop Nation events and action.
 + Level of Espionage institution affects outcome of diplomatic actions.
 
 ## Contributers

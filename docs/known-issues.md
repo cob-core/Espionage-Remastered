@@ -1,16 +1,21 @@
 # Known Issues & Defect History
 
-## Open (v4.0 scope)
+## Runtime-unverified (v4.0, flag for first play-test)
+
+1. `damage_ship_percent = 0.5` syntax in `.148.b` — effect exists (effect-localization)
+   but has zero vanilla usages; verify in-game with The Great Wave.
+2. All `has_dlc_feature = ep2_content` paths (flagship sabotage, corsair patronage) —
+   statically verified only; The Great Wave is not installed locally.
+3. Blackmail article AI acceptance behavior and the `non_fulfillment` weekly check.
+4. `transfer_character` on a commander (vanilla uses it on IG leaders/agitators).
+
+## Open
 
 1. Election Interference may not auto-end if the country removes voting.
 2. AI makes no specific decision on election interference; party choice is random.
-3. The four `TODO/` actions are live but unfinished by design (shipping properly in v4.0):
-   Sabotage Recruitment, Sabotage Industry, Steal Commander, Develop Nation.
-4. Assassination success/failure does not notify the target country (roadmap).
-5. `catalyst_pact_formed` exists but is not wired to espionage pacts (roadmap).
-6. `a17_develop_nation.txt`'s `effect` block saves an orphan scope
-   (`develop_nation_target`) nothing reads — harmless; clean up when finishing the
-   action in v4.0.
+3. Assassination success/failure does not notify the target country (roadmap).
+4. `catalyst_pact_formed` exists but is not wired to espionage pacts (roadmap).
+5. New lens icons for naval_intelligence / steal_ship_designs are placeholder copies.
 
 ## Fixed in v3.6 (2026-07-31) — kept as history
 

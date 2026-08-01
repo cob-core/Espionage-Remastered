@@ -2396,6 +2396,35 @@ adv_dip_event.101 = {
 			base = 10
 		}
 	}
+
+	option = {
+		name = adv_dip_event.101.b
+		trigger = {
+			has_dlc_feature = ep2_content
+		}
+
+		scope:piracy_target = {
+			trigger_event = adv_dip_event.102
+			change_relations = {
+				country = root
+				value = -5
+			}
+		}
+
+		add_modifier = {
+			name = corsair_patron_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_large
+			months = 25
+		}
+
+		ai_chance = {
+			base = 5
+		}
+	}
 }
 
 adv_dip_event.102 = {
@@ -3005,5 +3034,411 @@ adv_dip_event.132 = {
 			name = recent_defection_modifier
 			months = 36
 		}
+	}
+}
+
+adv_dip_event.135 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.135.t
+	desc = adv_dip_event.135.d
+	flavor = adv_dip_event.135.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		save_scope_as = design_thief
+		random_country = {
+			limit = {
+				root = {
+					has_diplomatic_pact = {
+						who = prev
+						type = steal_ship_designs
+					}
+				}
+			}
+			save_scope_as = spy_target_country
+		}
+	}
+
+	option = {
+		name = adv_dip_event.135.a
+		add_modifier = {
+			name = stolen_ship_designs_modifier
+			months = 24
+		}
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_medium
+			months = 25
+		}
+		random_list = {
+			1 = {
+				scope:spy_target_country = {
+					trigger_event = {
+						id = adv_dip_event.136
+						days = 5
+					}
+					change_relations = {
+						country = root
+						value = -10
+					}
+				}
+			}
+			5 = {}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.135.b
+		default_option = yes
+	}
+}
+
+adv_dip_event.136 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.136.t
+	desc = adv_dip_event.136.d
+	flavor = adv_dip_event.136.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = adv_dip_event.136.a
+		default_option = yes
+	}
+}
+
+adv_dip_event.140 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.140.t
+	desc = adv_dip_event.140.d
+	flavor = adv_dip_event.140.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	duration = 1
+
+	trigger = {
+		NOT = { has_variable = ongoing_naval_intel }
+	}
+
+	cancellation_trigger = {
+		has_variable = ongoing_naval_intel
+	}
+
+	immediate = {
+		set_variable = ongoing_naval_intel
+		random_country = {
+			limit = {
+				root = {
+					has_diplomatic_pact = {
+						who = prev
+						type = naval_intelligence
+					}
+				}
+			}
+			save_scope_as = naval_intel_target
+		}
+		set_variable = {
+			name = naval_intel_target_var
+			value = scope:naval_intel_target
+		}
+	}
+
+	option = {
+		name = adv_dip_event.140.a
+		default_option = yes
+
+		add_journal_entry = {
+			type = adv_dip_je_naval_intelligence
+			target = scope:naval_intel_target
+		}
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+adv_dip_event.141 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.141.t
+	desc = adv_dip_event.141.d
+	flavor = adv_dip_event.141.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = { has_journal_entry = adv_dip_je_naval_intelligence }
+	option = {
+		name = adv_dip_event.141.a
+		default_option = yes
+		naval_intel_minor_progress_effect = yes
+	}
+}
+
+adv_dip_event.142 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.142.t
+	desc = adv_dip_event.142.d
+	flavor = adv_dip_event.142.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = { has_journal_entry = adv_dip_je_naval_intelligence }
+	option = {
+		name = adv_dip_event.142.a
+		default_option = yes
+		naval_intel_major_progress_effect = yes
+		naval_intel_small_risk_effect = yes
+	}
+	option = {
+		name = adv_dip_event.142.b
+		naval_intel_minor_progress_effect = yes
+	}
+}
+
+adv_dip_event.143 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.143.t
+	desc = adv_dip_event.143.d
+	flavor = adv_dip_event.143.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = { has_journal_entry = adv_dip_je_naval_intelligence }
+	option = {
+		name = adv_dip_event.143.a
+		default_option = yes
+		naval_intel_major_progress_effect = yes
+		naval_intel_large_risk_effect = yes
+	}
+	option = {
+		name = adv_dip_event.143.b
+	}
+}
+
+adv_dip_event.144 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.144.t
+	desc = adv_dip_event.144.d
+	flavor = adv_dip_event.144.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = { has_journal_entry = adv_dip_je_naval_intelligence }
+	option = {
+		name = adv_dip_event.144.a
+		default_option = yes
+		naval_intel_small_risk_effect = yes
+	}
+	option = {
+		name = adv_dip_event.144.b
+		naval_intel_lose_progress_effect = yes
+		naval_intel_reduce_risk_effect = yes
+	}
+}
+
+adv_dip_event.145 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.145.t
+	desc = adv_dip_event.145.d
+	flavor = adv_dip_event.145.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = { has_journal_entry = adv_dip_je_naval_intelligence }
+	option = {
+		name = adv_dip_event.145.a
+		default_option = yes
+		naval_intel_large_risk_effect = yes
+	}
+}
+
+adv_dip_event.146 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.146.t
+	desc = adv_dip_event.146.d
+	flavor = adv_dip_event.146.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+	trigger = { has_journal_entry = adv_dip_je_naval_intelligence }
+	option = {
+		name = adv_dip_event.146.a
+		default_option = yes
+		naval_intel_minor_progress_effect = yes
+		naval_intel_small_risk_effect = yes
+	}
+}
+
+adv_dip_event.148 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.148.t
+	desc = adv_dip_event.148.d
+	flavor = adv_dip_event.148.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		var:naval_intel_target_var ?= {
+			save_scope_as = naval_intel_target
+		}
+	}
+
+	option = {
+		name = adv_dip_event.148.a
+		default_option = yes
+		add_modifier = {
+			name = naval_codebook_modifier
+			months = 36
+		}
+		remove_naval_intel_effect = yes
+	}
+
+	option = {
+		name = adv_dip_event.148.b
+		trigger = {
+			has_dlc_feature = ep2_content
+			scope:naval_intel_target ?= {
+				any_scope_ship = {
+					is_flagship = yes
+				}
+			}
+		}
+		scope:naval_intel_target = {
+			random_scope_ship = {
+				limit = { is_flagship = yes }
+				damage_ship_percent = 0.5
+			}
+			add_modifier = {
+				name = humiliated_navy_modifier
+				months = 12
+			}
+			change_relations = {
+				country = root
+				value = -20
+			}
+		}
+		remove_naval_intel_effect = yes
+	}
+
+	option = {
+		name = adv_dip_event.148.c
+		add_modifier = {
+			name = naval_landing_intel_modifier
+			months = 36
+		}
+		remove_naval_intel_effect = yes
+	}
+}
+
+adv_dip_event.149 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.149.t
+	desc = adv_dip_event.149.d
+	flavor = adv_dip_event.149.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		var:naval_intel_target_var ?= {
+			save_scope_as = naval_intel_target
+		}
+	}
+
+	option = {
+		name = adv_dip_event.149.a
+		default_option = yes
+		add_modifier = {
+			name = exposed_spy_ring_modifier
+			months = 24
+		}
+		scope:naval_intel_target ?= {
+			change_relations = {
+				country = root
+				value = -30
+			}
+		}
+		remove_naval_intel_effect = yes
 	}
 }

@@ -1,0 +1,119 @@
+﻿blackmail_concession = {
+	kind = directed
+	cost = 50
+
+	icon = "gfx/interface/icons/lens_toolbar_icons/chess.dds"
+
+	maintenance_paid_by = source_country
+	usage_limit = once_per_side
+
+	relations_progress_per_day = -0.5
+	relations_improvement_min = -80
+
+	unlocking_technologies = {
+		international_relations
+	}
+
+	visible = {
+		scope:source_country ?= {
+			institution_investment_level = {
+				institution = institution_espionage
+				value >= 4
+			}
+		}
+	}
+
+	possible = {
+		scope:source_country ?= {
+			custom_tooltip = {
+				text = blackmail_requires_network_tt
+				OR = {
+					has_diplomatic_pact = { who = scope:target_country type = sow_discontent }
+					has_diplomatic_pact = { who = scope:target_country type = support_nationalists }
+					has_diplomatic_pact = { who = scope:target_country type = agitate_for_liberty }
+					has_diplomatic_pact = { who = scope:target_country type = steal_technology }
+					has_diplomatic_pact = { who = scope:target_country type = election_interference }
+					has_diplomatic_pact = { who = scope:target_country type = fund_piracy }
+					has_diplomatic_pact = { who = scope:target_country type = support_slaves }
+					has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
+					has_diplomatic_pact = { who = scope:target_country type = steal_commander }
+					has_diplomatic_pact = { who = scope:target_country type = naval_intelligence }
+					has_diplomatic_pact = { who = scope:target_country type = steal_ship_designs }
+				}
+			}
+		}
+	}
+
+	non_fulfillment = {
+		consequences = withdraw
+
+		conditions = {
+			weekly = {
+				scope:article = {
+					source_country = {
+						NOT = {
+							OR = {
+								has_diplomatic_pact = { who = scope:target_country type = sow_discontent }
+								has_diplomatic_pact = { who = scope:target_country type = support_nationalists }
+								has_diplomatic_pact = { who = scope:target_country type = agitate_for_liberty }
+								has_diplomatic_pact = { who = scope:target_country type = steal_technology }
+								has_diplomatic_pact = { who = scope:target_country type = election_interference }
+								has_diplomatic_pact = { who = scope:target_country type = fund_piracy }
+								has_diplomatic_pact = { who = scope:target_country type = support_slaves }
+								has_diplomatic_pact = { who = scope:target_country type = sabotage_recruitment }
+								has_diplomatic_pact = { who = scope:target_country type = steal_commander }
+								has_diplomatic_pact = { who = scope:target_country type = naval_intelligence }
+								has_diplomatic_pact = { who = scope:target_country type = steal_ship_designs }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	source_modifier = {
+		country_leverage_generation_add = 10
+	}
+
+	target_modifier = {
+		country_leverage_resistance_mult = -0.5
+	}
+
+	on_entry_into_force = {}
+
+	on_withdrawal = {}
+
+	on_break = {}
+
+	ai = {
+		category = other
+
+		article_ai_usage = {
+			request
+		}
+
+		inherent_accept_score = {
+			value = 0
+
+			if = {
+				limit = {
+					scope:target_country ?= this
+				}
+				add = {
+					desc = "BLACKMAIL_DOSSIER_ACCEPTANCE"
+					value = 40
+				}
+				if = {
+					limit = {
+						country_rank > scope:source_country.country_rank
+					}
+					subtract = {
+						desc = "BLACKMAIL_RANK_DEFIANCE"
+						value = 20
+					}
+				}
+			}
+		}
+	}
+}

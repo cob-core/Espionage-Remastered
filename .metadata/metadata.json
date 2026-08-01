@@ -1,9 +1,9 @@
 {
   "name": "Espionage Remastered",
   "id": "com.github.cob-core.espionage-remastered",
-  "version": "3.6",
+  "version": "4.0",
   "supported_game_version": "1.13.*",
-  "short_description": "",
+  "short_description": "Espionage actions, spy networks, naval intelligence and blackmail for Victoria 3.",
   "tags": [
     "diplomacy",
     "gameplay",

@@ -1,0 +1,81 @@
+﻿naval_intel_minor_progress_effect = {
+	if = {
+		limit = { has_journal_entry = adv_dip_je_naval_intelligence }
+		je:adv_dip_je_naval_intelligence ?= {
+			add_progress = { value = 1 name = naval_intel_progress_bar }
+		}
+	}
+	custom_tooltip = naval_intel_minor_progress_tt
+}
+
+naval_intel_major_progress_effect = {
+	if = {
+		limit = { has_journal_entry = adv_dip_je_naval_intelligence }
+		je:adv_dip_je_naval_intelligence ?= {
+			add_progress = { value = 2 name = naval_intel_progress_bar }
+		}
+	}
+	custom_tooltip = naval_intel_major_progress_tt
+}
+
+naval_intel_lose_progress_effect = {
+	if = {
+		limit = { has_journal_entry = adv_dip_je_naval_intelligence }
+		je:adv_dip_je_naval_intelligence ?= {
+			add_progress = { value = -1 name = naval_intel_progress_bar }
+		}
+	}
+	custom_tooltip = naval_intel_lose_progress_tt
+}
+
+naval_intel_small_risk_effect = {
+	if = {
+		limit = { has_journal_entry = adv_dip_je_naval_intelligence }
+		je:adv_dip_je_naval_intelligence ?= {
+			add_progress = { value = 1 name = naval_intel_risk_bar }
+		}
+	}
+	custom_tooltip = naval_intel_small_risk_tt
+}
+
+naval_intel_large_risk_effect = {
+	if = {
+		limit = { has_journal_entry = adv_dip_je_naval_intelligence }
+		je:adv_dip_je_naval_intelligence ?= {
+			add_progress = { value = 3 name = naval_intel_risk_bar }
+		}
+	}
+	custom_tooltip = naval_intel_large_risk_tt
+}
+
+naval_intel_reduce_risk_effect = {
+	if = {
+		limit = { has_journal_entry = adv_dip_je_naval_intelligence }
+		je:adv_dip_je_naval_intelligence ?= {
+			add_progress = { value = -3 name = naval_intel_risk_bar }
+		}
+	}
+	custom_tooltip = naval_intel_reduce_risk_tt
+}
+
+remove_naval_intel_effect = {
+	remove_variable = ongoing_naval_intel
+	set_variable = {
+		name = recently_ran_naval_intel
+		months = 36
+	}
+	every_country = {
+		limit = {
+			root = {
+				has_diplomatic_pact = {
+					who = prev
+					type = naval_intelligence
+				}
+			}
+		}
+		remove_diplomatic_pact = {
+			country = root
+			type = naval_intelligence
+		}
+	}
+}

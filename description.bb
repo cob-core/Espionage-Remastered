@@ -47,10 +47,7 @@ As Better Politics adds and changes ideologies, it requires a compatibility patc
 [h3]Future Updates[/h3]
 [list]
 [*]Install loyal regime: +80 opinion and an illegitimate government for a large cost.
-[*]Steal Commanders
 [*]Make diplomatic actions invisible to everyone but the owner.
-[*]Sabotage Industry.
-[*]Sabotage Recruitment.
 [*]Remove power bloc cohesion.
 [*]Law lobbying: Push for a law to be implemented for a cost.
 \[/list]

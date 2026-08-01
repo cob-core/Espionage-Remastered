@@ -146,13 +146,15 @@
 
 	piracy_disruption_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-		unit_navy_offense_mult = 0.15
+		ship_hull_damage_mult = 0.10
 		country_prestige_add = 5
 	}
 
 	local_piracy_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 		country_port_connection_cost_mult = 0.2
+		building_port_throughput_add = -0.10
+		country_prestige_from_navy_power_projection_mult = -0.10
 	}
 
 	increased_port_security = {
@@ -266,4 +268,42 @@
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 		country_leverage_resistance_mult = -0.25
 		country_improve_relations_speed_mult = 0.10
+	}
+
+	naval_intel_cost_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
+
+	naval_codebook_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+		ship_accuracy_mult = 0.10
+		ship_visibility_mult = -0.10
+	}
+
+	naval_landing_intel_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+		unit_naval_invasion_efficiency_mult = 0.25
+		ship_supply_efficiency_mult = 0.10
+	}
+
+	humiliated_navy_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+		country_prestige_mult = -0.05
+	}
+
+	exposed_spy_ring_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+		country_influence_mult = -0.10
+	}
+
+	stolen_ship_designs_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+		country_ship_construction_efficiency_add = 0.15
+		country_military_tech_spread_mult = 0.25
+	}
+
+	corsair_patron_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+		country_piracy_income_add = 0.10
 	}

@@ -1,6 +1,6 @@
 # Architecture — Espionage Remastered
 
-Victoria 3 mod (Workshop ID 3432409401, GitHub `cob-core/Espionage-Remastered`), v3.6.
+Victoria 3 mod (Workshop ID 3432409401, GitHub `cob-core/Espionage-Remastered`), v4.0.
 A revival of koa's "Espionage" mod. Adds an espionage system built entirely from
 vanilla-moddable primitives — **no custom GUI, no code, no vanilla file overrides by filename**.
 
@@ -39,12 +39,12 @@ vanilla-moddable primitives — **no custom GUI, no code, no vanilla file overri
 |---|---|---|
 | Institution | `common/institutions/adv_dip_institutions.txt` | `institution_espionage` — the central resource |
 | Laws | `common/law_groups/`, `common/laws/` | `lawgroup_external_security`, `law_no_external_security`, `law_spy_agency` |
-| Diplomatic actions | `common/diplomatic_actions/aNN_*.txt` | 8 live + 4 in `TODO/` (**still loaded** — see below) |
-| Treaty articles | `common/treaty_articles/` (3 files) | Military Attaché, Cultural Exchange, Send Advisors (1.9+ treaty system) |
-| Journal entries | `common/journal_entries/`, `journal_entry_groups/` | `je_group_espionage`: assassination, pirates, development |
-| Scripted buttons | `common/scripted_buttons/` (8 files) | Piracy family ×4, development family ×4 |
-| Progress bars | `common/scripted_progress_bars/` | assassination progress/risk (0–8), development (0–100) |
-| Scripted effects | `common/scripted_effects/adv_dip_assassination_effects.txt` | Progress/risk mutators + cleanup effect |
+| Diplomatic actions | `common/diplomatic_actions/aNN_*.txt` | 13 actions (TODO/ dissolved in v4.0; naval_intelligence + steal_ship_designs added) |
+| Treaty articles | `common/treaty_articles/` (4 files) | Military Attaché, Cultural Exchange, Send Advisors, **Blackmailed Concession** (espionage-network-gated, self-collapsing) |
+| Journal entries | `common/journal_entries/`, `journal_entry_groups/` | `je_group_espionage`: assassination, pirates, development, **naval intelligence** |
+| Scripted buttons | `common/scripted_buttons/` (10 files) | Piracy ×4, development ×4, naval intel ×2 (fund informants / burn contacts) |
+| Progress bars | `common/scripted_progress_bars/` | assassination progress/risk (0–8), development (0–100), naval intel infiltration/exposure (0–10) |
+| Scripted effects | `common/scripted_effects/` (2 files) | assassination + naval-intel bar mutators, centralized cleanup effects |
 | Script values | `common/script_values/adv_dip_values.txt` | GDP-scaled cost engine (see `economy.md`) |
 | Static modifiers | `common/static_modifiers/adv_dip_modifier.txt` | ~60 modifiers: cost sinks, effect debuffs, flavor |
 | Modifier types | `common/modifier_type_definitions/` | 3 custom types for the institution |
@@ -81,8 +81,5 @@ follow `adv_dip_` file naming to stay conflict-free.
 
 - No file matches a vanilla filename — everything merges additively.
 - The only by-key vanilla touches: ideology `INJECT:` patches and the single define override.
-- **`common/diplomatic_actions/TODO/` is loaded by the game** — the folder is read
-  recursively, so `sabotage_recruitment`, `sabotage_industry`, `steal_commander`, and
-  `develop_nation` are live in-game despite being "unfinished". `develop_nation` is wired
-  into `adv_dip_je_development`'s fail condition. Moving a file to `TODO/` does **not**
-  disable it; comment out its `potential` or move it outside `common/` instead.
+- v4.0 dissolved `TODO/` — every action is intentional and live. Disable content by
+  removing it, never by moving it to a subfolder (subfolders are loaded recursively).

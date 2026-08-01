@@ -1,0 +1,102 @@
+﻿steal_ship_designs = {
+	groups = {
+		general
+	}
+	requires_approval = no
+	should_notify_third_parties = no
+
+	unlocking_technologies = {
+		ironclad_tech
+	}
+
+	selectable = {
+		NOT = { is_country_type = decentralized }
+		is_revolutionary = no
+	}
+
+	potential = {
+		NOT = { is_country_type = decentralized }
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 2
+		}
+	}
+
+	possible = {
+		is_revolutionary = no
+		in_default = no
+		NOT = { has_war_with = scope:target_country }
+		scope:target_country = {
+			naval_combat_power > root.naval_combat_power
+		}
+		has_diplomatic_relevance = scope:target_country
+	}
+
+	pact = {
+		cost = 150
+
+		is_two_sided_pact = no
+		show_in_outliner = yes
+
+		monthly_effect = {
+			custom_tooltip = {
+				text = steal_ship_designs_monthly_effect
+				random_list = {
+					16 = {}
+					1 = {
+						root = {
+							trigger_event = {
+								id = adv_dip_event.135
+							}
+						}
+					}
+				}
+			}
+		}
+
+		should_invalidate = {
+			OR = {
+				has_war_with = scope:target_country
+				is_country_type = decentralized
+				scope:target_country = { is_country_type = decentralized }
+				in_default = yes
+				NOT = {
+					scope:target_country = {
+						naval_combat_power > root.naval_combat_power
+					}
+				}
+			}
+		}
+	}
+
+	ai = {
+		max_influence_spending_fraction = 0.15
+
+		propose_score = {
+			value = 10
+			if = {
+				limit = {
+					scope:target_country = {
+						country_rank >= rank_value:great_power
+					}
+				}
+				add = 20
+			}
+		}
+
+		will_propose = {
+			scaled_debt <= 0
+			navy_size >= 5
+		}
+
+		will_break = {
+			OR = {
+				scaled_debt > 0.25
+				weekly_net_fixed_income < 10000
+			}
+		}
+	}
+}

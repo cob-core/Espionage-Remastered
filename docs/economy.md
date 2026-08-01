@@ -33,8 +33,9 @@ and rule constants `low/medium/high_espionage_event_costs_value` = 0.5 / 1 / 2.
 `piracy_cost_multiplier` (counter-piracy button cost, 0.015% of **own** GDP — runs on
 the piracy victim) was defined in v3.6; the undefined `counter_piracy` divisor was
 removed from `development_funding` (redundant with 1.13 naval piracy).
-`development_funding` now reads `var:development_target_var.gdp` (persistent variable,
-not a transient saved scope).
+`development_funding` reads `var:development_target_var.gdp` and `naval_intel_funding`
+reads `var:naval_intel_target_var.gdp` — persistent variables, not transient saved
+scopes, so JE buttons work months after the start event.
 
 ## Static modifiers (`common/static_modifiers/adv_dip_modifier.txt`, ~60 defs)
 

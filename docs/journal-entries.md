@@ -81,3 +81,14 @@ je_disrupt_pirates = {
 ```
 
 `piracy_cost_multiplier` is defined in `adv_dip_values.txt` as of v3.6 (0.015% own GDP).
+
+## Naval Intelligence (`adv_dip_je_naval_intelligence`, v4.0)
+
+Added by `.140` with `target =`; two bars (`naval_intel_progress_bar` 0→10 green,
+`naval_intel_risk_bar` 0→10 bad); monthly table (weight 30 quiet) over `.141`–`.146`;
+buttons `je_fund_informants` (+2 progress, cost `naval_intel_funding` from
+`naval_intel_target_var`, 6-mo cooldown) and `je_burn_contacts` (−3 risk −1 progress,
+12-mo cooldown; AI rushes it at risk ≥ 6). Complete (≥10) → `.148` capstone choice;
+fail (risk ≥10 or pact gone) → `.149`. Cleanup centralized in
+`remove_naval_intel_effect` (vars + pact + 36-mo cooldown) — never tear down piecemeal.
+Scripted effects live in `common/scripted_effects/adv_dip_naval_intel_effects.txt`.

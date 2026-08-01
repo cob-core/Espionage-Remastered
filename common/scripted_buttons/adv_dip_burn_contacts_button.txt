@@ -1,0 +1,28 @@
+﻿je_burn_contacts = {
+	name = adv_dip_je_burn_contacts
+	desc = adv_dip_je_burn_contacts_desc
+
+	visible = { always = yes }
+
+	ai_chance = {
+		base = 0
+		modifier = {
+			trigger = {
+				je:adv_dip_je_naval_intelligence ?= {
+					"scripted_bar_progress(naval_intel_risk_bar)" >= 6
+				}
+			}
+			add = 50
+		}
+	}
+
+	possible = {
+		not = { has_variable = recently_burned_contacts }
+	}
+
+	effect = {
+		set_variable = { name = recently_burned_contacts months = 12 }
+		naval_intel_reduce_risk_effect = yes
+		naval_intel_lose_progress_effect = yes
+	}
+}

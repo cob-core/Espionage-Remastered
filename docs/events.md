@@ -12,15 +12,20 @@ scans and save the victim as `scope:spy_target_country`.
 | `.11`/`.12` | **Sow Discontent** — initiator pays `spy_network_cost_modifier` ×`spy_cost_multiplier_medium` (25 mo), −10 relations; target gets `sow_discontent_modifier` + `add_radicals = 0.05` |
 | `.21`/`.22` | **Support Nationalists** — 5 branches pick a discriminated culture → `adv_nationalist_culture` |
 | `.31`/`.32`/`.33` | **Agitate for Liberty** — can `create_diplomatic_play` or set `liberty_target_country` |
-| `.41`/`.42` | Sabotage Recruitment (action in `TODO/`, still loaded) |
-| `.51`/`.52` | Sabotage Industry (same) |
+| `.41`/`.42` | **Sabotage Recruitment** — cost + detection; `.42` offers endure (×2 debuff + conscript radicals) vs counter-fund |
 | `.64`/`.65`/`.66` | Fund Armaments family |
-| `.71` | Fund Armaments variant (scans for a `fund_armaments` pact). **Steal Commander has no events** — its `monthly_effect` fires `.91` (Steal Technology) as a placeholder |
+| `.71` | Fund Armaments variant (scans for a `fund_armaments` pact) |
 | `.81`/`.82` | **Election Interference** — `.81` is ~680 lines: 13 near-identical per-IG branches setting `adv_loyal_government_leader` |
 | `.91`/`.92` | **Steal Technology** — 3 options (production/military/society) granting `stolen_technology_*_modifier` (24 mo) + cost; 1-in-6 detection chance fires `.92` at target, −5 relations |
-| `.101`/`.102`/`.103` | **Fund Piracy** — `.102` saves `piracy_target`, applies `local_piracy_modifier`, adds `adv_dip_je_pirates` to the victim |
+| `.101`/`.102`/`.103` | **Fund Piracy** — `.102` saves `piracy_target`, applies `local_piracy_modifier`, adds `adv_dip_je_pirates` to the victim; `.101.b` (ep2 only) = "Arm the corsairs": `corsair_patron_modifier` cut of real piracy income at higher cost |
 | `.110`/`.111`/`.112` | **Develop Nation** — `.110` sets `ongoing_development`, saves the target as `development_target_var`, and adds the JE **with a target**; `.111`/`.112` (JE complete/fail) restore the scope from the variable and clean both variables up |
 | `.120` | **Support Slaves** |
+| `.131`/`.132` | **Steal Commander** — `.131` picks an eligible commander (`steal_commander_target`), options: defect (`transfer_character`, pact burns, 1/3 detection) / asset-in-place / abort; `.132` target notification + `recent_defection_modifier` |
+| `.135`/`.136` | **Steal Ship Designs** — stolen construction efficiency + tech spread; 1/6 detection |
+| `.140` | **Naval Intelligence start** — sets `ongoing_naval_intel` + `naval_intel_target_var`, adds JE with target |
+| `.141`–`.146` | Naval intel flavor loop (clerk, signals, valet, counterintel sweep, drunken attaché, photographer) — nudge the two bars |
+| `.148` | Naval intel capstone — codes / flagship sabotage (ep2, `damage_ship_percent` **runtime-unverified**) / landing charts |
+| `.149` | Naval intel exposure — −30 relations, `exposed_spy_ring_modifier`, cleanup |
 
 
 ## `adv_dip_assassination_events.txt` (~1,650 lines) — namespace `adv_dip_assassination_event`
