@@ -56,6 +56,7 @@
 						3300 = {}
 						150 = {
 
+                        scope:target_country = { save_scope_as = spy_target_country }
                         if = {
                             limit = {
                                 root = {
@@ -77,6 +78,7 @@
 						3300 = {}
 						65 = {
 
+                        scope:target_country = { save_scope_as = spy_target_country }
                         if = {
                             limit = {
                                 root = {
@@ -97,6 +99,7 @@
 						3300 = {}
 						100 = {
 
+                        scope:target_country = { save_scope_as = spy_target_country }
                         if = {
                             limit = {
                                 root = {

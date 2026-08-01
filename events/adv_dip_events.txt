@@ -25,45 +25,48 @@ adv_dip_event.11 = {
 	immediate = {
 		save_scope_as = spymaster
 		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = sow_discontent
+			limit = { NOT = { exists = scope:spy_target_country } }
+	if = {
+				limit = {
+					any_country = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = sow_discontent
+							}
+						}
+						NOT = {
+							has_modifier = sow_discontent_modifier
 						}
 					}
-					NOT = {
-						has_modifier = sow_discontent_modifier
+				}
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = sow_discontent
+							}
+						}
+						NOT = {
+							has_modifier = sow_discontent_modifier
+						}
 					}
+					save_scope_as = spy_target_country
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = sow_discontent
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = sow_discontent
+							}
 						}
 					}
-					NOT = {
-						has_modifier = sow_discontent_modifier
-					}
+					save_scope_as = spy_target_country
 				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = sow_discontent
-						}
-					}
-				}
-				save_scope_as = spy_target_country
 			}
 		}
 	}
@@ -186,45 +189,48 @@ adv_dip_event.21 = {
 
 	immediate = {
 		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_nationalists
+			limit = { NOT = { exists = scope:spy_target_country } }
+	if = {
+				limit = {
+					any_country = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = support_nationalists
+							}
+						}
+						NOT = {
+							has_modifier = support_nationalists_modifier
 						}
 					}
-					NOT = {
-						has_modifier = support_nationalists_modifier
+				}
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = support_nationalists
+							}
+						}
+						NOT = {
+							has_modifier = support_nationalists_modifier
+						}
 					}
+					save_scope_as = spy_target_country
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_nationalists
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = support_nationalists
+							}
 						}
 					}
-					NOT = {
-						has_modifier = support_nationalists_modifier
-					}
+					save_scope_as = spy_target_country
 				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_nationalists
-						}
-					}
-				}
-				save_scope_as = spy_target_country
 			}
 		}
 
@@ -1033,45 +1039,48 @@ adv_dip_event.41 = {
 
 	immediate = {
 		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = sabotage_recruitment
+			limit = { NOT = { exists = scope:spy_target_country } }
+	if = {
+				limit = {
+					any_country = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = sabotage_recruitment
+							}
+						}
+						NOT = {
+							has_modifier = sabotage_recruitment_modifier
 						}
 					}
-					NOT = {
-						has_modifier = sabotage_recruitment_modifier
+				}
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = sabotage_recruitment
+							}
+						}
+						NOT = {
+							has_modifier = sabotage_recruitment_modifier
+						}
 					}
+					save_scope_as = spy_target_country
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = sabotage_recruitment
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = sabotage_recruitment
+							}
 						}
 					}
-					NOT = {
-						has_modifier = sabotage_recruitment_modifier
-					}
+					save_scope_as = spy_target_country
 				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = sabotage_recruitment
-						}
-					}
-				}
-				save_scope_as = spy_target_country
 			}
 		}
 		
@@ -1186,47 +1195,50 @@ adv_dip_event.81 = {
 	immediate = {
 		save_scope_as = spymaster
 		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = election_interference
+			limit = { NOT = { exists = scope:spy_target_country } }
+	if = {
+				limit = {
+					any_country = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = election_interference
+							}
 						}
+						NOT = {
+							has_modifier = overthrown_modifier
+						}
+						in_election_campaign = yes
 					}
-					NOT = {
-						has_modifier = overthrown_modifier
+				}
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = election_interference
+							}
+						}
+						NOT = {
+							has_modifier = overthrown_modifier
+						}
+						in_election_campaign = yes
 					}
-					in_election_campaign = yes
+					save_scope_as = spy_target_country
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = election_interference
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = election_interference
+							}
 						}
 					}
-					NOT = {
-						has_modifier = overthrown_modifier
-					}
-					in_election_campaign = yes
+					save_scope_as = spy_target_country
 				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = election_interference
-						}
-					}
-				}
-				save_scope_as = spy_target_country
 			}
 		}
 
@@ -1952,39 +1964,42 @@ adv_dip_event.91 = {
 	immediate = {
 		save_scope_as = spymaster
 		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = steal_technology
+			limit = { NOT = { exists = scope:spy_target_country } }
+	if = {
+				limit = {
+					any_country = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = steal_technology
+							}
 						}
 					}
+				}
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = steal_technology
+							}
+						}
+					}
+					save_scope_as = spy_target_country
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = steal_technology
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = steal_technology
+							}
 						}
 					}
+					save_scope_as = spy_target_country
 				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = steal_technology
-						}
-					}
-				}
-				save_scope_as = spy_target_country
 			}
 		}
 	}
@@ -2227,16 +2242,19 @@ adv_dip_event.110 = {
 
 	immediate = {
 		set_variable = ongoing_development
-		random_country = {
-			limit = {
-				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = develop_nation
+		if = {
+			limit = { NOT = { exists = scope:development_target } }
+			random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = develop_nation
+						}
 					}
 				}
+				save_scope_as = development_target
 			}
-			save_scope_as = development_target
 		}
 		set_variable = {
 			name = development_target_var
@@ -2395,39 +2413,42 @@ adv_dip_event.120 = {
 
 	immediate = {
 		if = {
-			limit = {
-				any_country = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_slaves
+			limit = { NOT = { exists = scope:spy_target_country } }
+	if = {
+				limit = {
+					any_country = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = support_slaves
+							}
 						}
 					}
+				}
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = support_slaves
+							}
+						}
+					}
+					save_scope_as = spy_target_country
 				}
 			}
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_slaves
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							has_diplomatic_pact = {
+								who = prev
+								type = support_slaves
+							}
 						}
 					}
+					save_scope_as = spy_target_country
 				}
-				save_scope_as = spy_target_country
-			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						has_diplomatic_pact = {
-							who = prev
-							type = support_slaves
-						}
-					}
-				}
-				save_scope_as = spy_target_country
 			}
 		}
 		root = {
@@ -2505,16 +2526,19 @@ adv_dip_event.131 = {
 
 	immediate = {
 		save_scope_as = defection_beneficiary
-		random_country = {
-			limit = {
-				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = steal_commander
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+	random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = steal_commander
+						}
 					}
 				}
+				save_scope_as = spy_target_country
 			}
-			save_scope_as = spy_target_country
 		}
 		scope:spy_target_country ?= {
 			random_scope_character = {
@@ -2669,16 +2693,19 @@ adv_dip_event.135 = {
 
 	immediate = {
 		save_scope_as = design_thief
-		random_country = {
-			limit = {
-				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = steal_ship_designs
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+	random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = steal_ship_designs
+						}
 					}
 				}
+				save_scope_as = spy_target_country
 			}
-			save_scope_as = spy_target_country
 		}
 	}
 
@@ -2792,16 +2819,19 @@ adv_dip_event.140 = {
 
 	immediate = {
 		set_variable = ongoing_naval_intel
-		random_country = {
-			limit = {
-				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = naval_intelligence
+		if = {
+			limit = { NOT = { exists = scope:naval_intel_target } }
+	random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = naval_intelligence
+						}
 					}
 				}
+				save_scope_as = naval_intel_target
 			}
-			save_scope_as = naval_intel_target
 		}
 		set_variable = {
 			name = naval_intel_target_var
@@ -3076,16 +3106,19 @@ adv_dip_event.150 = {
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
 	immediate = {
-		random_country = {
-			limit = {
-				root = {
-					has_diplomatic_pact = {
-						who = prev
-						type = clandestine_arms_pipeline
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+	random_country = {
+				limit = {
+					root = {
+						has_diplomatic_pact = {
+							who = prev
+							type = clandestine_arms_pipeline
+						}
 					}
 				}
+				save_scope_as = spy_target_country
 			}
-			save_scope_as = spy_target_country
 		}
 		scope:spy_target_country ?= {
 			random_country = {
@@ -3322,15 +3355,18 @@ adv_dip_event.163 = {
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
 	immediate = {
-		random_country = {
-			limit = {
-				OR = {
-					var:turned_steal_technology_by ?= root
-					var:turned_election_interference_by ?= root
-					var:turned_sow_discontent_by ?= root
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+	random_country = {
+				limit = {
+					OR = {
+						var:turned_steal_technology_by ?= root
+						var:turned_election_interference_by ?= root
+						var:turned_sow_discontent_by ?= root
+					}
 				}
+				save_scope_as = spy_target_country
 			}
-			save_scope_as = spy_target_country
 		}
 	}
 	option = {

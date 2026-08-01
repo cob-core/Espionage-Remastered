@@ -9,6 +9,7 @@
 [*][b]NEW: False Flag Directive[/b] — choose a patsy and your detected operations are blamed on them instead; if the forgery ever unravels, both powers turn on you.
 [*][b]NEW: Kompromat[/b] — active spy networks compile yearly dossiers on enemy commanders: disgrace them for a year, end their career outright, or publish selectively to humiliate their government.
 [*][b]NEW: Dynamic odds[/b] — every operation's monthly success odds now scale with the espionage institution differential. Investment is finally tradecraft.
+[*]Fixed a bug as old as the mod: running espionage against several countries at once could fire events against the wrong target. Every operation now tracks its own target.
 [*]Fund Piracy has been removed — superseded by the base game's naval piracy mechanics and the new espionage systems.
 [/list]
 

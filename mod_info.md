@@ -10,6 +10,7 @@
 + NEW: Kompromat — active networks compile dossiers on enemy commanders: disgrace them for a year, end their career, or humiliate their government.
 + NEW: Dynamic odds — every operation's monthly success odds now scale with the espionage institution differential, fulfilling the long-standing community suggestion.
 + Fund Piracy removed — superseded by the 1.13 naval piracy mechanics and the new espionage systems.
++ Fixed a bug as old as the mod: running operations against multiple countries at once could resolve events against the wrong target — each operation now carries its own target through its event chain.
 + Post-test polish: vanilla lens icons for the new actions, hover effect descriptions, Smuggle Revolutionary rename, journal entries correctly country-scoped, and a full error.log cleanup.
 
 ## Previous Changelog (v4.0 — Completion & The Great Wave)

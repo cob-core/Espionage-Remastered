@@ -79,6 +79,7 @@
 					limit = {
 						NOT = { has_variable = ongoing_plans }
 					}
+					scope:target_country = { save_scope_as = spy_target_country }
 					trigger_event = { id = adv_dip_assassination_event.100 }
 				}
 			}

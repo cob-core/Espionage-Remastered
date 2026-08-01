@@ -62,6 +62,7 @@
 					random_list = {
 						800 = {}
 						150 = {
+						scope:target_country = { save_scope_as = spy_target_country }
 						root = {
 							trigger_event = {
 								id = adv_dip_event.150
@@ -75,6 +76,7 @@
 					random_list = {
 						800 = {}
 						65 = {
+						scope:target_country = { save_scope_as = spy_target_country }
 						root = {
 							trigger_event = {
 								id = adv_dip_event.150
@@ -87,6 +89,7 @@
 					random_list = {
 						800 = {}
 						100 = {
+						scope:target_country = { save_scope_as = spy_target_country }
 						root = {
 							trigger_event = {
 								id = adv_dip_event.150

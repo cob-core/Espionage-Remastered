@@ -79,6 +79,7 @@
 						1600 = {}
 						150 = {
 
+						scope:target_country = { save_scope_as = development_target }
 						if = {
 							limit = {
 								root = {
@@ -100,6 +101,7 @@
 						1600 = {}
 						65 = {
 
+						scope:target_country = { save_scope_as = development_target }
 						if = {
 							limit = {
 								root = {
@@ -120,6 +122,7 @@
 						1600 = {}
 						100 = {
 
+						scope:target_country = { save_scope_as = development_target }
 						if = {
 							limit = {
 								root = {

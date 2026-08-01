@@ -49,6 +49,7 @@
 					limit = {
 						NOT = { has_variable = ongoing_naval_intel }
 					}
+					scope:target_country = { save_scope_as = naval_intel_target }
 					trigger_event = { id = adv_dip_event.140 }
 				}
 			}

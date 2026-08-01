@@ -61,6 +61,7 @@
 						3200 = {}
 						150 = {
  
+						scope:target_country = { save_scope_as = spy_target_country }
 						root = {
 							trigger_event = {
 					            id = adv_dip_event.31
@@ -75,6 +76,7 @@
 						3200 = {}
 						65 = {
  
+						scope:target_country = { save_scope_as = spy_target_country }
 						root = {
 							trigger_event = {
 					            id = adv_dip_event.31
@@ -88,6 +90,7 @@
 						3200 = {}
 						100 = {
  
+						scope:target_country = { save_scope_as = spy_target_country }
 						root = {
 							trigger_event = {
 					            id = adv_dip_event.31

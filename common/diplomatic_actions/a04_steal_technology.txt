@@ -66,6 +66,7 @@
 						1600 = {}
 						150 = {
 
+                        scope:target_country = { save_scope_as = spy_target_country }
                         if = {
 							limit = {
 								scope:target_country = {
@@ -94,6 +95,7 @@
 						1600 = {}
 						65 = {
 
+                        scope:target_country = { save_scope_as = spy_target_country }
                         if = {
 							limit = {
 								scope:target_country = {
@@ -121,6 +123,7 @@
 						1600 = {}
 						100 = {
 
+                        scope:target_country = { save_scope_as = spy_target_country }
                         if = {
 							limit = {
 								scope:target_country = {
