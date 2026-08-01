@@ -1,0 +1,45 @@
+﻿great_game_score_minor_effect = {
+	change_variable = {
+		name = great_game_score
+		add = 1
+	}
+	great_game_leadership_check_effect = yes
+}
+
+great_game_score_major_effect = {
+	change_variable = {
+		name = great_game_score
+		add = 3
+	}
+	great_game_leadership_check_effect = yes
+}
+
+great_game_leadership_check_effect = {
+	if = {
+		limit = {
+			has_law = law_type:law_spy_agency
+			OR = {
+				NOT = { exists = global_var:great_game_leader }
+				AND = {
+					NOT = { global_var:great_game_leader ?= this }
+					var:great_game_score > global_var:great_game_leader.var:great_game_score
+				}
+			}
+		}
+		if = {
+			limit = { exists = global_var:great_game_leader }
+			global_var:great_game_leader = {
+				remove_modifier = master_of_the_great_game_modifier
+				trigger_event = { id = adv_dip_event.166 }
+			}
+		}
+		set_global_variable = {
+			name = great_game_leader
+			value = this
+		}
+		add_modifier = {
+			name = master_of_the_great_game_modifier
+		}
+		trigger_event = { id = adv_dip_event.165 }
+	}
+}

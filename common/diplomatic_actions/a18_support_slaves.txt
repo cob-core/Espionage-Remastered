@@ -80,9 +80,34 @@
 		monthly_effect = {
 			custom_tooltip = {
 				text = support_slaves_monthly_effect
-				random_list = { 
-					35 = {}
-					1 = { 
+				random_list = {
+					3500 = {}
+					100 = {
+						modifier = {
+							trigger = { institution_investment_level:institution_espionage >= target_espionage_plus_1 }
+							factor = 1.15
+						}
+						modifier = {
+							trigger = { institution_investment_level:institution_espionage <= target_espionage_minus_1 }
+							factor = 0.85
+						}
+						modifier = {
+							trigger = { institution_investment_level:institution_espionage >= target_espionage_plus_2 }
+							factor = 1.15
+						}
+						modifier = {
+							trigger = { institution_investment_level:institution_espionage <= target_espionage_minus_2 }
+							factor = 0.85
+						}
+						modifier = {
+							trigger = { institution_investment_level:institution_espionage >= target_espionage_plus_3 }
+							factor = 1.15
+						}
+						modifier = {
+							trigger = { institution_investment_level:institution_espionage <= target_espionage_minus_3 }
+							factor = 0.85
+						}
+ 
 						root = {
 							trigger_event = {
 					            id = adv_dip_event.120

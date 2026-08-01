@@ -779,6 +779,7 @@ adv_dip_assassination_event.198 = { #Successful
 
 	option = {
 		name = adv_dip_assassination_event.198.a
+		great_game_score_major_effect = yes
 		default_option = yes
 		scope:assassination_leader = {
 			set_character_busy_and_immortal = no

@@ -1,0 +1,58 @@
+﻿false_flag_directive = {
+	groups = {
+		general
+	}
+	requires_approval = no
+	should_notify_third_parties = no
+
+	unlocking_technologies = {
+		mass_communication
+	}
+
+	selectable = {
+		NOT = { is_country_type = decentralized }
+		is_revolutionary = no
+	}
+
+	potential = {
+		NOT = { is_country_type = decentralized }
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 3
+		}
+	}
+
+	possible = {
+		is_revolutionary = no
+		in_default = no
+		NOT = { has_variable = false_flag_patsy }
+		NOT = { has_war_with = scope:target_country }
+		has_diplomatic_relevance = scope:target_country
+	}
+
+	effect = {
+		set_variable = {
+			name = false_flag_patsy
+			value = scope:target_country
+			months = 60
+		}
+		add_modifier = {
+			name = false_flag_operations_modifier
+			multiplier = spy_cost_multiplier_large
+			months = 60
+		}
+	}
+
+	ai = {
+		propose_score = {
+			value = 0
+		}
+
+		will_propose = {
+			always = no
+		}
+	}
+}

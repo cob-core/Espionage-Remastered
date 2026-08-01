@@ -261,3 +261,55 @@ naval_intel_funding = {
 		multiply = high_espionage_event_costs_value
 	}
 }
+
+# Espionage differential helpers (v4.1): thresholds for the dynamic-odds factor
+# stacks. Two families because pact blocks see scope:target_country while events
+# see scope:spy_target_country.
+target_espionage_plus_1 = {
+	value = scope:target_country.institution_investment_level:institution_espionage
+	add = 1
+}
+target_espionage_plus_2 = {
+	value = scope:target_country.institution_investment_level:institution_espionage
+	add = 2
+}
+target_espionage_plus_3 = {
+	value = scope:target_country.institution_investment_level:institution_espionage
+	add = 3
+}
+target_espionage_minus_1 = {
+	value = scope:target_country.institution_investment_level:institution_espionage
+	subtract = 1
+}
+target_espionage_minus_2 = {
+	value = scope:target_country.institution_investment_level:institution_espionage
+	subtract = 2
+}
+target_espionage_minus_3 = {
+	value = scope:target_country.institution_investment_level:institution_espionage
+	subtract = 3
+}
+spy_target_espionage_plus_1 = {
+	value = scope:spy_target_country.institution_investment_level:institution_espionage
+	add = 1
+}
+spy_target_espionage_plus_2 = {
+	value = scope:spy_target_country.institution_investment_level:institution_espionage
+	add = 2
+}
+spy_target_espionage_plus_3 = {
+	value = scope:spy_target_country.institution_investment_level:institution_espionage
+	add = 3
+}
+spy_target_espionage_minus_1 = {
+	value = scope:spy_target_country.institution_investment_level:institution_espionage
+	subtract = 1
+}
+spy_target_espionage_minus_2 = {
+	value = scope:spy_target_country.institution_investment_level:institution_espionage
+	subtract = 2
+}
+spy_target_espionage_minus_3 = {
+	value = scope:spy_target_country.institution_investment_level:institution_espionage
+	subtract = 3
+}

@@ -63,3 +63,74 @@ adv_dip_secession_hook = {
 		}
 	}
 }
+
+on_yearly_pulse_country = {
+	on_actions = {
+		adv_dip_espionage_yearly
+		adv_dip_turned_network_review
+	}
+}
+
+adv_dip_espionage_yearly = {
+	effect = {
+		# Great Game score decay
+		if = {
+			limit = { has_variable = great_game_score }
+			change_variable = {
+				name = great_game_score
+				multiply = 0.9
+			}
+		}
+		# Kompromat dossier accrual while any espionage network runs
+		if = {
+			limit = {
+				any_country = {
+					OR = {
+						has_diplomatic_pact = { who = prev type = sow_discontent }
+						has_diplomatic_pact = { who = prev type = support_nationalists }
+						has_diplomatic_pact = { who = prev type = agitate_for_liberty }
+						has_diplomatic_pact = { who = prev type = steal_technology }
+						has_diplomatic_pact = { who = prev type = election_interference }
+						has_diplomatic_pact = { who = prev type = fund_piracy }
+						has_diplomatic_pact = { who = prev type = support_slaves }
+						has_diplomatic_pact = { who = prev type = sabotage_recruitment }
+						has_diplomatic_pact = { who = prev type = steal_commander }
+						has_diplomatic_pact = { who = prev type = naval_intelligence }
+						has_diplomatic_pact = { who = prev type = steal_ship_designs }
+					}
+				}
+			}
+			change_variable = {
+				name = kompromat_dossier_progress
+				add = 1
+			}
+			if = {
+				limit = {
+					var:kompromat_dossier_progress >= 5
+				}
+				remove_variable = kompromat_dossier_progress
+				trigger_event = { id = adv_dip_event.180 }
+			}
+		}
+		else = {
+			remove_variable = kompromat_dossier_progress
+		}
+	}
+}
+
+adv_dip_turned_network_review = {
+	effect = {
+		if = {
+			limit = {
+				any_country = {
+					OR = {
+						var:turned_steal_technology_by ?= prev
+						var:turned_election_interference_by ?= prev
+						var:turned_sow_discontent_by ?= prev
+					}
+				}
+			}
+			trigger_event = { id = adv_dip_event.160 }
+		}
+	}
+}

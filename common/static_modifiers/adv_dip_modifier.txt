@@ -296,3 +296,60 @@
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
 		country_piracy_income_add = 0.10
 	}
+
+	pipeline_interception_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
+
+	pipeline_triumph_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+		country_prestige_add = 25
+	}
+
+	abandoned_by_patron_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		unit_morale_recovery_mult = -0.10
+	}
+
+	pipeline_infamy_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_fire_negative.dds
+		country_infamy_generation_mult = 0.25
+	}
+
+	stolen_technology_poisoned_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_lightbulb_positive.dds
+		country_tech_research_speed_mult = -0.05
+	}
+
+	master_of_the_great_game_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+		country_prestige_mult = 0.05
+		country_leverage_generation_mult = 0.05
+	}
+
+	sealed_train_ferment_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
+		state_radicals_from_political_movements_mult = 0.50
+	}
+
+	sealed_train_crackdown_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+		state_radicals_from_political_movements_mult = -0.25
+	}
+
+	false_flag_operations_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
+		country_expenses_add = 1
+	}
+
+	kompromat_scandal_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
+		country_prestige_mult = -0.05
+	}
+
+
+	pipeline_shame_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+		country_prestige_add = -25
+	}

@@ -1,0 +1,73 @@
+﻿sealed_train = {
+	groups = {
+		general
+	}
+	requires_approval = no
+	should_notify_third_parties = no
+
+	unlocking_technologies = {
+		mass_communication
+	}
+
+	selectable = {
+		NOT = { is_country_type = decentralized }
+		is_revolutionary = no
+	}
+
+	potential = {
+		NOT = { is_country_type = decentralized }
+		scope:target_country = {
+			NOT = { is_country_type = decentralized }
+		}
+		institution_investment_level = {
+			institution = institution_espionage
+			value >= 4
+		}
+	}
+
+	possible = {
+		is_revolutionary = no
+		in_default = no
+		NOT = { has_war_with = scope:target_country }
+		NOT = { has_variable = recently_sealed_train }
+		has_diplomatic_relevance = scope:target_country
+	}
+
+	effect = {
+		scope:target_country = {
+			save_scope_as = spy_target_country
+		}
+		set_variable = {
+			name = recently_sealed_train
+			months = 60
+		}
+		add_modifier = {
+			name = spy_network_cost_modifier
+			multiplier = spy_cost_multiplier_very_large
+			months = 25
+		}
+		trigger_event = { id = adv_dip_event.170 }
+	}
+
+	ai = {
+		propose_score = {
+			value = 2
+			if = {
+				limit = {
+					scope:target_country = {
+						has_diplomatic_pact = {
+							who = root
+							type = rivalry
+						}
+					}
+				}
+				add = 10
+			}
+		}
+
+		will_propose = {
+			scaled_debt <= 0
+			gold_reserves > 100000
+		}
+	}
+}

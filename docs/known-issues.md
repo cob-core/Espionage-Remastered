@@ -26,6 +26,17 @@ The 01:23 launch produced 155 mod-related error lines. Fixed:
 11. Missing `adv_dip_je_expand_infrastructure(_desc)` button loc added (en+fr).
 12. Checker now bans all error.log-proven legacy tokens.
 
+## v4.1 runtime checks (Shadow War — statically verified, play-test pending)
+
+1. `institution_investment_level:institution_espionage` as a trigger comparison value
+   (powers all dynamic odds) — parses like proven forms; confirm no error.log lines.
+2. Pact-scope persistence into `auto_break_effect`-fired events (pipeline payoff `.153`
+   — explicitly re-saved, should be safe).
+3. `set_global_variable` country-scope value + `global_var:` score comparison (Great
+   Game leadership swap).
+4. Turned-network option visibility (`scope:spymaster` persistence into X2 events).
+5. False-flag reroute on all five wrapped detection sites.
+
 ## Remaining runtime checks
 
 1. Blackmail article AI acceptance and the `non_fulfillment` weekly check.

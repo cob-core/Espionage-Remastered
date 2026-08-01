@@ -69,3 +69,13 @@ withdraws the article if the network dies. Source: +10 leverage generation; targ
 −50% leverage resistance. AI: target side gets +40 acceptance from the dossier, −20 if
 it outranks the source. Enforceability + gunboat-acceptance integration deliberately
 deferred.
+
+## v4.1 Shadow War (see spec `2026-08-01-v4.1-shadow-war-design.md`)
+
+New actions: `clandestine_arms_pipeline` (a13, war sponsorship with interception/
+ultimatum chain, events `.150`–`.153`), `sealed_train` (a15, instant, `.170`–`.172`),
+`false_flag_directive` (a16, instant, sets the patsy; detections reroute via
+`.175`/`.176`). Systems: turned networks (X2 option c on `.12`/`.82`/`.92`, poisoned
+generic success `.163`, yearly review `.160`/`.161`), the Great Game (JE + score
+variables + `.165`/`.166`), kompromat (yearly dossiers, `.180`/`.181`), and dynamic
+odds (edge-scaled factor stacks on every pact die and detection roll).

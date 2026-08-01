@@ -1,0 +1,49 @@
+﻿adv_dip_je_great_game = {
+
+	group = je_group_espionage
+
+	weight = 100
+	transferable = no
+	should_be_pinned_by_default_involved = no
+
+	is_shown_when_inactive = {
+		has_law = law_type:law_spy_agency
+	}
+
+	possible = {
+		has_law = law_type:law_spy_agency
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_variable = great_game_score } }
+			set_variable = {
+				name = great_game_score
+				value = 0
+			}
+		}
+	}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = adv_dip_je_great_game_leading
+				trigger = {
+					exists = global_var:great_game_leader
+					global_var:great_game_leader ?= this
+				}
+			}
+			triggered_desc = {
+				desc = adv_dip_je_great_game_playing
+				trigger = { always = yes }
+			}
+		}
+	}
+
+	invalid = {
+		NOT = { has_law = law_type:law_spy_agency }
+	}
+
+	on_invalid = {
+	}
+}

@@ -1,7 +1,16 @@
 # Espionage Remastered
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
-## Latest Changelog (v4.0 — Completion & The Great Wave)
+## Latest Changelog (v4.1 — Shadow War)
++ NEW: Clandestine Arms Pipeline — covertly bankroll a belligerent's war without joining it; run the blockade gauntlet, survive the ultimatum when named, and collect an obligation from the survivor.
++ NEW: Turned Networks — victims with superior espionage can secretly turn sow-discontent, election and tech-theft networks: the spymaster keeps paying while receiving nothing (or poisoned technology); counterintelligence reviews eventually smell the rot.
++ NEW: The Great Game — a global intelligence scoreboard; every operation scores, scores decay, and the leading service holds Master of the Great Game.
++ NEW: The Sealed Train — smuggle a revolutionary into a rival power: massive radicalism surge and possible spark, or a border arrest that rallies their loyalists.
++ NEW: False Flag Directive — route detections through a patsy of your choice; if the forgery unravels, both powers turn on you.
++ NEW: Kompromat — active networks compile dossiers on enemy commanders: disgrace them for a year, end their career, or humiliate their government.
++ NEW: Dynamic odds — every operation's success and detection odds now scale with the espionage institution differential (±~15%/level), fulfilling the long-standing community suggestion.
+
+## Previous Changelog (v4.0 — Completion & The Great Wave)
 + NEW: Naval Intelligence Network — an assassination-style journal-entry operation: infiltrate an admiralty, balance Infiltration against Exposure through flavor events and buttons, then choose your coup: crack their codes, cripple their flagship (The Great Wave), or copy their coastal surveys.
 + NEW: Steal Ship Designs — a pact against superior naval powers granting stolen construction efficiency and military tech spread, with detection risk.
 + NEW: Blackmailed Concession treaty article — an intelligence dossier (any active espionage pact) compels the target's cooperation; the article collapses if your spy network is rolled up.
