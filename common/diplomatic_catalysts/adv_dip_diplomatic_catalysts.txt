@@ -1,4 +1,4 @@
-catalyst_pact_formed = {
+﻿adv_dip_catalyst_pact_formed = {
 	category = cc_diplomatic_pact
 
 	political_lobby_creation = {

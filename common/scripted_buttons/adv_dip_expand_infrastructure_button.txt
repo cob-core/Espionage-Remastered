@@ -1,13 +1,13 @@
-je_expand_infrastructure = {
+﻿je_expand_infrastructure = {
 	name = adv_dip_je_expand_infrastructure
 	desc = adv_dip_je_expand_infrastructure_desc
 
 	visible = { always = yes }
 	
 	ai_chance = {
-		base = 5
-		modifier = {
-			trigger = { bureaucracy > 0 }
+		value = 5
+		if = {
+			limit = { bureaucracy > 0 }
 			add = 5
 		}
 	}

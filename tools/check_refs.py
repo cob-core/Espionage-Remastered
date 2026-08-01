@@ -126,10 +126,22 @@ for p in script_files(MOD, "common/diplomatic_actions"):
         for suffix in ACTION_KEYS:
             need(action + suffix, f"action {action}")
 
+# --- 5a2. every modifier type used in static definitions must exist ---
+valid_types = toplevel_keys(MOD, "common/modifier_type_definitions") | toplevel_keys(VANILLA, "common/modifier_type_definitions")
+NON_TYPE_KEYS = {"icon"}
+for p in script_files(MOD, "common/static_modifiers"):
+    text = strip_comments(read(p))
+    depth = 0
+    for i, line in enumerate(text.split("\n"), 1):
+        m = re.match(r"^\s*([a-z_0-9]+)\s*=", line)
+        if m and depth == 1 and m.group(1) not in NON_TYPE_KEYS and m.group(1) not in valid_types:
+            failures.append(f"[modtype] {p.relative_to(MOD)}:{i}: unknown modifier type '{m.group(1)}'")
+        depth += line.count("{") - line.count("}")
+
 # --- 5b. banned legacy tokens (proven invalid in 1.13 via error.log) ---
 LEGACY = ["should_invalidate", "should_auto_break", "is_about_to_auto_break",
           "has_role = general", "has_role = admiral", "is_ruler = ",
-          "weekly_net_fixed_income", "should_be_pinned_by_default = ",
+          "weekly_net_fixed_income", "fixed_net_income <", "fixed_net_income >", "should_be_pinned_by_default = ",
           "damage_ship_percent", "unlocking_technologies = {"]
 for p, t in mod_script.items():
     hay = t

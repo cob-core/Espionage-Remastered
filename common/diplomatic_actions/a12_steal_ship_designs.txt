@@ -99,7 +99,7 @@
 		will_break = {
 			OR = {
 				scaled_debt > 0.25
-				fixed_net_income < 10000
+				net_fixed_income < 10000
 			}
 		}
 	}

@@ -18,7 +18,7 @@
 
 	support_nationalists_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-		state_radicals_from_discrimination_mult = 0.1
+		state_radicals_from_political_movements_mult = 0.1
 	}
 
 	suppress_nationalists_modifier = {
@@ -29,8 +29,8 @@
 
 	agitate_for_liberty_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
-		building_output_small_arms_mult = 0.1
-		building_output_artillery_mult = 0.1
+		goods_output_small_arms_mult = 0.1
+		goods_output_artillery_mult = 0.1
 	}
 
 	sabotage_recruitment_modifier = {
@@ -72,18 +72,6 @@
 		country_expenses_add = 1
 	}
 
-	fund_armaments_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
-		country_tax_income_add = send_armaments_cost
-		unit_supply_consumption_mult = 1
-		state_conscription_rate_mult = 0.05
-	}
-
-	armaments_cost_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = send_armaments_cost
-	}
-
 	overthrower_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 		country_influence_mult = 0.1
@@ -100,7 +88,7 @@
 
 	suppress_government_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-		country_party_whip_impact_mult = 0.25
+		country_party_whip_impact_add = 0.25
 	}
 
 	modifier_failed_assassination = {

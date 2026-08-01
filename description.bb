@@ -49,7 +49,6 @@ As Better Politics adds and changes ideologies, it requires a compatibility patc
 [*][strike]Add an institution for espionage, with greater levels giving access to greater actions.[/strike]  [b]ADDED[/b]
 [*][strike]Assassinations, with journal entries and progress bars. [/strike]  [b]ADDED[/b]
 [*][strike]Regime Change, with journal entries and progress bars.[/strike] [b]ADDED AS ELECTION INTERFERENCE, MAY EXPAND IN FUTURE[/b]
-[*][strike]Fund Armament: Lower military goods cost on lower ranked countries for a price.[/strike]  [b]ADDED[/b]
 [*][strike]Military Attache.[/strike]   [b]ADDED[/b]
 [*][strike]Cultural Exchange.[/strike]   [b]ADDED[/b]
 [*][strike]Fund Piracy.[/strike]   [b]ADDED[/b]

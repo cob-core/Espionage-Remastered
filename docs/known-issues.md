@@ -33,20 +33,27 @@ The 01:23 launch produced 155 mod-related error lines. Fixed:
 3. Re-launch and confirm the error.log deltas are gone; `.120` orphan warning should
    clear now that a18 parses fully.
 
-## Known legacy errors NOT yet fixed (need a scoping decision)
+## Legacy items — all fixed (2026-08-01, second remediation pass)
 
-1. **Fund Armaments cluster is dead code**: no action defines the `fund_armaments`
-   pact type, events `.64`–`.66`/`.71` are orphaned, `.64` uses the removed
-   `create_trade_route` effect, and its two modifiers use a script value as a
-   magnitude ("Malformed token") plus removed `building_output_*_mult` types.
-   Recommend full removal (same principle as Sabotage Industry) or a rebuild.
-2. `sow_discontent_modifier` still carries `state_radicals_from_discrimination_mult`
-   (removed in the 1.10 discrimination rework) — needs a modern replacement choice.
-3. `suppress_government_modifier` region uses removed `country_party_whip_impact_mult`.
-4. Event-option `ai_chance` blocks using `modifier = { add = ... }` log "unknown
-   command 'add' for MTTH" (~25 sites, election interference + support nationalists) —
-   the AI ignores those weights; needs a rewrite to the supported form.
-5. ~15 events lack a `default_option = yes` (warnings only).
+1. **Fund Armaments cluster fully removed** (dead code: no action, orphaned events
+   `.64`–`.71`, removed `create_trade_route` effect, malformed modifiers, plus its
+   script values and 18 loc keys per language).
+2. `sow_discontent_modifier`: → `state_radicals_from_political_movements_mult`.
+3. `suppress_government_modifier`: → `country_party_whip_impact_add`.
+4. `agitate_for_liberty_modifier`: `building_output_*_mult` → `goods_output_*_mult`
+   (caught by the checker's new modifier-type validator, which now checks every type
+   in static definitions against vanilla + mod type databases).
+5. All 10 scripted buttons: `ai_chance` rewritten from the invalid `base`/`modifier`
+   MTTH form to the script-value `value`/`if` form.
+6. 26 bare `add` lines inside event `ai_chance` blocks folded into `base`.
+7. `default_option = yes` added to 14 events.
+8. The three original treaty articles' `wargoal` blocks moved from inside the `ai`
+   block (depth 3 — never parsed) to article top level: **their enforcement war goals
+   were silently dead**.
+9. `catalyst_pact_formed` renamed `adv_dip_catalyst_pact_formed` (collided with a
+   vanilla catalyst key — "Duplicated key" error).
+10. Income trigger corrected again: `fixed_net_income` (my first guess) is also
+    invalid — vanilla uses **`net_fixed_income`**; checker bans both wrong forms.
 
 ### ep2 console test checklist
 `event adv_dip_event.148` on a country with an active naval-intel JE against a

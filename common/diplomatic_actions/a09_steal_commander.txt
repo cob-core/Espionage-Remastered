@@ -122,13 +122,13 @@
     
         will_propose = { 
             scaled_debt <= 0
-            fixed_net_income >= 25000
+            net_fixed_income >= 25000
         }
         
         will_break = { 
             OR = {        
                 scaled_debt > 0.25
-                fixed_net_income < 20000
+                net_fixed_income < 20000
             }
         }            
     }

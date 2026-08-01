@@ -5,9 +5,9 @@
 	visible = { always = yes }
 
 	ai_chance = {
-		base = 0
-		modifier = {
-			trigger = {
+		value = 0
+		if = {
+			limit = {
 				je:adv_dip_je_naval_intelligence ?= {
 					"scripted_bar_progress(naval_intel_risk_bar)" >= 6
 				}

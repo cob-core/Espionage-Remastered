@@ -39,7 +39,6 @@ sow_discontent_modifier: "Sowed Discontent"
  overthrower_modifier: "Election Interference"
 overthrown_modifier: "Election Interference"
 suppress_government_modifier: "Government Crackdown"
-armaments_cost_modifier: "Armaments Shipments"
 assassination_cost_modifier: "Assassination Plot"
 recent_assassination_modifier: "Recent Assassination"
 piracy_disruption_modifier: "Piracy Disruption"
@@ -115,20 +114,8 @@ adv_dip_event.33.f: "The Security Minister's morning briefing had taken an uncom
 adv_dip_event.33.a: "Is there any need for that?"
 adv_dip_event.33.b: "Definitely suspicious."
 
-adv_dip_event.64.t: "Foreign Advisors Arrive"
-adv_dip_event.64.d: "A delegation of advisors has arrived in our capital, offering their expertise in industrial development. While their assistance comes at a cost, their knowledge could prove valuable to our nation's growth."
-adv_dip_event.64.f: "The grand reception hall bustled with activity as the foreign advisors presented their credentials. Engineers, economists, and industrial experts stood in neat rows, their polished appearances matching their prestigious reputations. \n\n"We are honored to receive such distinguished assistance," the Minister of Industry declared, though some of his aides exchanged worried glances. "Your expertise will surely accelerate our development." \n\nYet as the delegation toured our facilities, keen eyes took careful notes, and pointed questions about our infrastructure and resources seemed to probe deeper than mere technical interest warranted. \n\nThe Minister's secretary leaned in close, whispering, "They seem rather... thorough in their assessments, sir." \n\n"Indeed," the Minister replied softly. "One might wonder what other purposes such detailed knowledge might serve.""
-adv_dip_event.64.a: "Welcome our esteemed guests."
 
-adv_dip_event.65.t: "Military Attaché Arrives"
-adv_dip_event.65.d: "A delegation of military attachés has arrived to share their expertise. While they claim their mission is to modernize our armed forces, some of our officers are wary of their true intentions."
-adv_dip_event.65.f: "The War Ministry's grand hall echoed with the sharp click of boots as foreign officers conducted their inspection. Their pristine uniforms and polished decorations drew admiring glances from our junior officers.\n\n"Their tactical doctrine is quite advanced," the Chief of Staff admitted privately. "Yet I can't shake the feeling they're cataloging more than just training deficiencies." \n\nIndeed, the attachés' questions about supply routes, defensive positions, and command structures seemed to probe beyond mere professional courtesy. \n\n"They take such detailed notes," an aide whispered. "One wonders whose desk in [SCOPE.sCountry('spy_target_country').GetName] will eventually see them.""
-adv_dip_event.65.a: "We can learn much from their expertise."
 
-adv_dip_event.66.t: "Cultural Delegation Arrives"
-adv_dip_event.66.d: "Representatives have arrived with promises of cultural exchange and artistic collaboration. Their presence has already begun to influence our society's elite circles."
-adv_dip_event.66.f: "The National Theater buzzed with excitement as foreign artists unpacked crates of books, musical instruments, and paintings. The cultural delegation had barely arrived, yet already the capital's salons were arranging soirées in their honor.\n\n"Such fascinating perspectives they bring," the Minister of Culture observed, watching a foreign composer discuss theory with local musicians. "Though I notice they seem particularly interested in our more... influential families."\n\nIndeed, the delegation's charm offensive appeared carefully targeted. Every exhibition, every concert, every literary discussion somehow attracted those closest to power.\n\nA senior civil servant adjusted his cravat nervously. "They're not just spreading culture, are they? They're building a network.""
-adv_dip_event.66.a: "Art knows no borders!"
 
 adv_dip_event.11.t: "Sprinkle the Seeds of Discontent"
 adv_dip_event.11.d: "The proud [ROOT.GetCountry.GetName] Secret Service's espionage operations against [SCOPE.sCountry('spy_target_country').GetName] have taken a major step forward. They are convinced that with a little support they can achieve the complete success of the operation."
@@ -142,11 +129,6 @@ adv_dip_event.12.f: "The police chief's report landed on the Cabinet table with 
 adv_dip_event.12.a: "That is not ideal."
 adv_dip_event.12.b: "We must invest in destroying dissent."
 
-adv_dip_event.71.t: "The Night Manager"
-adv_dip_event.71.d: "Shipments of weapons, explosives, and more from generous donors are making their way across the borders of [SCOPE.sCountry('spy_target_country').GetName]. We'll soon see the fruit of our labour as men on the front lines fire weapons with our branding on them. "
-adv_dip_event.71.f: "In a nondescript warehouse near the border, the intelligence operative checked manifests against inventory. Crates of rifles, ammunition, and explosives stood ready for transport, their original manufacturing marks carefully replaced with forgeries. \n\n"The local contacts have cleared the route," his assistant reported quietly. "Customs officials have been paid. These weapons will reach the separatists by Thursday." \n\nThe operative nodded, signing off on the final paperwork with a fictitious name. "And they'll be firing them by Sunday, creating precisely the border incident we require." \n\nHe closed the ledger with satisfaction. Officially, these weapons didn't exist. Officially, [ROOT.GetCountry.GetName] had no involvement whatsoever in the region's growing instability. \n\nUnofficially, the mission was proceeding exactly as planned."
-adv_dip_event.71.a: "Sell. More. Guns."
-adv_dip_event.71.b: "Perfect, carry on gentlemen."
 
 adv_dip_event.81.t: "Golden Pockets"
 adv_dip_event.81.d: "A plot of intrigue and espionage has gotten us into some important places. We now have infiltrated [SCOPE.sCountry('spy_target_country').GetName] and could persuade certain party members to our influence."
@@ -826,3 +808,4 @@ develop_nation_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has 
  setting_players_only_tech_stealing_desc: "Only human players may steal technology. The AI will never use this action."
  adv_dip_je_expand_infrastructure: "Expand Infrastructure"
  adv_dip_je_expand_infrastructure_desc: "Fund railways, roads, and ports in [SCOPE.gsCountry('target').GetName] to accelerate their development."
+ adv_dip_catalyst_pact_formed: "Diplomatic Pact Formed"

@@ -13,8 +13,6 @@ scans and save the victim as `scope:spy_target_country`.
 | `.21`/`.22` | **Support Nationalists** — 5 branches pick a discriminated culture → `adv_nationalist_culture` |
 | `.31`/`.32`/`.33` | **Agitate for Liberty** — can `create_diplomatic_play` or set `liberty_target_country` |
 | `.41`/`.42` | **Sabotage Recruitment** — cost + detection; `.42` offers endure (×2 debuff + conscript radicals) vs counter-fund |
-| `.64`/`.65`/`.66` | Fund Armaments family |
-| `.71` | Fund Armaments variant (scans for a `fund_armaments` pact) |
 | `.81`/`.82` | **Election Interference** — `.81` is ~680 lines: 13 near-identical per-IG branches setting `adv_loyal_government_leader` |
 | `.91`/`.92` | **Steal Technology** — 3 options (production/military/society) granting `stolen_technology_*_modifier` (24 mo) + cost; 1-in-6 detection chance fires `.92` at target, −5 relations |
 | `.101`/`.102`/`.103` | **Fund Piracy** — `.102` saves `piracy_target`, applies `local_piracy_modifier`, adds `adv_dip_je_pirates` to the victim; `.101.b` (ep2 only) = "Arm the corsairs": `corsair_patron_modifier` cut of real piracy income at higher cost |

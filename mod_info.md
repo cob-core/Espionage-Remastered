@@ -12,6 +12,7 @@
 + Sabotage Industry fully removed (redundant with 1.13 naval mechanics).
 + Fixed two more invalid modifier types (navy offense, icon paths) and added a reference-integrity checker to the release process.
 + Technology Stealing game rule gains a 'Players Only' setting — humans may steal technology, the AI never will.
++ Removed the dead Fund Armaments remnants (orphaned events, malformed modifiers); fixed all remaining legacy modifier types, scripted-button AI weights, event AI weights, missing default options, and — significantly — the original treaty articles' misplaced war-goal blocks, whose enforcement was silently dead.
 + Error.log remediation: modernized every 1.13-invalid token the first real launch exposed — pact auto-cancel logic (dead since the treaty rework) now uses requirement_to_maintain; character role and ruler triggers, income triggers, and journal pinning fields renamed; flagship sabotage re-expressed with real effects; on_secession_start made compatibility-safe.
 
 ## Previous Changelog (v3.6 — Stabilization)

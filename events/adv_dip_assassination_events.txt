@@ -103,6 +103,8 @@ adv_dip_assassination_event.101 = { # Select Commander
 	}
 
 	option = {
+
+		default_option = yes
 		name = "[SCOPE.sCharacter('assassination_leader_1').GetFullName]"
 		custom_tooltip = assassination_costs_tt
 		scope:assassination_leader_1 = {
@@ -351,6 +353,8 @@ adv_dip_assassination_event.102 = { # Select Target
 		}
 
 	option = {
+
+		default_option = yes
 		trigger = {    
 			exists = scope:assassination_target_scope_0
 		}
@@ -373,8 +377,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -401,8 +404,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -429,8 +431,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -457,8 +458,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -485,8 +485,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -513,8 +512,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -541,8 +539,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -569,8 +566,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -597,8 +593,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 	option = {
@@ -624,8 +619,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -652,8 +646,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 
@@ -680,8 +673,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 	
@@ -708,8 +700,7 @@ adv_dip_assassination_event.102 = { # Select Target
 			months = 25
 		}
 		ai_chance = {
-			base = 1
-			add = 100
+			base = 101
 		}
 	}
 			

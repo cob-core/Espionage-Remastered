@@ -1,13 +1,13 @@
-je_garner_influence = {
+﻿je_garner_influence = {
 	name = adv_dip_je_garner_influence
 	desc = adv_dip_je_garner_influence_desc
 
 	visible = { always = yes }
 	
 	ai_chance = {
-		base = 5
-		modifier = {
-			trigger = { bureaucracy > 0 }
+		value = 5
+		if = {
+			limit = { bureaucracy > 0 }
 			add = 5
 		}
 	}

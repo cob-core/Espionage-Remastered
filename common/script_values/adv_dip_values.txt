@@ -182,15 +182,6 @@ piracy_naval_modifier = {
     }
 }
 
-military_cost = {
-	value = scope:spy_target_country.military_expenses
-}
-
-send_armaments_cost = {
-	value = scope:spy_target_country.military_expenses
-	divide = 10
-}
-
 development_funding = {
 	value = var:development_target_var.gdp
 	divide = 100000

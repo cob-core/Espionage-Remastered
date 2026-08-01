@@ -1,13 +1,13 @@
-je_modernise_ports = {
+﻿je_modernise_ports = {
 	name = adv_dip_je_pirates_modernise_ports
 	desc = adv_dip_je_pirates_modernise_ports_desc
 
 	visible = { always = yes }
 	
 	ai_chance = {
-		base = 5
-		modifier = {
-			trigger = { bureaucracy > 0 }
+		value = 5
+		if = {
+			limit = { bureaucracy > 0 }
 			add = 5
 		}
 	}

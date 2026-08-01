@@ -5,9 +5,9 @@
 	visible = { always = yes }
 
 	ai_chance = {
-		base = 5
-		modifier = {
-			trigger = { gold_reserves > 100000 }
+		value = 5
+		if = {
+			limit = { gold_reserves > 100000 }
 			add = 5
 		}
 	}

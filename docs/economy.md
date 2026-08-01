@@ -27,7 +27,7 @@ spy_cost_multiplier_medium = {
 
 Others: `counterespionage_value`/`_modifier`/`_cost`, `piracy_loot_value`,
 `piracy_naval_modifier` (ratio of `naval_power_projection`, clamped ~0.5×–1.5×),
-`military_cost`, `send_armaments_cost`, `development_funding`, `technology_theft_cost`,
+`development_funding`, `technology_theft_cost`,
 and rule constants `low/medium/high_espionage_event_costs_value` = 0.5 / 1 / 2.
 
 `piracy_cost_multiplier` (counter-piracy button cost, 0.015% of **own** GDP — runs on
@@ -42,7 +42,7 @@ scopes, so JE buttons work months after the start event.
 - **Cost sinks** — `country_expenses_add = 1` scaled at the call site via
   `add_modifier = { name = X multiplier = <script_value> }`: `spy_network_cost_modifier`,
   `assassination_cost_modifier`, `counterespionage_modifier`, `piracy_cost`,
-  `development_cost_modifier`, `stolen_technology_cost_modifier`, `armaments_cost_modifier`.
+  `development_cost_modifier`, `stolen_technology_cost_modifier`.
 - **Effect modifiers**: `sow_discontent_modifier`, `support_nationalists_modifier`,
   `agitate_for_liberty_modifier`, `sabotage_recruitment/industry_modifier`,
   `overthrower/overthrown_modifier`, `modifier_successful_assassination` (+10% influence,
