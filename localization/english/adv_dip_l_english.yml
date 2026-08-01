@@ -883,3 +883,5 @@ develop_nation_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has 
  false_flag_directive_effect_desc_global: "Frames the target country for espionage operations"
  false_flag_directive_effect_desc_first: "[COUNTRY.GetAdjectiveNoFlag] frames [TARGET_COUNTRY.GetName] for espionage operations"
  false_flag_directive_effect_desc_third: "[COUNTRY.GetName] frames [TARGET_COUNTRY.GetName] for espionage operations"
+ assassinate_political_leader_action_notification_break_name: "Assassination Plot Ended"
+ assassinate_political_leader_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has ended its assassination operation against our leadership."

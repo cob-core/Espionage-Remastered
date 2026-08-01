@@ -39,7 +39,6 @@
         is_revolutionary = no
         in_default = no
         NOT = { has_war_with = scope:target_country }
-		scope:target_country.techs_researched > root.techs_researched
         has_diplomatic_relevance = scope:target_country
     }
     
@@ -158,14 +157,6 @@
                 is_country_type = decentralized
                 scope:target_country = { is_country_type = decentralized }
                 in_default = yes
-                NOT = {
-                    scope:target_country = {
-                        any_technology = {
-                            is_researched = yes
-                            NOT = { root.has_technology_researched = this }
-                        }
-                    }
-                }
                 scope:target_country.techs_researched > root.techs_researched
             }
 				}

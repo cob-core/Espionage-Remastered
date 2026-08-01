@@ -1,5 +1,6 @@
 ﻿cultural_exchange = {
     kind = directed
+    maintenance_paid_by = source_country
     cost = 100
 
     icon = "gfx/interface/icons/diplomatic_treaties_articles_icons/cultural_exchange.dds"

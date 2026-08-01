@@ -70,12 +70,11 @@
 
 		second_modifier = {
 			state_slave_import_mult = -0.5
-			country_slaves_pol_str_mult = 0.5
-			state_slaves_mass_migration_disallowed_bool = no
-			state_slaves_internal_migration_disallowed_bool = no
 		}
 
-		target_can_break = false
+		target_can_break = {
+			always = no
+		}
 
 		monthly_effect = {
 			custom_tooltip = {

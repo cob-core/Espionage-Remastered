@@ -33,7 +33,7 @@
 		has_diplomatic_relevance = scope:target_country
 	}
 
-	effect = {
+	accept_effect = {
 		set_variable = {
 			name = false_flag_patsy
 			value = scope:target_country

@@ -1,5 +1,6 @@
 ﻿military_attache = {
     kind = directed
+    maintenance_paid_by = source_country
     cost = 100
 
     icon = "gfx/interface/icons/diplomatic_treaties_articles_icons/military_attache.dds"

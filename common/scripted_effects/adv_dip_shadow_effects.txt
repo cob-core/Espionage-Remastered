@@ -1,4 +1,11 @@
 ﻿great_game_score_minor_effect = {
+	if = {
+		limit = { NOT = { has_variable = great_game_score } }
+		set_variable = {
+			name = great_game_score
+			value = 0
+		}
+	}
 	change_variable = {
 		name = great_game_score
 		add = 1
@@ -7,6 +14,13 @@
 }
 
 great_game_score_major_effect = {
+	if = {
+		limit = { NOT = { has_variable = great_game_score } }
+		set_variable = {
+			name = great_game_score
+			value = 0
+		}
+	}
 	change_variable = {
 		name = great_game_score
 		add = 3
@@ -18,10 +32,14 @@ great_game_leadership_check_effect = {
 	if = {
 		limit = {
 			has_law = law_type:law_spy_agency
+			has_variable = great_game_score
 			OR = {
 				NOT = { exists = global_var:great_game_leader }
 				AND = {
 					NOT = { global_var:great_game_leader ?= this }
+					global_var:great_game_leader = {
+						has_variable = great_game_score
+					}
 					var:great_game_score > global_var:great_game_leader.var:great_game_score
 				}
 			}

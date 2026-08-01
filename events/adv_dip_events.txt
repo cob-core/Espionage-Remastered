@@ -1414,7 +1414,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1447,7 +1446,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1480,7 +1478,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1513,7 +1510,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1546,7 +1542,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1579,7 +1574,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1612,7 +1606,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1645,7 +1638,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1678,7 +1670,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1710,7 +1701,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1743,7 +1733,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1776,7 +1765,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				set_ruling_party = yes
 			}
 		}
@@ -1809,7 +1797,6 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				add_momentum = 1
 				
 			}
 		}
@@ -1875,13 +1862,11 @@ adv_dip_event.82 = {
 			limit = {
 				has_variable = adv_loyal_government_leader
 			}
-			add_momentum = 1.5
 		}
 		every_active_party = {
 			limit = {
 				has_variable = adv_loyal_government_leader
 			}
-			add_momentum = 1.5
 		}
 		ai_chance = {
 			base = 10
@@ -1901,7 +1886,6 @@ adv_dip_event.82 = {
 					has_variable = adv_loyal_government_leader
 				}
 			}
-			add_momentum = 0.25
 		}
 
 		add_modifier = {

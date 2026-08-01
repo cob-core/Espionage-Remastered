@@ -42,7 +42,6 @@
 		relations_progress_per_day = 1
 
 		income_transfer = 0.05
-		max_paying_country_income_to_transfer = 1
 		second_country_gets_income_transfer = yes
 		income_transfer_based_on_second_country = no
 		income_transfer_to_pops = {

@@ -883,3 +883,5 @@ develop_nation_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] has 
  false_flag_directive_effect_desc_global: "Fait accuser le pays ciblé d'opérations d'espionnage"
  false_flag_directive_effect_desc_first: "[COUNTRY.GetAdjectiveNoFlag] fait accuser [TARGET_COUNTRY.GetName] d'opérations d'espionnage"
  false_flag_directive_effect_desc_third: "[COUNTRY.GetName] fait accuser [TARGET_COUNTRY.GetName] d'opérations d'espionnage"
+ assassinate_political_leader_action_notification_break_name: "Fin du complot d'assassinat"
+ assassinate_political_leader_action_notification_break_desc: "[INITIATOR_COUNTRY.GetName] a mis fin à son opération d'assassinat contre nos dirigeants."
