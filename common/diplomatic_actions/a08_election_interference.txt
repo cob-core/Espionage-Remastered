@@ -72,11 +72,14 @@
 			scaled_debt <= 0
 			is_at_war = no
 			scope:target_country = {
-				has_diplomatic_pact = {
-					who = root
-					type = rivalry
+				OR = {
+					has_diplomatic_pact = {
+						who = root
+						type = rivalry
+					}
+					relations:root <= relations_threshold:hostile
 				}
-				relations:root <= relations_threshold:cold
+
 			}
 			country_rank >= rank_value:major_power
 		}

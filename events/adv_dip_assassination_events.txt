@@ -20,6 +20,20 @@ adv_dip_assassination_event.100 = { # Start Event
 
 	immediate = {
 		set_variable = ongoing_plans
+		# If no operative can take the assignment the chain stops here, so the
+		# plot flag must not survive or assassination is locked out forever.
+		if = {
+			limit = {
+				NOT = {
+					any_scope_character = {
+						has_role = character_role_operative
+						is_busy = no
+					}
+				}
+			}
+			remove_variable = ongoing_plans
+			remove_variable = active_assassination
+		}
 		if = {
 			limit = { exists = scope:spy_target_country }
 			set_variable = {
@@ -697,6 +711,11 @@ adv_dip_assassination_event.103 = { # Plot Begins
 	option = {
 		name = adv_dip_assassination_event.103.a
 		default_option = yes
+
+		add_journal_entry = {
+			type = adv_dip_je_assassination
+			target = scope:spy_target_country
+		}
 	}
 }
 

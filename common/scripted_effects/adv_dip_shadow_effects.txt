@@ -31,6 +31,13 @@ great_game_score_major_effect = {
 great_game_leadership_check_effect = {
 	if = {
 		limit = {
+			exists = global_var:great_game_leader
+			global_var:great_game_leader = { is_country_alive = no }
+		}
+		remove_global_variable = great_game_leader
+	}
+	if = {
+		limit = {
 			has_law = law_type:law_spy_agency
 			has_variable = great_game_score
 			OR = {

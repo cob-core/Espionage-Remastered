@@ -60,10 +60,21 @@
 			if = {
 				limit = {
 					scope:target_country = {
-						has_diplomatic_pact = {
-							who = root
-							type = rivalry
+
+						OR = {
+
+							has_diplomatic_pact = {
+
+								who = root
+
+								type = rivalry
+
+							}
+
+							relations:root <= relations_threshold:hostile
+
 						}
+
 					}
 				}
 				add = 10

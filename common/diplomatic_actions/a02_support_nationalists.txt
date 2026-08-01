@@ -69,11 +69,14 @@
 		will_propose = { 
 			scaled_debt <= 0
 			scope:target_country = {
-				has_diplomatic_pact = {
-					who = root
-					type = rivalry
+				OR = {
+					has_diplomatic_pact = {
+						who = root
+						type = rivalry
+					}
+					relations:root <= relations_threshold:hostile
 				}
-				relations:root <= relations_threshold:cold									
+
 			}
 		}
 		
