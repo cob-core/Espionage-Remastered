@@ -235,6 +235,31 @@ for p in script_files(MOD, "common/journal_entries"):
         if f"type = {je}" not in all_script:
             failures.append(f"[reachability] journal entry '{je}' is never added by any effect")
 
+# --- 11. .gui structural rules (crash classes seen in production) ---
+for gui_path in sorted((MOD / "gui").rglob("*.gui")) if (MOD / "gui").is_dir() else []:
+    gtext = read(gui_path)
+    glines = [l.split("#", 1)[0] for l in gtext.split("\n")]
+    stack = []
+    for i, line in enumerate(glines, 1):
+        s = line.strip()
+        if stack and stack[-1].startswith("flowcontainer") and (s.startswith("vbox = {") or s.startswith("hbox = {")):
+            failures.append(f"[gui] {gui_path.relative_to(MOD)}:{i}: a flowcontainer cannot have an hbox/vbox as a direct child (CRASHES the game)")
+        if s.startswith("using = button_standard") or "button_standard" in s:
+            failures.append(f"[gui] {gui_path.relative_to(MOD)}:{i}: button_standard is a frontend-only template and renders blank in-game")
+        o, c = line.count("{"), line.count("}")
+        if o > c: stack.append(s)
+        elif c > o:
+            for _ in range(c - o):
+                if stack: stack.pop()
+    # loc keys referenced from .gui must not themselves contain [Promotes]
+    for key in re.findall(r'text = "([A-Z][A-Z_0-9]+)"', gtext):
+        for locfile in (MOD / "localization/english/adv_dip_l_english.yml",):
+            if not locfile.is_file(): continue
+            for line in read(locfile).split("\n"):
+                if line.strip().startswith(key + ":") and re.search(r"\[[A-Za-z]+\.", line):
+                    if "Country." not in line:
+                        failures.append(f"[gui] loc key '{key}' used in .gui contains a promote the GUI cannot resolve")
+
 if failures:
     print(f"{len(failures)} reference failures:")
     for f in failures:

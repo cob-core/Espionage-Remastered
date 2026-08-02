@@ -3680,13 +3680,11 @@ adv_dip_event.190 = {
 			}
 			on_created = {
 				save_scope_as = new_operative
-				owner = {
-					add_to_variable_list = {
-						name = adv_dip_operatives
-						target = scope:new_operative
-					}
-				}
 			}
+		}
+		add_to_variable_list = {
+			name = adv_dip_operatives
+			target = scope:new_operative
 		}
 	}
 

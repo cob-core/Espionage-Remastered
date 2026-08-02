@@ -91,13 +91,11 @@ adv_dip_espionage_yearly = {
 				culture = primary_culture
 				on_created = {
 					save_scope_as = adv_dip_ai_operative
-					owner = {
-						add_to_variable_list = {
-							name = adv_dip_operatives
-							target = scope:adv_dip_ai_operative
-						}
-					}
 				}
+			}
+			add_to_variable_list = {
+				name = adv_dip_operatives
+				target = scope:adv_dip_ai_operative
 			}
 		}
 		if = {

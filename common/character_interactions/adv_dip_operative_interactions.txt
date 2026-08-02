@@ -8,6 +8,7 @@
 
 	possible = {
 		is_busy = no
+		NOT = { has_variable = adv_dip_debriefed }
 	}
 
 	cooldown = { months = 6 }
