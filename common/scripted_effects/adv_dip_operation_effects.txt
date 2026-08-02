@@ -188,10 +188,15 @@ adv_dip_dispatch_pending_operation = {
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_very_large WEEKS = 50 }
 			if = {
 				limit = { is_player = yes }
+				# The iterator body runs in the EXILE's scope, and character
+				# creation is deferred - so every list write must be root-wrapped
+				# and live inside on_created (the recruit-button pattern).
 				every_character_in_exile_pool = {
-					add_to_variable_list = {
-						name = adv_dip_smuggle_candidates
-						target = this
+					root = {
+						add_to_variable_list = {
+							name = adv_dip_smuggle_candidates
+							target = prev
+						}
 					}
 				}
 				# An empty exile pool is no obstacle: the service finds its own
@@ -203,38 +208,41 @@ adv_dip_dispatch_pending_operation = {
 							culture = primary_culture
 							ideology = ideology_radical
 							on_created = {
-								save_scope_as = adv_dip_seed_exile_1
 								exile_character = yes
+								root = {
+									add_to_variable_list = {
+										name = adv_dip_smuggle_candidates
+										target = prev
+									}
+								}
 							}
 						}
 						create_character = {
 							culture = primary_culture
 							ideology = ideology_communist
 							on_created = {
-								save_scope_as = adv_dip_seed_exile_2
 								exile_character = yes
+								root = {
+									add_to_variable_list = {
+										name = adv_dip_smuggle_candidates
+										target = prev
+									}
+								}
 							}
 						}
 						create_character = {
 							culture = primary_culture
 							ideology = ideology_anarchist
 							on_created = {
-								save_scope_as = adv_dip_seed_exile_3
 								exile_character = yes
+								root = {
+									add_to_variable_list = {
+										name = adv_dip_smuggle_candidates
+										target = prev
+									}
+								}
 							}
 						}
-					}
-					add_to_variable_list = {
-						name = adv_dip_smuggle_candidates
-						target = scope:adv_dip_seed_exile_1
-					}
-					add_to_variable_list = {
-						name = adv_dip_smuggle_candidates
-						target = scope:adv_dip_seed_exile_2
-					}
-					add_to_variable_list = {
-						name = adv_dip_smuggle_candidates
-						target = scope:adv_dip_seed_exile_3
 					}
 				}
 				set_variable = {
