@@ -157,6 +157,60 @@ adv_dip_event.12 = {
 			base = 40
 		}
 	}
+
+	# v5.2: try to take their agent - kompromat in the making. Success follows
+	# the espionage edge; failure still blows the network but the agent escapes.
+	option = {
+		name = adv_dip_flip_option
+		trigger = {
+			scope:spymaster ?= {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_sow_discontent
+					var:adv_dip_assignment_target ?= root
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+		}
+		custom_tooltip = adv_dip_flip_attempt_tt
+		scope:spymaster = {
+			random_scope_character = {
+				limit = {
+					has_variable = adv_dip_assigned_sow_discontent
+					var:adv_dip_assignment_target ?= root
+				}
+				save_scope_as = adv_dip_flipped_agent
+			}
+		}
+		set_variable = {
+			name = adv_dip_flip_code
+			value = 1
+		}
+		set_variable = {
+			name = adv_dip_flip_spymaster
+			value = scope:spymaster
+		}
+		if = {
+			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				65 = { trigger_event = { id = adv_dip_event.215 } }
+				35 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else_if = {
+			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				35 = { trigger_event = { id = adv_dip_event.215 } }
+				65 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { trigger_event = { id = adv_dip_event.215 } }
+				50 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		ai_chance = { base = 40 }
+	}
 }
 
 adv_dip_event.21 = {
@@ -1105,6 +1159,60 @@ adv_dip_event.42 = {
 			base = 20
 		}
 	}
+
+	# v5.2: try to take their agent - kompromat in the making. Success follows
+	# the espionage edge; failure still blows the network but the agent escapes.
+	option = {
+		name = adv_dip_flip_option
+		trigger = {
+			scope:spymaster ?= {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_sabotage_recruitment
+					var:adv_dip_assignment_target ?= root
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+		}
+		custom_tooltip = adv_dip_flip_attempt_tt
+		scope:spymaster = {
+			random_scope_character = {
+				limit = {
+					has_variable = adv_dip_assigned_sabotage_recruitment
+					var:adv_dip_assignment_target ?= root
+				}
+				save_scope_as = adv_dip_flipped_agent
+			}
+		}
+		set_variable = {
+			name = adv_dip_flip_code
+			value = 5
+		}
+		set_variable = {
+			name = adv_dip_flip_spymaster
+			value = scope:spymaster
+		}
+		if = {
+			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				65 = { trigger_event = { id = adv_dip_event.215 } }
+				35 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else_if = {
+			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				35 = { trigger_event = { id = adv_dip_event.215 } }
+				65 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { trigger_event = { id = adv_dip_event.215 } }
+				50 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		ai_chance = { base = 40 }
+	}
 }
 
 adv_dip_event.81 = {
@@ -2033,6 +2141,60 @@ adv_dip_event.92 = {
 		}
 		adv_dip_covert_charge = { COST = counterespionage_cost WEEKS = 120 }
 	}
+
+	# v5.2: try to take their agent - kompromat in the making. Success follows
+	# the espionage edge; failure still blows the network but the agent escapes.
+	option = {
+		name = adv_dip_flip_option
+		trigger = {
+			scope:spymaster ?= {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_steal_technology
+					var:adv_dip_assignment_target ?= root
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+		}
+		custom_tooltip = adv_dip_flip_attempt_tt
+		scope:spymaster = {
+			random_scope_character = {
+				limit = {
+					has_variable = adv_dip_assigned_steal_technology
+					var:adv_dip_assignment_target ?= root
+				}
+				save_scope_as = adv_dip_flipped_agent
+			}
+		}
+		set_variable = {
+			name = adv_dip_flip_code
+			value = 4
+		}
+		set_variable = {
+			name = adv_dip_flip_spymaster
+			value = scope:spymaster
+		}
+		if = {
+			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				65 = { trigger_event = { id = adv_dip_event.215 } }
+				35 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else_if = {
+			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				35 = { trigger_event = { id = adv_dip_event.215 } }
+				65 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { trigger_event = { id = adv_dip_event.215 } }
+				50 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		ai_chance = { base = 40 }
+	}
 }
 
 adv_dip_event.110 = {
@@ -2505,6 +2667,60 @@ adv_dip_event.132 = {
 			name = recent_defection_modifier
 			months = 36
 		}
+	}
+
+	# v5.2: try to take their agent - kompromat in the making. Success follows
+	# the espionage edge; failure still blows the network but the agent escapes.
+	option = {
+		name = adv_dip_flip_option
+		trigger = {
+			scope:spymaster ?= {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_steal_commander
+					var:adv_dip_assignment_target ?= root
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+		}
+		custom_tooltip = adv_dip_flip_attempt_tt
+		scope:spymaster = {
+			random_scope_character = {
+				limit = {
+					has_variable = adv_dip_assigned_steal_commander
+					var:adv_dip_assignment_target ?= root
+				}
+				save_scope_as = adv_dip_flipped_agent
+			}
+		}
+		set_variable = {
+			name = adv_dip_flip_code
+			value = 7
+		}
+		set_variable = {
+			name = adv_dip_flip_spymaster
+			value = scope:spymaster
+		}
+		if = {
+			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				65 = { trigger_event = { id = adv_dip_event.215 } }
+				35 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else_if = {
+			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				35 = { trigger_event = { id = adv_dip_event.215 } }
+				65 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { trigger_event = { id = adv_dip_event.215 } }
+				50 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		ai_chance = { base = 40 }
 	}
 }
 
@@ -3574,6 +3790,60 @@ adv_dip_event.156 = {
 		name = adv_dip_event.156.a
 		default_option = yes
 	}
+
+	# v5.2: try to take their agent - kompromat in the making. Success follows
+	# the espionage edge; failure still blows the network but the agent escapes.
+	option = {
+		name = adv_dip_flip_option
+		trigger = {
+			scope:spymaster ?= {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_fund_black_market_slavery
+					var:adv_dip_assignment_target ?= root
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+		}
+		custom_tooltip = adv_dip_flip_attempt_tt
+		scope:spymaster = {
+			random_scope_character = {
+				limit = {
+					has_variable = adv_dip_assigned_fund_black_market_slavery
+					var:adv_dip_assignment_target ?= root
+				}
+				save_scope_as = adv_dip_flipped_agent
+			}
+		}
+		set_variable = {
+			name = adv_dip_flip_code
+			value = 9
+		}
+		set_variable = {
+			name = adv_dip_flip_spymaster
+			value = scope:spymaster
+		}
+		if = {
+			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				65 = { trigger_event = { id = adv_dip_event.215 } }
+				35 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else_if = {
+			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				35 = { trigger_event = { id = adv_dip_event.215 } }
+				65 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { trigger_event = { id = adv_dip_event.215 } }
+				50 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		ai_chance = { base = 40 }
+	}
 }
 
 # v5.1 operative selection. Every espionage action queues its launch behind
@@ -3676,6 +3946,163 @@ adv_dip_event.200 = {
 		custom_tooltip = adv_dip_call_off_tt
 		remove_variable = adv_dip_pending_op
 		remove_variable = adv_dip_pending_target
+	}
+}
+
+# The counterespionage service moves on a discovered agent (fired from the
+# detection events with adv_dip_flip_code/_spymaster set and the agent saved).
+# .215 = the attempt succeeded and the agent is in hand; .216 = they got away.
+adv_dip_event.215 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.215.t
+	desc = adv_dip_event.215.d
+	flavor = adv_dip_event.215.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_flipped_agent
+		has_variable = adv_dip_flip_code
+	}
+
+	immediate = {
+		var:adv_dip_flip_spymaster ?= {
+			save_scope_as = adv_dip_flip_spymaster_scope
+		}
+		root = { save_scope_as = adv_dip_flip_victim }
+	}
+
+	# Leave them in place: the network keeps reporting to its master, but every
+	# word now passes through our hands first (only the operations with a
+	# turned-intelligence channel support this).
+	option = {
+		name = adv_dip_event.215.a
+		trigger = {
+			OR = {
+				var:adv_dip_flip_code ?= 1
+				var:adv_dip_flip_code ?= 4
+				var:adv_dip_flip_code ?= 6
+			}
+		}
+		custom_tooltip = turned_network_established_tt
+		if = {
+			limit = { var:adv_dip_flip_code ?= 1 }
+			set_variable = {
+				name = turned_sow_discontent_by
+				value = scope:adv_dip_flip_spymaster_scope
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_flip_code ?= 4 }
+			set_variable = {
+				name = turned_steal_technology_by
+				value = scope:adv_dip_flip_spymaster_scope
+			}
+		}
+		else = {
+			set_variable = {
+				name = turned_election_interference_by
+				value = scope:adv_dip_flip_spymaster_scope
+			}
+		}
+		shadow_war_score_minor_effect = yes
+		remove_variable = adv_dip_flip_code
+		remove_variable = adv_dip_flip_spymaster
+		ai_chance = { base = 30 }
+	}
+
+	# Parade the spy: the network folds, the agent goes to our cells, and the
+	# world hears exactly whose signature was on their orders.
+	option = {
+		name = adv_dip_event.215.b
+		custom_tooltip = adv_dip_flip_captured_tt
+		scope:adv_dip_flip_spymaster_scope ?= {
+			adv_dip_collapse_flipped_network = yes
+			change_infamy = 5
+			add_modifier = {
+				name = exposed_spy_ring_modifier
+				months = 24
+			}
+			change_relations = {
+				country = root
+				value = -30
+			}
+		}
+		scope:adv_dip_flipped_agent ?= {
+			set_variable = {
+				name = adv_dip_captured
+				months = 60
+			}
+			set_variable = {
+				name = adv_dip_captor
+				value = scope:adv_dip_flip_victim
+				months = 60
+			}
+		}
+		shadow_war_score_major_effect = yes
+		remove_variable = adv_dip_flip_code
+		remove_variable = adv_dip_flip_spymaster
+		ai_chance = { base = 40 }
+	}
+
+	# A quiet cell: no headlines - just a folded network, an empty safehouse,
+	# and a prisoner their master will have to pay to see again.
+	option = {
+		name = adv_dip_event.215.c
+		default_option = yes
+		custom_tooltip = adv_dip_flip_captured_tt
+		scope:adv_dip_flip_spymaster_scope ?= {
+			adv_dip_collapse_flipped_network = yes
+		}
+		scope:adv_dip_flipped_agent ?= {
+			set_variable = {
+				name = adv_dip_captured
+				months = 60
+			}
+			set_variable = {
+				name = adv_dip_captor
+				value = scope:adv_dip_flip_victim
+				months = 60
+			}
+		}
+		shadow_war_score_minor_effect = yes
+		remove_variable = adv_dip_flip_code
+		remove_variable = adv_dip_flip_spymaster
+		ai_chance = { base = 30 }
+	}
+}
+
+adv_dip_event.216 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.216.t
+	desc = adv_dip_event.216.d
+	flavor = adv_dip_event.216.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 1
+
+	immediate = {
+		var:adv_dip_flip_spymaster ?= {
+			save_scope_as = adv_dip_flip_spymaster_scope
+		}
+		root = { save_scope_as = adv_dip_flip_victim }
+	}
+
+	# The agent bolts for the border; the network is blown either way.
+	option = {
+		name = adv_dip_event.216.a
+		default_option = yes
+		custom_tooltip = adv_dip_flip_escaped_tt
+		scope:adv_dip_flip_spymaster_scope ?= {
+			adv_dip_collapse_flipped_network = yes
+		}
+		remove_variable = adv_dip_flip_code
+		remove_variable = adv_dip_flip_spymaster
 	}
 }
 

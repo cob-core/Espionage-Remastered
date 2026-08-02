@@ -278,6 +278,52 @@ adv_dip_stop_operation = {
 	}
 }
 
+# Spymaster scope. A discovered agent's network folds: the operation against
+# scope:adv_dip_flip_victim (identified by their adv_dip_flip_code) is stopped,
+# which also frees or hands over the agent.
+adv_dip_collapse_flipped_network = {
+	if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 1 } }
+		adv_dip_stop_operation = { ACTION = sow_discontent TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 2 } }
+		adv_dip_stop_operation = { ACTION = support_nationalists TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 3 } }
+		adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 4 } }
+		adv_dip_stop_operation = { ACTION = steal_technology TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 5 } }
+		adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 6 } }
+		adv_dip_stop_operation = { ACTION = election_interference TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 7 } }
+		adv_dip_stop_operation = { ACTION = steal_commander TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 8 } }
+		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 9 } }
+		adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = adv_dip_flip_victim }
+	}
+	else_if = {
+		limit = { scope:adv_dip_flip_victim ?= { var:adv_dip_flip_code ?= 10 } }
+		adv_dip_stop_operation = { ACTION = support_slaves TARGET = adv_dip_flip_victim }
+	}
+}
+
 # Character scope. Frees an operative whose list operation no longer exists —
 # the catch-all release for wind-downs, target annexation and event-chain ends,
 # so no resolution path ever has to remember to release its agent by hand.
