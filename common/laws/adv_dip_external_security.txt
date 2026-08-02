@@ -1,6 +1,6 @@
 ﻿law_no_external_security = {
 	group = lawgroup_external_security
-	icon = "gfx/interface/icons/law_icons/no_home_affairs.dds"
+	icon = "gfx/interface/icons/law_icons/no_police.dds"
 	
 	progressiveness = 0
 
@@ -63,7 +63,7 @@ law_spy_agency = {
 law_consular_intelligence = {
 	group = lawgroup_external_security
 
-	icon = "gfx/interface/icons/law_icons/no_home_affairs.dds"
+	icon = "gfx/interface/icons/law_icons/diplomatic_interest.dds"
 
 	progressiveness = 10
 
@@ -93,7 +93,7 @@ law_consular_intelligence = {
 law_directorate_of_state_security = {
 	group = lawgroup_external_security
 
-	icon = "gfx/interface/icons/law_icons/secret_police.dds"
+	icon = "gfx/interface/icons/law_icons/outlawed_dissent.dds"
 
 	progressiveness = 15
 
@@ -123,7 +123,7 @@ law_directorate_of_state_security = {
 law_deniable_assets = {
 	group = lawgroup_external_security
 
-	icon = "gfx/interface/icons/law_icons/secret_police.dds"
+	icon = "gfx/interface/icons/law_icons/laissez_faire.dds"
 
 	progressiveness = 30
 

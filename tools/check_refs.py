@@ -260,6 +260,23 @@ for gui_path in sorted((MOD / "gui").rglob("*.gui")) if (MOD / "gui").is_dir() e
                     if "Country." not in line:
                         failures.append(f"[gui] loc key '{key}' used in .gui contains a promote the GUI cannot resolve")
 
+# --- 12. laws in the same group must not share an icon (visual confusion) ---
+for p in script_files(MOD, "common/laws"):
+    text = strip_comments(read(p))
+    icons = {}
+    current = None
+    for line in text.split("\n"):
+        s = line.strip()
+        m = re.match(r"([a-z_0-9]+)\s*=\s*\{", s)
+        if m and not s.startswith(("icon", "modifier", "ai_")):
+            current = m.group(1)
+        im = re.match(r'icon\s*=\s*"([^"]+)"', s)
+        if im and current:
+            icons.setdefault(im.group(1), []).append(current)
+    for icon, laws in icons.items():
+        if len(laws) > 1:
+            failures.append(f"[icons] {p.relative_to(MOD)}: laws {', '.join(laws)} share icon '{icon}'")
+
 if failures:
     print(f"{len(failures)} reference failures:")
     for f in failures:
