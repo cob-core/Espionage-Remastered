@@ -170,7 +170,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_director')]"
 			addcolumn = 520
 			addrow = 50
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_character_row = {
@@ -257,7 +256,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives')]"
 			addcolumn = 520
 			addrow = 50
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_character_row = {
@@ -473,7 +471,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_sow_discontent')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -519,7 +516,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_support_nationalists')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -565,7 +561,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_agitate_for_liberty')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -611,7 +606,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_steal_technology')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -657,7 +651,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_sabotage_recruitment')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -703,7 +696,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_election_interference')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -749,7 +741,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_steal_commander')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -795,7 +786,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_clandestine_arms_pipeline')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -841,7 +831,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_fund_black_market_slavery')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
@@ -887,7 +876,6 @@ flowcontainer = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_support_slaves')]"
 			addcolumn = 520
 			addrow = 44
-			datamodel_wrap = 1
 
 			item = {
 				adv_dip_operation_row = {
