@@ -50,57 +50,6 @@
 	}
 }
 
-adv_dip_sgui_appoint_director = {
-	scope = country
-	saved_scopes = { candidate }
-
-	is_shown = {
-		always = yes
-	}
-
-	is_valid = {
-		scope:candidate ?= {
-			is_busy = no
-			has_role = character_role_operative
-			NOT = { has_variable = adv_dip_captured }
-		}
-	}
-
-	effect = {
-		custom_tooltip = adv_dip_appoint_director_tt
-		if = {
-			limit = { exists = scope:candidate }
-			# The outgoing Director returns to field duty rather than vanishing.
-			every_in_list = {
-				variable = adv_dip_director
-				remove_character_role = character_role_spymaster
-				add_character_role = character_role_operative
-				owner ?= {
-					remove_list_variable = {
-						name = adv_dip_director
-						target = prev
-					}
-					add_to_variable_list = {
-						name = adv_dip_operatives
-						target = prev
-					}
-				}
-			}
-			remove_list_variable = {
-				name = adv_dip_operatives
-				target = scope:candidate
-			}
-			add_to_variable_list = {
-				name = adv_dip_director
-				target = scope:candidate
-			}
-			scope:candidate = {
-				remove_character_role = character_role_operative
-				add_character_role = character_role_spymaster
-			}
-		}
-	}
-}
 
 # Fires an idle operative: struck from the roster and stripped of the role, so
 # the engine retires the character naturally. Agents in the field must be
@@ -136,8 +85,9 @@ adv_dip_sgui_dismiss_operative = {
 	}
 }
 
-# Removes the Director of Intelligence and returns them to the operative
-# roster. The post stays empty until a successor is appointed.
+# Fires the Director of Intelligence. They do not take it well: they leave the
+# service entirely, their interest group resents the treatment, and there is a
+# one-in-four chance they offer everything they know to a hostile power.
 adv_dip_sgui_dismiss_director = {
 	scope = country
 	saved_scopes = { candidate }
@@ -160,13 +110,48 @@ adv_dip_sgui_dismiss_director = {
 				name = adv_dip_director
 				target = scope:candidate
 			}
-			add_to_variable_list = {
-				name = adv_dip_operatives
-				target = scope:candidate
-			}
 			scope:candidate = {
+				save_scope_as = adv_dip_spurned_director
+				interest_group ?= {
+					add_modifier = {
+						name = adv_dip_spurned_service_modifier
+						months = 24
+					}
+				}
 				remove_character_role = character_role_spymaster
-				add_character_role = character_role_operative
+			}
+			random_list = {
+				75 = {}
+				25 = {
+					if = {
+						limit = {
+							any_country = {
+								NOT = { this = root }
+								OR = {
+									has_diplomatic_pact = {
+										who = root
+										type = rivalry
+									}
+									relations:root <= relations_threshold:hostile
+								}
+							}
+						}
+						random_country = {
+							limit = {
+								NOT = { this = root }
+								OR = {
+									has_diplomatic_pact = {
+										who = root
+										type = rivalry
+									}
+									relations:root <= relations_threshold:hostile
+								}
+							}
+							save_scope_as = adv_dip_captor_country
+						}
+						trigger_event = { id = adv_dip_event.220 }
+					}
+				}
 			}
 		}
 	}
@@ -521,5 +506,104 @@ adv_dip_sgui_agent_matches = {
 	}
 
 	effect = {
+	}
+}
+
+
+# Hires a Director of Intelligence directly; the post must be vacant - to
+# replace a sitting Director you must fire them first, with everything that
+# entails.
+adv_dip_sgui_recruit_director = {
+	scope = country
+
+	is_shown = {
+		OR = {
+			has_law = law_type:law_consular_intelligence
+			has_law = law_type:law_spy_agency
+			has_law = law_type:law_directorate_of_state_security
+			has_law = law_type:law_deniable_assets
+		}
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = adv_dip_director_post_filled_tt
+			NOT = {
+				any_scope_character = {
+					has_role = character_role_spymaster
+				}
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_recruit_director_tt
+		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 40 }
+		create_character = {
+			role = character_role_spymaster
+			culture = primary_culture
+			on_created = {
+				save_scope_as = adv_dip_new_director
+				owner = {
+					add_to_variable_list = {
+						name = adv_dip_director
+						target = prev
+					}
+				}
+			}
+		}
+	}
+}
+
+# Backs one party in a pending election-interference decision. Root = us,
+# scope:target = the country whose election it is, scope:party = the choice.
+adv_dip_sgui_back_party = {
+	scope = country
+	saved_scopes = { target party }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_election_choice
+			target = scope:target
+		}
+		scope:target ?= {
+			in_election_campaign = yes
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_back_party_tt
+		if = {
+			limit = {
+				exists = scope:target
+				exists = scope:party
+			}
+			remove_list_variable = {
+				name = adv_dip_election_choice
+				target = scope:target
+			}
+			scope:target = {
+				trigger_event = {
+					id = adv_dip_event.82
+					days = 7
+				}
+				change_relations = {
+					country = root
+					value = -10
+				}
+			}
+			scope:party = {
+				set_variable = {
+					name = adv_loyal_government_leader
+					value = 1
+				}
+				set_ruling_party = yes
+			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
+		}
 	}
 }

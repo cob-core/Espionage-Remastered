@@ -372,6 +372,28 @@ adv_dip_espionage_monthly = {
 		# Free any operative whose operation has ended by a path that could not
 		# release them directly (annexation, chain resolution, expiry).
 		adv_dip_reconcile_assignments = yes
+		# A pending election-interference choice dies with the campaign.
+		if = {
+			limit = { has_variable_list = adv_dip_election_choice }
+			every_in_list = {
+				variable = adv_dip_election_choice
+				limit = { in_election_campaign = no }
+				add_to_local_variable_list = {
+					name = adv_dip_stale_elections
+					target = this
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_stale_elections
+				save_scope_as = adv_dip_stale_election
+				root = {
+					remove_list_variable = {
+						name = adv_dip_election_choice
+						target = scope:adv_dip_stale_election
+					}
+				}
+			}
+		}
 		# Experience: months on assignment accrue toward tier promotions, and
 		# every operative not in enemy hands draws a wage scaled by their tier.
 		if = {
@@ -1128,7 +1150,7 @@ adv_dip_espionage_monthly = {
 
 		if = {
 			limit = { var:adv_dip_upkeep_total > 0 }
-			adv_dip_covert_charge = { COST = adv_dip_network_upkeep_value WEEKS = 4 }
+			adv_dip_covert_charge = { COST = adv_dip_network_upkeep_value WEEKS = 1 }
 		}
 	}
 }

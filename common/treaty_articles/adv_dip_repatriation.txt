@@ -11,15 +11,11 @@
 		international_relations
 	}
 
-	# Source releases the target's people: the captor is always the source side.
+	# The article browser binds no source/target scopes yet, so visibility must
+	# stay scope-free (vanilla convention); can_ratify enforces the prisoner
+	# requirement once the sides are set. Source = the releasing captor.
 	visible = {
-		scope:target_country ?= {
-			any_scope_character = {
-				has_role = character_role_operative
-				has_variable = adv_dip_captured
-				var:adv_dip_captor ?= scope:source_country
-			}
-		}
+		is_revolutionary = no
 	}
 
 	can_ratify = {

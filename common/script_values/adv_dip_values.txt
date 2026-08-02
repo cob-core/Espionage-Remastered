@@ -174,19 +174,20 @@ adv_dip_network_upkeep_value = {
 	}
 }
 
-# Per-target monthly upkeep tiers (replaces pact influence cost + income transfer).
+# Per-target upkeep tiers, accrued monthly into adv_dip_upkeep_total. These are
+# MONTHLY pound figures (the total is charged once a month, WEEKS = 1), steep
+# enough that a richer target genuinely costs more: 0.02%/0.04% of target GDP.
 adv_dip_upkeep_small = {
 	value = scope:spy_target_country.gdp
-	divide = 1200000
+	divide = 120000
 	round = yes
-	multiply = 1
-	min = 25
+	min = 60
 }
 adv_dip_upkeep_medium = {
 	value = scope:spy_target_country.gdp
-	divide = 600000
+	divide = 60000
 	round = yes
-	min = 50
+	min = 120
 }
 # Operative recruitment: scales off our own economy (there is no target country).
 adv_dip_recruit_cost = {
@@ -203,9 +204,9 @@ adv_dip_recruit_cost = {
 # operative not held prisoner. Tiers follow the experience traits.
 adv_dip_wage_base = {
 	value = gdp
-	divide = 2400000
+	divide = 600000
 	round = yes
-	min = 10
+	min = 40
 }
 adv_dip_wage_seasoned = {
 	value = adv_dip_wage_base
@@ -228,7 +229,6 @@ adv_dip_wage_director = {
 # monthly figure. The actual charge is adv_dip_covert_charge on this value.
 adv_dip_monthly_espionage_spend = {
 	value = adv_dip_network_upkeep_value
-	multiply = 4
 }
 
 # Console display twins of the upkeep tiers: evaluated from the GUI in the
@@ -236,13 +236,13 @@ adv_dip_monthly_espionage_spend = {
 # bare gdp instead of scope:spy_target_country.
 adv_dip_upkeep_small_display = {
 	value = gdp
-	divide = 1200000
+	divide = 120000
 	round = yes
-	min = 25
+	min = 60
 }
 adv_dip_upkeep_medium_display = {
 	value = gdp
-	divide = 600000
+	divide = 60000
 	round = yes
-	min = 50
+	min = 120
 }

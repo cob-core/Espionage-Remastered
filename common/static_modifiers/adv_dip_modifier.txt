@@ -27,6 +27,11 @@
 		building_training_rate_mult = -0.1
 	}
 
+	adv_dip_spurned_service_modifier = {
+		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+		interest_group_approval_add = -2
+	}
+
 	overthrown_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 		interest_group_in_government_attraction_mult = 0.10

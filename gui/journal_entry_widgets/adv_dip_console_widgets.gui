@@ -35,7 +35,7 @@ types adv_dip_console_types
 			direction = vertical
 
 			textbox = {
-				size = { 190 20 }
+				size = { 220 20 }
 				text = "[Character.GetFullNameNoFormatting]"
 				default_format = "#v"
 				align = left|nobaseline
@@ -45,7 +45,7 @@ types adv_dip_console_types
 
 			block "detail_line" {
 				textbox = {
-					size = { 190 16 }
+					size = { 220 16 }
 					text = "[Character.GetCulture.GetName]"
 					align = left|nobaseline
 					elide = right
@@ -56,7 +56,7 @@ types adv_dip_console_types
 
 		widget = {
 			parentanchor = vcenter
-			size = { 130 40 }
+			size = { 180 52 }
 			scissor = yes
 
 			character_traits_no_label = {
@@ -89,7 +89,7 @@ types adv_dip_console_types
 			direction = vertical
 
 			textbox = {
-				size = { 150 20 }
+				size = { 260 20 }
 				text = "[Country.GetName]"
 				default_format = "#v"
 				align = left|nobaseline
@@ -113,6 +113,37 @@ flowcontainer = {
 	direction = vertical
 	spacing = 6
 	ignoreinvisible = yes
+
+	### AGENCY BUDGET
+	flowcontainer = {
+		direction = horizontal
+		spacing = 8
+		margin_left = 10
+		margin_top = 4
+
+		background = {
+			using = entry_bg_simple
+			alpha = 0.5
+		}
+
+		textbox = {
+			parentanchor = vcenter
+			size = { 300 24 }
+			text = "ADV_DIP_CONSOLE_BUDGET_LABEL"
+			align = left|nobaseline
+			using = fontsize_medium
+		}
+
+		textbox = {
+			parentanchor = vcenter
+			size = { 190 24 }
+			raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_monthly_espionage_spend')|0]/month#!"
+			align = right|nobaseline
+			using = fontsize_medium
+			tooltip = "ADV_DIP_CONSOLE_BUDGET_TT"
+			using = tooltip_ne
+		}
+	}
 
 	### DIRECTOR OF INTELLIGENCE
 	flowcontainer = {
@@ -154,7 +185,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_director_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_director')]"
 			addcolumn = 520
-			addrow = 50
+			addrow = 62
 
 			item = {
 				adv_dip_character_row = {
@@ -162,7 +193,7 @@ flowcontainer = {
 
 					blockoverride "detail_line" {
 						textbox = {
-							size = { 120 16 }
+							size = { 130 16 }
 							text = "ADV_DIP_CONSOLE_DIRECTOR_ROLE"
 							default_format = "#P"
 							align = left|nobaseline
@@ -170,7 +201,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 66 16 }
+							size = { 86 16 }
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_director')|0]/mo#!"
 							align = left|nobaseline
 							using = fontsize_small
@@ -189,6 +220,44 @@ flowcontainer = {
 							tooltip = "[GetScriptedGui('adv_dip_sgui_dismiss_director').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
 							using = tooltip_ne
 						}
+					}
+				}
+			}
+		}
+
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_director_toggle'))]"
+			direction = horizontal
+			margin_left = 10
+			margin_top = 6
+			margin_bottom = 8
+
+			button = {
+				size = { 280 34 }
+				using = default_button_action
+				using = tooltip_above
+				visible = "[GetScriptedGui('adv_dip_sgui_recruit_director').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				enabled = "[GetScriptedGui('adv_dip_sgui_recruit_director').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				onclick = "[GetScriptedGui('adv_dip_sgui_recruit_director').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				tooltip = "[GetScriptedGui('adv_dip_sgui_recruit_director').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+
+				flowcontainer = {
+					parentanchor = center
+					spacing = 6
+
+					icon = {
+						parentanchor = vcenter
+						size = { 22 22 }
+						texture = "gfx/interface/buttons/button_icons/plus.dds"
+					}
+
+					textbox = {
+						parentanchor = vcenter
+						autoresize = yes
+						max_width = 230
+						text = "ADV_DIP_CONSOLE_RECRUIT_DIRECTOR"
+						align = nobaseline
+						using = fontsize_medium
 					}
 				}
 			}
@@ -240,7 +309,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_operatives_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives')]"
 			addcolumn = 520
-			addrow = 50
+			addrow = 62
 
 			item = {
 				adv_dip_character_row = {
@@ -248,7 +317,7 @@ flowcontainer = {
 
 					blockoverride "detail_line" {
 						textbox = {
-							size = { 78 16 }
+							size = { 82 16 }
 							visible = "[And( Not(Character.IsBusy), Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
 							text = "ADV_DIP_CONSOLE_STATUS_AVAILABLE"
 							default_format = "#P"
@@ -257,7 +326,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 78 16 }
+							size = { 82 16 }
 							visible = "[And( Character.IsBusy, Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
 							text = "ADV_DIP_CONSOLE_STATUS_ON_MISSION"
 							align = left|nobaseline
@@ -265,7 +334,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 78 16 }
+							size = { 82 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							text = "ADV_DIP_CONSOLE_STATUS_CAPTURED"
 							default_format = "#N"
@@ -274,7 +343,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 62 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_seasoned').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							text = "adv_dip_seasoned"
 							align = left|nobaseline
@@ -284,7 +353,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 62 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_veteran').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							text = "adv_dip_veteran"
 							align = left|nobaseline
@@ -294,7 +363,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 62 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_master').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							text = "adv_dip_master_spy"
 							align = left|nobaseline
@@ -304,7 +373,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 70 16 }
 							visible = "[Not(Or( GetScriptedGui('adv_dip_sgui_tier_seasoned').IsValid(GuiScope.SetRoot(Character.MakeScope).End), Or( GetScriptedGui('adv_dip_sgui_tier_veteran').IsValid(GuiScope.SetRoot(Character.MakeScope).End), GetScriptedGui('adv_dip_sgui_tier_master').IsValid(GuiScope.SetRoot(Character.MakeScope).End) ) ))]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_base')|0]/mo#!"
 							align = left|nobaseline
@@ -313,7 +382,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 70 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_seasoned').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_seasoned')|0]/mo#!"
 							align = left|nobaseline
@@ -322,7 +391,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 70 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_veteran').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_veteran')|0]/mo#!"
 							align = left|nobaseline
@@ -331,7 +400,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 56 16 }
+							size = { 70 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_master').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_master')|0]/mo#!"
 							align = left|nobaseline
@@ -342,16 +411,6 @@ flowcontainer = {
 					}
 
 					blockoverride "row_action" {
-						button_icon_check = {
-							parentanchor = vcenter
-							size = { 26 26 }
-							visible = "[GetScriptedGui('adv_dip_sgui_appoint_director').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
-							enabled = "[GetScriptedGui('adv_dip_sgui_appoint_director').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
-							onclick = "[GetScriptedGui('adv_dip_sgui_appoint_director').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
-							tooltip = "[GetScriptedGui('adv_dip_sgui_appoint_director').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
-							using = tooltip_ne
-						}
-
 						button_icon_cancel = {
 							parentanchor = vcenter
 							size = { 26 26 }
@@ -405,6 +464,106 @@ flowcontainer = {
 		}
 	}
 
+	### PENDING ELECTION BALLOTS
+	flowcontainer = {
+		direction = vertical
+		visible = "[Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_election_choice')))]"
+
+		background = {
+			using = dropdown_background
+			margin = { 0 -2 }
+		}
+
+		textbox = {
+			size = { 520 30 }
+			text = "ADV_DIP_CONSOLE_BALLOT"
+			align = left|nobaseline
+			margin_left = 10
+			using = fontsize_medium
+		}
+
+		flowcontainer = {
+			direction = vertical
+			spacing = 4
+			margin_bottom = 8
+			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_election_choice')]"
+
+			item = {
+				flowcontainer = {
+					direction = vertical
+					datacontext = "[Scope.GetCountry]"
+
+					flowcontainer = {
+						direction = horizontal
+						spacing = 8
+						margin_left = 10
+
+						small_flag = {
+							parentanchor = vcenter
+						}
+
+						textbox = {
+							parentanchor = vcenter
+							size = { 260 22 }
+							text = "[Country.GetName]"
+							default_format = "#v"
+							align = left|nobaseline
+							elide = right
+							using = fontsize_medium
+						}
+
+						textbox = {
+							parentanchor = vcenter
+							size = { 170 18 }
+							text = "ADV_DIP_CONSOLE_BALLOT_HINT"
+							align = left|nobaseline
+							elide = right
+							using = fontsize_small
+						}
+					}
+
+					flowcontainer = {
+						direction = vertical
+						spacing = 2
+						margin_left = 40
+						datamodel = "[Country.AccessActiveParties]"
+
+						item = {
+							flowcontainer = {
+								direction = horizontal
+								spacing = 8
+
+								background = {
+									using = entry_bg_simple
+									alpha = 0.4
+								}
+
+								textbox = {
+									parentanchor = vcenter
+									size = { 330 22 }
+									text = "[Party.GetName]"
+									align = left|nobaseline
+									elide = right
+									using = fontsize_small
+								}
+
+								button_icon_check = {
+									parentanchor = vcenter
+									size = { 24 24 }
+									visible = "[GetScriptedGui('adv_dip_sgui_back_party').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('target', Country.MakeScope).AddScope('party', Party.MakeScope).End)]"
+									enabled = "[GetScriptedGui('adv_dip_sgui_back_party').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('target', Country.MakeScope).AddScope('party', Party.MakeScope).End)]"
+									onclick = "[GetScriptedGui('adv_dip_sgui_back_party').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('target', Country.MakeScope).AddScope('party', Party.MakeScope).End)]"
+									tooltip = "[GetScriptedGui('adv_dip_sgui_back_party').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('target', Country.MakeScope).AddScope('party', Party.MakeScope).End)]"
+									using = tooltip_ne
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	### ACTIVE OPERATIONS
 	flowcontainer = {
 		direction = vertical
@@ -445,7 +604,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sow_discontent')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -453,7 +612,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "sow_discontent_action_name"
 							align = left|nobaseline
 							elide = right
@@ -489,7 +648,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_medium_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -516,7 +675,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_nationalists')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -524,7 +683,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "support_nationalists_action_name"
 							align = left|nobaseline
 							elide = right
@@ -560,7 +719,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_medium_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -587,7 +746,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_agitate_for_liberty')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -595,7 +754,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "agitate_for_liberty_action_name"
 							align = left|nobaseline
 							elide = right
@@ -631,7 +790,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_medium_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -658,7 +817,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_technology')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -666,7 +825,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "steal_technology_action_name"
 							align = left|nobaseline
 							elide = right
@@ -702,7 +861,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_small_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -729,7 +888,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sabotage_recruitment')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -737,7 +896,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "sabotage_recruitment_action_name"
 							align = left|nobaseline
 							elide = right
@@ -773,7 +932,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_small_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -800,7 +959,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_election_interference')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -808,7 +967,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "election_interference_action_name"
 							align = left|nobaseline
 							elide = right
@@ -844,7 +1003,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_medium_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -871,7 +1030,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_commander')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -879,7 +1038,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "steal_commander_action_name"
 							align = left|nobaseline
 							elide = right
@@ -915,7 +1074,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_small_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -942,7 +1101,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_clandestine_arms_pipeline')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -950,7 +1109,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "clandestine_arms_pipeline_action_name"
 							align = left|nobaseline
 							elide = right
@@ -986,7 +1145,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_medium_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -1013,7 +1172,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_fund_black_market_slavery')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -1021,7 +1180,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "fund_black_market_slavery_action_name"
 							align = left|nobaseline
 							elide = right
@@ -1057,7 +1216,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_medium_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small
@@ -1084,7 +1243,7 @@ flowcontainer = {
 			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_slaves')]"
 			addcolumn = 520
-			addrow = 44
+			addrow = 48
 
 			item = {
 				adv_dip_operation_row = {
@@ -1092,7 +1251,7 @@ flowcontainer = {
 
 					blockoverride "op_label" {
 						textbox = {
-							size = { 150 16 }
+							size = { 260 18 }
 							text = "support_slaves_action_name"
 							align = left|nobaseline
 							elide = right
@@ -1128,7 +1287,7 @@ flowcontainer = {
 
 					blockoverride "op_cost" {
 						textbox = {
-							size = { 70 20 }
+							size = { 80 20 }
 							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_small_display')|0]/mo#!"
 							align = right|nobaseline
 							using = fontsize_small

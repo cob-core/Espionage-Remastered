@@ -1232,13 +1232,13 @@ adv_dip_event.81 = {
 
 	icon = "gfx/interface/icons/event_icons/event_protest.dds"
 
-	duration = 1
+	duration = 3
 
 	trigger = {
 	}
 
 	cancellation_trigger = {
-		scope:spy_target_country = {
+		scope:spy_target_country ?= {
 			in_election_campaign = no
 		}
 	}
@@ -1247,564 +1247,77 @@ adv_dip_event.81 = {
 		save_scope_as = spymaster
 		if = {
 			limit = { NOT = { exists = scope:spy_target_country } }
-	if = {
+			random_country = {
 				limit = {
-					any_country = {
-						root = {
-							is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
-						}
-						NOT = {
-							has_modifier = overthrown_modifier
-						}
-						in_election_campaign = yes
+					root = {
+						is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
 					}
+					in_election_campaign = yes
 				}
-				random_country = {
-					limit = {
-						root = {
-							is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
-						}
-						NOT = {
-							has_modifier = overthrown_modifier
-						}
-						in_election_campaign = yes
-					}
-					save_scope_as = spy_target_country
-				}
-			}
-			else = {
-				random_country = {
-					limit = {
-						root = {
-							is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
-						}
-					}
-					save_scope_as = spy_target_country
-				}
+				save_scope_as = spy_target_country
 			}
 		}
-
-		scope:spy_target_country = {
-			every_potential_party = {
-				add_to_local_variable_list = {
-					name = interference_government_party_candidates
-					target = this
-				}
-				}
-			every_active_party = {
-				add_to_local_variable_list = {
-					name = interference_government_party_candidates
-					target = this
-				}
-									}
+		# The AI needs no ballot ledger: it backs a random party on the spot.
+		if = {
+			limit = {
+				is_player = no
+				exists = scope:spy_target_country
 			}
-
-			every_in_local_list = {
-				variable = interference_government_party_candidates
-				
-				if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_0
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_0
-					}
+			scope:spy_target_country = {
+				random_active_party = {
+					save_scope_as = adv_dip_ai_backed_party
 				}
-				else_if= {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_1
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_1
-					}
+				trigger_event = {
+					id = adv_dip_event.82
+					days = 7
 				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_2
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_2
-					}
+				change_relations = {
+					country = root
+					value = -10
 				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_3
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_3
-					}
+			}
+			scope:adv_dip_ai_backed_party ?= {
+				set_variable = {
+					name = adv_loyal_government_leader
+					value = 1
 				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_4
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_4
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_5
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_5
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_6
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_6
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_7
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_7
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_8
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_8
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_9
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_9
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_10
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_10
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_11
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_11
-					}
-				}
-				else_if = {
-					limit = {
-						NOT = {
-							exists = scope:interference_government_party_scope_12
-						}
-					}
-					this = {
-						save_scope_as = interference_government_party_scope_12
-					}
-				}
+				set_ruling_party = yes
+			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
+		}
+		# Players choose from the full ballot in the console (event options are
+		# capped far below a real multiparty field).
+		else_if = {
+			limit = { exists = scope:spy_target_country }
+			add_to_variable_list = {
+				name = adv_dip_election_choice
+				target = scope:spy_target_country
 			}
 		}
+	}
 
+	# The choice itself lives in the intelligence console's ballot section.
 	option = {
-
+		name = adv_dip_event.81.a
 		default_option = yes
-		trigger = {    
-			exists = scope:interference_government_party_scope_0
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_0').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_0 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
+		trigger = { is_player = yes }
+		custom_tooltip = adv_dip_election_console_tt
+	}
+
+	option = {
+		name = adv_dip_event.81.x
+		trigger = { is_player = yes }
+		custom_tooltip = adv_dip_election_declined_tt
+		remove_list_variable = {
+			name = adv_dip_election_choice
+			target = scope:spy_target_country
 		}
 	}
 
 	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_1
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_1').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_1 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_2
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_2').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_2 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_3
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_3').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_3 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_4
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_4').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_4 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_5
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_5').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_5 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_6
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_6').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_6 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_7
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_7').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_7 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_8
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_8').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_8 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_9
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_9').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_9 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_10
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_10').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_10 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_11
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_11').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_11 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-	
-	option = {
-		trigger = {    
-			exists = scope:interference_government_party_scope_12
-		}
-		name = "[SCOPE.sParty('interference_government_party_scope_12').GetName]"
-		scope:spy_target_country = {
-			trigger_event = {
-				id = adv_dip_event.82
-				days = 7
-			}
-			change_relations = {
-				country = root
-				value = -10
-			}
-			scope:interference_government_party_scope_12 = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
-			}
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
-		ai_chance = {
-			base = 101
-		}
-	}
-			
-	option = {
-		name = adv_dip_event.81.b
-		ai_chance = {
-			base = 10
-		}
+		name = adv_dip_event.81.a
+		default_option = yes
+		trigger = { is_player = no }
 	}
 }
 
@@ -4103,6 +3616,45 @@ adv_dip_event.216 = {
 		}
 		remove_variable = adv_dip_flip_code
 		remove_variable = adv_dip_flip_spymaster
+	}
+}
+
+# A fired Director of Intelligence takes their knowledge to a hostile power
+# (25% on dismissal, fired from the dismiss scripted GUI with the buyer saved
+# as adv_dip_captor_country so the roll-up effect can reuse it).
+adv_dip_event.220 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.220.t
+	desc = adv_dip_event.220.d
+	flavor = adv_dip_event.220.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 1
+
+	trigger = {
+		exists = scope:adv_dip_captor_country
+	}
+
+	immediate = {
+		scope:adv_dip_captor_country ?= {
+			shadow_war_score_minor_effect = yes
+		}
+	}
+
+	option = {
+		name = adv_dip_event.220.a
+		default_option = yes
+		if = {
+			limit = {
+				adv_dip_has_network_against = { TARGET = adv_dip_captor_country }
+			}
+			adv_dip_roll_up_one_network = yes
+		}
+		else = {
+			custom_tooltip = adv_dip_defector_nothing_tt
+		}
 	}
 }
 
