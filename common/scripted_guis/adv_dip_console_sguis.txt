@@ -46,26 +46,29 @@ adv_dip_sgui_appoint_director = {
 	}
 
 	effect = {
-		every_in_list = {
-			variable = adv_dip_director
-			remove_character_role = character_role_spymaster
-			owner ?= {
-				remove_list_variable = {
-					name = adv_dip_director
-					target = prev
+		if = {
+			limit = { exists = scope:candidate }
+			every_in_list = {
+				variable = adv_dip_director
+				remove_character_role = character_role_spymaster
+				owner ?= {
+					remove_list_variable = {
+						name = adv_dip_director
+						target = prev
+					}
 				}
 			}
-		}
-		remove_list_variable = {
-			name = adv_dip_operatives
-			target = scope:candidate
-		}
-		add_to_variable_list = {
-			name = adv_dip_director
-			target = scope:candidate
-		}
-		scope:candidate = {
-			add_character_role = character_role_spymaster
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:candidate
+			}
+			add_to_variable_list = {
+				name = adv_dip_director
+				target = scope:candidate
+			}
+			scope:candidate = {
+				add_character_role = character_role_spymaster
+			}
 		}
 	}
 }
@@ -87,7 +90,10 @@ adv_dip_sgui_cancel_sow_discontent = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = sow_discontent TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = sow_discontent TARGET = op_target }
+		}
 	}
 }
 
@@ -108,7 +114,10 @@ adv_dip_sgui_cancel_support_nationalists = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = support_nationalists TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = support_nationalists TARGET = op_target }
+		}
 	}
 }
 
@@ -129,7 +138,10 @@ adv_dip_sgui_cancel_agitate_for_liberty = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = op_target }
+		}
 	}
 }
 
@@ -150,7 +162,10 @@ adv_dip_sgui_cancel_steal_technology = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = steal_technology TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = steal_technology TARGET = op_target }
+		}
 	}
 }
 
@@ -171,7 +186,10 @@ adv_dip_sgui_cancel_sabotage_recruitment = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = op_target }
+		}
 	}
 }
 
@@ -192,7 +210,10 @@ adv_dip_sgui_cancel_election_interference = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = election_interference TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = election_interference TARGET = op_target }
+		}
 	}
 }
 
@@ -213,7 +234,10 @@ adv_dip_sgui_cancel_steal_commander = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = steal_commander TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = steal_commander TARGET = op_target }
+		}
 	}
 }
 
@@ -234,7 +258,10 @@ adv_dip_sgui_cancel_clandestine_arms_pipeline = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = op_target }
+		}
 	}
 }
 
@@ -255,7 +282,10 @@ adv_dip_sgui_cancel_fund_black_market_slavery = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = op_target }
+		}
 	}
 }
 
@@ -276,6 +306,9 @@ adv_dip_sgui_cancel_support_slaves = {
 
 	effect = {
 		custom_tooltip = adv_dip_cancel_operation_tt
-		adv_dip_stop_operation = { ACTION = support_slaves TARGET = op_target }
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = support_slaves TARGET = op_target }
+		}
 	}
 }

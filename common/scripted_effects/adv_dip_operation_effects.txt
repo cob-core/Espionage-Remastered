@@ -9,15 +9,31 @@ adv_dip_start_operation = {
 }
 
 # Stops one operation. TARGET must be a saved scope name (without scope: prefix).
+# Defensive by design: every caller may pass a scope that no longer resolves
+# (a dead country, a stale UI row), so the whole body is existence-guarded.
 adv_dip_stop_operation = {
-	remove_list_variable = {
-		name = adv_dip_op_$ACTION$
-		target = scope:$TARGET$
-	}
-	scope:$TARGET$ ?= {
-		remove_modifier = adv_dip_arms_pipeline_target_modifier
-		remove_modifier = adv_dip_black_market_target_modifier
-		remove_modifier = adv_dip_support_slaves_target_modifier
+	if = {
+		limit = { exists = scope:$TARGET$ }
+
+		remove_list_variable = {
+			name = adv_dip_op_$ACTION$
+			target = scope:$TARGET$
+		}
+
+		scope:$TARGET$ = {
+			if = {
+				limit = { has_modifier = adv_dip_arms_pipeline_target_modifier }
+				remove_modifier = adv_dip_arms_pipeline_target_modifier
+			}
+			if = {
+				limit = { has_modifier = adv_dip_black_market_target_modifier }
+				remove_modifier = adv_dip_black_market_target_modifier
+			}
+			if = {
+				limit = { has_modifier = adv_dip_support_slaves_target_modifier }
+				remove_modifier = adv_dip_support_slaves_target_modifier
+			}
+		}
 	}
 }
 

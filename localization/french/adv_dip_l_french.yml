@@ -867,13 +867,12 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA [concep
  character_role_spymaster: "Directeur du renseignement"
  adv_dip_operative_captured_tt: "#N Notre agent a été capturé et emprisonné par la cible.#!"
  adv_dip_operative_executed_tt: "#N Notre agent a été exécuté.#!"
- ADV_DIP_OP_ROW_SOW_DISCONTENT: "Semer la discorde — [Country.GetName]"
- ADV_DIP_OP_ROW_SUPPORT_NATIONALISTS: "Soutien aux nationalistes — [Country.GetName]"
- ADV_DIP_OP_ROW_AGITATE_FOR_LIBERTY: "Agitation pour la liberté — [Country.GetName]"
- ADV_DIP_OP_ROW_STEAL_TECHNOLOGY: "Vol de technologie — [Country.GetName]"
- ADV_DIP_OP_ROW_SABOTAGE_RECRUITMENT: "Sabotage du recrutement — [Country.GetName]"
- ADV_DIP_OP_ROW_ELECTION_INTERFERENCE: "Ingérence électorale — [Country.GetName]"
- ADV_DIP_OP_ROW_STEAL_COMMANDER: "Recrutement de commandants — [Country.GetName]"
- ADV_DIP_OP_ROW_CLANDESTINE_ARMS_PIPELINE: "Filière d'armes — [Country.GetName]"
- ADV_DIP_OP_ROW_FUND_BLACK_MARKET_SLAVERY: "Financement négrier — [Country.GetName]"
- ADV_DIP_OP_ROW_SUPPORT_SLAVES: "Soutien aux esclaves — [Country.GetName]"
+
+
+
+
+
+
+
+
+

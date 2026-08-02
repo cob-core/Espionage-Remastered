@@ -3669,7 +3669,7 @@ adv_dip_event.190 = {
 	immediate = {
 		add_modifier = {
 			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_small
+			multiplier = adv_dip_recruit_cost
 			months = 13
 		}
 		create_character = {

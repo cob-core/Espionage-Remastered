@@ -207,7 +207,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_SOW_DISCONTENT"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -249,7 +249,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_SUPPORT_NATIONALISTS"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -291,7 +291,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_AGITATE_FOR_LIBERTY"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -333,7 +333,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_STEAL_TECHNOLOGY"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -375,7 +375,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_SABOTAGE_RECRUITMENT"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -417,7 +417,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_ELECTION_INTERFERENCE"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -459,7 +459,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_STEAL_COMMANDER"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -501,7 +501,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_CLANDESTINE_ARMS_PIPELINE"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -543,7 +543,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_FUND_BLACK_MARKET_SLAVERY"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
@@ -585,7 +585,7 @@ flowcontainer = {
 
 					textbox = {
 						size = { 330 26 }
-						text = "ADV_DIP_OP_ROW_SUPPORT_SLAVES"
+						text = "[Country.GetName]"
 						align = left|nobaseline
 						using = fontsize_small
 					}
