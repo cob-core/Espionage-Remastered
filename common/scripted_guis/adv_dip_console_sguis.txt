@@ -458,3 +458,48 @@ adv_dip_sgui_has_operations = {
 	effect = {
 	}
 }
+
+adv_dip_sgui_tier_seasoned = {
+	scope = character
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		has_trait = adv_dip_seasoned
+	}
+
+	effect = {
+	}
+}
+
+adv_dip_sgui_tier_veteran = {
+	scope = character
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		has_trait = adv_dip_veteran
+	}
+
+	effect = {
+	}
+}
+
+adv_dip_sgui_tier_master = {
+	scope = character
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		has_trait = adv_dip_master_spy
+	}
+
+	effect = {
+	}
+}

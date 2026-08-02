@@ -10,7 +10,7 @@ law_no_external_security_desc: "L'État n'a pas intérêt à interférer avec le
 law_spy_agency: "Agence de renseignement"
 law_spy_agency_desc: "Il est temps de montrer au monde ce que notre État-nation peut faire, nous allons conquérir de l'intérieur."
 institution_espionage: "Renseignement"
-institution_espionage_desc: "L'appareil permanent du renseignement extérieur : stations à l'étranger, identités de couverture, courriers et trésoriers-payeurs. C'est l'investissement consenti ici qui distingue un service d'espionnage d'une ambassade qui a des opinions."
+institution_espionage_desc: "L'appareil permanent du renseignement extérieur : antennes à l'étranger, identités de couverture, courriers et trésoriers-payeurs. C'est l'investissement qui sépare un service d'espionnage d'une ambassade qui a des opinions.\n\n#b Chaque niveau d'investissement débloque de nouvelles opérations :#!\n#v 1#! - $steal_technology_action_name$\n#v 2#! - $steal_commander_action_name$, $clandestine_arms_pipeline_action_name$, $fund_black_market_slavery_action_name$\n#v 3#! - $agitate_for_liberty_action_name$, $sabotage_recruitment_action_name$, $naval_intelligence_action_name$, $false_flag_directive_action_name$, $support_slaves_action_name$\n#v 4#! - $support_nationalists_action_name$, $election_interference_action_name$, $sealed_train_action_name$, $blackmail_concession$\n#v 5#! - $sow_discontent_action_name$, $assassinate_political_leader_action_name$, $develop_nation_action_name$"
 country_institution_espionage_max_investment_add: "Niveau maximum d'investissement dans le renseignement"
 
 # # # # # EFFETS DE MODIFIER MENSUELS # # # # #
@@ -906,4 +906,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_master_spy_desc: "Six ans sur le terrain, et toujours vivant. #P +45% de réussite mensuelle#!, #P moitié moins de risque de capture#!, et #P ne parle jamais sous interrogatoire#!. Touche un salaire princier."
  adv_dip_recruit_tt: "Un nouvel agent doté d'une spécialité aléatoire rejoint le service."
  adv_dip_master_silence_tt: "#P Un maître espion ne parle pas. Ses interrogateurs n'ont rien appris.#!"
- ADV_DIP_CONSOLE_BUDGET_TT: "Le coût mensuel complet du service : entretien des opérations et salaires, de la recrue au Directeur. Prélevé directement sur le trésor - rien n'en est visible aux puissances étrangères."
+ ADV_DIP_CONSOLE_OP_COST_TT: "L'entretien mensuel de cette opération, proportionné à l'économie de la cible. Le salaire de l'agent s'y ajoute."
+ ADV_DIP_CONSOLE_AGENT_TT: "L'agent qui dirige ce réseau."
+ ADV_DIP_CONSOLE_WAGE_TT: "Salaire mensuel, proportionné à notre économie et à l'expérience de l'agent. Prélevé directement sur le trésor avec tous les autres coûts d'espionnage - rien n'est visible aux puissances étrangères."

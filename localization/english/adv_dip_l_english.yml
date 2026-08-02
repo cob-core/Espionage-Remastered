@@ -10,7 +10,7 @@ law_no_external_security_desc: "The state has no interest in interfering with th
 law_spy_agency: "Intelligence Agency"
 law_spy_agency_desc: "It's time to show the world what our nation state can do, we shall conquer from within."
 institution_espionage: "Espionage"
-institution_espionage_desc: "The permanent apparatus of foreign intelligence: stations abroad, cover identities, couriers and paymasters. Investment here is what separates an espionage service from an embassy with opinions."
+institution_espionage_desc: "The permanent apparatus of foreign intelligence: stations abroad, cover identities, couriers and paymasters. Investment here is what separates an espionage service from an embassy with opinions.\n\n#b Each investment level unlocks new operations:#!\n#v 1#! - $steal_technology_action_name$\n#v 2#! - $steal_commander_action_name$, $clandestine_arms_pipeline_action_name$, $fund_black_market_slavery_action_name$\n#v 3#! - $agitate_for_liberty_action_name$, $sabotage_recruitment_action_name$, $naval_intelligence_action_name$, $false_flag_directive_action_name$, $support_slaves_action_name$\n#v 4#! - $support_nationalists_action_name$, $election_interference_action_name$, $sealed_train_action_name$, $blackmail_concession$\n#v 5#! - $sow_discontent_action_name$, $assassinate_political_leader_action_name$, $develop_nation_action_name$"
 country_institution_espionage_max_investment_add: "Espionage Max Investment Level"
 
 # # # # # MONTHLY MODIFIER EFFECTS # # # # #
@@ -906,4 +906,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA discree
  adv_dip_master_spy_desc: "Six years in the field and still alive. #P +45% monthly operation success#!, #P half the usual capture risk#!, and #P never talks under interrogation#!. Commands a princely wage."
  adv_dip_recruit_tt: "A new operative with a random tradecraft specialty joins the roster."
  adv_dip_master_silence_tt: "#P A master spy does not talk. Their interrogators learned nothing.#!"
- ADV_DIP_CONSOLE_BUDGET_TT: "The service's full monthly cost: operation upkeep plus every wage from rookie to Director. Charged directly from the treasury - nothing about it is visible to foreign powers."
+ ADV_DIP_CONSOLE_OP_COST_TT: "This operation's monthly upkeep, scaled to the target's economy. The assigned operative's wage is on top."
+ ADV_DIP_CONSOLE_AGENT_TT: "The operative running this network."
+ ADV_DIP_CONSOLE_WAGE_TT: "Monthly wage, scaled to our economy and the operative's experience. Charged directly from the treasury with all other espionage costs - nothing is visible to foreign powers."

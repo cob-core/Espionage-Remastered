@@ -214,6 +214,14 @@ adv_dip_assign_operative = {
 			months = 3
 		}
 	}
+	# Parallel agent list drives the console's operation rows.
+	if = {
+		limit = { exists = scope:chosen_operative }
+		add_to_variable_list = {
+			name = adv_dip_agents_$ACTION$
+			target = scope:chosen_operative
+		}
+	}
 }
 
 # Frees an operative for reassignment. Character scope.
@@ -222,6 +230,15 @@ adv_dip_free_operative = {
 	remove_variable = adv_dip_assigned_$ACTION$
 	remove_variable = adv_dip_assignment_target
 	remove_variable = adv_dip_settling_in
+	owner ?= {
+		if = {
+			limit = { has_variable_list = adv_dip_agents_$ACTION$ }
+			remove_list_variable = {
+				name = adv_dip_agents_$ACTION$
+				target = prev
+			}
+		}
+	}
 }
 
 # Stops one operation. TARGET must be a saved scope name (without scope: prefix).
@@ -288,6 +305,26 @@ adv_dip_release_if_orphaned = {
 				}
 			}
 			adv_dip_free_operative = { ACTION = $ACTION$ }
+		}
+		else_if = {
+			# Self-healing: a live assignment must appear in the console's
+			# agent list (also backfills saves from before the list existed).
+			limit = {
+				owner = {
+					NOT = {
+						is_target_in_variable_list = {
+							name = adv_dip_agents_$ACTION$
+							target = prev
+						}
+					}
+				}
+			}
+			owner = {
+				add_to_variable_list = {
+					name = adv_dip_agents_$ACTION$
+					target = prev
+				}
+			}
 		}
 	}
 }

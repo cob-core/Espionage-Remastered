@@ -230,3 +230,19 @@ adv_dip_monthly_espionage_spend = {
 	value = adv_dip_network_upkeep_value
 	multiply = 4
 }
+
+# Console display twins of the upkeep tiers: evaluated from the GUI in the
+# TARGET country's scope (via the agent's assignment variable), so they read
+# bare gdp instead of scope:spy_target_country.
+adv_dip_upkeep_small_display = {
+	value = gdp
+	divide = 1200000
+	round = yes
+	min = 25
+}
+adv_dip_upkeep_medium_display = {
+	value = gdp
+	divide = 600000
+	round = yes
+	min = 50
+}
