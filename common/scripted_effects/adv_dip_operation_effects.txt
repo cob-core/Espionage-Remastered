@@ -107,6 +107,25 @@ adv_dip_dispatch_pending_operation = {
 			adv_dip_start_operation = { ACTION = election_interference }
 			adv_dip_assign_operative = { ACTION = election_interference }
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
+			# Campaign already running: the ballot opens immediately instead of
+			# waiting for the monthly pulse.
+			if = {
+				limit = {
+					is_player = yes
+					scope:spy_target_country = { in_election_campaign = yes }
+					NOT = {
+						is_target_in_variable_list = {
+							name = adv_dip_election_choice
+							target = scope:spy_target_country
+						}
+					}
+				}
+				add_to_variable_list = {
+					name = adv_dip_election_choice
+					target = scope:spy_target_country
+				}
+				trigger_event = { id = adv_dip_event.81 popup = yes }
+			}
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 7 }
@@ -167,7 +186,29 @@ adv_dip_dispatch_pending_operation = {
 			}
 			adv_dip_assign_operative = { ACTION = sealed_train }
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_very_large WEEKS = 50 }
-			trigger_event = { id = adv_dip_event.170 }
+			if = {
+				limit = {
+					is_player = yes
+					any_character_in_exile_pool = {
+						always = yes
+					}
+				}
+				every_character_in_exile_pool = {
+					add_to_variable_list = {
+						name = adv_dip_smuggle_candidates
+						target = this
+					}
+				}
+				set_variable = {
+					name = adv_dip_smuggle_pending
+					value = scope:spy_target_country
+					months = 6
+				}
+				trigger_event = { id = adv_dip_event.230 popup = yes }
+			}
+			else = {
+				trigger_event = { id = adv_dip_event.170 }
+			}
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 13 }

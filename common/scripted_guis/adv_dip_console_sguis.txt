@@ -543,6 +543,10 @@ adv_dip_sgui_back_party = {
 				target = scope:target
 			}
 			scope:party = {
+				set_variable = {
+					name = adv_dip_backed_by
+					value = root
+				}
 				add_momentum = momentum_large
 			}
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
@@ -607,6 +611,43 @@ adv_dip_sgui_appoint_director = {
 				remove_character_role = character_role_operative
 				add_character_role = character_role_spymaster
 			}
+		}
+	}
+}
+
+# Puts the chosen exile on the sealed train. Root = us; scope:rev = the exile.
+adv_dip_sgui_smuggle_pick = {
+	scope = country
+	saved_scopes = { rev }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		has_variable = adv_dip_smuggle_pending
+		scope:rev ?= {
+			is_in_exile_pool = yes
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_smuggle_pick_tt
+		if = {
+			limit = {
+				exists = scope:rev
+				has_variable = adv_dip_smuggle_pending
+			}
+			var:adv_dip_smuggle_pending ?= {
+				save_scope_as = spy_target_country
+			}
+			scope:rev = {
+				save_scope_as = smuggled_revolutionary
+				transfer_character = scope:spy_target_country
+			}
+			remove_variable = adv_dip_smuggle_pending
+			clear_variable_list = adv_dip_smuggle_candidates
+			trigger_event = { id = adv_dip_event.170 }
 		}
 	}
 }

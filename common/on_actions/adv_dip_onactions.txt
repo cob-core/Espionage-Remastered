@@ -372,6 +372,14 @@ adv_dip_espionage_monthly = {
 		# Free any operative whose operation has ended by a path that could not
 		# release them directly (annexation, chain resolution, expiry).
 		adv_dip_reconcile_assignments = yes
+		# An unanswered smuggle slate expires with its pending marker.
+		if = {
+			limit = {
+				has_variable_list = adv_dip_smuggle_candidates
+				NOT = { has_variable = adv_dip_smuggle_pending }
+			}
+			clear_variable_list = adv_dip_smuggle_candidates
+		}
 		# A pending election-interference choice dies with the campaign.
 		if = {
 			limit = { has_variable_list = adv_dip_election_choice }
@@ -945,8 +953,92 @@ adv_dip_espionage_monthly = {
 							}
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
-						else = {
-							adv_dip_operation_die = { CHANCE = 33 EVENT = adv_dip_event.81 ACTION = election_interference TRAIT = silver_tongue }
+						# A party is already backed: pump its momentum silently
+						# each month, with a small discovery risk per payment.
+						else_if = {
+							limit = {
+								scope:spy_target_country = {
+									any_active_party = {
+										var:adv_dip_backed_by ?= root
+									}
+								}
+							}
+							scope:spy_target_country = {
+								random_active_party = {
+									limit = { var:adv_dip_backed_by ?= root }
+									add_momentum = momentum_medium
+								}
+							}
+							root = { save_scope_as = spymaster }
+							random_list = {
+								92 = {}
+								8 = {
+									scope:spy_target_country = {
+										trigger_event = {
+											id = adv_dip_event.225
+											days = 14
+										}
+									}
+								}
+							}
+						}
+						# No party backed yet this campaign: the ballot opens once.
+						else_if = {
+							limit = {
+								root = { is_player = yes }
+								root = {
+									NOT = {
+										is_target_in_variable_list = {
+											name = adv_dip_election_choice
+											target = scope:spy_target_country
+										}
+									}
+								}
+							}
+							root = {
+								add_to_variable_list = {
+									name = adv_dip_election_choice
+									target = scope:spy_target_country
+								}
+								trigger_event = { id = adv_dip_event.81 popup = yes }
+							}
+						}
+						# The AI commits to a party once per campaign.
+						else_if = {
+							limit = { root = { is_player = no } }
+							scope:spy_target_country = {
+								random_active_party = {
+									set_variable = {
+										name = adv_dip_backed_by
+										value = root
+									}
+									add_momentum = momentum_large
+								}
+							}
+						}
+					}
+					# Between campaigns the slate is wiped: backed parties and
+					# any unanswered ballot lapse.
+					else = {
+						scope:spy_target_country = {
+							every_active_party = {
+								limit = { var:adv_dip_backed_by ?= root.root }
+								remove_variable = adv_dip_backed_by
+							}
+						}
+						root = {
+							if = {
+								limit = {
+									is_target_in_variable_list = {
+										name = adv_dip_election_choice
+										target = scope:spy_target_country
+									}
+								}
+								remove_list_variable = {
+									name = adv_dip_election_choice
+									target = scope:spy_target_country
+								}
+							}
 						}
 					}
 				}

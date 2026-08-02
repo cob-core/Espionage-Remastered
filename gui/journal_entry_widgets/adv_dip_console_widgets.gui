@@ -35,7 +35,7 @@ types adv_dip_console_types
 			direction = vertical
 
 			textbox = {
-				size = { 220 20 }
+				size = { 200 20 }
 				text = "[Character.GetFullNameNoFormatting]"
 				default_format = "#v"
 				align = left|nobaseline
@@ -45,7 +45,7 @@ types adv_dip_console_types
 
 			block "detail_line" {
 				textbox = {
-					size = { 220 16 }
+					size = { 200 16 }
 					text = "[Character.GetCulture.GetName]"
 					align = left|nobaseline
 					elide = right
@@ -56,7 +56,7 @@ types adv_dip_console_types
 
 		widget = {
 			parentanchor = vcenter
-			size = { 180 52 }
+			size = { 160 52 }
 			scissor = yes
 
 			character_traits_no_label = {
@@ -280,7 +280,7 @@ flowcontainer = {
 
 					blockoverride "detail_line" {
 						textbox = {
-							size = { 82 16 }
+							size = { 96 16 }
 							visible = "[And( Not(Character.IsBusy), Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
 							text = "ADV_DIP_CONSOLE_STATUS_AVAILABLE"
 							default_format = "#P"
@@ -289,7 +289,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 82 16 }
+							size = { 96 16 }
 							visible = "[And( Character.IsBusy, Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
 							text = "ADV_DIP_CONSOLE_STATUS_ON_MISSION"
 							align = left|nobaseline
@@ -297,7 +297,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 82 16 }
+							size = { 96 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							text = "ADV_DIP_CONSOLE_STATUS_CAPTURED"
 							default_format = "#N"
@@ -306,37 +306,7 @@ flowcontainer = {
 							using = fontsize_small
 						}
 						textbox = {
-							size = { 62 16 }
-							visible = "[GetScriptedGui('adv_dip_sgui_tier_seasoned').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
-							text = "adv_dip_seasoned"
-							align = left|nobaseline
-							elide = right
-							using = fontsize_small
-							tooltip = "adv_dip_seasoned_desc"
-							using = tooltip_ne
-						}
-						textbox = {
-							size = { 62 16 }
-							visible = "[GetScriptedGui('adv_dip_sgui_tier_veteran').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
-							text = "adv_dip_veteran"
-							align = left|nobaseline
-							elide = right
-							using = fontsize_small
-							tooltip = "adv_dip_veteran_desc"
-							using = tooltip_ne
-						}
-						textbox = {
-							size = { 62 16 }
-							visible = "[GetScriptedGui('adv_dip_sgui_tier_master').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
-							text = "adv_dip_master_spy"
-							align = left|nobaseline
-							elide = right
-							using = fontsize_small
-							tooltip = "adv_dip_master_spy_desc"
-							using = tooltip_ne
-						}
-						textbox = {
-							size = { 70 16 }
+							size = { 100 16 }
 							visible = "[Not(Or( GetScriptedGui('adv_dip_sgui_tier_seasoned').IsValid(GuiScope.SetRoot(Character.MakeScope).End), Or( GetScriptedGui('adv_dip_sgui_tier_veteran').IsValid(GuiScope.SetRoot(Character.MakeScope).End), GetScriptedGui('adv_dip_sgui_tier_master').IsValid(GuiScope.SetRoot(Character.MakeScope).End) ) ))]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_base')|0]/mo#!"
 							align = left|nobaseline
@@ -345,7 +315,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 70 16 }
+							size = { 100 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_seasoned').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_seasoned')|0]/mo#!"
 							align = left|nobaseline
@@ -354,7 +324,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 70 16 }
+							size = { 100 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_veteran').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_veteran')|0]/mo#!"
 							align = left|nobaseline
@@ -363,7 +333,7 @@ flowcontainer = {
 							using = tooltip_ne
 						}
 						textbox = {
-							size = { 70 16 }
+							size = { 100 16 }
 							visible = "[GetScriptedGui('adv_dip_sgui_tier_master').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
 							raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_wage_master')|0]/mo#!"
 							align = left|nobaseline
@@ -530,6 +500,49 @@ flowcontainer = {
 									using = tooltip_ne
 								}
 							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	### SEALED TRAIN MANIFEST
+	flowcontainer = {
+		direction = vertical
+		visible = "[Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_smuggle_candidates')))]"
+
+		background = {
+			using = dropdown_background
+			margin = { 0 -2 }
+		}
+
+		textbox = {
+			size = { 520 30 }
+			text = "ADV_DIP_CONSOLE_SMUGGLE"
+			align = left|nobaseline
+			margin_left = 10
+			using = fontsize_medium
+		}
+
+		fixedgridbox = {
+			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_smuggle_candidates')]"
+			addcolumn = 520
+			addrow = 50
+
+			item = {
+				adv_dip_character_row = {
+					datacontext = "[Scope.AccessCharacter]"
+
+					blockoverride "row_action" {
+						button_icon_check = {
+							parentanchor = vcenter
+							size = { 26 26 }
+							visible = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+							enabled = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+							onclick = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+							tooltip = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+							using = tooltip_ne
 						}
 					}
 				}
