@@ -72,10 +72,6 @@ remove_assassination_events_effect = {
 	remove_variable = ongoing_plans
 
 	# The modifier is timed (25 months) and absent on abort paths and long plots.
-	if = {
-		limit = { has_modifier = assassination_cost_modifier }
-		remove_modifier = assassination_cost_modifier
-	}
 
 	# The victim lives in the target country, not the initiator's scope; clean the
 	# tag there before the country variable itself is removed.

@@ -19,10 +19,6 @@
 	effect = {
 		set_variable = { name = recently_funded_informants months = 6 }
 		naval_intel_major_progress_effect = yes
-		add_modifier = {
-			name = naval_intel_cost_modifier
-			months = 13
-			multiplier = naval_intel_funding
-		}
+		adv_dip_covert_charge = { COST = naval_intel_funding WEEKS = 26 }
 	}
 }

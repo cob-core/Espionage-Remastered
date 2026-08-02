@@ -10,7 +10,9 @@
 
 	weight = 100
 	transferable = no
-	should_be_pinned_by_default_involved = yes
+	# This is a context = country JE with no involved parties, so the
+	# _uninvolved_or_context variant is the one that actually pins it.
+	should_be_pinned_by_default_uninvolved_or_context = yes
 
 	is_shown_when_inactive = {
 		OR = {

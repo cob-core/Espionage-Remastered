@@ -27,21 +27,6 @@
 		building_training_rate_mult = -0.1
 	}
 
-	spy_network_cost_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
-	assassination_cost_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
-	counterespionage_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
 	overthrown_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 		interest_group_in_government_attraction_mult = 0.10
@@ -66,16 +51,6 @@
 		country_prestige_add = 25
 	}
 
-	assassin_paid_off_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
-	paid_a_witch_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
 	cleaned_the_cat_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
 		country_prestige_add = 15
@@ -88,11 +63,6 @@
 	blamed_for_poisoning_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
 		character_popularity_add = -50
-	}
-
-	development_cost_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
 	}
 
 	stolen_technology_production_modifier = {
@@ -108,11 +78,6 @@
 	stolen_technology_society_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 		country_society_tech_spread_mult = 1
-	}
-
-	stolen_technology_cost_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
 	}
 
 	development_share_technology_modifier = {
@@ -155,11 +120,6 @@
 		country_improve_relations_speed_mult = 0.10
 	}
 
-	naval_intel_cost_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
 	naval_codebook_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
 		ship_accuracy_mult = 0.10
@@ -182,11 +142,6 @@
 	exposed_spy_ring_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
 		country_influence_mult = -0.10
-	}
-
-	pipeline_interception_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
 	}
 
 	pipeline_triumph_modifier = {
@@ -225,11 +180,6 @@
 		state_radicals_from_political_movements_mult = -0.25
 	}
 
-	false_flag_operations_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
-	}
-
 	kompromat_scandal_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_negative.dds
 		country_prestige_mult = -0.05
@@ -238,11 +188,6 @@
 	pipeline_shame_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
 		country_prestige_add = -25
-	}
-
-	adv_dip_network_upkeep_modifier = {
-		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
-		country_expenses_add = 1
 	}
 
 	adv_dip_arms_pipeline_target_modifier = {

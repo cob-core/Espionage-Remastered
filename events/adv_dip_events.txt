@@ -67,11 +67,7 @@ adv_dip_event.11 = {
 		default_option = yes
 		name = adv_dip_event.11.a
 		shadow_war_score_minor_effect = yes
-		add_modifier = {
-			name = spy_network_cost_modifier
-			months = 25
-			multiplier = spy_cost_multiplier_medium
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		scope:spy_target_country ?= {
 			trigger_event = {
 	            id = adv_dip_event.12
@@ -140,11 +136,7 @@ adv_dip_event.12 = {
 			name = sow_discontent_modifier
 			months = 25
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = money_amount_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = money_amount_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 20
 		}
@@ -160,11 +152,7 @@ adv_dip_event.12 = {
 			name = turned_sow_discontent_by
 			value = scope:spymaster
 		}
-		add_modifier = {
-			name = counterespionage_modifier
-			multiplier = counterespionage_cost
-			months = 60
-		}
+		adv_dip_covert_charge = { COST = counterespionage_cost WEEKS = 120 }
 		ai_chance = {
 			base = 40
 		}
@@ -320,11 +308,7 @@ adv_dip_event.21 = {
 				}
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -396,11 +380,7 @@ adv_dip_event.21 = {
 				}
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -473,11 +453,7 @@ adv_dip_event.21 = {
 				}
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -550,11 +526,7 @@ adv_dip_event.21 = {
 				}
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -626,11 +598,7 @@ adv_dip_event.21 = {
 				}
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -730,11 +698,7 @@ adv_dip_event.22 = {
 				months = 25
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = money_amount_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = money_amount_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -822,11 +786,7 @@ adv_dip_event.31 = {
 		default_option = yes
 		name = adv_dip_event.31.a
 		shadow_war_score_minor_effect = yes
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		if = {
 			limit = {
 				scope:spy_target_country = {
@@ -942,11 +902,7 @@ adv_dip_event.32 = {
 	}
 	option = {
 		name = adv_dip_event.32.b
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = money_amount_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = money_amount_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 		}
@@ -1000,11 +956,7 @@ adv_dip_event.33 = {
 			country = scope:spy_target_country
 			value = 10
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 1
 		}
@@ -1078,11 +1030,7 @@ adv_dip_event.41 = {
 		default_option = yes
 		name = adv_dip_event.41.a
 		shadow_war_score_minor_effect = yes
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		scope:spy_target_country ?= {
 			trigger_event = {
 	            id = adv_dip_event.42
@@ -1152,11 +1100,7 @@ adv_dip_event.42 = {
 			name = sabotage_recruitment_modifier
 			months = 25
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = money_amount_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = money_amount_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 20
 		}
@@ -1407,11 +1351,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1439,11 +1379,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1471,11 +1407,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1503,11 +1435,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1535,11 +1463,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1567,11 +1491,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1599,11 +1519,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1631,11 +1547,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1663,11 +1575,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1694,11 +1602,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1726,11 +1630,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1758,11 +1658,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1790,11 +1686,7 @@ adv_dip_event.81 = {
 				set_ruling_party = yes
 			}
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -1867,11 +1759,7 @@ adv_dip_event.82 = {
 			name = suppress_government_modifier
 			months = 25
 		}
-		add_modifier = {
-			name = counterespionage_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 48
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 96 }
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -1894,11 +1782,7 @@ adv_dip_event.82 = {
 			name = turned_election_interference_by
 			value = scope:spymaster
 		}
-		add_modifier = {
-			name = counterespionage_modifier
-			multiplier = counterespionage_cost
-			months = 60
-		}
+		adv_dip_covert_charge = { COST = counterespionage_cost WEEKS = 120 }
 	}
 }
 
@@ -1965,11 +1849,7 @@ adv_dip_event.91 = {
 			name = stolen_technology_production_modifier
 			months = 24
 		}
-		add_modifier = {
-			name = stolen_technology_cost_modifier
-			multiplier = technology_theft_cost
-			months = 24
-		}
+		adv_dip_covert_charge = { COST = technology_theft_cost WEEKS = 48 }
 		random_list = {
 			5 = {}
 			1 = {
@@ -2012,11 +1892,7 @@ adv_dip_event.91 = {
 			name = stolen_technology_military_modifier
 			months = 24
 		}
-		add_modifier = {
-			name = stolen_technology_cost_modifier
-			multiplier = technology_theft_cost
-			months = 24
-		}
+		adv_dip_covert_charge = { COST = technology_theft_cost WEEKS = 48 }
 		random_list = {
 			5 = {}
 			1 = {
@@ -2059,11 +1935,7 @@ adv_dip_event.91 = {
 			name = stolen_technology_society_modifier
 			months = 24
 		}
-		add_modifier = {
-			name = stolen_technology_cost_modifier
-			multiplier = technology_theft_cost
-			months = 24
-		}
+		adv_dip_covert_charge = { COST = technology_theft_cost WEEKS = 48 }
 		random_list = {
 			5 = {}
 			1 = {
@@ -2159,11 +2031,7 @@ adv_dip_event.92 = {
 			name = turned_steal_technology_by
 			value = scope:spymaster
 		}
-		add_modifier = {
-			name = counterespionage_modifier
-			multiplier = counterespionage_cost
-			months = 60
-		}
+		adv_dip_covert_charge = { COST = counterespionage_cost WEEKS = 120 }
 	}
 }
 
@@ -2537,11 +2405,7 @@ adv_dip_event.131 = {
 		scope:steal_commander_target = {
 			transfer_character = root
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		set_variable = {
 			name = recently_stole_commander
 			months = 60
@@ -2594,11 +2458,7 @@ adv_dip_event.131 = {
 			name = stolen_technology_military_modifier
 			months = 24
 		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_small
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 50 }
 		ai_chance = {
 			base = 40
 		}
@@ -3003,11 +2863,7 @@ adv_dip_event.150 = {
 	option = {
 		name = adv_dip_event.150.a
 		default_option = yes
-		add_modifier = {
-			name = pipeline_interception_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 13
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		if = {
 			limit = {
 				var:pipeline_attribution >= 3
@@ -3243,11 +3099,7 @@ adv_dip_event.163 = {
 	option = {
 		name = adv_dip_event.163.a
 		default_option = yes
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		if = {
 			limit = {
 				scope:spy_target_country ?= {
@@ -3637,11 +3489,7 @@ adv_dip_event.155 = {
 	option = {
 		name = adv_dip_event.155.a
 		default_option = yes
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 13
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		random_list = {
 			500 = {
 				custom_tooltip = black_market_quiet_tt
@@ -3656,11 +3504,7 @@ adv_dip_event.155 = {
 					name = black_market_attribution
 					add = 1
 				}
-				add_modifier = {
-					name = pipeline_interception_modifier
-					multiplier = spy_cost_multiplier_small
-					months = 13
-				}
+				adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 26 }
 				if = {
 					limit = {
 						var:black_market_attribution >= 3
@@ -3865,7 +3709,14 @@ adv_dip_event.210 = {
 		name = adv_dip_event.210.a
 		default_option = yes
 		ai_chance = { base = 70 }
+		# A master spy's signature benefit: they never talk.
 		if = {
+			limit = {
+				scope:adv_dip_interrogated ?= { has_trait = adv_dip_master_spy }
+			}
+			custom_tooltip = adv_dip_master_silence_tt
+		}
+		else_if = {
 			limit = {
 				adv_dip_has_network_against = { TARGET = adv_dip_captor_country }
 			}
@@ -3896,50 +3747,6 @@ adv_dip_event.210 = {
 			remove_variable = adv_dip_captor
 			remove_character_role = character_role_operative
 		}
-	}
-}
-
-adv_dip_event.190 = {
-	type = country_event
-	placement = root
-	title = adv_dip_event.190.t
-	desc = adv_dip_event.190.d
-	flavor = adv_dip_event.190.f
-	event_image = { video = "unspecific_politicians_arguing" }
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
-	duration = 1
-
-	immediate = {
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = adv_dip_recruit_cost
-			months = 13
-		}
-		create_character = {
-			role = character_role_operative
-			culture = primary_culture
-			on_created = {
-				save_scope_as = new_operative
-				random_list = {
-					1 = { add_trait = cryptographer }
-					1 = { add_trait = master_of_disguise }
-					1 = { add_trait = saboteur }
-					1 = { add_trait = silver_tongue }
-				}
-				owner = {
-					add_to_variable_list = {
-						name = adv_dip_operatives
-						target = prev
-					}
-				}
-			}
-		}
-	}
-
-	option = {
-		name = adv_dip_event.190.a
-		default_option = yes
 	}
 }
 

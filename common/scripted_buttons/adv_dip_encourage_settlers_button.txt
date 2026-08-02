@@ -31,10 +31,6 @@
 				months = 25
 			}
 		}
-		add_modifier = {
-			name = development_cost_modifier
-			months = 25
-			multiplier = development_funding
-		}
+		adv_dip_covert_charge = { COST = development_funding WEEKS = 50 }
 	}
 }

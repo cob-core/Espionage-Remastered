@@ -26,7 +26,27 @@
 	}
 
 	effect = {
-		trigger_event = { id = adv_dip_event.190 }
+		custom_tooltip = adv_dip_recruit_tt
+		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 26 }
+		create_character = {
+			role = character_role_operative
+			culture = primary_culture
+			on_created = {
+				save_scope_as = new_operative
+				random_list = {
+					1 = { add_trait = cryptographer }
+					1 = { add_trait = master_of_disguise }
+					1 = { add_trait = saboteur }
+					1 = { add_trait = silver_tongue }
+				}
+				owner = {
+					add_to_variable_list = {
+						name = adv_dip_operatives
+						target = prev
+					}
+				}
+			}
+		}
 	}
 }
 

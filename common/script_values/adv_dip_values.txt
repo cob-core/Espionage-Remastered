@@ -198,3 +198,35 @@ adv_dip_recruit_cost = {
 	min = 50
 }
 
+
+# v5.1 operative wages: monthly, scaled to our own economy, drawn by every
+# operative not held prisoner. Tiers follow the experience traits.
+adv_dip_wage_base = {
+	value = gdp
+	divide = 2400000
+	round = yes
+	min = 10
+}
+adv_dip_wage_seasoned = {
+	value = adv_dip_wage_base
+	multiply = 2
+}
+adv_dip_wage_veteran = {
+	value = adv_dip_wage_base
+	multiply = 3.5
+}
+adv_dip_wage_master = {
+	value = adv_dip_wage_base
+	multiply = 5
+}
+adv_dip_wage_director = {
+	value = adv_dip_wage_base
+	multiply = 6
+}
+
+# Console readout: the whole espionage budget (network upkeep + wages) as a
+# monthly figure. The actual charge is adv_dip_covert_charge on this value.
+adv_dip_monthly_espionage_spend = {
+	value = adv_dip_network_upkeep_value
+	multiply = 4
+}

@@ -27,27 +27,21 @@ support_slaves_monthly_effect: "Nos agents peuvent assister à la libération d'
 
 # # # # # MODIFICATEURS # # # # # 
 
-spy_network_cost_modifier: "Construction d'un réseau de renseignement"
-counterespionage_modifier: "Engagement dans la contre-espionnage"
 support_nationalists_modifier: "Nationalistes soutenus"
 suppress_nationalists_modifier: "Nationalistes supprimés"
 agitate_for_liberty_modifier: "Soutien à la liberté"
 sow_discontent_modifier: "Désordre semé"
 overthrown_modifier: "Interférence électorale"
 suppress_government_modifier: "Répression gouvernementale"
-assassination_cost_modifier: "Complot d'assassinat"
 recent_assassination_modifier: "Assassinat récent"
 stolen_technology_production_modifier: "Technologie de production volée"
 stolen_technology_military_modifier: "Technologie militaire volée"
 stolen_technology_society_modifier: "Technologie de société volée"
-stolen_technology_cost_modifier: "Coûts du vol de technologie"
 
 # # # # # MODIFICATEURS D'ASSASSINAT # # # # #
 
 modifier_failed_assassination: "Assassinat échoué"
 modifier_successful_assassination: "Assassinat réussi"
-assassin_paid_off_modifier: "Assassin payé"
-paid_a_witch_modifier: "Payé une sorcière"
 cleaned_the_cat_modifier: "Nettoyé un chat mort"
 
 # # # # # GAME RULES # # # # #
@@ -189,7 +183,6 @@ adv_dip_je_garner_influence_desc: "Gagnez de l'influence en [SCOPE.gsCountry('ta
 
 development_encourage_settlers_modifier: "Encouragement des colons"
 development_garner_influence_modifier: "Gain d'influence"
-development_cost_modifier: "Coûts de développement"
 
 # # # # # ASSASSINATION EVENTS # # # # #
 
@@ -606,7 +599,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  naval_intel_large_risk_tt: "#N L'exposition augmente considérablement.#!"
  naval_intel_reduce_risk_tt: "#v L'exposition diminue.#!"
  # v4.0 Ensemble naval — modificateurs
- naval_intel_cost_modifier: "Dépenses du réseau d'informateurs"
  naval_codebook_modifier: "Codes navals percés"
  naval_landing_intel_modifier: "Cartes de débarquement côtières"
  humiliated_navy_modifier: "Marine humiliée"
@@ -748,7 +740,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_je_shadow_war_reason: "Chaque secret volé, chaque agent retourné, chaque coup discret est compté quelque part. Les services de renseignement du monde tiennent le score — et nous aussi."
  adv_dip_je_shadow_war_leading: "Notre service donne le tempo de la guerre de l'ombre."
  adv_dip_je_shadow_war_playing: "Notre service mène la guerre de l'ombre."
- pipeline_interception_modifier: "Cargaisons interceptées"
  pipeline_triumph_modifier: "L'arsenal de la victoire"
  pipeline_shame_modifier: "Publiquement humilié"
  pipeline_infamy_modifier: "Ingérence éhontée"
@@ -757,7 +748,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  master_of_the_shadow_war_modifier: "Maître de la guerre de l'ombre"
  sealed_train_ferment_modifier: "Ferment révolutionnaire"
  sealed_train_crackdown_modifier: "Répression patriotique"
- false_flag_operations_modifier: "Opérations sous fausse bannière"
  kompromat_scandal_modifier: "Scandale gouvernemental"
  clandestine_arms_pipeline_effect_desc_global: "Approvisionne secrètement l'effort de guerre du pays ciblé"
  clandestine_arms_pipeline_effect_desc_first: "[COUNTRY.GetAdjectiveNoFlag] approvisionne secrètement l'effort de guerre de [TARGET_COUNTRY.GetName]"
@@ -820,21 +810,17 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  black_market_backlash_tt: "#v La traite clandestine qui approvisionne ce pays rend notre travail de libération plus facile à répandre.#!"
  character_role_operative: "Agent"
  adv_dip_debrief_operative: "Débriefer l'agent"
- adv_dip_event.190.t: "Une nouvelle recrue"
- adv_dip_event.190.d: "Notre service de renseignement a achevé le contrôle d'un nouvel agent. Il est prêt à être affecté à l'étranger."
- adv_dip_event.190.f: "Le dossier arriva sur le bureau du directeur avec trois photographies et une synthèse qui taisait plus qu'elle n'énonçait. Des langues, un don pour le calcul, aucune famille à mentionner, et un tempérament que les évaluateurs qualifiaient d'« utilement quelconque ».\n\nLe directeur signa l'autorisation sans rencontrer la recrue. Dans ce métier, il vaut mieux être incapable de décrire ses propres gens."
- adv_dip_event.190.a: "Mettez-le au travail."
  ADV_DIP_CONSOLE_OPERATIVES: "Agents"
  ADV_DIP_CONSOLE_RECRUIT: "Recruter un agent"
  adv_dip_recruit_cap_tt: "Notre institution d'espionnage ne peut entretenir davantage d'agents."
  cryptographer: "Cryptographe"
- cryptographer_desc: "Formé aux chiffres et aux transmissions ; lit ce que d'autres croient illisible."
+ cryptographer_desc: "Formé aux chiffres et aux transmissions ; il lit ce que d'autres croient illisible. #P +30% de réussite mensuelle#! sur les opérations de vol de technologie."
  master_of_disguise: "Maître du déguisement"
- master_of_disguise_desc: "Circule sans être remarqué là où il n'a rien à faire."
+ master_of_disguise_desc: "Il passe inaperçu là où il n'a rien à faire. #P +30% de réussite mensuelle#! sur les opérations Débaucher un commandant, Financer le marché noir et Soutenir la libération des esclaves."
  saboteur: "Saboteur"
- saboteur_desc: "Sait exactement où une machine, un pont ou une carrière est le plus fragile."
+ saboteur_desc: "Il sait précisément où une machine, un pont ou une carrière est le plus fragile. #P +30% de réussite mensuelle#! sur les opérations Saboter le recrutement et Filière d'armes clandestine."
  silver_tongue: "Beau parleur"
- silver_tongue_desc: "Recrute des informateurs qui ne réalisent jamais tout à fait qu'ils ont été recrutés."
+ silver_tongue_desc: "Il recrute des informateurs qui ne se savent jamais tout à fait recrutés. #P +30% de réussite mensuelle#! sur les opérations Semer le mécontentement, Soutenir les nationalistes, Encourager la liberté et Ingérence électorale."
  law_consular_intelligence: "Renseignement consulaire"
  law_consular_intelligence_desc: "Le renseignement recueilli par les attachés, les consuls et les commis d'ambassade. Respectable, limité, et bien incapable d'organiser un accident."
  law_directorate_of_state_security: "Direction de la sûreté de l'État"
@@ -888,7 +874,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_event.200.d_develop_nation: "Conseillers, ingénieurs et argent discret pour [SCOPE.sCountry('spy_target_country').GetName] - une générosité, en un sens, mais une générosité qui rend des comptes. Quelqu'un doit la diriger."
  adv_dip_event.200.d_false_flag: "Des preuves à fabriquer, à placer, à faire découvrir au bon moment - toutes désignant [SCOPE.sCountry('spy_target_country').GetName]. Le faussaire de cette piste doit être au-dessus de tout soupçon."
  adv_dip_event.200.x: "Annulez tout."
- adv_dip_network_upkeep_modifier: "Entretien du réseau d'espionnage"
  adv_dip_director_modifier: "Directeur du renseignement"
  adv_dip_director_modifier_desc: "Une main sûre dirige le service. Les opérations à l'étranger sont mieux préparées et mieux dissimulées."
  adv_dip_arms_pipeline_target_modifier: "Livraisons d'armes clandestines"
@@ -913,3 +898,12 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_interrogation_held_tt: "Notre agent a gardé le silence - cette année."
  adv_dip_disavow_tt: "L'agent est rayé du service et abandonné à son sort. Le risque annuel d'interrogatoire s'éteint avec lui."
  adv_dip_network_rolled_up_tt: "#N Notre agent a parlé. Un réseau visant son geôlier est démantelé.#!"
+ adv_dip_seasoned: "Aguerri"
+ adv_dip_seasoned_desc: "Un an sur le terrain. #P +15% de réussite mensuelle des opérations.#! Touche le double du salaire de base."
+ adv_dip_veteran: "Vétéran"
+ adv_dip_veteran_desc: "Trois ans sous d'autres noms. #P +30% de réussite mensuelle#! et #P moitié moins de risque de capture#! quand un complot s'effondre. Touche un salaire conséquent."
+ adv_dip_master_spy: "Maître espion"
+ adv_dip_master_spy_desc: "Six ans sur le terrain, et toujours vivant. #P +45% de réussite mensuelle#!, #P moitié moins de risque de capture#!, et #P ne parle jamais sous interrogatoire#!. Touche un salaire princier."
+ adv_dip_recruit_tt: "Un nouvel agent doté d'une spécialité aléatoire rejoint le service."
+ adv_dip_master_silence_tt: "#P Un maître espion ne parle pas. Ses interrogateurs n'ont rien appris.#!"
+ ADV_DIP_CONSOLE_BUDGET_TT: "Le coût mensuel complet du service : entretien des opérations et salaires, de la recrue au Directeur. Prélevé directement sur le trésor - rien n'en est visible aux puissances étrangères."

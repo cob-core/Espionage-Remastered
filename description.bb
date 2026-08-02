@@ -19,6 +19,7 @@ See the full list [url=https://github.com/cob-core/Espionage-Remastered/wiki/Esp
 [*][b]Espionage is finally secret.[/b] No more public pacts announcing your intentions: operations leave no trace in any diplomacy panel, and your target learns nothing until your people are caught.
 [*][b]Recruit operatives.[/b] Named agents with tradecraft traits who carry out your operations in person. Every mission asks who goes, the right specialist tilts the odds, and an agent caught abroad can be captured or executed.
 [*][b]The Intelligence Console.[/b] A Director of Intelligence to appoint, your full roster with portraits and live status, hire-and-fire controls, and every running operation at a glance.
+[*][b]Careers and wages.[/b] Agents earn their stripes on assignment - and their pay. Experience improves their odds, and nothing about your spending is visible to foreign powers any more.
 [*][b]Prisoners and ransoms.[/b] Captured agents rot in foreign cells, risk talking every year, and can be ransomed home through a new treaty article - if you pay what their captor asks.
 [*][b]Three new External Security laws[/b] give each espionage playthrough its own character.
 [/list]

@@ -1,4 +1,4 @@
-adv_dip_debrief_operative = {
+﻿adv_dip_debrief_operative = {
 	icon = "gfx/interface/character_panel/grant_command.dds"
 
 	potential = {

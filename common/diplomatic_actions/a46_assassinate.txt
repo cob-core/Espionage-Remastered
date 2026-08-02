@@ -49,11 +49,7 @@
 			save_scope_as = spy_target_country
 		}
 		set_variable = ongoing_plans
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_large
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_large WEEKS = 50 }
 		trigger_event = { id = adv_dip_assassination_event.100 }
 	}
 

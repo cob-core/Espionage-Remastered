@@ -372,6 +372,113 @@ adv_dip_espionage_monthly = {
 		# Free any operative whose operation has ended by a path that could not
 		# release them directly (annexation, chain resolution, expiry).
 		adv_dip_reconcile_assignments = yes
+		# Experience: months on assignment accrue toward tier promotions, and
+		# every operative not in enemy hands draws a wage scaled by their tier.
+		if = {
+			limit = { has_variable_list = adv_dip_operatives }
+			every_in_list = {
+				variable = adv_dip_operatives
+				if = {
+					limit = {
+						is_busy = yes
+						NOT = { has_variable = adv_dip_captured }
+					}
+					if = {
+						limit = { NOT = { has_variable = adv_dip_mission_months } }
+						set_variable = {
+							name = adv_dip_mission_months
+							value = 0
+						}
+					}
+					change_variable = {
+						name = adv_dip_mission_months
+						add = 1
+					}
+					if = {
+						limit = {
+							var:adv_dip_mission_months >= 72
+							NOT = { has_trait = adv_dip_master_spy }
+						}
+						if = {
+							limit = { has_trait = adv_dip_veteran }
+							remove_trait = adv_dip_veteran
+						}
+						add_trait = adv_dip_master_spy
+					}
+					else_if = {
+						limit = {
+							var:adv_dip_mission_months >= 36
+							NOR = {
+								has_trait = adv_dip_veteran
+								has_trait = adv_dip_master_spy
+							}
+						}
+						if = {
+							limit = { has_trait = adv_dip_seasoned }
+							remove_trait = adv_dip_seasoned
+						}
+						add_trait = adv_dip_veteran
+					}
+					else_if = {
+						limit = {
+							var:adv_dip_mission_months >= 12
+							NOR = {
+								has_trait = adv_dip_seasoned
+								has_trait = adv_dip_veteran
+								has_trait = adv_dip_master_spy
+							}
+						}
+						add_trait = adv_dip_seasoned
+					}
+				}
+				if = {
+					limit = { NOT = { has_variable = adv_dip_captured } }
+					if = {
+						limit = { has_trait = adv_dip_master_spy }
+						root = {
+							change_variable = {
+								name = adv_dip_upkeep_total
+								add = adv_dip_wage_master
+							}
+						}
+					}
+					else_if = {
+						limit = { has_trait = adv_dip_veteran }
+						root = {
+							change_variable = {
+								name = adv_dip_upkeep_total
+								add = adv_dip_wage_veteran
+							}
+						}
+					}
+					else_if = {
+						limit = { has_trait = adv_dip_seasoned }
+						root = {
+							change_variable = {
+								name = adv_dip_upkeep_total
+								add = adv_dip_wage_seasoned
+							}
+						}
+					}
+					else = {
+						root = {
+							change_variable = {
+								name = adv_dip_upkeep_total
+								add = adv_dip_wage_base
+							}
+						}
+					}
+				}
+			}
+		}
+		# The Director of Intelligence draws an executive salary
+		if = {
+			limit = { has_variable_list = adv_dip_director }
+			change_variable = {
+				name = adv_dip_upkeep_total
+				add = adv_dip_wage_director
+			}
+		}
 		# AI solvency abort: a broke AI winds down its networks
 		if = {
 			limit = {
@@ -589,7 +696,7 @@ adv_dip_espionage_monthly = {
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
 						else = {
-							adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.11 ACTION = sow_discontent TRAIT = silver_tongue }
+							adv_dip_operation_die = { CHANCE = 3 EVENT = adv_dip_event.11 ACTION = sow_discontent TRAIT = silver_tongue }
 						}
 				}
 			}
@@ -631,7 +738,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 8000 EVENT = adv_dip_event.21 ACTION = support_nationalists TRAIT = silver_tongue }
+					adv_dip_operation_die = { CHANCE = 1.2 EVENT = adv_dip_event.21 ACTION = support_nationalists TRAIT = silver_tongue }
 				}
 			}
 			every_in_local_list = {
@@ -675,7 +782,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.31 ACTION = agitate_for_liberty TRAIT = silver_tongue }
+					adv_dip_operation_die = { CHANCE = 3 EVENT = adv_dip_event.31 ACTION = agitate_for_liberty TRAIT = silver_tongue }
 				}
 			}
 			every_in_local_list = {
@@ -724,7 +831,7 @@ adv_dip_espionage_monthly = {
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
 						else = {
-							adv_dip_operation_die = { MISS = 1600 EVENT = adv_dip_event.91 ACTION = steal_technology TRAIT = cryptographer }
+							adv_dip_operation_die = { CHANCE = 5.5 EVENT = adv_dip_event.91 ACTION = steal_technology TRAIT = cryptographer }
 						}
 				}
 			}
@@ -766,7 +873,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.41 ACTION = sabotage_recruitment TRAIT = saboteur }
+					adv_dip_operation_die = { CHANCE = 2.7 EVENT = adv_dip_event.41 ACTION = sabotage_recruitment TRAIT = saboteur }
 				}
 			}
 			every_in_local_list = {
@@ -817,7 +924,7 @@ adv_dip_espionage_monthly = {
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
 						else = {
-							adv_dip_operation_die = { MISS = 200 EVENT = adv_dip_event.81 ACTION = election_interference TRAIT = silver_tongue }
+							adv_dip_operation_die = { CHANCE = 33 EVENT = adv_dip_event.81 ACTION = election_interference TRAIT = silver_tongue }
 						}
 					}
 				}
@@ -874,7 +981,7 @@ adv_dip_espionage_monthly = {
 					}
 					if = {
 						limit = { NOT = { root = { has_variable = recently_stole_commander } } }
-						adv_dip_operation_die = { MISS = 3300 EVENT = adv_dip_event.131 ACTION = steal_commander TRAIT = master_of_disguise }
+						adv_dip_operation_die = { CHANCE = 2.9 EVENT = adv_dip_event.131 ACTION = steal_commander TRAIT = master_of_disguise }
 					}
 				}
 			}
@@ -918,7 +1025,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.150 ACTION = clandestine_arms_pipeline TRAIT = saboteur }
+					adv_dip_operation_die = { CHANCE = 11 EVENT = adv_dip_event.150 ACTION = clandestine_arms_pipeline TRAIT = saboteur }
 				}
 			}
 			every_in_local_list = {
@@ -966,7 +1073,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.155 ACTION = fund_black_market_slavery TRAIT = master_of_disguise }
+					adv_dip_operation_die = { CHANCE = 11 EVENT = adv_dip_event.155 ACTION = fund_black_market_slavery TRAIT = master_of_disguise }
 				}
 			}
 			every_in_local_list = {
@@ -1007,7 +1114,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.120 ACTION = support_slaves TRAIT = master_of_disguise }
+					adv_dip_operation_die = { CHANCE = 2.7 EVENT = adv_dip_event.120 ACTION = support_slaves TRAIT = master_of_disguise }
 				}
 			}
 			every_in_local_list = {
@@ -1021,11 +1128,7 @@ adv_dip_espionage_monthly = {
 
 		if = {
 			limit = { var:adv_dip_upkeep_total > 0 }
-			add_modifier = {
-				name = adv_dip_network_upkeep_modifier
-				multiplier = adv_dip_network_upkeep_value
-				months = 1
-			}
+			adv_dip_covert_charge = { COST = adv_dip_network_upkeep_value WEEKS = 4 }
 		}
 	}
 }

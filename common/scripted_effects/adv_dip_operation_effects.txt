@@ -1,6 +1,18 @@
 ﻿# Core secret-operation machinery (v5.0). Operations live in per-type variable
 # lists on the initiator; pacts are gone.
 
+# Espionage money never moves through modifiers: a country modifier is public
+# and would advertise the spending to every observer (the old "Building an
+# Intelligence Network" tell). COST names a script value; WEEKS sizes the lump
+# in weeks of that value (roughly half the old modifiers' nominal totals,
+# matching what their replace-semantics actually collected).
+adv_dip_covert_charge = {
+	add_treasury = {
+		value = $COST$
+		multiply = -$WEEKS$
+	}
+}
+
 adv_dip_start_operation = {
 	add_to_variable_list = {
 		name = adv_dip_op_$ACTION$
@@ -64,81 +76,49 @@ adv_dip_dispatch_pending_operation = {
 			limit = { var:adv_dip_pending_op = 1 }
 			adv_dip_start_operation = { ACTION = sow_discontent }
 			adv_dip_assign_operative = { ACTION = sow_discontent }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 2 }
 			adv_dip_start_operation = { ACTION = support_nationalists }
 			adv_dip_assign_operative = { ACTION = support_nationalists }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 3 }
 			adv_dip_start_operation = { ACTION = agitate_for_liberty }
 			adv_dip_assign_operative = { ACTION = agitate_for_liberty }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 4 }
 			adv_dip_start_operation = { ACTION = steal_technology }
 			adv_dip_assign_operative = { ACTION = steal_technology }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_small
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 5 }
 			adv_dip_start_operation = { ACTION = sabotage_recruitment }
 			adv_dip_assign_operative = { ACTION = sabotage_recruitment }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_small
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 6 }
 			adv_dip_start_operation = { ACTION = election_interference }
 			adv_dip_assign_operative = { ACTION = election_interference }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 7 }
 			adv_dip_start_operation = { ACTION = steal_commander }
 			adv_dip_assign_operative = { ACTION = steal_commander }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_small
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 26 }
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 8 }
 			adv_dip_start_operation = { ACTION = clandestine_arms_pipeline }
 			adv_dip_assign_operative = { ACTION = clandestine_arms_pipeline }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 			scope:spy_target_country = {
 				add_modifier = {
 					name = adv_dip_arms_pipeline_target_modifier
@@ -149,11 +129,7 @@ adv_dip_dispatch_pending_operation = {
 			limit = { var:adv_dip_pending_op = 9 }
 			adv_dip_start_operation = { ACTION = fund_black_market_slavery }
 			adv_dip_assign_operative = { ACTION = fund_black_market_slavery }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 			scope:spy_target_country = {
 				add_modifier = {
 					name = adv_dip_black_market_target_modifier
@@ -164,11 +140,7 @@ adv_dip_dispatch_pending_operation = {
 			limit = { var:adv_dip_pending_op = 10 }
 			adv_dip_start_operation = { ACTION = support_slaves }
 			adv_dip_assign_operative = { ACTION = support_slaves }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_small
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 26 }
 			scope:spy_target_country = {
 				add_modifier = {
 					name = adv_dip_support_slaves_target_modifier
@@ -185,11 +157,7 @@ adv_dip_dispatch_pending_operation = {
 				value = scope:naval_intel_target
 			}
 			adv_dip_assign_operative = { ACTION = naval_intelligence }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 13
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 			trigger_event = { id = adv_dip_event.140 }
 		}
 		else_if = {
@@ -199,11 +167,7 @@ adv_dip_dispatch_pending_operation = {
 				months = 60
 			}
 			adv_dip_assign_operative = { ACTION = sealed_train }
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_very_large
-				months = 25
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_very_large WEEKS = 50 }
 			trigger_event = { id = adv_dip_event.170 }
 		}
 		else_if = {
@@ -214,11 +178,7 @@ adv_dip_dispatch_pending_operation = {
 			adv_dip_assign_operative = { ACTION = develop_nation }
 			# The development program runs ~34 months (100 progress at 3/month);
 			# the charge covers the whole window.
-			add_modifier = {
-				name = spy_network_cost_modifier
-				multiplier = spy_cost_multiplier_medium
-				months = 34
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 68 }
 			trigger_event = { id = adv_dip_event.110 }
 		}
 		else_if = {
@@ -229,11 +189,7 @@ adv_dip_dispatch_pending_operation = {
 				months = 60
 			}
 			adv_dip_assign_operative = { ACTION = false_flag }
-			add_modifier = {
-				name = false_flag_operations_modifier
-				multiplier = spy_cost_multiplier_large
-				months = 60
-			}
+			adv_dip_covert_charge = { COST = spy_cost_multiplier_large WEEKS = 120 }
 		}
 	}
 	remove_variable = adv_dip_pending_op
@@ -435,74 +391,71 @@ adv_dip_roll_up_one_network = {
 
 # Monthly die for one target of one operation type. Called from the monthly
 # loop in the TARGET's scope (spy_target_country saved), so every own-country
-# read must go through root — a bare institution read here would compare the
-# target against itself. MISS sets the odds, EVENT is the X1 event id, ACTION
-# names the assignment flag, TRAIT the tradecraft trait that sharpens the roll
-# when the assigned operative has it.
+# read goes through root. CHANCE is the base monthly success percentage; EVENT
+# the X1 event id; ACTION the assignment flag; TRAIT the tradecraft trait that
+# sharpens the roll. The assigned operative's experience tier compounds on top.
 adv_dip_operation_die = {
-	if = {
-		limit = {
-			root = {
-				any_scope_character = {
-					has_variable = adv_dip_assigned_$ACTION$
-					var:adv_dip_assignment_target ?= scope:spy_target_country
-					has_trait = $TRAIT$
-				}
+	random = {
+		chance = {
+			value = $CHANCE$
+			if = {
+				limit = { root = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 } }
+				multiply = 1.5
 			}
-		}
-		if = {
-			limit = { root = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 } }
-			random_list = {
-				$MISS$ = {}
-				190 = {
-					root = { trigger_event = { id = $EVENT$ } }
-				}
+			else_if = {
+				limit = { root = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 } }
+				multiply = 0.65
 			}
-		}
-		else_if = {
-			limit = { root = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 } }
-			random_list = {
-				$MISS$ = {}
-				85 = {
-					root = { trigger_event = { id = $EVENT$ } }
+			if = {
+				limit = {
+					root = {
+						any_scope_character = {
+							has_variable = adv_dip_assigned_$ACTION$
+							var:adv_dip_assignment_target ?= scope:spy_target_country
+							has_trait = $TRAIT$
+						}
+					}
 				}
+				multiply = 1.3
 			}
-		}
-		else = {
-			random_list = {
-				$MISS$ = {}
-				130 = {
-					root = { trigger_event = { id = $EVENT$ } }
+			if = {
+				limit = {
+					root = {
+						any_scope_character = {
+							has_variable = adv_dip_assigned_$ACTION$
+							var:adv_dip_assignment_target ?= scope:spy_target_country
+							has_trait = adv_dip_master_spy
+						}
+					}
 				}
+				multiply = 1.45
 			}
-		}
-	}
-	else = {
-		if = {
-			limit = { root = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 } }
-			random_list = {
-				$MISS$ = {}
-				150 = {
-					root = { trigger_event = { id = $EVENT$ } }
+			else_if = {
+				limit = {
+					root = {
+						any_scope_character = {
+							has_variable = adv_dip_assigned_$ACTION$
+							var:adv_dip_assignment_target ?= scope:spy_target_country
+							has_trait = adv_dip_veteran
+						}
+					}
 				}
+				multiply = 1.3
 			}
-		}
-		else_if = {
-			limit = { root = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 } }
-			random_list = {
-				$MISS$ = {}
-				65 = {
-					root = { trigger_event = { id = $EVENT$ } }
+			else_if = {
+				limit = {
+					root = {
+						any_scope_character = {
+							has_variable = adv_dip_assigned_$ACTION$
+							var:adv_dip_assignment_target ?= scope:spy_target_country
+							has_trait = adv_dip_seasoned
+						}
+					}
 				}
+				multiply = 1.15
 			}
+			max = 75
 		}
-		else = {
-			random_list = {
-				$MISS$ = {}
-				100 = {
-					root = { trigger_event = { id = $EVENT$ } }
-				}
-			}
-		}
+		root = { trigger_event = { id = $EVENT$ } }
 	}
 }

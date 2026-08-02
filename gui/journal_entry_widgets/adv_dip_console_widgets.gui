@@ -37,7 +37,7 @@ types adv_dip_console_types
 				text = "[Character.GetFullNameNoFormatting]"
 				default_format = "#v"
 				align = left|nobaseline
-				using = elide_fontsize_min
+				elide = right
 				using = fontsize_medium
 			}
 
@@ -46,10 +46,14 @@ types adv_dip_console_types
 					size = { 250 18 }
 					text = "[Character.GetCulture.GetName]"
 					align = left|nobaseline
-					using = elide_fontsize_min
+					elide = right
 					using = fontsize_small
 				}
 			}
+		}
+
+		character_traits_no_label = {
+			parentanchor = vcenter
 		}
 
 		block "row_action" {}
@@ -80,7 +84,7 @@ types adv_dip_console_types
 				text = "[Country.GetName]"
 				default_format = "#v"
 				align = left|nobaseline
-				using = elide_fontsize_min
+				elide = right
 				using = fontsize_medium
 			}
 
@@ -144,7 +148,6 @@ flowcontainer = {
 			item = {
 				adv_dip_character_row = {
 					datacontext = "[Scope.AccessCharacter]"
-					size = { 500 46 }
 
 					blockoverride "subtitle" {
 						textbox = {
@@ -152,7 +155,7 @@ flowcontainer = {
 							text = "ADV_DIP_CONSOLE_DIRECTOR_ROLE"
 							default_format = "#P"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -224,7 +227,6 @@ flowcontainer = {
 			item = {
 				adv_dip_character_row = {
 					datacontext = "[Scope.AccessCharacter]"
-					size = { 500 46 }
 
 					blockoverride "subtitle" {
 						textbox = {
@@ -233,7 +235,7 @@ flowcontainer = {
 							text = "ADV_DIP_CONSOLE_STATUS_AVAILABLE"
 							default_format = "#P"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 						textbox = {
@@ -241,7 +243,7 @@ flowcontainer = {
 							visible = "[And( Character.IsBusy, Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
 							text = "ADV_DIP_CONSOLE_STATUS_ON_MISSION"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 						textbox = {
@@ -250,7 +252,7 @@ flowcontainer = {
 							text = "ADV_DIP_CONSOLE_STATUS_CAPTURED"
 							default_format = "#N"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -272,7 +274,7 @@ flowcontainer = {
 								max_width = 98
 								text = "ADV_DIP_CONSOLE_APPOINT"
 								align = center|nobaseline
-								using = elide_fontsize_min
+								elide = right
 								using = fontsize_small
 							}
 						}
@@ -323,7 +325,7 @@ flowcontainer = {
 						max_width = 190
 						text = "ADV_DIP_CONSOLE_RECRUIT"
 						align = nobaseline
-						using = elide_fontsize_min
+						elide = right
 						using = fontsize_medium
 					}
 				}
@@ -346,6 +348,12 @@ flowcontainer = {
 			}
 			blockoverride "left_text" {
 				text = "ADV_DIP_CONSOLE_OPERATIONS"
+			}
+			blockoverride "right_text" {
+				section_header_right_text = {
+					raw_text = "#v £[JournalEntry.GetCountry.MakeScope.ScriptValue('adv_dip_monthly_espionage_spend')|0]/month#!"
+					tooltip = "ADV_DIP_CONSOLE_BUDGET_TT"
+				}
 			}
 			blockoverride "onclick" {
 				onclick = "[GetVariableSystem.Toggle('adv_dip_ops_toggle')]"
@@ -376,14 +384,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "sow_discontent_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -411,14 +418,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "support_nationalists_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -446,14 +452,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "agitate_for_liberty_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -481,14 +486,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "steal_technology_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -516,14 +520,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "sabotage_recruitment_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -551,14 +554,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "election_interference_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -586,14 +588,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "steal_commander_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -621,14 +622,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "clandestine_arms_pipeline_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -656,14 +656,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "fund_black_market_slavery_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}
@@ -691,14 +690,13 @@ flowcontainer = {
 			item = {
 				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					size = { 500 40 }
 
 					blockoverride "op_label" {
 						textbox = {
 							size = { 250 18 }
 							text = "support_slaves_action_name"
 							align = left|nobaseline
-							using = elide_fontsize_min
+							elide = right
 							using = fontsize_small
 						}
 					}

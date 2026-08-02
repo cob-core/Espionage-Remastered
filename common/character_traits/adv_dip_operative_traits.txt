@@ -57,3 +57,50 @@ silver_tongue = {
 	}
 	value = 2
 }
+
+# Experience tiers, promoted by months spent on assignment (12 / 36 / 72).
+# Wages and operation odds read the highest tier held.
+adv_dip_seasoned = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/experienced_diplomat.dds"
+	character_modifier = {
+		character_prominence_add = 5
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 0
+	}
+	value = 2
+}
+
+adv_dip_veteran = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/experienced_political_operator.dds"
+	character_modifier = {
+		character_prominence_add = 10
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 0
+	}
+	value = 3
+}
+
+adv_dip_master_spy = {
+	type = skill
+	texture = "gfx/interface/icons/character_trait_icons/erudite.dds"
+	character_modifier = {
+		character_prominence_add = 15
+	}
+	possible = {
+		has_role = character_role_operative
+	}
+	weight = {
+		value = 0
+	}
+	value = 4
+}

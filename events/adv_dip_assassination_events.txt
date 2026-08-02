@@ -344,11 +344,7 @@ adv_dip_assassination_event.102 = { # Select Target
 				}
 			}
 		}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -371,11 +367,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -398,11 +390,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -425,11 +413,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -452,11 +436,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -479,11 +459,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -506,11 +482,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -533,11 +505,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -560,11 +528,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -586,11 +550,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -613,11 +573,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -640,11 +596,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -667,11 +619,7 @@ adv_dip_assassination_event.102 = { # Select Target
 					}
 				}
 			}
-		add_modifier = {
-			name = assassination_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 25
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
 		ai_chance = {
 			base = 101
 		}
@@ -828,12 +776,35 @@ adv_dip_assassination_event.199 = { #Failed
 		default_option = yes
 		# Must run before remove_assassination_events_effect: adv_dip_lose_operative
 		# finds the operative via assassination_leader_var, which the cleanup clears.
-		random_list = {
-			60 = {
-				# The operative slips away; the cleanup effect releases them.
+		# Veterans and masters have half the capture risk (the veteran tier's
+		# signature benefit).
+		if = {
+			limit = {
+				any_scope_character = {
+					has_variable = assassination_leader_var
+					OR = {
+						has_trait = adv_dip_veteran
+						has_trait = adv_dip_master_spy
+					}
+				}
 			}
-			40 = {
-				adv_dip_lose_operative = yes
+			random_list = {
+				80 = {
+					# The operative slips away; the cleanup effect releases them.
+				}
+				20 = {
+					adv_dip_lose_operative = yes
+				}
+			}
+		}
+		else = {
+			random_list = {
+				60 = {
+					# The operative slips away; the cleanup effect releases them.
+				}
+				40 = {
+					adv_dip_lose_operative = yes
+				}
 			}
 		}
 		add_modifier = {
@@ -1045,11 +1016,7 @@ adv_dip_assassination_event.115 = {
 		default_option = yes
 		assassination_moderate_progress_effect = yes
 		add_small_assassination_risk_effect = yes
-		add_modifier = {
-			name = paid_a_witch_modifier
-			months = 6
-			multiplier = spy_cost_multiplier_small
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 12 }
 	}
 
 	option = {
@@ -1242,11 +1209,7 @@ adv_dip_assassination_event.120 = {
 		name = adv_dip_assassination_event.120.a
 		default_option = yes
 		assassination_failure = yes
-		add_modifier = {
-			name = assassin_paid_off_modifier
-			months = 6
-			multiplier = spy_cost_multiplier_small
-		}
+		adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 12 }
 	}
 
 	option = {
