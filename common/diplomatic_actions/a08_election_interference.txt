@@ -46,20 +46,13 @@
 				has_party = yes
 			}
 		}
+		adv_dip_operation_launch_gate = yes
 	}
 	
 
 	
 	accept_effect = {
-		scope:target_country = {
-			save_scope_as = spy_target_country
-		}
-		adv_dip_start_operation = { ACTION = election_interference }
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 13
-		}
+		adv_dip_begin_operation = { CODE = 6 }
 	}
 
 	ai = {

@@ -33,30 +33,6 @@ add_large_assassination_risk_effect = {
 	custom_tooltip = assassination_large_risk_tt
 }
 
-assassination_risk_decrease_small_effect = {
-	if = {
-		limit = {
-			has_journal_entry = adv_dip_je_assassination
-		}
-		je:adv_dip_je_assassination ?= {
-			add_progress = { value = -1 name = assassination_risk_progress_bar }
-		}
-	}
-	custom_tooltip = assassination_event_decreasing_risk_tt
-}	
-
-assassination_risk_decrease_medium_effect = {
-	if = {
-		limit = {
-			has_journal_entry = adv_dip_je_assassination
-		}
-		je:adv_dip_je_assassination ?= {
-			add_progress = { value = -2 name = assassination_risk_progress_bar }
-		}
-	}
-	custom_tooltip = assassination_event_decreasing_risk_tt
-}
-
 assassination_minor_progress_effect = {
 	if = {
 		limit = {
@@ -90,43 +66,26 @@ assassination_great_progress_effect = {
 	}
 	custom_tooltip = assassination_great_progress_tt
 }
-assassination_lose_progress_effect = {
-	if = {
-		limit = {
-			has_journal_entry = adv_dip_je_assassination
-		}
-		je:adv_dip_je_assassination ?= {
-			add_progress = { value = -1 name = assassination_progress_bar }
-		}
-	}
-	custom_tooltip = assassination_lose_progress_tt
-}
-
 remove_assassination_events_effect = {
 	adv_dip_release_operative = yes
 	remove_variable = active_assassination
 	remove_variable = ongoing_plans
-	
-	remove_modifier = assassination_cost_modifier
 
-	random_scope_character = {
-		limit = { has_variable = assassination_leader_var }
-		set_character_busy_and_immortal = no
+	# The modifier is timed (25 months) and absent on abort paths and long plots.
+	if = {
+		limit = { has_modifier = assassination_cost_modifier }
+		remove_modifier = assassination_cost_modifier
 	}
 
-	random_scope_character = {
-		limit = {
-			has_variable = assassination_leader_var
+	# The victim lives in the target country, not the initiator's scope; clean the
+	# tag there before the country variable itself is removed.
+	var:assassination_target_country ?= {
+		every_scope_character = {
+			limit = { has_variable = assassination_target_var }
+			remove_variable = assassination_target_var
 		}
-		remove_variable = assassination_leader_var
 	}
-
-	random_scope_character = {
-		limit = {
-			has_variable = assassination_target_var
-		}
-		remove_variable = assassination_target_var
-	}
+	remove_variable = assassination_target_country
 }
 
 assassination_failure = {
@@ -163,24 +122,29 @@ adv_dip_release_operative = {
 	}
 }
 
+# Captured operatives stay in the adv_dip_operatives roster (the console shows them
+# as Captured); executed ones are removed by the monthly dead-operative prune.
 adv_dip_lose_operative = {
 	every_scope_character = {
 		limit = { has_variable = assassination_leader_var }
-		save_scope_as = adv_dip_exposed_operative
-		root = {
-			remove_list_variable = {
-				name = adv_dip_operatives
-				target = scope:adv_dip_exposed_operative
-			}
-		}
 		random_list = {
 			50 = {
 				custom_tooltip = adv_dip_operative_captured_tt
 				remove_variable = assassination_leader_var
 				set_character_busy_and_immortal = no
+				# Both timers match: if no ransom treaty frees them first, the
+				# operative escapes on their own after five years.
 				set_variable = {
 					name = adv_dip_captured
 					months = 60
+				}
+				if = {
+					limit = { exists = scope:spy_target_country }
+					set_variable = {
+						name = adv_dip_captor
+						value = scope:spy_target_country
+						months = 60
+					}
 				}
 			}
 			50 = {

@@ -15,6 +15,24 @@ adv_dip_has_network_against = {
 	}
 }
 
+# Launch gate shared by every espionage action: a field-ready operative must
+# exist, and no other operative selection may be awaiting the player's answer
+# (a second pending launch would overwrite the first one's state).
+adv_dip_operation_launch_gate = {
+	custom_tooltip = {
+		text = adv_dip_needs_operative_tt
+		any_scope_character = {
+			has_role = character_role_operative
+			is_busy = no
+			NOT = { has_variable = adv_dip_captured }
+		}
+	}
+	custom_tooltip = {
+		text = adv_dip_pending_selection_tt
+		NOT = { has_variable = adv_dip_pending_op }
+	}
+}
+
 # True if root has ANY espionage operation running at all.
 adv_dip_has_any_operation = {
 	OR = {

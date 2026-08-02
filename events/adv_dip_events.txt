@@ -72,18 +72,24 @@ adv_dip_event.11 = {
 			months = 25
 			multiplier = spy_cost_multiplier_medium
 		}
-		scope:spy_target_country = {
+		scope:spy_target_country ?= {
 			trigger_event = {
-	            id = adv_dip_event.12 
+	            id = adv_dip_event.12
 	        }
 	        change_relations = {
 				country = root
 				value = -10
 			}
 		}
+		ai_chance = {
+			base = 80
+		}
 	}
 	option = {
 		name = adv_dip_event.11.b
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 
@@ -124,6 +130,9 @@ adv_dip_event.12 = {
 		add_radicals = {
 			value = 0.05
 		}
+		ai_chance = {
+			base = 80
+		}
 	}
 	option = {
 		name = adv_dip_event.12.b
@@ -135,6 +144,9 @@ adv_dip_event.12 = {
 			name = spy_network_cost_modifier
 			multiplier = money_amount_multiplier_medium
 			months = 25
+		}
+		ai_chance = {
+			base = 20
 		}
 	}
 	option = {
@@ -152,6 +164,9 @@ adv_dip_event.12 = {
 			name = counterespionage_modifier
 			multiplier = counterespionage_cost
 			months = 60
+		}
+		ai_chance = {
+			base = 40
 		}
 	}
 }
@@ -757,40 +772,48 @@ adv_dip_event.31 = {
 
 	immediate = {
 		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+			if = {
+				limit = {
+					any_country = {
+						root = {
+							is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+						}
+						NOT = {
+							has_modifier = agitate_for_liberty_modifier
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						root = {
+							is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+						}
+						NOT = {
+							has_modifier = agitate_for_liberty_modifier
+						}
+					}
+					save_scope_as = spy_target_country
+				}
+			}
+			else = {
+				random_country = {
+					limit = {
+						root = {
+							is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+						}
+					}
+					save_scope_as = spy_target_country
+				}
+			}
+		}
+		if = {
 			limit = {
-				any_country = {
-					root = {
-						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
-					}
-					NOT = {
-						has_modifier = agitate_for_liberty_modifier
-					}
-				}
+				scope:spy_target_country ?= { is_subject = yes }
 			}
-			random_country = {
-				limit = {
-					root = {
-						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
-					}
-					NOT = {
-						has_modifier = agitate_for_liberty_modifier
-					}
-				}
-				save_scope_as = spy_target_country
+			scope:spy_target_country.overlord = {
+				save_scope_as = spy_target_country_overlord
 			}
-		}
-		else = {
-			random_country = {
-				limit = {
-					root = {
-						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
-					}
-				}
-				save_scope_as = spy_target_country
-			}
-		}
-		scope:spy_target_country.overlord = {
-			save_scope_as = spy_target_country_overlord
 		}
 	}
 
@@ -972,7 +995,7 @@ adv_dip_event.33 = {
 		}
 	}
 	option = {
-		name = adv_dip_event.32.b
+		name = adv_dip_event.33.b
 		change_relations = {
 			country = scope:spy_target_country
 			value = 10
@@ -1060,7 +1083,7 @@ adv_dip_event.41 = {
 			multiplier = spy_cost_multiplier_medium
 			months = 25
 		}
-		scope:spy_target_country = {
+		scope:spy_target_country ?= {
 			trigger_event = {
 	            id = adv_dip_event.42
 	        }
@@ -1069,9 +1092,15 @@ adv_dip_event.41 = {
 			country = scope:spy_target_country
 			value = -10
 		}
+		ai_chance = {
+			base = 80
+		}
 	}
 	option = {
 		name = adv_dip_event.41.b
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 
@@ -1113,6 +1142,9 @@ adv_dip_event.42 = {
 			value = 0.02
 			strata = lower
 		}
+		ai_chance = {
+			base = 80
+		}
 	}
 	option = {
 		name = adv_dip_event.42.b
@@ -1124,6 +1156,9 @@ adv_dip_event.42 = {
 			name = spy_network_cost_modifier
 			multiplier = money_amount_multiplier_medium
 			months = 25
+		}
+		ai_chance = {
+			base = 20
 		}
 	}
 }
@@ -1362,7 +1397,7 @@ adv_dip_event.81 = {
 			}
 			change_relations = {
 				country = root
-				value = -25
+				value = -10
 			}
 			scope:interference_government_party_scope_0 = {
 				set_variable = {
@@ -1752,7 +1787,7 @@ adv_dip_event.81 = {
 					name = adv_loyal_government_leader
 					value = 1
 				}
-				
+				set_ruling_party = yes
 			}
 		}
 		add_modifier = {
@@ -1796,7 +1831,14 @@ adv_dip_event.82 = {
 	}
 
 	immediate = {
-		every_interest_group = {
+		every_potential_party = {
+			limit = {
+				has_variable = adv_loyal_government_leader
+			}
+			save_scope_as = loyal_government_party
+			remove_variable = adv_loyal_government_leader
+		}
+		every_active_party = {
 			limit = {
 				has_variable = adv_loyal_government_leader
 			}
@@ -1813,16 +1855,6 @@ adv_dip_event.82 = {
 			name = overthrown_modifier
 			months = 25
 		}
-		every_potential_party = {
-			limit = {
-				has_variable = adv_loyal_government_leader
-			}
-		}
-		every_active_party = {
-			limit = {
-				has_variable = adv_loyal_government_leader
-			}
-		}
 		ai_chance = {
 			base = 10
 		}
@@ -1835,14 +1867,6 @@ adv_dip_event.82 = {
 			name = suppress_government_modifier
 			months = 25
 		}
-		every_active_party = {
-			limit = {
-				NOT = {
-					has_variable = adv_loyal_government_leader
-				}
-			}
-		}
-
 		add_modifier = {
 			name = counterespionage_modifier
 			multiplier = spy_cost_multiplier_medium
@@ -2176,9 +2200,8 @@ adv_dip_event.110 = {
 			limit = { NOT = { exists = scope:development_target } }
 			random_country = {
 				limit = {
-					root = {
-						has_variable = ongoing_development
-					}
+					NOT = { this = root }
+					NOT = { is_country_type = decentralized }
 				}
 				save_scope_as = development_target
 			}
@@ -2369,27 +2392,37 @@ adv_dip_event.120 = {
 				}
 			}
 		}
-		root = {
-			every_state = {
-				limit = {
-					state_has_building_type_levels = {
-						target = bt:building_port
-						value > 0
-					}
+		random_scope_state = {
+			limit = {
+				state_has_building_type_levels = {
+					target = bt:building_port
+					value > 0
 				}
-				save_scope_as = root_states_for_slaves
 			}
+			save_scope_as = root_target_state_for_slaves_1
 		}
-		scope:root_states_for_slaves = {
-			random_scope_state = {
-				save_scope_as = root_target_state_for_slaves_1
+		random_scope_state = {
+			limit = {
+				state_has_building_type_levels = {
+					target = bt:building_port
+					value > 0
+				}
+				NOT = { this = scope:root_target_state_for_slaves_1 }
 			}
-			random_scope_state = {
-				save_scope_as = root_target_state_for_slaves_2
+			save_scope_as = root_target_state_for_slaves_2
+		}
+		random_scope_state = {
+			limit = {
+				state_has_building_type_levels = {
+					target = bt:building_port
+					value > 0
+				}
+				NOR = {
+					this = scope:root_target_state_for_slaves_1
+					this = scope:root_target_state_for_slaves_2
+				}
 			}
-			random_scope_state = {
-				save_scope_as = root_target_state_for_slaves_3
-			}
+			save_scope_as = root_target_state_for_slaves_3
 		}
 	}
 
@@ -2413,15 +2446,24 @@ adv_dip_event.120 = {
 		}
 		default_option = yes
 
-		scope:spy_target_country = {
+		scope:spy_target_country ?= {
 			random_scope_state = {
 				every_scope_pop = {
 					limit = {
 						is_pop_type = slaves
 					}
-					move_partial_pop = {state = scope:root_target_state_for_slaves_1 population_ratio = 0.02}
-					move_partial_pop = {state = scope:root_target_state_for_slaves_2 population_ratio = 0.02}
-					move_partial_pop = {state = scope:root_target_state_for_slaves_3 population_ratio = 0.02}
+					if = {
+						limit = { exists = scope:root_target_state_for_slaves_1 }
+						move_partial_pop = {state = scope:root_target_state_for_slaves_1 population_ratio = 0.02}
+					}
+					if = {
+						limit = { exists = scope:root_target_state_for_slaves_2 }
+						move_partial_pop = {state = scope:root_target_state_for_slaves_2 population_ratio = 0.02}
+					}
+					if = {
+						limit = { exists = scope:root_target_state_for_slaves_3 }
+						move_partial_pop = {state = scope:root_target_state_for_slaves_3 population_ratio = 0.02}
+					}
 				}
 			}
 		}
@@ -2537,6 +2579,9 @@ adv_dip_event.131 = {
 			}
 			2 = {}
 		}
+		ai_chance = {
+			base = 80
+		}
 	}
 
 	option = {
@@ -2554,11 +2599,17 @@ adv_dip_event.131 = {
 			multiplier = spy_cost_multiplier_small
 			months = 25
 		}
+		ai_chance = {
+			base = 40
+		}
 	}
 
 	option = {
 		name = adv_dip_event.131.c
 		default_option = yes
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 
@@ -2628,11 +2679,11 @@ adv_dip_event.140 = {
 		set_variable = ongoing_naval_intel
 		if = {
 			limit = { NOT = { exists = scope:naval_intel_target } }
-	random_country = {
+			random_country = {
 				limit = {
-					root = {
-						has_variable = ongoing_naval_intel
-					}
+					NOT = { this = root }
+					NOT = { is_country_type = decentralized }
+					navy_size >= 5
 				}
 				save_scope_as = naval_intel_target
 			}
@@ -2818,6 +2869,9 @@ adv_dip_event.148 = {
 			months = 36
 		}
 		remove_naval_intel_effect = yes
+		ai_chance = {
+			base = 80
+		}
 	}
 
 	option = {
@@ -2842,6 +2896,9 @@ adv_dip_event.148 = {
 			}
 		}
 		remove_naval_intel_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 
 	option = {
@@ -2852,6 +2909,9 @@ adv_dip_event.148 = {
 			months = 36
 		}
 		remove_naval_intel_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 }
 
@@ -2930,6 +2990,10 @@ adv_dip_event.150 = {
 				}
 				save_scope_as = pipeline_enemy
 			}
+		}
+		if = {
+			limit = { NOT = { has_variable = pipeline_attribution } }
+			set_variable = { name = pipeline_attribution value = 0 }
 		}
 		change_variable = {
 			name = pipeline_attribution
@@ -3017,8 +3081,8 @@ adv_dip_event.152 = {
 				name = abandoned_by_patron_modifier
 				months = 12
 			}
-			adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = spy_target_country }
 		}
+		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = spy_target_country }
 	}
 	option = {
 		name = adv_dip_event.152.b
@@ -3107,13 +3171,13 @@ adv_dip_event.160 = {
 		random_list = {
 			50 = {
 				custom_tooltip = turned_network_discovered_tt
-				scope:spy_target_country = {
+				adv_dip_stop_operation = { ACTION = steal_technology TARGET = spy_target_country }
+				adv_dip_stop_operation = { ACTION = election_interference TARGET = spy_target_country }
+				adv_dip_stop_operation = { ACTION = sow_discontent TARGET = spy_target_country }
+				scope:spy_target_country ?= {
 					remove_variable = turned_steal_technology_by
 					remove_variable = turned_election_interference_by
 					remove_variable = turned_sow_discontent_by
-					adv_dip_stop_operation = { ACTION = steal_technology TARGET = spy_target_country }
-					adv_dip_stop_operation = { ACTION = election_interference TARGET = spy_target_country }
-					adv_dip_stop_operation = { ACTION = sow_discontent TARGET = spy_target_country }
 					shadow_war_score_major_effect = yes
 					trigger_event = {
 						id = adv_dip_event.161
@@ -3246,7 +3310,7 @@ adv_dip_event.170 = {
 		random_list = {
 			200 = {
 				custom_tooltip = sealed_train_success_tt
-				scope:spy_target_country = {
+				scope:spy_target_country ?= {
 					trigger_event = {
 						id = adv_dip_event.171
 						days = 10
@@ -3259,7 +3323,7 @@ adv_dip_event.170 = {
 				change_infamy = 5
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
-					scope:spy_target_country = {
+					scope:spy_target_country ?= {
 						change_relations = {
 							country = root
 							value = -30
@@ -3275,7 +3339,7 @@ adv_dip_event.170 = {
 					var:false_flag_patsy = {
 						save_scope_as = framed_patsy
 					}
-					scope:spy_target_country = {
+					scope:spy_target_country ?= {
 						trigger_event = {
 							id = adv_dip_event.175
 							days = 5
@@ -3287,6 +3351,9 @@ adv_dip_event.170 = {
 					}
 				}
 			}
+		}
+		ai_chance = {
+			base = 80
 		}
 	}
 }
@@ -3382,7 +3449,6 @@ adv_dip_event.175 = {
 					}
 				}
 				shadow_war_score_major_effect = yes
-				shadow_war_score_major_effect = yes
 			}
 		}
 	}
@@ -3465,6 +3531,9 @@ adv_dip_event.180 = {
 			days = 365
 		}
 		shadow_war_score_minor_effect = yes
+		ai_chance = {
+			base = 80
+		}
 	}
 	option = {
 		name = adv_dip_event.180.b
@@ -3498,6 +3567,9 @@ adv_dip_event.180 = {
 			2 = {}
 		}
 		shadow_war_score_minor_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 	option = {
 		name = adv_dip_event.180.c
@@ -3511,6 +3583,9 @@ adv_dip_event.180 = {
 			}
 		}
 		shadow_war_score_minor_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 }
 
@@ -3573,6 +3648,10 @@ adv_dip_event.155 = {
 			}
 			200 = {
 				custom_tooltip = black_market_intercepted_tt
+				if = {
+					limit = { NOT = { has_variable = black_market_attribution } }
+					set_variable = { name = black_market_attribution value = 0 }
+				}
 				change_variable = {
 					name = black_market_attribution
 					add = 1
@@ -3607,16 +3686,11 @@ adv_dip_event.155 = {
 							days = 5
 						}
 					}
-					every_country = {
-						limit = {
-							root = {
-								is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = prev }
-							}
-						}
-						
-					}
 				}
 			}
+		}
+		ai_chance = {
+			base = 80
 		}
 	}
 	option = {
@@ -3625,13 +3699,16 @@ adv_dip_event.155 = {
 			name = recently_black_market
 			months = 36
 		}
-		every_country = {
-			limit = {
-				root = {
-					is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = prev }
+		adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = spy_target_country }
+		ai_chance = {
+			base = 10
+			modifier = {
+				trigger = {
+					has_variable = black_market_attribution
+					var:black_market_attribution >= 2
 				}
+				add = 100
 			}
-			
 		}
 	}
 }
@@ -3655,6 +3732,173 @@ adv_dip_event.156 = {
 	}
 }
 
+# v5.1 operative selection. Every espionage action queues its launch behind
+# this choice: the target was picked in the lens, the operative is picked here,
+# and adv_dip_dispatch_pending_operation only starts the operation (and charges
+# for it) once an operative is bound. Dismissing the event calls the whole
+# thing off at no cost.
+adv_dip_event.200 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.200.t
+	desc = {
+		first_valid = {
+			triggered_desc = { desc = adv_dip_event.200.d_sow_discontent trigger = { var:adv_dip_pending_op ?= 1 } }
+			triggered_desc = { desc = adv_dip_event.200.d_support_nationalists trigger = { var:adv_dip_pending_op ?= 2 } }
+			triggered_desc = { desc = adv_dip_event.200.d_agitate_for_liberty trigger = { var:adv_dip_pending_op ?= 3 } }
+			triggered_desc = { desc = adv_dip_event.200.d_steal_technology trigger = { var:adv_dip_pending_op ?= 4 } }
+			triggered_desc = { desc = adv_dip_event.200.d_sabotage_recruitment trigger = { var:adv_dip_pending_op ?= 5 } }
+			triggered_desc = { desc = adv_dip_event.200.d_election_interference trigger = { var:adv_dip_pending_op ?= 6 } }
+			triggered_desc = { desc = adv_dip_event.200.d_steal_commander trigger = { var:adv_dip_pending_op ?= 7 } }
+			triggered_desc = { desc = adv_dip_event.200.d_clandestine_arms_pipeline trigger = { var:adv_dip_pending_op ?= 8 } }
+			triggered_desc = { desc = adv_dip_event.200.d_fund_black_market_slavery trigger = { var:adv_dip_pending_op ?= 9 } }
+			triggered_desc = { desc = adv_dip_event.200.d_support_slaves trigger = { var:adv_dip_pending_op ?= 10 } }
+			triggered_desc = { desc = adv_dip_event.200.d_naval_intelligence trigger = { var:adv_dip_pending_op ?= 11 } }
+			triggered_desc = { desc = adv_dip_event.200.d_sealed_train trigger = { var:adv_dip_pending_op ?= 12 } }
+			triggered_desc = { desc = adv_dip_event.200.d_develop_nation trigger = { var:adv_dip_pending_op ?= 13 } }
+			triggered_desc = { desc = adv_dip_event.200.d_false_flag trigger = { always = yes } }
+		}
+	}
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	duration = 3
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+			var:adv_dip_pending_target ?= { save_scope_as = spy_target_country }
+		}
+		random_scope_character = {
+			limit = {
+				has_role = character_role_operative
+				is_busy = no
+				NOT = { has_variable = adv_dip_captured }
+			}
+			save_scope_as = op_candidate_1
+		}
+		random_scope_character = {
+			limit = {
+				has_role = character_role_operative
+				is_busy = no
+				NOT = { has_variable = adv_dip_captured }
+				NOT = { this = scope:op_candidate_1 }
+			}
+			save_scope_as = op_candidate_2
+		}
+		random_scope_character = {
+			limit = {
+				has_role = character_role_operative
+				is_busy = no
+				NOT = { has_variable = adv_dip_captured }
+				NOR = {
+					this = scope:op_candidate_1
+					this = scope:op_candidate_2
+				}
+			}
+			save_scope_as = op_candidate_3
+		}
+	}
+
+	option = {
+		name = "[SCOPE.sCharacter('op_candidate_1').GetFullName]"
+		trigger = { exists = scope:op_candidate_1 }
+		custom_tooltip = adv_dip_send_operative_tt
+		scope:op_candidate_1 = { save_scope_as = chosen_operative }
+		adv_dip_dispatch_pending_operation = yes
+	}
+
+	option = {
+		name = "[SCOPE.sCharacter('op_candidate_2').GetFullName]"
+		trigger = { exists = scope:op_candidate_2 }
+		custom_tooltip = adv_dip_send_operative_tt
+		scope:op_candidate_2 = { save_scope_as = chosen_operative }
+		adv_dip_dispatch_pending_operation = yes
+	}
+
+	option = {
+		name = "[SCOPE.sCharacter('op_candidate_3').GetFullName]"
+		trigger = { exists = scope:op_candidate_3 }
+		custom_tooltip = adv_dip_send_operative_tt
+		scope:op_candidate_3 = { save_scope_as = chosen_operative }
+		adv_dip_dispatch_pending_operation = yes
+	}
+
+	# Safe on every path, so it is the default: an unanswered selection lapses
+	# with nothing launched and nothing charged.
+	option = {
+		name = adv_dip_event.200.x
+		default_option = yes
+		custom_tooltip = adv_dip_call_off_tt
+		remove_variable = adv_dip_pending_op
+		remove_variable = adv_dip_pending_target
+	}
+}
+
+# Yearly while one of our operatives sits in foreign cells (captor recorded at
+# capture): the captor profits, and there is a real chance our man talks and a
+# network against the captor is rolled up. Ransom via the Operative Repatriation
+# treaty article, wait out the five-year sentence, or disavow them.
+adv_dip_event.210 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.210.t
+	desc = adv_dip_event.210.d
+	flavor = adv_dip_event.210.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_interrogated
+		exists = scope:adv_dip_captor_country
+	}
+
+	immediate = {
+		scope:adv_dip_captor_country ?= {
+			shadow_war_score_minor_effect = yes
+		}
+	}
+
+	option = {
+		name = adv_dip_event.210.a
+		default_option = yes
+		ai_chance = { base = 70 }
+		if = {
+			limit = {
+				adv_dip_has_network_against = { TARGET = adv_dip_captor_country }
+			}
+			random_list = {
+				75 = {
+					custom_tooltip = adv_dip_interrogation_held_tt
+				}
+				25 = {
+					adv_dip_roll_up_one_network = yes
+				}
+			}
+		}
+		else = {
+			custom_tooltip = adv_dip_interrogation_held_tt
+		}
+	}
+
+	option = {
+		name = adv_dip_event.210.b
+		ai_chance = { base = 30 }
+		custom_tooltip = adv_dip_disavow_tt
+		remove_list_variable = {
+			name = adv_dip_operatives
+			target = scope:adv_dip_interrogated
+		}
+		scope:adv_dip_interrogated = {
+			remove_variable = adv_dip_captured
+			remove_variable = adv_dip_captor
+			remove_character_role = character_role_operative
+		}
+	}
+}
+
 adv_dip_event.190 = {
 	type = country_event
 	placement = root
@@ -3675,11 +3919,14 @@ adv_dip_event.190 = {
 		create_character = {
 			role = character_role_operative
 			culture = primary_culture
-			traits = {
-				cryptographer
-			}
 			on_created = {
 				save_scope_as = new_operative
+				random_list = {
+					1 = { add_trait = cryptographer }
+					1 = { add_trait = master_of_disguise }
+					1 = { add_trait = saboteur }
+					1 = { add_trait = silver_tongue }
+				}
 				owner = {
 					add_to_variable_list = {
 						name = adv_dip_operatives

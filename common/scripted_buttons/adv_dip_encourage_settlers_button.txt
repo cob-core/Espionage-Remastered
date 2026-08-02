@@ -23,9 +23,13 @@
 			name = recently_developed_country
 			months = 7
 		}
-        add_modifier = {
-			name = development_encourage_settlers_modifier
-			months = 25
+		# The benefit lands on the nation being developed; the funding cost
+		# below stays ours.
+		var:development_target_var ?= {
+			add_modifier = {
+				name = development_encourage_settlers_modifier
+				months = 25
+			}
 		}
 		add_modifier = {
 			name = development_cost_modifier

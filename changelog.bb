@@ -3,8 +3,9 @@
 [h2]5.0 — Operatives[/h2]
 [list]
 [*][b]Espionage is now genuinely secret.[/b] Operations no longer create diplomatic pacts. Nothing appears in any diplomacy panel, and target countries are never notified that they are being worked on. The only way the world learns of your operations is when your agents are caught.
-[*][b]NEW: Operatives.[/b] Recruit named spies with tradecraft traits and send them into foreign capitals. Assassinations are run by your own operatives rather than borrowed generals, and an operative who is exposed is an operative you may lose.
-[*][b]NEW: The Intelligence Console.[/b] A custom panel inside the Shadow War journal entry listing your operatives and every operation you have running, with recruitment and wind-down controls.
+[*][b]NEW: Operatives.[/b] Recruit named spies with tradecraft traits and send them into foreign capitals. Every operation asks which operative you are sending, no operation can run without one, and an agent's tradecraft now tilts the odds: a cryptographer steals technology better, a saboteur wrecks recruitment better. An operative caught on a failed assassination may be captured or executed.
+[*][b]NEW: The Intelligence Console.[/b] A custom panel inside the Shadow War journal entry: character portraits, a Director of Intelligence you appoint (and can dismiss), your operative roster with live status - available, on assignment, captured - hire and fire controls, and every running operation with its target's flag and a wind-down button.
+[*][b]NEW: Prisoners and ransoms.[/b] A captured operative sits in the captor's cells for up to five years - each year risking that they talk and a network of yours is rolled up while the captor profits. Ransom them home with the new Operative Repatriation treaty article (their captor will want paying), disavow them, or trust their silence.
 [*][b]NEW: Three new External Security laws.[/b] Consular Intelligence for the respectable early game, the Directorate of State Security for inward-facing regimes, and Deniable Assets for those who prefer their espionage contracted out.
 [*]Steal Ship Designs has been removed.
 [*]The Shadow War journal entry (formerly The Great Game) is pinned by default.

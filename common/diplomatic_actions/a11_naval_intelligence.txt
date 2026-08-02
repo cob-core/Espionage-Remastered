@@ -40,24 +40,13 @@
 			navy_size >= 5
 		}
 		has_diplomatic_relevance = scope:target_country
+		adv_dip_operation_launch_gate = yes
 	}
 
 
 
 	accept_effect = {
-		scope:target_country = {
-			save_scope_as = naval_intel_target
-		}
-		set_variable = {
-			name = naval_intel_target_var
-			value = scope:naval_intel_target
-		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 13
-		}
-		trigger_event = { id = adv_dip_event.140 }
+		adv_dip_begin_operation = { CODE = 11 }
 	}
 
 	ai = {

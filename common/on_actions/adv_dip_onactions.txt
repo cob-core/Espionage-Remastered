@@ -91,11 +91,47 @@ adv_dip_espionage_yearly = {
 				culture = primary_culture
 				on_created = {
 					save_scope_as = adv_dip_ai_operative
+					random_list = {
+						1 = { add_trait = cryptographer }
+						1 = { add_trait = master_of_disguise }
+						1 = { add_trait = saboteur }
+						1 = { add_trait = silver_tongue }
+					}
 				}
 			}
 			add_to_variable_list = {
 				name = adv_dip_operatives
 				target = scope:adv_dip_ai_operative
+			}
+			# Second recruit in the same year while still under cap: operations
+			# bind operatives for their whole lifetime, so one hire a year would
+			# starve the AI's espionage program within a decade.
+			if = {
+				limit = {
+					NOT = {
+						list_size = {
+							name = adv_dip_operatives
+							value >= institution_investment_level:institution_espionage
+						}
+					}
+				}
+				create_character = {
+					role = character_role_operative
+					culture = primary_culture
+					on_created = {
+						save_scope_as = adv_dip_ai_operative_2
+						random_list = {
+							1 = { add_trait = cryptographer }
+							1 = { add_trait = master_of_disguise }
+							1 = { add_trait = saboteur }
+							1 = { add_trait = silver_tongue }
+						}
+					}
+				}
+				add_to_variable_list = {
+					name = adv_dip_operatives
+					target = scope:adv_dip_ai_operative_2
+				}
 			}
 		}
 		if = {
@@ -107,6 +143,7 @@ adv_dip_espionage_yearly = {
 			random_in_list = {
 				variable = adv_dip_operatives
 				save_scope_as = adv_dip_new_director
+				remove_character_role = character_role_operative
 				add_character_role = character_role_spymaster
 			}
 			remove_list_variable = {
@@ -132,6 +169,36 @@ adv_dip_espionage_yearly = {
 				type = adv_dip_je_shadow_war
 			}
 		}
+		# A captured operative in foreign cells is a standing liability: each
+		# year they risk talking. Ransoming them back (Operative Repatriation
+		# treaty article) or disavowing them are the only ways to end it early.
+		if = {
+			limit = {
+				any_scope_character = {
+					has_role = character_role_operative
+					has_variable = adv_dip_captured
+					has_variable = adv_dip_captor
+				}
+			}
+			random_scope_character = {
+				limit = {
+					has_role = character_role_operative
+					has_variable = adv_dip_captured
+					has_variable = adv_dip_captor
+				}
+				save_scope_as = adv_dip_interrogated
+				var:adv_dip_captor ?= {
+					save_scope_as = adv_dip_captor_country
+				}
+			}
+			if = {
+				limit = {
+					exists = scope:adv_dip_interrogated
+					exists = scope:adv_dip_captor_country
+				}
+				trigger_event = { id = adv_dip_event.210 }
+			}
+		}
 		# Great Game score decay
 		if = {
 			limit = { has_variable = shadow_war_score }
@@ -140,21 +207,34 @@ adv_dip_espionage_yearly = {
 				multiply = 0.9
 			}
 		}
-		# Kompromat dossier accrual while any espionage network runs
+		# Kompromat dossier accrual while any espionage network runs. The list
+		# check must run in OUR scope (the lists live on the initiator) — in the
+		# member's scope it would ask whether they spy on us.
 		if = {
 			limit = {
-				any_country = {
-					OR = {
-						is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
-						is_target_in_variable_list = { name = adv_dip_op_steal_commander target = prev }
-						has_variable = ongoing_naval_intel
+				OR = {
+					has_variable = ongoing_naval_intel
+					any_country = {
+						root = {
+							OR = {
+								is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
+								is_target_in_variable_list = { name = adv_dip_op_steal_commander target = prev }
+							}
+						}
 					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_variable = kompromat_dossier_progress } }
+				set_variable = {
+					name = kompromat_dossier_progress
+					value = 0
 				}
 			}
 			change_variable = {
@@ -238,6 +318,13 @@ adv_dip_espionage_monthly = {
 						NOT = { owner ?= root }
 					}
 				}
+				add_to_local_variable_list = {
+					name = adv_dip_prune_director
+					target = this
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_prune_director
 				save_scope_as = adv_dip_lost_director
 				root = {
 					remove_list_variable = {
@@ -266,6 +353,13 @@ adv_dip_espionage_monthly = {
 						NOT = { owner ?= root }
 					}
 				}
+				add_to_local_variable_list = {
+					name = adv_dip_prune_operative
+					target = this
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_prune_operative
 				save_scope_as = adv_dip_lost_operative
 				root = {
 					remove_list_variable = {
@@ -275,6 +369,9 @@ adv_dip_espionage_monthly = {
 				}
 			}
 		}
+		# Free any operative whose operation has ended by a path that could not
+		# release them directly (annexation, chain resolution, expiry).
+		adv_dip_reconcile_assignments = yes
 		# AI solvency abort: a broke AI winds down its networks
 		if = {
 			limit = {
@@ -288,6 +385,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_sow_discontent }
 				every_in_list = {
 					variable = adv_dip_op_sow_discontent
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_sow_discontent
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_sow_discontent
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = sow_discontent TARGET = adv_dip_wound_down }
@@ -298,6 +402,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_support_nationalists }
 				every_in_list = {
 					variable = adv_dip_op_support_nationalists
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_support_nationalists
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_support_nationalists
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = support_nationalists TARGET = adv_dip_wound_down }
@@ -308,6 +419,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_agitate_for_liberty }
 				every_in_list = {
 					variable = adv_dip_op_agitate_for_liberty
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_agitate_for_liberty
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_agitate_for_liberty
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = adv_dip_wound_down }
@@ -318,6 +436,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_steal_technology }
 				every_in_list = {
 					variable = adv_dip_op_steal_technology
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_steal_technology
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_steal_technology
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = steal_technology TARGET = adv_dip_wound_down }
@@ -328,6 +453,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_sabotage_recruitment }
 				every_in_list = {
 					variable = adv_dip_op_sabotage_recruitment
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_sabotage_recruitment
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_sabotage_recruitment
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = adv_dip_wound_down }
@@ -338,6 +470,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_election_interference }
 				every_in_list = {
 					variable = adv_dip_op_election_interference
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_election_interference
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_election_interference
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = election_interference TARGET = adv_dip_wound_down }
@@ -348,6 +487,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_steal_commander }
 				every_in_list = {
 					variable = adv_dip_op_steal_commander
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_steal_commander
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_steal_commander
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = steal_commander TARGET = adv_dip_wound_down }
@@ -358,6 +504,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_clandestine_arms_pipeline }
 				every_in_list = {
 					variable = adv_dip_op_clandestine_arms_pipeline
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_clandestine_arms_pipeline
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_clandestine_arms_pipeline
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = adv_dip_wound_down }
@@ -368,6 +521,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_fund_black_market_slavery }
 				every_in_list = {
 					variable = adv_dip_op_fund_black_market_slavery
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_fund_black_market_slavery
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_fund_black_market_slavery
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = adv_dip_wound_down }
@@ -378,6 +538,13 @@ adv_dip_espionage_monthly = {
 				limit = { has_variable_list = adv_dip_op_support_slaves }
 				every_in_list = {
 					variable = adv_dip_op_support_slaves
+					add_to_local_variable_list = {
+						name = adv_dip_winddown_support_slaves
+						target = this
+					}
+				}
+				every_in_local_list = {
+					variable = adv_dip_winddown_support_slaves
 					save_scope_as = adv_dip_wound_down
 					root = {
 						adv_dip_stop_operation = { ACTION = support_slaves TARGET = adv_dip_wound_down }
@@ -422,7 +589,7 @@ adv_dip_espionage_monthly = {
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
 						else = {
-							adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.11 }
+							adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.11 ACTION = sow_discontent TRAIT = silver_tongue }
 						}
 				}
 			}
@@ -464,7 +631,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 8000 EVENT = adv_dip_event.21 }
+					adv_dip_operation_die = { MISS = 8000 EVENT = adv_dip_event.21 ACTION = support_nationalists TRAIT = silver_tongue }
 				}
 			}
 			every_in_local_list = {
@@ -485,6 +652,9 @@ adv_dip_espionage_monthly = {
 					limit = {
 						OR = {
 							scope:spy_target_country = { is_country_type = decentralized }
+							# The whole operation agitates a subject against its
+							# overlord; independence ends it.
+							scope:spy_target_country = { is_subject = no }
 						root = { has_war_with = scope:spy_target_country }
 						}
 					}
@@ -505,7 +675,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.31 }
+					adv_dip_operation_die = { MISS = 3200 EVENT = adv_dip_event.31 ACTION = agitate_for_liberty TRAIT = silver_tongue }
 				}
 			}
 			every_in_local_list = {
@@ -554,7 +724,7 @@ adv_dip_espionage_monthly = {
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
 						else = {
-							adv_dip_operation_die = { MISS = 1600 EVENT = adv_dip_event.91 }
+							adv_dip_operation_die = { MISS = 1600 EVENT = adv_dip_event.91 ACTION = steal_technology TRAIT = cryptographer }
 						}
 				}
 			}
@@ -596,7 +766,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.41 }
+					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.41 ACTION = sabotage_recruitment TRAIT = saboteur }
 				}
 			}
 			every_in_local_list = {
@@ -647,7 +817,7 @@ adv_dip_espionage_monthly = {
 							root = { trigger_event = { id = adv_dip_event.163 } }
 						}
 						else = {
-							adv_dip_operation_die = { MISS = 200 EVENT = adv_dip_event.81 }
+							adv_dip_operation_die = { MISS = 200 EVENT = adv_dip_event.81 ACTION = election_interference TRAIT = silver_tongue }
 						}
 					}
 				}
@@ -704,7 +874,7 @@ adv_dip_espionage_monthly = {
 					}
 					if = {
 						limit = { NOT = { root = { has_variable = recently_stole_commander } } }
-						adv_dip_operation_die = { MISS = 3300 EVENT = adv_dip_event.131 }
+						adv_dip_operation_die = { MISS = 3300 EVENT = adv_dip_event.131 ACTION = steal_commander TRAIT = master_of_disguise }
 					}
 				}
 			}
@@ -748,7 +918,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.150 }
+					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.150 ACTION = clandestine_arms_pipeline TRAIT = saboteur }
 				}
 			}
 			every_in_local_list = {
@@ -796,7 +966,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.155 }
+					adv_dip_operation_die = { MISS = 800 EVENT = adv_dip_event.155 ACTION = fund_black_market_slavery TRAIT = master_of_disguise }
 				}
 			}
 			every_in_local_list = {
@@ -837,7 +1007,7 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.120 }
+					adv_dip_operation_die = { MISS = 3500 EVENT = adv_dip_event.120 ACTION = support_slaves TRAIT = master_of_disguise }
 				}
 			}
 			every_in_local_list = {

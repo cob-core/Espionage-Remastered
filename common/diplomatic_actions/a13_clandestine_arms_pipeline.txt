@@ -45,25 +45,13 @@
 			is_at_war = yes
 		}
 		has_diplomatic_relevance = scope:target_country
+		adv_dip_operation_launch_gate = yes
 	}
 
 
 
 	accept_effect = {
-		scope:target_country = {
-			save_scope_as = spy_target_country
-		}
-		adv_dip_start_operation = { ACTION = clandestine_arms_pipeline }
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_medium
-			months = 13
-		}
-		scope:target_country = {
-			add_modifier = {
-				name = adv_dip_arms_pipeline_target_modifier
-			}
-		}
+		adv_dip_begin_operation = { CODE = 8 }
 	}
 
 	ai = {

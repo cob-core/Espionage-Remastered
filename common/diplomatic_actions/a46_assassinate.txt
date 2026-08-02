@@ -29,11 +29,7 @@
 	
 	possible = {
 		NOT = { has_variable = ongoing_plans }
-		any_scope_character = {
-			has_role = character_role_operative
-			is_busy = no
-			NOT = { has_variable = adv_dip_captured }
-		}
+		adv_dip_operation_launch_gate = yes
 		is_revolutionary = no
 		in_default = no
 		has_diplomatic_relevance = scope:target_country

@@ -1,12 +1,110 @@
-### ESPIONAGE CONSOLE — Espionage Remastered
+### ESPIONAGE CONSOLE - Espionage Remastered
+### Hosted on the Shadow War journal entry (custom_widget_container_1).
+### Layout rule: flowcontainers only, never hbox/vbox as a flowcontainer child.
+
+types adv_dip_console_types
+{
+	### Character row: clickable portrait, name, subtitle, action buttons.
+	### Portrait handlers need an Access datacontext (Scope.AccessCharacter).
+	type adv_dip_character_row = flowcontainer {
+		direction = horizontal
+		spacing = 8
+		margin_left = 10
+		margin_right = 10
+
+		background = {
+			using = entry_bg_simple
+			alpha = 0.5
+		}
+
+		button = {
+			parentanchor = vcenter
+			size = { 40 40 }
+			onclick = "[InformationPanelBar.OpenCharacterPanel(Character.AccessSelf)]"
+			onrightclick = "[RightClickMenuManager.ShowForCharacter(Character.AccessSelf)]"
+			tooltip = "GO_TO_BUTTON_CHARACTER"
+			using = tooltip_ne
+
+			character_portrait_small = {}
+		}
+
+		flowcontainer = {
+			parentanchor = vcenter
+			direction = vertical
+
+			textbox = {
+				size = { 250 22 }
+				text = "[Character.GetFullNameNoFormatting]"
+				default_format = "#v"
+				align = left|nobaseline
+				using = elide_fontsize_min
+				using = fontsize_medium
+			}
+
+			block "subtitle" {
+				textbox = {
+					size = { 250 18 }
+					text = "[Character.GetCulture.GetName]"
+					align = left|nobaseline
+					using = elide_fontsize_min
+					using = fontsize_small
+				}
+			}
+		}
+
+		block "row_action" {}
+	}
+
+	### Operation row: target flag and name, operation label, cancel button.
+	type adv_dip_operation_row = flowcontainer {
+		direction = horizontal
+		spacing = 8
+		margin_left = 10
+		margin_right = 10
+
+		background = {
+			using = entry_bg_simple
+			alpha = 0.5
+		}
+
+		small_flag = {
+			parentanchor = vcenter
+		}
+
+		flowcontainer = {
+			parentanchor = vcenter
+			direction = vertical
+
+			textbox = {
+				size = { 250 22 }
+				text = "[Country.GetName]"
+				default_format = "#v"
+				align = left|nobaseline
+				using = elide_fontsize_min
+				using = fontsize_medium
+			}
+
+			block "op_label" {}
+		}
+
+		block "cancel_button" {}
+	}
+}
+
 flowcontainer = {
 	name = "widget_adv_dip_console"
 	direction = vertical
-	spacing = 4
+	spacing = 6
 	ignoreinvisible = yes
 
+	### DIRECTOR OF INTELLIGENCE
 	flowcontainer = {
 		direction = vertical
+
+		background = {
+			using = dropdown_background
+			margin = { 0 -2 }
+		}
 
 		section_header_button = {
 			blockoverride "layout" {
@@ -19,61 +117,150 @@ flowcontainer = {
 				onclick = "[GetVariableSystem.Toggle('adv_dip_director_toggle')]"
 			}
 			blockoverride "onclick_showmore" {
-				visible = "[Not(GetVariableSystem.Exists('adv_dip_director_toggle'))]"
+				visible = "[GetVariableSystem.Exists('adv_dip_director_toggle')]"
 			}
 			blockoverride "onclick_showless" {
-				visible = "[GetVariableSystem.Exists('adv_dip_director_toggle')]"
+				visible = "[Not(GetVariableSystem.Exists('adv_dip_director_toggle'))]"
 			}
 		}
 
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_director_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_director_toggle'))]"
+			direction = vertical
+			spacing = 4
+			margin_top = 5
+			margin_bottom = 8
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_director')]"
-			addcolumn = 500
-			addrow = 34
-			datamodel_wrap = 1
+
+			empty_state = {
+				blockoverride "visible" {
+					visible = "[IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_director'))]"
+				}
+				blockoverride "text" {
+					text = "ADV_DIP_CONSOLE_NO_DIRECTOR"
+				}
+			}
 
 			item = {
-				flowcontainer = {
-					datacontext = "[Scope.GetCharacter]"
-					direction = horizontal
-					spacing = 8
-					margin_left = 10
+				adv_dip_character_row = {
+					datacontext = "[Scope.AccessCharacter]"
+					size = { 500 46 }
 
-					textbox = {
-						size = { 460 30 }
-						text = "[Character.GetFullNameNoFormatting]"
-						align = left|nobaseline
-						using = fontsize_medium
+					blockoverride "subtitle" {
+						textbox = {
+							size = { 250 18 }
+							text = "ADV_DIP_CONSOLE_DIRECTOR_ROLE"
+							default_format = "#P"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
+					}
+
+					blockoverride "row_action" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
+							visible = "[GetScriptedGui('adv_dip_sgui_dismiss_director').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							enabled = "[GetScriptedGui('adv_dip_sgui_dismiss_director').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							onclick = "[GetScriptedGui('adv_dip_sgui_dismiss_director').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							tooltip = "[GetScriptedGui('adv_dip_sgui_dismiss_director').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							using = tooltip_ne
+						}
 					}
 				}
 			}
 		}
+	}
 
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_director_toggle')]"
+	### OPERATIVES
+	flowcontainer = {
+		direction = vertical
+
+		background = {
+			using = dropdown_background
+			margin = { 0 -2 }
+		}
+
+		section_header_button = {
+			blockoverride "layout" {
+				size = { 520 38 }
+			}
+			blockoverride "left_text" {
+				text = "ADV_DIP_CONSOLE_OPERATIVES"
+			}
+			blockoverride "right_text" {
+				section_header_right_text = {
+					raw_text = "#v [GetDataModelSize(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives'))]#!"
+				}
+			}
+			blockoverride "onclick" {
+				onclick = "[GetVariableSystem.Toggle('adv_dip_operatives_toggle')]"
+			}
+			blockoverride "onclick_showmore" {
+				visible = "[GetVariableSystem.Exists('adv_dip_operatives_toggle')]"
+			}
+			blockoverride "onclick_showless" {
+				visible = "[Not(GetVariableSystem.Exists('adv_dip_operatives_toggle'))]"
+			}
+		}
+
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_operatives_toggle'))]"
+			direction = vertical
+			spacing = 4
+			margin_top = 5
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
+
+			empty_state = {
+				blockoverride "visible" {
+					visible = "[IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives'))]"
+				}
+				blockoverride "text" {
+					text = "ADV_DIP_CONSOLE_NO_OPERATIVES"
+				}
+			}
 
 			item = {
-				flowcontainer = {
-					datacontext = "[Scope.GetCharacter]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+				adv_dip_character_row = {
+					datacontext = "[Scope.AccessCharacter]"
+					size = { 500 46 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Character.GetFullNameNoFormatting]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "subtitle" {
+						textbox = {
+							size = { 250 18 }
+							visible = "[And( Not(Character.IsBusy), Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
+							text = "ADV_DIP_CONSOLE_STATUS_AVAILABLE"
+							default_format = "#P"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
+						textbox = {
+							size = { 250 18 }
+							visible = "[And( Character.IsBusy, Not(GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)) )]"
+							text = "ADV_DIP_CONSOLE_STATUS_ON_MISSION"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
+						textbox = {
+							size = { 250 18 }
+							visible = "[GetScriptedGui('adv_dip_sgui_operative_captured').IsValid(GuiScope.SetRoot(Character.MakeScope).End)]"
+							text = "ADV_DIP_CONSOLE_STATUS_CAPTURED"
+							default_format = "#N"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
+					blockoverride "row_action" {
+						button = {
+							parentanchor = vcenter
+							size = { 110 28 }
 							using = default_button_action
+							using = tooltip_ne
 							visible = "[GetScriptedGui('adv_dip_sgui_appoint_director').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_appoint_director').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_appoint_director').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
@@ -85,93 +272,73 @@ flowcontainer = {
 								max_width = 98
 								text = "ADV_DIP_CONSOLE_APPOINT"
 								align = center|nobaseline
+								using = elide_fontsize_min
 								using = fontsize_small
 							}
 						}
-				}
-			}
-		}
-	}
 
-	flowcontainer = {
-		direction = vertical
-
-		section_header_button = {
-			blockoverride "layout" {
-				size = { 520 38 }
-			}
-			blockoverride "left_text" {
-				text = "ADV_DIP_CONSOLE_OPERATIVES"
-			}
-			blockoverride "onclick" {
-				onclick = "[GetVariableSystem.Toggle('adv_dip_operatives_toggle')]"
-			}
-			blockoverride "onclick_showmore" {
-				visible = "[Not(GetVariableSystem.Exists('adv_dip_operatives_toggle'))]"
-			}
-			blockoverride "onclick_showless" {
-				visible = "[GetVariableSystem.Exists('adv_dip_operatives_toggle')]"
-			}
-		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_operatives_toggle')]"
-			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_operatives')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
-
-			item = {
-				flowcontainer = {
-					datacontext = "[Scope.GetCharacter]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
-
-					textbox = {
-						size = { 300 26 }
-						text = "[Character.GetFullNameNoFormatting]"
-						align = left|nobaseline
-						using = fontsize_small
-					}
-
-					textbox = {
-						size = { 150 26 }
-						text = "[Character.GetCulture.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
+							visible = "[GetScriptedGui('adv_dip_sgui_dismiss_operative').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							enabled = "[GetScriptedGui('adv_dip_sgui_dismiss_operative').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							onclick = "[GetScriptedGui('adv_dip_sgui_dismiss_operative').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							tooltip = "[GetScriptedGui('adv_dip_sgui_dismiss_operative').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							using = tooltip_ne
+						}
 					}
 				}
 			}
 		}
 
 		flowcontainer = {
-			visible = "[GetVariableSystem.Exists('adv_dip_operatives_toggle')]"
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_operatives_toggle'))]"
 			direction = horizontal
 			margin_left = 10
+			margin_top = 6
+			margin_bottom = 8
 
 			button = {
-							size = { 240 30 }
-							using = default_button_action
-							visible = "[GetScriptedGui('adv_dip_sgui_recruit_operative').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-							enabled = "[GetScriptedGui('adv_dip_sgui_recruit_operative').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-							onclick = "[GetScriptedGui('adv_dip_sgui_recruit_operative').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-							tooltip = "[GetScriptedGui('adv_dip_sgui_recruit_operative').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				size = { 240 34 }
+				using = default_button_action
+				using = tooltip_above
+				visible = "[GetScriptedGui('adv_dip_sgui_recruit_operative').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				enabled = "[GetScriptedGui('adv_dip_sgui_recruit_operative').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				onclick = "[GetScriptedGui('adv_dip_sgui_recruit_operative').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
+				tooltip = "[GetScriptedGui('adv_dip_sgui_recruit_operative').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
 
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 228
-								text = "ADV_DIP_CONSOLE_RECRUIT"
-								align = center|nobaseline
-								using = fontsize_small
-							}
-						}
+				flowcontainer = {
+					parentanchor = center
+					spacing = 6
+
+					icon = {
+						parentanchor = vcenter
+						size = { 22 22 }
+						texture = "gfx/interface/buttons/button_icons/plus.dds"
+					}
+
+					textbox = {
+						parentanchor = vcenter
+						autoresize = yes
+						max_width = 190
+						text = "ADV_DIP_CONSOLE_RECRUIT"
+						align = nobaseline
+						using = elide_fontsize_min
+						using = fontsize_medium
+					}
+				}
+			}
 		}
 	}
 
+	### ACTIVE OPERATIONS
 	flowcontainer = {
 		direction = vertical
+
+		background = {
+			using = dropdown_background
+			margin = { 0 -2 }
+		}
 
 		section_header_button = {
 			blockoverride "layout" {
@@ -184,429 +351,369 @@ flowcontainer = {
 				onclick = "[GetVariableSystem.Toggle('adv_dip_ops_toggle')]"
 			}
 			blockoverride "onclick_showmore" {
-				visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+				visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
 			}
 			blockoverride "onclick_showless" {
-				visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+				visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
 			}
 		}
 
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		empty_state = {
+			blockoverride "visible" {
+				visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(GetScriptedGui('adv_dip_sgui_has_operations').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)) )]"
+			}
+			blockoverride "text" {
+				text = "ADV_DIP_CONSOLE_NO_OPERATIONS"
+			}
+		}
+
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sow_discontent')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "sow_discontent_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_sow_discontent').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_sow_discontent').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_sow_discontent').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_sow_discontent').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_nationalists')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "support_nationalists_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_support_nationalists').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_support_nationalists').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_support_nationalists').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_support_nationalists').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_agitate_for_liberty')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "agitate_for_liberty_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_agitate_for_liberty').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_agitate_for_liberty').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_agitate_for_liberty').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_agitate_for_liberty').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_technology')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "steal_technology_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_steal_technology').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_steal_technology').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_steal_technology').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_steal_technology').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sabotage_recruitment')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "sabotage_recruitment_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_sabotage_recruitment').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_sabotage_recruitment').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_sabotage_recruitment').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_sabotage_recruitment').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_election_interference')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "election_interference_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_election_interference').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_election_interference').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_election_interference').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_election_interference').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_commander')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "steal_commander_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_steal_commander').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_steal_commander').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_steal_commander').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_steal_commander').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_clandestine_arms_pipeline')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "clandestine_arms_pipeline_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_clandestine_arms_pipeline').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_clandestine_arms_pipeline').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_clandestine_arms_pipeline').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_clandestine_arms_pipeline').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_fund_black_market_slavery')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "fund_black_market_slavery_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_fund_black_market_slavery').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_fund_black_market_slavery').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_fund_black_market_slavery').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_fund_black_market_slavery').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}
-
-		fixedgridbox = {
-			visible = "[GetVariableSystem.Exists('adv_dip_ops_toggle')]"
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			direction = vertical
+			spacing = 3
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_slaves')]"
-			addcolumn = 500
-			addrow = 30
-			datamodel_wrap = 1
 
 			item = {
-				flowcontainer = {
+				adv_dip_operation_row = {
 					datacontext = "[Scope.GetCountry]"
-					direction = horizontal
-					spacing = 6
-					margin_left = 10
+					size = { 500 40 }
 
-					textbox = {
-						size = { 330 26 }
-						text = "[Country.GetName]"
-						align = left|nobaseline
-						using = fontsize_small
+					blockoverride "op_label" {
+						textbox = {
+							size = { 250 18 }
+							text = "support_slaves_action_name"
+							align = left|nobaseline
+							using = elide_fontsize_min
+							using = fontsize_small
+						}
 					}
 
-					button = {
-							size = { 110 26 }
-							using = default_button_action
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
 							visible = "[GetScriptedGui('adv_dip_sgui_cancel_support_slaves').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_support_slaves').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_support_slaves').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
 							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_support_slaves').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
-
-							textbox = {
-								parentanchor = center
-								autoresize = yes
-								max_width = 98
-								text = "ADV_DIP_CONSOLE_CANCEL"
-								align = center|nobaseline
-								using = fontsize_small
-							}
+							using = tooltip_ne
 						}
+					}
 				}
 			}
 		}

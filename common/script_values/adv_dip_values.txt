@@ -1,22 +1,4 @@
-﻿counterespionage_value = {
-    value = scope:spy_target_country.institution_investment_level:institution_espionage
-}
-
-counterespionage_modifier = {
-    value = counterespionage_value
-    divide = 10
-    multiply = -1
-}
-
-# 0.015% of GDP, rounded to nearest 10
-spy_cost_multiplier_very_small = {
-	value = scope:spy_target_country.gdp
-	divide = 10000
-	multiply = 0.075
-	round = yes
-	multiply = 10
-}
-
+﻿# 0.015% of GDP, rounded to nearest 10
 # 0.025% of GDP, rounded to nearest 100
 spy_cost_multiplier_small = {
 	value = scope:spy_target_country.gdp
@@ -51,11 +33,6 @@ spy_cost_multiplier_medium = {
 		}
 		multiply = high_espionage_event_costs_value
 	}
-}
-
-spy_cost_multiplier_medium_negative = {
-	value = 0
-	subtract = spy_cost_multiplier_medium
 }
 
 # 0.1% of GDP, rounded to nearest 1000
@@ -179,55 +156,14 @@ naval_intel_funding = {
 # Espionage differential helpers (v4.1): thresholds for the dynamic-odds factor
 # stacks. Two families because pact blocks see scope:target_country while events
 # see scope:spy_target_country.
-target_espionage_plus_1 = {
-	value = scope:target_country.institution_investment_level:institution_espionage
-	add = 1
-}
-target_espionage_plus_2 = {
-	value = scope:target_country.institution_investment_level:institution_espionage
-	add = 2
-}
-target_espionage_plus_3 = {
-	value = scope:target_country.institution_investment_level:institution_espionage
-	add = 3
-}
-target_espionage_minus_1 = {
-	value = scope:target_country.institution_investment_level:institution_espionage
-	subtract = 1
-}
-target_espionage_minus_2 = {
-	value = scope:target_country.institution_investment_level:institution_espionage
-	subtract = 2
-}
-target_espionage_minus_3 = {
-	value = scope:target_country.institution_investment_level:institution_espionage
-	subtract = 3
-}
 spy_target_espionage_plus_1 = {
 	value = scope:spy_target_country.institution_investment_level:institution_espionage
 	add = 1
-}
-spy_target_espionage_plus_2 = {
-	value = scope:spy_target_country.institution_investment_level:institution_espionage
-	add = 2
-}
-spy_target_espionage_plus_3 = {
-	value = scope:spy_target_country.institution_investment_level:institution_espionage
-	add = 3
 }
 spy_target_espionage_minus_1 = {
 	value = scope:spy_target_country.institution_investment_level:institution_espionage
 	subtract = 1
 }
-spy_target_espionage_minus_2 = {
-	value = scope:spy_target_country.institution_investment_level:institution_espionage
-	subtract = 2
-}
-spy_target_espionage_minus_3 = {
-	value = scope:spy_target_country.institution_investment_level:institution_espionage
-	subtract = 3
-}
-
 # v5.0: monthly network upkeep, accrued per active operation target into
 # adv_dip_upkeep_total during the monthly hook, then applied as one modifier.
 adv_dip_network_upkeep_value = {
@@ -252,13 +188,6 @@ adv_dip_upkeep_medium = {
 	round = yes
 	min = 50
 }
-adv_dip_upkeep_large = {
-	value = scope:spy_target_country.gdp
-	divide = 300000
-	round = yes
-	min = 100
-}
-
 # Operative recruitment: scales off our own economy (there is no target country).
 adv_dip_recruit_cost = {
 	value = root.gdp

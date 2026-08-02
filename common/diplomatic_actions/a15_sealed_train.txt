@@ -36,22 +36,11 @@
 		NOT = { has_war_with = scope:target_country }
 		NOT = { has_variable = recently_sealed_train }
 		has_diplomatic_relevance = scope:target_country
+		adv_dip_operation_launch_gate = yes
 	}
 
 	accept_effect = {
-		scope:target_country = {
-			save_scope_as = spy_target_country
-		}
-		set_variable = {
-			name = recently_sealed_train
-			months = 60
-		}
-		add_modifier = {
-			name = spy_network_cost_modifier
-			multiplier = spy_cost_multiplier_very_large
-			months = 25
-		}
-		trigger_event = { id = adv_dip_event.170 }
+		adv_dip_begin_operation = { CODE = 12 }
 	}
 
 	ai = {

@@ -3,8 +3,9 @@
 
 ## Latest Changelog (v5.0 — Operatives)
 + ESPIONAGE IS NOW SECRET. Operations no longer create diplomatic pacts, so nothing appears in anyone's diplomacy panel and targets receive no notification. The only way anyone learns of your work is if your agents are caught.
-+ NEW: Operatives — recruit named spies with tradecraft traits from the Shadow War journal entry. Assassinations are carried out by your operatives rather than borrowed generals; operatives can be debriefed, and can be lost.
-+ NEW: The Intelligence Console — a custom panel in the Shadow War journal entry listing your operatives and every active operation, with recruitment and wind-down buttons.
++ NEW: Operatives — recruit named spies with tradecraft traits from the Shadow War journal entry. Every operation asks which operative to send and cannot run without one; the matching specialist raises the monthly odds (cryptographers steal technology, saboteurs wreck recruitment, and so on); a failed assassination risks the operative's capture or execution; debriefing an idle agent feeds the Shadow War score.
++ NEW: The Intelligence Console — a custom panel in the Shadow War journal entry: portraits, an appointable (and dismissable) Director of Intelligence with a service-wide bonus, the roster with live status (available / on assignment / captured), hire-and-fire buttons, and every active operation with its target's flag and a wind-down control.
++ NEW: Prisoners and ransoms — capture records the captor; held operatives face yearly interrogation (captor gains Shadow War score, 25% chance a network against them is rolled up); the Operative Repatriation treaty article buys them back (captor AI demands compensation); disavowal or a five-year wait are the alternatives.
 + NEW: Three additional External Security laws — Consular Intelligence (early, limited), Directorate of State Security (inward-facing counterespionage), and Deniable Assets (private networks, less infamy).
 + Removed Steal Ship Designs.
 + The Shadow War journal entry (formerly The Great Game) is now pinned by default.

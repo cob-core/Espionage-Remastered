@@ -8,6 +8,266 @@ adv_dip_start_operation = {
 	}
 }
 
+# Queues an operation behind operative selection. CODE is the numeric action id
+# understood by adv_dip_dispatch_pending_operation. The player picks an operative
+# in adv_dip_event.200; the AI assigns one at random and launches immediately.
+# Root = initiator, scope:target_country = the lens target.
+adv_dip_begin_operation = {
+	scope:target_country = {
+		save_scope_as = spy_target_country
+	}
+	# Timed as a backstop: if the selection event is ever lost, the launch gate
+	# must not stay blocked forever.
+	set_variable = {
+		name = adv_dip_pending_op
+		value = $CODE$
+		months = 2
+	}
+	set_variable = {
+		name = adv_dip_pending_target
+		value = scope:target_country
+		months = 2
+	}
+	if = {
+		limit = { is_player = yes }
+		trigger_event = { id = adv_dip_event.200 popup = yes }
+	}
+	else = {
+		random_scope_character = {
+			limit = {
+				has_role = character_role_operative
+				is_busy = no
+				NOT = { has_variable = adv_dip_captured }
+			}
+			save_scope_as = chosen_operative
+		}
+		adv_dip_dispatch_pending_operation = yes
+	}
+}
+
+# Binds scope:chosen_operative to the pending operation and launches it: list
+# operations start their variable-list entry, one-shots fire their event chain,
+# and the launch cost is charged here — so an aborted selection costs nothing.
+# Clears the pending state on every path.
+adv_dip_dispatch_pending_operation = {
+	if = {
+		limit = { NOT = { exists = scope:spy_target_country } }
+		var:adv_dip_pending_target ?= { save_scope_as = spy_target_country }
+	}
+	if = {
+		limit = {
+			exists = scope:chosen_operative
+			exists = scope:spy_target_country
+			has_variable = adv_dip_pending_op
+		}
+		if = {
+			limit = { var:adv_dip_pending_op = 1 }
+			adv_dip_start_operation = { ACTION = sow_discontent }
+			adv_dip_assign_operative = { ACTION = sow_discontent }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 2 }
+			adv_dip_start_operation = { ACTION = support_nationalists }
+			adv_dip_assign_operative = { ACTION = support_nationalists }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 3 }
+			adv_dip_start_operation = { ACTION = agitate_for_liberty }
+			adv_dip_assign_operative = { ACTION = agitate_for_liberty }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 4 }
+			adv_dip_start_operation = { ACTION = steal_technology }
+			adv_dip_assign_operative = { ACTION = steal_technology }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_small
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 5 }
+			adv_dip_start_operation = { ACTION = sabotage_recruitment }
+			adv_dip_assign_operative = { ACTION = sabotage_recruitment }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_small
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 6 }
+			adv_dip_start_operation = { ACTION = election_interference }
+			adv_dip_assign_operative = { ACTION = election_interference }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 7 }
+			adv_dip_start_operation = { ACTION = steal_commander }
+			adv_dip_assign_operative = { ACTION = steal_commander }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_small
+				months = 13
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 8 }
+			adv_dip_start_operation = { ACTION = clandestine_arms_pipeline }
+			adv_dip_assign_operative = { ACTION = clandestine_arms_pipeline }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+			scope:spy_target_country = {
+				add_modifier = {
+					name = adv_dip_arms_pipeline_target_modifier
+				}
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 9 }
+			adv_dip_start_operation = { ACTION = fund_black_market_slavery }
+			adv_dip_assign_operative = { ACTION = fund_black_market_slavery }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+			scope:spy_target_country = {
+				add_modifier = {
+					name = adv_dip_black_market_target_modifier
+				}
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 10 }
+			adv_dip_start_operation = { ACTION = support_slaves }
+			adv_dip_assign_operative = { ACTION = support_slaves }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_small
+				months = 13
+			}
+			scope:spy_target_country = {
+				add_modifier = {
+					name = adv_dip_support_slaves_target_modifier
+				}
+			}
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 11 }
+			scope:spy_target_country = {
+				save_scope_as = naval_intel_target
+			}
+			set_variable = {
+				name = naval_intel_target_var
+				value = scope:naval_intel_target
+			}
+			adv_dip_assign_operative = { ACTION = naval_intelligence }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 13
+			}
+			trigger_event = { id = adv_dip_event.140 }
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 12 }
+			set_variable = {
+				name = recently_sealed_train
+				months = 60
+			}
+			adv_dip_assign_operative = { ACTION = sealed_train }
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_very_large
+				months = 25
+			}
+			trigger_event = { id = adv_dip_event.170 }
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 13 }
+			scope:spy_target_country = {
+				save_scope_as = development_target
+			}
+			adv_dip_assign_operative = { ACTION = develop_nation }
+			# The development program runs ~34 months (100 progress at 3/month);
+			# the charge covers the whole window.
+			add_modifier = {
+				name = spy_network_cost_modifier
+				multiplier = spy_cost_multiplier_medium
+				months = 34
+			}
+			trigger_event = { id = adv_dip_event.110 }
+		}
+		else_if = {
+			limit = { var:adv_dip_pending_op = 14 }
+			set_variable = {
+				name = false_flag_patsy
+				value = scope:spy_target_country
+				months = 60
+			}
+			adv_dip_assign_operative = { ACTION = false_flag }
+			add_modifier = {
+				name = false_flag_operations_modifier
+				multiplier = spy_cost_multiplier_large
+				months = 60
+			}
+		}
+	}
+	remove_variable = adv_dip_pending_op
+	remove_variable = adv_dip_pending_target
+}
+
+# Marks scope:chosen_operative as running one operation. The busy flag blocks
+# double-assignment; immortality mirrors the assassination chain so a mission
+# cannot lose its agent to random death mid-story. adv_dip_settling_in shields
+# fresh assignments from the monthly reconciler until their chain has set up
+# its own state (e.g. ongoing_naval_intel).
+adv_dip_assign_operative = {
+	scope:chosen_operative ?= {
+		set_character_busy_and_immortal = yes
+		set_variable = adv_dip_assigned_$ACTION$
+		set_variable = {
+			name = adv_dip_assignment_target
+			value = scope:spy_target_country
+		}
+		set_variable = {
+			name = adv_dip_settling_in
+			months = 3
+		}
+	}
+}
+
+# Frees an operative for reassignment. Character scope.
+adv_dip_free_operative = {
+	set_character_busy_and_immortal = no
+	remove_variable = adv_dip_assigned_$ACTION$
+	remove_variable = adv_dip_assignment_target
+	remove_variable = adv_dip_settling_in
+}
+
 # Stops one operation. TARGET must be a saved scope name (without scope: prefix).
 # Defensive by design: every caller may pass a scope that no longer resolves
 # (a dead country, a stale UI row), so the whole body is existence-guarded.
@@ -18,6 +278,14 @@ adv_dip_stop_operation = {
 		remove_list_variable = {
 			name = adv_dip_op_$ACTION$
 			target = scope:$TARGET$
+		}
+
+		every_scope_character = {
+			limit = {
+				has_variable = adv_dip_assigned_$ACTION$
+				var:adv_dip_assignment_target ?= scope:$TARGET$
+			}
+			adv_dip_free_operative = { ACTION = $ACTION$ }
 		}
 
 		scope:$TARGET$ = {
@@ -37,32 +305,203 @@ adv_dip_stop_operation = {
 	}
 }
 
-# Monthly die for one target of one operation type. Call with spy_target_country
-# already saved. MISS/HIT define the odds; EVENT is the X1 event id.
-adv_dip_operation_die = {
+# Character scope. Frees an operative whose list operation no longer exists —
+# the catch-all release for wind-downs, target annexation and event-chain ends,
+# so no resolution path ever has to remember to release its agent by hand.
+adv_dip_release_if_orphaned = {
 	if = {
-		limit = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 }
-		random_list = {
-			$MISS$ = {}
-			150 = {
-				root = { trigger_event = { id = $EVENT$ } }
+		limit = {
+			has_variable = adv_dip_assigned_$ACTION$
+			NOT = { has_variable = adv_dip_settling_in }
+		}
+		# Sentinel first: saved scopes persist across loop iterations, so if the
+		# target var no longer resolves the previous operative's target would
+		# leak into this check. Root is never a valid operation target, so an
+		# unresolvable var reads as "orphaned" — which it is.
+		owner = { save_scope_as = adv_dip_check_target }
+		var:adv_dip_assignment_target ?= { save_scope_as = adv_dip_check_target }
+		if = {
+			limit = {
+				owner = {
+					NOT = {
+						is_target_in_variable_list = {
+							name = adv_dip_op_$ACTION$
+							target = scope:adv_dip_check_target
+						}
+					}
+				}
+			}
+			adv_dip_free_operative = { ACTION = $ACTION$ }
+		}
+	}
+}
+
+# Character scope. Frees a one-shot mission operative once the owner no longer
+# carries the mission's tracking variable ($FLAG$).
+adv_dip_release_if_mission_over = {
+	if = {
+		limit = {
+			has_variable = adv_dip_assigned_$ACTION$
+			NOT = { has_variable = adv_dip_settling_in }
+			owner = { NOT = { has_variable = $FLAG$ } }
+		}
+		adv_dip_free_operative = { ACTION = $ACTION$ }
+	}
+}
+
+# Country scope, monthly. Reconciles every busy operative against the live
+# operation state and releases the orphans.
+adv_dip_reconcile_assignments = {
+	if = {
+		limit = { has_variable_list = adv_dip_operatives }
+		every_in_list = {
+			variable = adv_dip_operatives
+			limit = { is_busy = yes }
+			adv_dip_release_if_orphaned = { ACTION = sow_discontent }
+			adv_dip_release_if_orphaned = { ACTION = support_nationalists }
+			adv_dip_release_if_orphaned = { ACTION = agitate_for_liberty }
+			adv_dip_release_if_orphaned = { ACTION = steal_technology }
+			adv_dip_release_if_orphaned = { ACTION = sabotage_recruitment }
+			adv_dip_release_if_orphaned = { ACTION = election_interference }
+			adv_dip_release_if_orphaned = { ACTION = steal_commander }
+			adv_dip_release_if_orphaned = { ACTION = clandestine_arms_pipeline }
+			adv_dip_release_if_orphaned = { ACTION = fund_black_market_slavery }
+			adv_dip_release_if_orphaned = { ACTION = support_slaves }
+			adv_dip_release_if_mission_over = { ACTION = naval_intelligence FLAG = ongoing_naval_intel }
+			adv_dip_release_if_mission_over = { ACTION = develop_nation FLAG = ongoing_development }
+			adv_dip_release_if_mission_over = { ACTION = false_flag FLAG = false_flag_patsy }
+			# The sealed-train run has no ongoing tracker: the courier returns
+			# once the settling-in window lapses (~3 months in the field).
+			if = {
+				limit = {
+					has_variable = adv_dip_assigned_sealed_train
+					NOT = { has_variable = adv_dip_settling_in }
+				}
+				adv_dip_free_operative = { ACTION = sealed_train }
 			}
 		}
 	}
+}
+
+# A captured operative has talked: the first live network against the captor
+# (scope:adv_dip_captor_country) is rolled up. Root = the network's owner.
+adv_dip_roll_up_one_network = {
+	custom_tooltip = adv_dip_network_rolled_up_tt
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = sow_discontent TARGET = adv_dip_captor_country }
+	}
 	else_if = {
-		limit = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 }
-		random_list = {
-			$MISS$ = {}
-			65 = {
-				root = { trigger_event = { id = $EVENT$ } }
+		limit = { is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = support_nationalists TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_steal_technology target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = steal_technology TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_election_interference target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = election_interference TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_steal_commander target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = steal_commander TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_clandestine_arms_pipeline target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = adv_dip_captor_country }
+	}
+	else_if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_support_slaves target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = support_slaves TARGET = adv_dip_captor_country }
+	}
+	change_relations = {
+		country = scope:adv_dip_captor_country
+		value = -10
+	}
+}
+
+# Monthly die for one target of one operation type. Called from the monthly
+# loop in the TARGET's scope (spy_target_country saved), so every own-country
+# read must go through root — a bare institution read here would compare the
+# target against itself. MISS sets the odds, EVENT is the X1 event id, ACTION
+# names the assignment flag, TRAIT the tradecraft trait that sharpens the roll
+# when the assigned operative has it.
+adv_dip_operation_die = {
+	if = {
+		limit = {
+			root = {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_$ACTION$
+					var:adv_dip_assignment_target ?= scope:spy_target_country
+					has_trait = $TRAIT$
+				}
+			}
+		}
+		if = {
+			limit = { root = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 } }
+			random_list = {
+				$MISS$ = {}
+				190 = {
+					root = { trigger_event = { id = $EVENT$ } }
+				}
+			}
+		}
+		else_if = {
+			limit = { root = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 } }
+			random_list = {
+				$MISS$ = {}
+				85 = {
+					root = { trigger_event = { id = $EVENT$ } }
+				}
+			}
+		}
+		else = {
+			random_list = {
+				$MISS$ = {}
+				130 = {
+					root = { trigger_event = { id = $EVENT$ } }
+				}
 			}
 		}
 	}
 	else = {
-		random_list = {
-			$MISS$ = {}
-			100 = {
-				root = { trigger_event = { id = $EVENT$ } }
+		if = {
+			limit = { root = { institution_investment_level:institution_espionage >= spy_target_espionage_plus_1 } }
+			random_list = {
+				$MISS$ = {}
+				150 = {
+					root = { trigger_event = { id = $EVENT$ } }
+				}
+			}
+		}
+		else_if = {
+			limit = { root = { institution_investment_level:institution_espionage <= spy_target_espionage_minus_1 } }
+			random_list = {
+				$MISS$ = {}
+				65 = {
+					root = { trigger_event = { id = $EVENT$ } }
+				}
+			}
+		}
+		else = {
+			random_list = {
+				$MISS$ = {}
+				100 = {
+					root = { trigger_event = { id = $EVENT$ } }
+				}
 			}
 		}
 	}

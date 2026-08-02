@@ -36,28 +36,31 @@
 		NOT = { has_variable = false_flag_patsy }
 		NOT = { has_war_with = scope:target_country }
 		has_diplomatic_relevance = scope:target_country
+		adv_dip_operation_launch_gate = yes
 	}
 
 	accept_effect = {
-		set_variable = {
-			name = false_flag_patsy
-			value = scope:target_country
-			months = 60
-		}
-		add_modifier = {
-			name = false_flag_operations_modifier
-			multiplier = spy_cost_multiplier_large
-			months = 60
-		}
+		adv_dip_begin_operation = { CODE = 14 }
 	}
 
 	ai = {
 		propose_score = {
-			value = 0
+			value = 2
 		}
 
 		will_propose = {
-			always = no
+			scaled_debt <= 0
+			is_at_war = no
+			scope:target_country = {
+				OR = {
+					has_diplomatic_pact = {
+						who = root
+						type = rivalry
+					}
+					relations:root <= relations_threshold:hostile
+				}
+			}
+			country_rank >= rank_value:major_power
 		}
 	}
 }

@@ -62,7 +62,6 @@
                             }
                             any_scope_article = {
                                 has_type = cultural_exchange
-                                input_building_type = root.input_building_type
                                 source_country = scope:source_country
                             }
                         }

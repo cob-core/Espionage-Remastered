@@ -28,6 +28,7 @@ adv_dip_assassination_event.100 = { # Start Event
 					any_scope_character = {
 						has_role = character_role_operative
 						is_busy = no
+						NOT = { has_variable = adv_dip_captured }
 					}
 				}
 			}
@@ -72,6 +73,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 		any_scope_character = {
 			is_busy = no
 			has_role = character_role_operative
+			NOT = { has_variable = adv_dip_captured }
 		}
 	}
 
@@ -80,6 +82,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 			limit = {
 					is_busy = no
 					has_role = character_role_operative
+					NOT = { has_variable = adv_dip_captured }
 			}
 			save_scope_as = assassination_leader_1
 		}
@@ -87,6 +90,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 			limit = {
 					is_busy = no
 					has_role = character_role_operative
+					NOT = { has_variable = adv_dip_captured }
 				NOT = {
 					this = scope:assassination_leader_1
 				}
@@ -98,6 +102,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 			limit = {
 					is_busy = no
 					has_role = character_role_operative
+					NOT = { has_variable = adv_dip_captured }
 				NOR = {
 					this = scope:assassination_leader_1
 					this = scope:assassination_leader_2
@@ -674,6 +679,9 @@ adv_dip_assassination_event.102 = { # Select Target
 			
 	option = {
 		name = adv_dip_assassination_event.102.b
+		# By now ongoing_plans, active_assassination, assassination_target_country
+		# and a busy-and-immortal operative all exist — full cleanup, not a no-op.
+		remove_assassination_events_effect = yes
 		ai_chance = {
 			base = 10
 		}
@@ -702,9 +710,11 @@ adv_dip_assassination_event.103 = { # Plot Begins
 			limit = { has_variable = assassination_leader_var }
 			save_scope_as = assassination_leader
 		}
-		random_scope_character = {
-			limit = { has_variable = assassination_target_var }
-			save_scope_as = assassination_target
+		scope:spy_target_country ?= {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
 		}
 	}
 
@@ -765,9 +775,6 @@ adv_dip_assassination_event.198 = { #Successful
 			months = 13
 			is_decaying = yes
 		}
-		root = {
-			remove_variable = assassination_target_country
-		}
 		scope:spy_target_country = {
 			add_modifier = {
 				name = recent_assassination_modifier
@@ -808,21 +815,31 @@ adv_dip_assassination_event.199 = { #Failed
 			limit = { has_variable = assassination_leader_var }
 			save_scope_as = assassination_leader
 		}
+		scope:spy_target_country ?= {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.199.a
 		default_option = yes
-		scope:assassination_leader = {
-			set_character_busy_and_immortal = no
-		} 
+		# Must run before remove_assassination_events_effect: adv_dip_lose_operative
+		# finds the operative via assassination_leader_var, which the cleanup clears.
+		random_list = {
+			60 = {
+				# The operative slips away; the cleanup effect releases them.
+			}
+			40 = {
+				adv_dip_lose_operative = yes
+			}
+		}
 		add_modifier = {
 			name = modifier_failed_assassination
 			months = 13
 			is_decaying = yes
-		}
-		root = {
-			remove_variable = assassination_target_country
 		}
 		scope:spy_target_country = {
 			add_modifier = {
@@ -830,7 +847,6 @@ adv_dip_assassination_event.199 = { #Failed
 				months = 13
 			}
 		}
-		remove_variable = active_assassination
 		remove_assassination_events_effect = yes
 	}
 }
@@ -1032,12 +1048,12 @@ adv_dip_assassination_event.115 = {
 		add_modifier = {
 			name = paid_a_witch_modifier
 			months = 6
+			multiplier = spy_cost_multiplier_small
 		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.115.b
-		default_option = yes
 	}
 }
 
@@ -1141,13 +1157,13 @@ adv_dip_assassination_event.118 = {
 		name = adv_dip_assassination_event.118.c
 		assassination_great_progress_effect = yes
 		add_large_assassination_risk_effect = yes
-		scope:spy_target_country = {
+		# The modifier carries character_popularity_add; the loc blames the ruler.
+		scope:assassination_target_country_leader ?= {
 			add_modifier = {
 				name = blamed_for_poisoning_modifier
 				months = 13
 			}
 		}
-		
 	}
 }
 
@@ -1169,9 +1185,11 @@ adv_dip_assassination_event.119 = {
     duration = 3
 	
 	immediate = {
-		random_scope_character = {
-			limit = { has_variable = assassination_target_var }
-			save_scope_as = assassination_target
+		scope:spy_target_country ?= {
+			random_scope_character = {
+				limit = { has_variable = assassination_target_var }
+				save_scope_as = assassination_target
+			}
 		}
 	}
 
@@ -1227,6 +1245,7 @@ adv_dip_assassination_event.120 = {
 		add_modifier = {
 			name = assassin_paid_off_modifier
 			months = 6
+			multiplier = spy_cost_multiplier_small
 		}
 	}
 
@@ -1415,7 +1434,7 @@ adv_dip_assassination_event.126 = {
 	}
 
 	option = {
-		name = adv_dip_assassination_event.125.b
+		name = adv_dip_assassination_event.126.b
 		assassination_moderate_progress_effect = yes
 		add_medium_assassination_risk_effect = yes
 	}

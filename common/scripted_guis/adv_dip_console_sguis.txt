@@ -42,18 +42,26 @@ adv_dip_sgui_appoint_director = {
 		scope:candidate ?= {
 			is_busy = no
 			has_role = character_role_operative
+			NOT = { has_variable = adv_dip_captured }
 		}
 	}
 
 	effect = {
+		custom_tooltip = adv_dip_appoint_director_tt
 		if = {
 			limit = { exists = scope:candidate }
+			# The outgoing Director returns to field duty rather than vanishing.
 			every_in_list = {
 				variable = adv_dip_director
 				remove_character_role = character_role_spymaster
+				add_character_role = character_role_operative
 				owner ?= {
 					remove_list_variable = {
 						name = adv_dip_director
+						target = prev
+					}
+					add_to_variable_list = {
+						name = adv_dip_operatives
 						target = prev
 					}
 				}
@@ -67,7 +75,78 @@ adv_dip_sgui_appoint_director = {
 				target = scope:candidate
 			}
 			scope:candidate = {
+				remove_character_role = character_role_operative
 				add_character_role = character_role_spymaster
+			}
+		}
+	}
+}
+
+# Fires an idle operative: struck from the roster and stripped of the role, so
+# the engine retires the character naturally. Agents in the field must be
+# recalled (operation cancelled) before they can be dismissed.
+adv_dip_sgui_dismiss_operative = {
+	scope = country
+	saved_scopes = { candidate }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		scope:candidate ?= {
+			is_busy = no
+			has_role = character_role_operative
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_dismiss_operative_tt
+		if = {
+			limit = { exists = scope:candidate }
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:candidate
+			}
+			scope:candidate = {
+				remove_variable = adv_dip_captured
+				remove_character_role = character_role_operative
+			}
+		}
+	}
+}
+
+# Removes the Director of Intelligence and returns them to the operative
+# roster. The post stays empty until a successor is appointed.
+adv_dip_sgui_dismiss_director = {
+	scope = country
+	saved_scopes = { candidate }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		scope:candidate ?= {
+			has_role = character_role_spymaster
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_dismiss_director_tt
+		if = {
+			limit = { exists = scope:candidate }
+			remove_list_variable = {
+				name = adv_dip_director
+				target = scope:candidate
+			}
+			add_to_variable_list = {
+				name = adv_dip_operatives
+				target = scope:candidate
+			}
+			scope:candidate = {
+				remove_character_role = character_role_spymaster
+				add_character_role = character_role_operative
 			}
 		}
 	}
@@ -310,5 +389,52 @@ adv_dip_sgui_cancel_support_slaves = {
 			limit = { exists = scope:op_target }
 			adv_dip_stop_operation = { ACTION = support_slaves TARGET = op_target }
 		}
+	}
+}
+
+# Pure predicates for the console: no effect, IsValid is read as a boolean by
+# the .gui (vanilla precedent: je_meiji_restoration_japanese_emperor_check_sgui).
+adv_dip_sgui_operative_captured = {
+	scope = character
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		has_variable = adv_dip_captured
+	}
+
+	effect = {
+	}
+}
+
+adv_dip_sgui_has_operations = {
+	scope = country
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		any_country = {
+			root = {
+				OR = {
+					is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_steal_technology target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_election_interference target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_steal_commander target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_clandestine_arms_pipeline target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = prev }
+					is_target_in_variable_list = { name = adv_dip_op_support_slaves target = prev }
+				}
+			}
+		}
+	}
+
+	effect = {
 	}
 }

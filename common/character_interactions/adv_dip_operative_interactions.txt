@@ -1,4 +1,4 @@
-﻿adv_dip_debrief_operative = {
+adv_dip_debrief_operative = {
 	icon = "gfx/interface/character_panel/grant_command.dds"
 
 	potential = {
@@ -8,15 +8,15 @@
 
 	possible = {
 		is_busy = no
-		NOT = { has_variable = adv_dip_debriefed }
+		NOT = { has_variable = adv_dip_captured }
 	}
 
-	cooldown = { months = 6 }
+	cooldown = { months = 12 }
 
 	effect = {
-		set_variable = {
-			name = adv_dip_debriefed
-			months = 12
+		custom_tooltip = adv_dip_debrief_tt
+		scope:actor ?= {
+			shadow_war_score_minor_effect = yes
 		}
 	}
 

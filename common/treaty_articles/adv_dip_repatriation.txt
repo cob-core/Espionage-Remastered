@@ -1,0 +1,92 @@
+operative_repatriation = {
+	kind = directed
+	cost = 20
+
+	icon = "gfx/interface/icons/diplomatic_treaties_articles_icons/offer_embassy.dds"
+
+	maintenance_paid_by = target_country
+	usage_limit = once_per_side
+
+	unlocked_by_technologies = {
+		international_relations
+	}
+
+	# Source releases the target's people: the captor is always the source side.
+	visible = {
+		scope:target_country ?= {
+			any_scope_character = {
+				has_role = character_role_operative
+				has_variable = adv_dip_captured
+				var:adv_dip_captor ?= scope:source_country
+			}
+		}
+	}
+
+	can_ratify = {
+		custom_tooltip = {
+			text = adv_dip_repatriation_requires_prisoner_tt
+			scope:target_country ?= {
+				any_scope_character = {
+					has_role = character_role_operative
+					has_variable = adv_dip_captured
+					var:adv_dip_captor ?= scope:source_country
+				}
+			}
+		}
+	}
+
+	on_entry_into_force = {
+		scope:article_options = {
+			source_country = {
+				save_scope_as = adv_dip_releasing_country
+			}
+			target_country = {
+				save_scope_as = adv_dip_receiving_country
+				every_scope_character = {
+					limit = {
+						has_variable = adv_dip_captured
+						var:adv_dip_captor ?= scope:adv_dip_releasing_country
+					}
+					remove_variable = adv_dip_captured
+					remove_variable = adv_dip_captor
+				}
+			}
+		}
+	}
+
+	on_withdrawal = {}
+
+	on_break = {}
+
+	ai = {
+		article_ai_usage = {
+			request
+			offer
+		}
+
+		inherent_accept_score = {
+			value = 0
+
+			# A captured foreign agent is a bargaining chip; the captor does not
+			# hand one back without compensation elsewhere in the treaty.
+			if = {
+				limit = {
+					scope:source_country ?= this
+				}
+				subtract = {
+					desc = "ADV_DIP_REPATRIATION_BARGAINING_CHIP"
+					value = 25
+				}
+			}
+			if = {
+				limit = {
+					scope:target_country ?= this
+				}
+				add = {
+					desc = "ADV_DIP_REPATRIATION_BRING_THEM_HOME"
+					value = 30
+				}
+			}
+		}
+	}
+}
