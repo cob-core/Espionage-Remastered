@@ -586,24 +586,24 @@ adv_dip_sgui_back_party = {
 				name = adv_dip_election_choice
 				target = scope:target
 			}
-			scope:target = {
-				trigger_event = {
-					id = adv_dip_event.82
-					days = 7
-				}
-				change_relations = {
-					country = root
-					value = -10
-				}
-			}
 			scope:party = {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
+				add_momentum = momentum_large
 			}
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
+			# The money moves in silence: no relations hit, no marker on the
+			# target - unless the interference is discovered.
+			root = { save_scope_as = spymaster }
+			random_list = {
+				85 = {}
+				15 = {
+					scope:target = {
+						trigger_event = {
+							id = adv_dip_event.225
+							days = 14
+						}
+					}
+				}
+			}
 		}
 	}
 }

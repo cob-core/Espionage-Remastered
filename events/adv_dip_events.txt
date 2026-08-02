@@ -1265,30 +1265,34 @@ adv_dip_event.81 = {
 			}
 			scope:spy_target_country = {
 				random_active_party = {
-					save_scope_as = adv_dip_ai_backed_party
+					add_momentum = momentum_large
 				}
-				trigger_event = {
-					id = adv_dip_event.82
-					days = 7
-				}
-				change_relations = {
-					country = root
-					value = -10
-				}
-			}
-			scope:adv_dip_ai_backed_party ?= {
-				set_variable = {
-					name = adv_loyal_government_leader
-					value = 1
-				}
-				set_ruling_party = yes
 			}
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 50 }
+			random_list = {
+				85 = {}
+				15 = {
+					scope:spy_target_country = {
+						trigger_event = {
+							id = adv_dip_event.225
+							days = 14
+						}
+					}
+				}
+			}
 		}
 		# Players choose from the full ballot in the console (event options are
 		# capped far below a real multiparty field).
 		else_if = {
-			limit = { exists = scope:spy_target_country }
+			limit = {
+				exists = scope:spy_target_country
+				NOT = {
+					is_target_in_variable_list = {
+						name = adv_dip_election_choice
+						target = scope:spy_target_country
+					}
+				}
+			}
 			add_to_variable_list = {
 				name = adv_dip_election_choice
 				target = scope:spy_target_country
@@ -1321,91 +1325,6 @@ adv_dip_event.81 = {
 	}
 }
 
-adv_dip_event.82 = {
-	type = country_event
-	placement = root
-
-	title = adv_dip_event.82.t
-	desc = adv_dip_event.82.d
-	flavor = adv_dip_event.82.f
-
-	event_image = {
-		video = "unspecific_politicians_arguing"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
-
-	icon = "gfx/interface/icons/event_icons/event_protest.dds"
-
-	duration = 1
-
-	trigger = {
-	}
-
-	immediate = {
-		every_potential_party = {
-			limit = {
-				has_variable = adv_loyal_government_leader
-			}
-			save_scope_as = loyal_government_party
-			remove_variable = adv_loyal_government_leader
-		}
-		every_active_party = {
-			limit = {
-				has_variable = adv_loyal_government_leader
-			}
-			save_scope_as = loyal_government_party
-			remove_variable = adv_loyal_government_leader
-		}
-	}
-
-	option = {
-
-		default_option = yes
-		name = adv_dip_event.82.a
-		add_modifier = {
-			name = overthrown_modifier
-			months = 25
-		}
-		ai_chance = {
-			base = 10
-		}
-	}
-	
-	option = {
-		name = adv_dip_event.82.b
-		
-		add_modifier = {
-			name = suppress_government_modifier
-			months = 25
-		}
-		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 96 }
-		ai_chance = {
-			base = 1
-			modifier = {
-				trigger = { 
-					scaled_debt <= 0
-					net_fixed_income >= 10000
-				}
-				add = 100
-			}
-		}
-	}
-	option = {
-		name = adv_dip_event.82.c
-		trigger = {
-			exists = scope:spymaster
-			institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage
-		}
-		custom_tooltip = turned_network_established_tt
-		set_variable = {
-			name = turned_election_interference_by
-			value = scope:spymaster
-		}
-		adv_dip_covert_charge = { COST = counterespionage_cost WEEKS = 120 }
-	}
-}
 
 adv_dip_event.91 = {
 	type = country_event
@@ -3616,6 +3535,100 @@ adv_dip_event.216 = {
 		}
 		remove_variable = adv_dip_flip_code
 		remove_variable = adv_dip_flip_spymaster
+	}
+}
+
+# Discovered election interference (15% per backing). The target's public
+# learns foreign money moved their ballot: electoral confidence collapses for
+# two years, relations break, and the counterespionage service may move on the
+# agent who ran it.
+adv_dip_event.225 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.225.t
+	desc = adv_dip_event.225.d
+	flavor = adv_dip_event.225.f
+	event_image = { video = "gfx/event_pictures/southamerica_aristocrats.bk2" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	duration = 3
+
+	trigger = {
+		exists = scope:spymaster
+	}
+
+	immediate = {
+		add_modifier = {
+			name = adv_dip_tainted_election_modifier
+			months = 24
+		}
+		add_radicals = {
+			value = 0.02
+		}
+		change_relations = {
+			country = scope:spymaster
+			value = -30
+		}
+	}
+
+	option = {
+		name = adv_dip_event.225.a
+		default_option = yes
+		ai_chance = { base = 60 }
+	}
+
+	# v5.2: try to take their agent - kompromat in the making. Success follows
+	# the espionage edge; failure still blows the network but the agent escapes.
+	option = {
+		name = adv_dip_flip_option
+		trigger = {
+			scope:spymaster ?= {
+				any_scope_character = {
+					has_variable = adv_dip_assigned_election_interference
+					var:adv_dip_assignment_target ?= root
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+		}
+		custom_tooltip = adv_dip_flip_attempt_tt
+		scope:spymaster = {
+			random_scope_character = {
+				limit = {
+					has_variable = adv_dip_assigned_election_interference
+					var:adv_dip_assignment_target ?= root
+				}
+				save_scope_as = adv_dip_flipped_agent
+			}
+		}
+		set_variable = {
+			name = adv_dip_flip_code
+			value = 6
+		}
+		set_variable = {
+			name = adv_dip_flip_spymaster
+			value = scope:spymaster
+		}
+		if = {
+			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				65 = { trigger_event = { id = adv_dip_event.215 } }
+				35 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else_if = {
+			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			random_list = {
+				35 = { trigger_event = { id = adv_dip_event.215 } }
+				65 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		else = {
+			random_list = {
+				50 = { trigger_event = { id = adv_dip_event.215 } }
+				50 = { trigger_event = { id = adv_dip_event.216 } }
+			}
+		}
+		ai_chance = { base = 40 }
 	}
 }
 
