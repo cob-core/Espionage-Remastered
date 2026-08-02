@@ -925,8 +925,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA discree
  adv_dip_spurned_service_modifier: "Spurned by the Government"
  ADV_DIP_CONSOLE_BUDGET_LABEL: "Monthly agency budget"
  ADV_DIP_CONSOLE_BUDGET_TT: "The service's full monthly cost: operation upkeep plus every wage from rookie to Director. Charged directly from the treasury - nothing about it is visible to foreign powers."
- ADV_DIP_CONSOLE_RECRUIT_DIRECTOR: "Recruit Director of Intelligence"
- adv_dip_recruit_director_tt: "A Director of Intelligence takes the post. The service gains its bonus while the chair is filled - and the Director draws an executive salary."
  adv_dip_director_post_filled_tt: "The post is filled. To replace a sitting Director you must dismiss them first - and dismissed Directors do not always go quietly."
  ADV_DIP_CONSOLE_BALLOT: "Pending Election Ballots"
  ADV_DIP_CONSOLE_BALLOT_HINT: "Choose a party to back"
@@ -937,3 +935,4 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA discree
  adv_dip_event.225.a: "The ballot must be defended."
  adv_dip_tainted_election_modifier: "Tainted Election"
  adv_dip_tainted_election_modifier_desc: "Proof of foreign interference has shaken public confidence in the ballot. Legitimacy suffers and radical movements find ready ears."
+ adv_dip_appoint_director_tt: "Promotes this operative to Director of Intelligence. They leave field rotation, draw an executive salary, and grant the service its bonus while seated."

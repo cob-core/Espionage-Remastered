@@ -925,8 +925,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_spurned_service_modifier: "Éconduit par le gouvernement"
  ADV_DIP_CONSOLE_BUDGET_LABEL: "Budget mensuel de l'agence"
  ADV_DIP_CONSOLE_BUDGET_TT: "Le coût mensuel complet du service : entretien des opérations et salaires, de la recrue au Directeur. Prélevé directement sur le trésor - rien n'en est visible aux puissances étrangères."
- ADV_DIP_CONSOLE_RECRUIT_DIRECTOR: "Recruter un Directeur du renseignement"
- adv_dip_recruit_director_tt: "Un Directeur du renseignement prend le poste. Le service bénéficie de son bonus tant que la chaise est occupée - et le Directeur touche un salaire de dirigeant."
  adv_dip_director_post_filled_tt: "Le poste est occupé. Pour remplacer un Directeur en fonction, il faut d'abord le renvoyer - et les Directeurs renvoyés ne partent pas toujours en silence."
  ADV_DIP_CONSOLE_BALLOT: "Scrutins en attente"
  ADV_DIP_CONSOLE_BALLOT_HINT: "Choisissez un parti à soutenir"
@@ -937,3 +935,4 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_event.225.a: "Le scrutin doit être défendu."
  adv_dip_tainted_election_modifier: "Élection entachée"
  adv_dip_tainted_election_modifier_desc: "La preuve d'une ingérence étrangère a ébranlé la confiance dans le scrutin. La légitimité en souffre et les mouvements radicaux trouvent des oreilles attentives."
+ adv_dip_appoint_director_tt: "Promeut cet agent Directeur du renseignement. Il quitte le service actif, touche un salaire de dirigeant et confère son bonus au service tant qu'il siège."

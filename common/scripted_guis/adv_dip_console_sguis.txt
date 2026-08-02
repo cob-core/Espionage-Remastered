@@ -510,50 +510,6 @@ adv_dip_sgui_agent_matches = {
 }
 
 
-# Hires a Director of Intelligence directly; the post must be vacant - to
-# replace a sitting Director you must fire them first, with everything that
-# entails.
-adv_dip_sgui_recruit_director = {
-	scope = country
-
-	is_shown = {
-		OR = {
-			has_law = law_type:law_consular_intelligence
-			has_law = law_type:law_spy_agency
-			has_law = law_type:law_directorate_of_state_security
-			has_law = law_type:law_deniable_assets
-		}
-	}
-
-	is_valid = {
-		custom_tooltip = {
-			text = adv_dip_director_post_filled_tt
-			NOT = {
-				any_scope_character = {
-					has_role = character_role_spymaster
-				}
-			}
-		}
-	}
-
-	effect = {
-		custom_tooltip = adv_dip_recruit_director_tt
-		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 40 }
-		create_character = {
-			role = character_role_spymaster
-			culture = primary_culture
-			on_created = {
-				save_scope_as = adv_dip_new_director
-				owner = {
-					add_to_variable_list = {
-						name = adv_dip_director
-						target = prev
-					}
-				}
-			}
-		}
-	}
-}
 
 # Backs one party in a pending election-interference decision. Root = us,
 # scope:target = the country whose election it is, scope:party = the choice.
@@ -603,6 +559,53 @@ adv_dip_sgui_back_party = {
 						}
 					}
 				}
+			}
+		}
+	}
+}
+
+# Promotes an operative to Director of Intelligence. The post must be vacant -
+# to replace a sitting Director you must fire them first, with everything that
+# entails.
+adv_dip_sgui_appoint_director = {
+	scope = country
+	saved_scopes = { candidate }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		scope:candidate ?= {
+			is_busy = no
+			has_role = character_role_operative
+			NOT = { has_variable = adv_dip_captured }
+		}
+		custom_tooltip = {
+			text = adv_dip_director_post_filled_tt
+			NOT = {
+				any_scope_character = {
+					has_role = character_role_spymaster
+				}
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_appoint_director_tt
+		if = {
+			limit = { exists = scope:candidate }
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:candidate
+			}
+			add_to_variable_list = {
+				name = adv_dip_director
+				target = scope:candidate
+			}
+			scope:candidate = {
+				remove_character_role = character_role_operative
+				add_character_role = character_role_spymaster
 			}
 		}
 	}

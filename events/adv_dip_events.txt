@@ -1301,11 +1301,12 @@ adv_dip_event.81 = {
 	}
 
 	# The choice itself lives in the intelligence console's ballot section.
+	# One default option only - a second default_option breaks the event.
 	option = {
 		name = adv_dip_event.81.a
 		default_option = yes
-		trigger = { is_player = yes }
 		custom_tooltip = adv_dip_election_console_tt
+		ai_chance = { base = 100 }
 	}
 
 	option = {
@@ -1316,12 +1317,6 @@ adv_dip_event.81 = {
 			name = adv_dip_election_choice
 			target = scope:spy_target_country
 		}
-	}
-
-	option = {
-		name = adv_dip_event.81.a
-		default_option = yes
-		trigger = { is_player = no }
 	}
 }
 

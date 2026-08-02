@@ -225,43 +225,6 @@ flowcontainer = {
 			}
 		}
 
-		flowcontainer = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_director_toggle'))]"
-			direction = horizontal
-			margin_left = 10
-			margin_top = 6
-			margin_bottom = 8
-
-			button = {
-				size = { 280 34 }
-				using = default_button_action
-				using = tooltip_above
-				visible = "[GetScriptedGui('adv_dip_sgui_recruit_director').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-				enabled = "[GetScriptedGui('adv_dip_sgui_recruit_director').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-				onclick = "[GetScriptedGui('adv_dip_sgui_recruit_director').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-				tooltip = "[GetScriptedGui('adv_dip_sgui_recruit_director').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).End)]"
-
-				flowcontainer = {
-					parentanchor = center
-					spacing = 6
-
-					icon = {
-						parentanchor = vcenter
-						size = { 22 22 }
-						texture = "gfx/interface/buttons/button_icons/plus.dds"
-					}
-
-					textbox = {
-						parentanchor = vcenter
-						autoresize = yes
-						max_width = 230
-						text = "ADV_DIP_CONSOLE_RECRUIT_DIRECTOR"
-						align = nobaseline
-						using = fontsize_medium
-					}
-				}
-			}
-		}
 	}
 
 	### OPERATIVES
@@ -411,6 +374,16 @@ flowcontainer = {
 					}
 
 					blockoverride "row_action" {
+						button_icon_check = {
+							parentanchor = vcenter
+							size = { 26 26 }
+							visible = "[GetScriptedGui('adv_dip_sgui_appoint_director').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							enabled = "[GetScriptedGui('adv_dip_sgui_appoint_director').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							onclick = "[GetScriptedGui('adv_dip_sgui_appoint_director').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							tooltip = "[GetScriptedGui('adv_dip_sgui_appoint_director').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('candidate', Scope.GetCharacter.MakeScope).End)]"
+							using = tooltip_ne
+						}
+
 						button_icon_cancel = {
 							parentanchor = vcenter
 							size = { 26 26 }
