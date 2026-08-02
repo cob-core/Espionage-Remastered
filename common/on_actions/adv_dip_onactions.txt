@@ -1047,7 +1047,11 @@ adv_dip_espionage_monthly = {
 						}
 
 					}
-					adv_dip_operation_die = { CHANCE = 11 EVENT = adv_dip_event.150 ACTION = clandestine_arms_pipeline TRAIT = saboteur }
+					# Two independent rolls: the shipments that get through (the
+					# success the sponsor actually hears about) and the ones the
+					# blockade catches.
+					adv_dip_operation_die = { CHANCE = 15 EVENT = adv_dip_event.157 ACTION = clandestine_arms_pipeline TRAIT = saboteur }
+					adv_dip_operation_die = { CHANCE = 8 EVENT = adv_dip_event.150 ACTION = clandestine_arms_pipeline TRAIT = saboteur }
 				}
 			}
 			every_in_local_list = {

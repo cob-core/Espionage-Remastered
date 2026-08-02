@@ -3533,6 +3533,47 @@ adv_dip_event.216 = {
 	}
 }
 
+# A pipeline convoy runs the blockade clean - the sponsor's monthly good news
+# (the interception gauntlet lives in .150).
+adv_dip_event.157 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.157.t
+	desc = adv_dip_event.157.d
+	flavor = adv_dip_event.157.f
+	event_image = { video = "unspecific_steam_ship" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_map.dds"
+	duration = 1
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+			random_country = {
+				limit = {
+					root = {
+						is_target_in_variable_list = { name = adv_dip_op_clandestine_arms_pipeline target = prev }
+					}
+				}
+				save_scope_as = spy_target_country
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.157.a
+		default_option = yes
+		custom_tooltip = adv_dip_pipeline_delivered_tt
+		shadow_war_score_minor_effect = yes
+		scope:spy_target_country ?= {
+			change_relations = {
+				country = root
+				value = 5
+			}
+		}
+	}
+}
+
 # Discovered election interference (15% per backing). The target's public
 # learns foreign money moved their ballot: electoral confidence collapses for
 # two years, relations break, and the counterespionage service may move on the

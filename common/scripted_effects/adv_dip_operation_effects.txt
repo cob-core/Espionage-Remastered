@@ -130,10 +130,9 @@ adv_dip_dispatch_pending_operation = {
 			adv_dip_start_operation = { ACTION = fund_black_market_slavery }
 			adv_dip_assign_operative = { ACTION = fund_black_market_slavery }
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
-			scope:spy_target_country = {
-				add_modifier = {
-					name = adv_dip_black_market_target_modifier
-				}
+			# The contraband flows to us: the import boost is ours.
+			add_modifier = {
+				name = adv_dip_black_market_modifier
 			}
 		}
 		else_if = {
@@ -267,13 +266,27 @@ adv_dip_stop_operation = {
 				remove_modifier = adv_dip_arms_pipeline_target_modifier
 			}
 			if = {
-				limit = { has_modifier = adv_dip_black_market_target_modifier }
-				remove_modifier = adv_dip_black_market_target_modifier
-			}
-			if = {
 				limit = { has_modifier = adv_dip_support_slaves_target_modifier }
 				remove_modifier = adv_dip_support_slaves_target_modifier
 			}
+		}
+
+		# Our import boost outlives any single route; it ends with the last one.
+		if = {
+			limit = {
+				has_modifier = adv_dip_black_market_modifier
+				NOT = {
+					any_country = {
+						root = {
+							is_target_in_variable_list = {
+								name = adv_dip_op_fund_black_market_slavery
+								target = prev
+							}
+						}
+					}
+				}
+			}
+			remove_modifier = adv_dip_black_market_modifier
 		}
 	}
 }

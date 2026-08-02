@@ -197,7 +197,7 @@
 		goods_output_ammunition_mult = 0.10
 	}
 
-	adv_dip_black_market_target_modifier = {
+	adv_dip_black_market_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_negative.dds
 		state_slave_import_mult = 1.0
 	}
