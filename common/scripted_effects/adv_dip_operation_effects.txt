@@ -187,16 +187,54 @@ adv_dip_dispatch_pending_operation = {
 			adv_dip_assign_operative = { ACTION = sealed_train }
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_very_large WEEKS = 50 }
 			if = {
-				limit = {
-					is_player = yes
-					any_character_in_exile_pool = {
-						always = yes
-					}
-				}
+				limit = { is_player = yes }
 				every_character_in_exile_pool = {
 					add_to_variable_list = {
 						name = adv_dip_smuggle_candidates
 						target = this
+					}
+				}
+				# An empty exile pool is no obstacle: the service finds its own
+				# firebrands among the target's malcontents, exiled to order.
+				if = {
+					limit = { NOT = { any_character_in_exile_pool = { always = yes } } }
+					scope:spy_target_country = {
+						create_character = {
+							culture = primary_culture
+							ideology = ideology_radical
+							on_created = {
+								save_scope_as = adv_dip_seed_exile_1
+								exile_character = yes
+							}
+						}
+						create_character = {
+							culture = primary_culture
+							ideology = ideology_communist
+							on_created = {
+								save_scope_as = adv_dip_seed_exile_2
+								exile_character = yes
+							}
+						}
+						create_character = {
+							culture = primary_culture
+							ideology = ideology_anarchist
+							on_created = {
+								save_scope_as = adv_dip_seed_exile_3
+								exile_character = yes
+							}
+						}
+					}
+					add_to_variable_list = {
+						name = adv_dip_smuggle_candidates
+						target = scope:adv_dip_seed_exile_1
+					}
+					add_to_variable_list = {
+						name = adv_dip_smuggle_candidates
+						target = scope:adv_dip_seed_exile_2
+					}
+					add_to_variable_list = {
+						name = adv_dip_smuggle_candidates
+						target = scope:adv_dip_seed_exile_3
 					}
 				}
 				set_variable = {
