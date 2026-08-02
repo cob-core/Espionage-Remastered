@@ -350,7 +350,7 @@ adv_dip_assassination_event.199.a: "Not good enough."
 # # # # # ASSASSINATION JOURNAL # # # # #
 
 adv_dip_je_assassination: "Active Assassination"
-adv_dip_je_assassination_reason: "The ongoing plot against [SCOPE.sCharacter('assassination_target').GetFullName] is in progress."
+adv_dip_je_assassination_desc: "The ongoing plot against [SCOPE.sCharacter('assassination_target').GetFullName] is in progress."
 assassination_progress_bar: "Assassination"
 assassination_risk_progress_bar: "Assassination risk"
 assassination_progress_bar_desc: "Assassination Progress"

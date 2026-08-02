@@ -350,7 +350,7 @@ adv_dip_assassination_event.199.a: "Ce n'est pas suffisant."
 # # # # # ASSASSINATION JOURNAL # # # # #
 
 adv_dip_je_assassination: "Assassinat en cours"
-adv_dip_je_assassination_reason: "Le complot contre [SCOPE.sCharacter('assassination_target').GetFullName] suit son cours."
+adv_dip_je_assassination_desc: "Le complot contre [SCOPE.sCharacter('assassination_target').GetFullName] suit son cours."
 assassination_progress_bar: "Assassinat"
 assassination_risk_progress_bar: "Risque d'assassinat"
 assassination_progress_bar_desc: "Progression de l'assassinat"

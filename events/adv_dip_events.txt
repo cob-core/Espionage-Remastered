@@ -1040,6 +1040,7 @@ adv_dip_event.41 = {
 	}
 
 	immediate = {
+		save_scope_as = spymaster
 		if = {
 			limit = { NOT = { exists = scope:spy_target_country } }
 	if = {
@@ -1254,6 +1255,9 @@ adv_dip_event.81 = {
 		name = adv_dip_event.81.a
 		default_option = yes
 		custom_tooltip = adv_dip_election_console_tt
+		ai_chance = {
+			base = 70
+		}
 	}
 
 	option = {
@@ -1262,6 +1266,9 @@ adv_dip_event.81 = {
 		remove_list_variable = {
 			name = adv_dip_election_choice
 			target = scope:spy_target_country
+		}
+		ai_chance = {
+			base = 30
 		}
 	}
 }
@@ -1904,6 +1911,7 @@ adv_dip_event.131 = {
 	}
 
 	immediate = {
+		save_scope_as = spymaster
 		save_scope_as = defection_beneficiary
 		if = {
 			limit = { NOT = { exists = scope:spy_target_country } }
@@ -2192,10 +2200,16 @@ adv_dip_event.142 = {
 		default_option = yes
 		naval_intel_major_progress_effect = yes
 		naval_intel_small_risk_effect = yes
+		ai_chance = {
+			base = 70
+		}
 	}
 	option = {
 		name = adv_dip_event.142.b
 		naval_intel_minor_progress_effect = yes
+		ai_chance = {
+			base = 30
+		}
 	}
 }
 
@@ -2215,9 +2229,15 @@ adv_dip_event.143 = {
 		default_option = yes
 		naval_intel_major_progress_effect = yes
 		naval_intel_large_risk_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 	option = {
 		name = adv_dip_event.143.b
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -2236,11 +2256,17 @@ adv_dip_event.144 = {
 		name = adv_dip_event.144.a
 		default_option = yes
 		naval_intel_small_risk_effect = yes
+		ai_chance = {
+			base = 60
+		}
 	}
 	option = {
 		name = adv_dip_event.144.b
 		naval_intel_lose_progress_effect = yes
 		naval_intel_reduce_risk_effect = yes
+		ai_chance = {
+			base = 25
+		}
 	}
 }
 
@@ -2481,6 +2507,10 @@ adv_dip_event.151 = {
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	icon = "gfx/interface/icons/event_icons/event_map.dds"
 	duration = 1
+
+	trigger = {
+		exists = scope:pipeline_sponsor
+	}
 	option = {
 		name = adv_dip_event.151.a
 		default_option = yes
@@ -2494,12 +2524,18 @@ adv_dip_event.151 = {
 				days = 5
 			}
 		}
+		ai_chance = {
+			base = 70
+		}
 	}
 	option = {
 		name = adv_dip_event.151.b
 		change_relations = {
 			country = scope:pipeline_sponsor
 			value = -30
+		}
+		ai_chance = {
+			base = 30
 		}
 	}
 }
@@ -2529,6 +2565,9 @@ adv_dip_event.152 = {
 			}
 		}
 		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = spy_target_country }
+		ai_chance = {
+			base = 25
+		}
 	}
 	option = {
 		name = adv_dip_event.152.b
@@ -2550,6 +2589,9 @@ adv_dip_event.152 = {
 		change_relations = {
 			country = scope:pipeline_enemy
 			value = -30
+		}
+		ai_chance = {
+			base = 40
 		}
 	}
 }
@@ -2639,9 +2681,15 @@ adv_dip_event.160 = {
 				custom_tooltip = turned_network_nothing_tt
 			}
 		}
+		ai_chance = {
+			base = 60
+		}
 	}
 	option = {
 		name = adv_dip_event.160.b
+		ai_chance = {
+			base = 25
+		}
 	}
 }
 
@@ -3171,7 +3219,7 @@ adv_dip_event.156 = {
 	option = {
 		name = adv_dip_flip_option
 		trigger = {
-			scope:spymaster ?= {
+			scope:spymaster_slaver ?= {
 				any_scope_character = {
 					has_variable = adv_dip_assigned_fund_black_market_slavery
 					var:adv_dip_assignment_target ?= root
@@ -3180,7 +3228,7 @@ adv_dip_event.156 = {
 			}
 		}
 		custom_tooltip = adv_dip_flip_attempt_tt
-		scope:spymaster = {
+		scope:spymaster_slaver = {
 			random_scope_character = {
 				limit = {
 					has_variable = adv_dip_assigned_fund_black_market_slavery
@@ -3195,17 +3243,17 @@ adv_dip_event.156 = {
 		}
 		set_variable = {
 			name = adv_dip_flip_spymaster
-			value = scope:spymaster
+			value = scope:spymaster_slaver
 		}
 		if = {
-			limit = { institution_investment_level:institution_espionage > scope:spymaster.institution_investment_level:institution_espionage }
+			limit = { institution_investment_level:institution_espionage > scope:spymaster_slaver.institution_investment_level:institution_espionage }
 			random_list = {
 				65 = { trigger_event = { id = adv_dip_event.215 } }
 				35 = { trigger_event = { id = adv_dip_event.216 } }
 			}
 		}
 		else_if = {
-			limit = { institution_investment_level:institution_espionage < scope:spymaster.institution_investment_level:institution_espionage }
+			limit = { institution_investment_level:institution_espionage < scope:spymaster_slaver.institution_investment_level:institution_espionage }
 			random_list = {
 				35 = { trigger_event = { id = adv_dip_event.215 } }
 				65 = { trigger_event = { id = adv_dip_event.216 } }
@@ -3502,6 +3550,9 @@ adv_dip_event.230 = {
 		name = adv_dip_event.230.a
 		default_option = yes
 		custom_tooltip = adv_dip_smuggle_console_tt
+		ai_chance = {
+			base = 70
+		}
 	}
 
 	option = {
@@ -3509,6 +3560,9 @@ adv_dip_event.230 = {
 		custom_tooltip = adv_dip_smuggle_declined_tt
 		remove_variable = adv_dip_smuggle_pending
 		clear_variable_list = adv_dip_smuggle_candidates
+		ai_chance = {
+			base = 25
+		}
 	}
 }
 

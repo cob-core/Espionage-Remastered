@@ -142,6 +142,14 @@ adv_dip_lose_operative = {
 						months = 60
 					}
 				}
+				else_if = {
+					limit = { root = { has_variable = assassination_target_country } }
+					set_variable = {
+						name = adv_dip_captor
+						value = root.var:assassination_target_country
+						months = 60
+					}
+				}
 			}
 			50 = {
 				custom_tooltip = adv_dip_operative_executed_tt

@@ -76,15 +76,6 @@
 			country_rank >= rank_value:great_power
 		}
 		
-		will_break = { 
-			OR = {		
-				scaled_debt > 0.25
-				AND = {
-					scaled_debt > 0
-					is_at_war = yes
-				}				
-			}					
-		}			
 	}
 }
 

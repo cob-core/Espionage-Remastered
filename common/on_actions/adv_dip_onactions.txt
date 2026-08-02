@@ -1022,7 +1022,7 @@ adv_dip_espionage_monthly = {
 					else = {
 						scope:spy_target_country = {
 							every_active_party = {
-								limit = { var:adv_dip_backed_by ?= root.root }
+								limit = { var:adv_dip_backed_by ?= root }
 								remove_variable = adv_dip_backed_by
 							}
 						}

@@ -33,7 +33,6 @@ adv_dip_assassination_event.100 = { # Start Event
 				}
 			}
 			remove_variable = ongoing_plans
-			remove_variable = active_assassination
 		}
 		if = {
 			limit = { exists = scope:spy_target_country }
@@ -46,8 +45,22 @@ adv_dip_assassination_event.100 = { # Start Event
 
 	option = {
 		name = adv_dip_assassination_event.100.a
-		trigger_event = { id = adv_dip_assassination_event.101 days = 0 popup = yes }
-
+		default_option = yes
+		if = {
+			limit = {
+				any_scope_character = {
+					has_role = character_role_operative
+					is_busy = no
+					NOT = { has_variable = adv_dip_captured }
+				}
+			}
+			trigger_event = { id = adv_dip_assassination_event.101 days = 0 popup = yes }
+		}
+		else = {
+			# The pool emptied between the order and the briefing.
+			custom_tooltip = adv_dip_needs_operative_tt
+			remove_variable = ongoing_plans
+		}
 	}
 }
 
@@ -728,10 +741,8 @@ adv_dip_assassination_event.198 = { #Successful
 				name = recent_assassination_modifier
 				months = 13
 			}
-			THIS = {
-				add_radicals = {
-					value = 0.2
-				}
+			add_radicals = {
+				value = 0.05
 			}
 		}
 		remove_variable = active_assassination
@@ -848,11 +859,17 @@ adv_dip_assassination_event.110 = {
 		name = adv_dip_assassination_event.110.a
 		default_option = yes
 		assassination_minor_progress_effect = yes
+		ai_chance = {
+			base = 50
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.110.b
 		assassination_minor_progress_effect = yes
+		ai_chance = {
+			base = 50
+		}
 	}
 }
 
@@ -880,11 +897,17 @@ adv_dip_assassination_event.111 = {
 		name = adv_dip_assassination_event.111.a
 		default_option = yes
 		assassination_moderate_progress_effect = yes
+		ai_chance = {
+			base = 50
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.111.b
 		assassination_moderate_progress_effect = yes
+		ai_chance = {
+			base = 50
+		}
 	}
 }
 
@@ -916,10 +939,16 @@ adv_dip_assassination_event.112 = {
 			name = cleaned_the_cat_modifier
 			months = 13
 		}
+		ai_chance = {
+			base = 60
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.112.b
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -948,10 +977,16 @@ adv_dip_assassination_event.113 = {
 		default_option = yes
 		assassination_great_progress_effect = yes
 		add_large_assassination_risk_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.113.b
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -983,11 +1018,17 @@ adv_dip_assassination_event.114 = {
 		default_option = yes
 		assassination_great_progress_effect = yes
 		add_small_assassination_risk_effect = yes
+		ai_chance = {
+			base = 70
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.114.b
 		assassination_minor_progress_effect = yes
+		ai_chance = {
+			base = 30
+		}
 	}
 }
 
@@ -1017,10 +1058,16 @@ adv_dip_assassination_event.115 = {
 		assassination_moderate_progress_effect = yes
 		add_small_assassination_risk_effect = yes
 		adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 12 }
+		ai_chance = {
+			base = 45
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.115.b
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -1049,10 +1096,16 @@ adv_dip_assassination_event.116 = {
 		default_option = yes
 		assassination_moderate_progress_effect = yes
 		add_small_assassination_risk_effect = yes
+		ai_chance = {
+			base = 65
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.116.b
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -1072,6 +1125,14 @@ adv_dip_assassination_event.117 = {
 	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
 
     duration = 3
+
+	# A clean shot this early would trivialize the plot: the opening only
+	# comes once the groundwork is done.
+	trigger = {
+		scope:journal_entry ?= {
+			"scripted_bar_progress(assassination_progress_bar)" >= 5
+		}
+	}
 	
 	immediate = {
 	}
@@ -1113,11 +1174,17 @@ adv_dip_assassination_event.118 = {
 		default_option = yes
 		assassination_moderate_progress_effect = yes
 		add_medium_assassination_risk_effect = yes
+		ai_chance = {
+			base = 50
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.118.b
 		assassination_minor_progress_effect = yes
+		ai_chance = {
+			base = 30
+		}
 	}
 
 	option = {
@@ -1130,6 +1197,9 @@ adv_dip_assassination_event.118 = {
 				name = blamed_for_poisoning_modifier
 				months = 13
 			}
+		}
+		ai_chance = {
+			base = 40
 		}
 	}
 }
@@ -1165,6 +1235,9 @@ adv_dip_assassination_event.119 = {
 		default_option = yes
 		assassination_great_progress_effect = yes
 		add_large_assassination_risk_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 
 	option = {
@@ -1178,10 +1251,16 @@ adv_dip_assassination_event.119 = {
 				}
 			}
 		}
+		ai_chance = {
+			base = 25
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.119.c
+		ai_chance = {
+			base = 15
+		}
 	}
 }
 
@@ -1208,13 +1287,19 @@ adv_dip_assassination_event.120 = {
 	option = {
 		name = adv_dip_assassination_event.120.a
 		default_option = yes
-		assassination_failure = yes
+		add_large_assassination_risk_effect = yes
 		adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 12 }
+		ai_chance = {
+			base = 45
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.120.b
 		assassination_failure = yes
+		ai_chance = {
+			base = 15
+		}
 	}
 }
 
@@ -1239,23 +1324,23 @@ adv_dip_assassination_event.122 = {
 		ruler = {
 			save_scope_as = adv_dip_leader
 		}
+		# The retaliation is the premise, not a choice.
+		scope:adv_dip_leader = {
+			kill_character = yes
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.122.a
-		scope:adv_dip_leader = {
-			kill_character = yes
-		}
 		add_medium_assassination_risk_effect = yes
+		ai_chance = { base = 40 }
 	}
 
 	option = {
 		name = adv_dip_assassination_event.122.b
 		default_option = yes
-		scope:adv_dip_leader = {
-			kill_character = yes
-		}
 		assassination_failure = yes
+		ai_chance = { base = 60 }
 	}
 }
 
@@ -1283,12 +1368,18 @@ adv_dip_assassination_event.123 = {
 		name = adv_dip_assassination_event.123.a
 		default_option = yes
 		add_small_assassination_risk_effect = yes
+		ai_chance = {
+			base = 30
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.123.b
 		assassination_minor_progress_effect = yes
 		add_medium_assassination_risk_effect = yes
+		ai_chance = {
+			base = 45
+		}
 	}
 }
 
@@ -1317,12 +1408,18 @@ adv_dip_assassination_event.124 = {
 		default_option = yes
 		trigger_event = { id = adv_dip_assassination_event.134 days = 14 }
 		add_small_assassination_risk_effect = yes
+		ai_chance = {
+			base = 60
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.124.b
 		assassination_moderate_progress_effect = yes
 		add_large_assassination_risk_effect = yes
+		ai_chance = {
+			base = 35
+		}
 	}
 }
 
@@ -1357,10 +1454,16 @@ adv_dip_assassination_event.125 = {
 		default_option = yes
 		trigger_event = { id = adv_dip_assassination_event.135 days = 7 }
 		add_medium_assassination_risk_effect = yes
+		ai_chance = {
+			base = 50
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.125.b
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -1394,12 +1497,18 @@ adv_dip_assassination_event.126 = {
 		name = adv_dip_assassination_event.126.a
 		default_option = yes
 		assassination_minor_progress_effect = yes
+		ai_chance = {
+			base = 55
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.126.b
 		assassination_moderate_progress_effect = yes
 		add_medium_assassination_risk_effect = yes
+		ai_chance = {
+			base = 45
+		}
 	}
 }
 
@@ -1433,12 +1542,18 @@ adv_dip_assassination_event.127 = {
 		name = adv_dip_assassination_event.127.a
 		assassination_moderate_progress_effect = yes
 		add_medium_assassination_risk_effect = yes
+		ai_chance = {
+			base = 40
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.127.b
 		default_option = yes
 		assassination_minor_progress_effect = yes
+		ai_chance = {
+			base = 60
+		}
 	}
 }
 
@@ -1478,11 +1593,17 @@ adv_dip_assassination_event.128 = {
 				interest_group = ig:ig_devout
 			}
 		}
+		ai_chance = {
+			base = 45
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.128.b
 		default_option = yes
+		ai_chance = {
+			base = 20
+		}
 	}
 }
 
@@ -1515,12 +1636,18 @@ adv_dip_assassination_event.129 = {
 	option = {
 		name = adv_dip_assassination_event.129.a
 		default_option = yes
+		ai_chance = {
+			base = 20
+		}
 	}
 
 	option = {
 		name = adv_dip_assassination_event.129.b
 		assassination_great_progress_effect = yes
 		add_large_assassination_risk_effect = yes
+		ai_chance = {
+			base = 45
+		}
 	}
 }
 

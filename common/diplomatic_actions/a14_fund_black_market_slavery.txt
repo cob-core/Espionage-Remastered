@@ -13,11 +13,7 @@
 		NOT = { is_country_type = decentralized }
 		has_game_rule = enable_black_market_slavery
 		# We are the buyer: the contraband ships sail to OUR markets.
-		OR = {
-			has_law = law_type:law_slave_trade
-			has_law = law_type:law_legacy_slavery
-			has_law = law_type:law_debt_slavery
-		}
+		NOT = { has_law = law_type:law_slavery_banned }
 		scope:target_country = {
 			NOT = { is_country_type = decentralized }
 		}

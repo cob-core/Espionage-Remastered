@@ -38,7 +38,12 @@ shadow_war_leadership_check_effect = {
 	}
 	if = {
 		limit = {
-			has_law = law_type:law_spy_agency
+			OR = {
+				has_law = law_type:law_consular_intelligence
+				has_law = law_type:law_spy_agency
+				has_law = law_type:law_directorate_of_state_security
+				has_law = law_type:law_deniable_assets
+			}
 			has_variable = shadow_war_score
 			OR = {
 				NOT = { exists = global_var:shadow_war_leader }
