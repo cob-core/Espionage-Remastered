@@ -2455,6 +2455,7 @@ adv_dip_event.150 = {
 		adv_dip_covert_charge = { COST = spy_cost_multiplier_medium WEEKS = 26 }
 		if = {
 			limit = {
+				has_variable = pipeline_attribution
 				var:pipeline_attribution >= 3
 				exists = scope:pipeline_enemy
 			}
@@ -3096,6 +3097,7 @@ adv_dip_event.155 = {
 				adv_dip_covert_charge = { COST = spy_cost_multiplier_small WEEKS = 26 }
 				if = {
 					limit = {
+						has_variable = black_market_attribution
 						var:black_market_attribution >= 3
 					}
 					remove_variable = black_market_attribution

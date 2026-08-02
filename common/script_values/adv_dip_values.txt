@@ -1,64 +1,78 @@
 ﻿# 0.015% of GDP, rounded to nearest 10
 # 0.025% of GDP, rounded to nearest 100
 spy_cost_multiplier_small = {
-	value = scope:spy_target_country.gdp
-	divide = 100000
-	multiply = 0.15
-	round = yes
-	multiply = 100
+	value = 0
+	if = {
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 100000
+		multiply = 0.15
+		round = yes
+		multiply = 100
+	}
 }
 
 # 0.05% of GDP, rounded to nearest 100
 spy_cost_multiplier_medium = {
-	value = scope:spy_target_country.gdp
-	divide = 100000
-	multiply = 0.25
-	round = yes
-	multiply = 100
+	value = 0
 	if = {
-		limit = {
-			has_game_rule = low_espionage_event_costs
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 100000
+		multiply = 0.25
+		round = yes
+		multiply = 100
+		if = {
+			limit = { has_game_rule = low_espionage_event_costs }
+			multiply = low_espionage_event_costs_value
 		}
-		multiply = low_espionage_event_costs_value
-	}
-	else_if = {
-		limit = {
-			has_game_rule = medium_espionage_event_costs
+		else_if = {
+			limit = { has_game_rule = medium_espionage_event_costs }
+			multiply = medium_espionage_event_costs_value
 		}
-		multiply = medium_espionage_event_costs_value
-	}
-	else_if = {
-		limit = {
-			has_game_rule = high_espionage_event_costs
+		else_if = {
+			limit = { has_game_rule = high_espionage_event_costs }
+			multiply = high_espionage_event_costs_value
 		}
-		multiply = high_espionage_event_costs_value
 	}
 }
 
 # 0.1% of GDP, rounded to nearest 1000
 spy_cost_multiplier_large = {
-	value = scope:spy_target_country.gdp
-	divide = 1000000
-	multiply = 0.5
-	round = yes
-	multiply = 1000
+	value = 0
+	if = {
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 1000000
+		multiply = 0.5
+		round = yes
+		multiply = 1000
+	}
 }
 
 # 0.5% of GDP, rounded to nearest 1000
 spy_cost_multiplier_very_large = {
-	value = scope:spy_target_country.gdp
-	divide = 1000000
-	multiply = 2.5
-	round = yes
-	multiply = 1000
+	value = 0
+	if = {
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 1000000
+		multiply = 2.5
+		round = yes
+		multiply = 1000
+	}
 }
 
 counterespionage_cost = {
-	value = scope:spy_target_country.gdp
-	divide = 1000000
-	multiply = 2
-	round = yes
-	multiply = 1000
+	value = 0
+	if = {
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 1000000
+		multiply = 2
+		round = yes
+		multiply = 1000
+	}
 }
 
 low_espionage_event_costs_value = {
@@ -74,28 +88,32 @@ high_espionage_event_costs_value = {
 }
 
 development_funding = {
-	value = var:development_target_var.gdp
-	divide = 100000
-	multiply = 0.25
-	round = yes
-	multiply = 100
+	value = 0
 	if = {
-		limit = {
-			has_game_rule = low_espionage_event_costs
+		limit = { has_variable = development_target_var }
+		add = var:development_target_var.gdp
+		divide = 100000
+		multiply = 0.25
+		round = yes
+		multiply = 100
+		if = {
+			limit = {
+				has_game_rule = low_espionage_event_costs
+			}
+			multiply = low_espionage_event_costs_value
 		}
-		multiply = low_espionage_event_costs_value
-	}
-	else_if = {
-		limit = {
-			has_game_rule = medium_espionage_event_costs
+		else_if = {
+			limit = {
+				has_game_rule = medium_espionage_event_costs
+			}
+			multiply = medium_espionage_event_costs_value
 		}
-		multiply = medium_espionage_event_costs_value
-	}
-	else_if = {
-		limit = {
-			has_game_rule = high_espionage_event_costs
+		else_if = {
+			limit = {
+				has_game_rule = high_espionage_event_costs
+			}
+			multiply = high_espionage_event_costs_value
 		}
-		multiply = high_espionage_event_costs_value
 	}
 }
 
@@ -128,28 +146,32 @@ technology_theft_cost = {
 # Naval intelligence informant funding: 0.025% of the surveilled navy's GDP,
 # read from the persistent variable so JE buttons work months after the start event.
 naval_intel_funding = {
-	value = var:naval_intel_target_var.gdp
-	divide = 100000
-	multiply = 0.25
-	round = yes
-	multiply = 100
+	value = 0
 	if = {
-		limit = {
-			has_game_rule = low_espionage_event_costs
+		limit = { has_variable = naval_intel_target_var }
+		add = var:naval_intel_target_var.gdp
+		divide = 100000
+		multiply = 0.25
+		round = yes
+		multiply = 100
+		if = {
+			limit = {
+				has_game_rule = low_espionage_event_costs
+			}
+			multiply = low_espionage_event_costs_value
 		}
-		multiply = low_espionage_event_costs_value
-	}
-	else_if = {
-		limit = {
-			has_game_rule = medium_espionage_event_costs
+		else_if = {
+			limit = {
+				has_game_rule = medium_espionage_event_costs
+			}
+			multiply = medium_espionage_event_costs_value
 		}
-		multiply = medium_espionage_event_costs_value
-	}
-	else_if = {
-		limit = {
-			has_game_rule = high_espionage_event_costs
+		else_if = {
+			limit = {
+				has_game_rule = high_espionage_event_costs
+			}
+			multiply = high_espionage_event_costs_value
 		}
-		multiply = high_espionage_event_costs_value
 	}
 }
 
@@ -178,16 +200,24 @@ adv_dip_network_upkeep_value = {
 # MONTHLY pound figures (the total is charged once a month, WEEKS = 1), steep
 # enough that a richer target genuinely costs more: 0.02%/0.04% of target GDP.
 adv_dip_upkeep_small = {
-	value = scope:spy_target_country.gdp
-	divide = 120000
-	round = yes
-	min = 60
+	value = 0
+	if = {
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 120000
+		round = yes
+		min = 60
+	}
 }
 adv_dip_upkeep_medium = {
-	value = scope:spy_target_country.gdp
-	divide = 60000
-	round = yes
-	min = 120
+	value = 0
+	if = {
+		limit = { exists = scope:spy_target_country }
+		add = scope:spy_target_country.gdp
+		divide = 60000
+		round = yes
+		min = 120
+	}
 }
 # Operative recruitment: scales off our own economy (there is no target country).
 adv_dip_recruit_cost = {
