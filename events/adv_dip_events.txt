@@ -66,7 +66,7 @@ adv_dip_event.11 = {
 
 		default_option = yes
 		name = adv_dip_event.11.a
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		add_modifier = {
 			name = spy_network_cost_modifier
 			months = 25
@@ -798,7 +798,7 @@ adv_dip_event.31 = {
 
 		default_option = yes
 		name = adv_dip_event.31.a
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		add_modifier = {
 			name = spy_network_cost_modifier
 			multiplier = spy_cost_multiplier_medium
@@ -1054,7 +1054,7 @@ adv_dip_event.41 = {
 
 		default_option = yes
 		name = adv_dip_event.41.a
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		add_modifier = {
 			name = spy_network_cost_modifier
 			multiplier = spy_cost_multiplier_medium
@@ -1936,7 +1936,7 @@ adv_dip_event.91 = {
 
 	option = {
 		name = adv_dip_event.91.a
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		add_modifier = {
 			name = stolen_technology_production_modifier
 			months = 24
@@ -1983,7 +1983,7 @@ adv_dip_event.91 = {
 	
 	option = {
 		name = adv_dip_event.91.b
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		add_modifier = {
 			name = stolen_technology_military_modifier
 			months = 24
@@ -2030,7 +2030,7 @@ adv_dip_event.91 = {
 
 	option = {
 		name = adv_dip_event.91.c
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		add_modifier = {
 			name = stolen_technology_society_modifier
 			months = 24
@@ -2191,7 +2191,7 @@ adv_dip_event.110 = {
 
 	option = {
 		name = adv_dip_event.110.a
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		default_option = yes
 
 		add_journal_entry = {
@@ -2488,7 +2488,7 @@ adv_dip_event.131 = {
 
 	option = {
 		name = adv_dip_event.131.a
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		trigger = {
 			exists = scope:steal_commander_target
 		}
@@ -2541,7 +2541,7 @@ adv_dip_event.131 = {
 
 	option = {
 		name = adv_dip_event.131.b
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 		trigger = {
 			exists = scope:steal_commander_target
 		}
@@ -2811,7 +2811,7 @@ adv_dip_event.148 = {
 
 	option = {
 		name = adv_dip_event.148.a
-		great_game_score_major_effect = yes
+		shadow_war_score_major_effect = yes
 		default_option = yes
 		add_modifier = {
 			name = naval_codebook_modifier
@@ -2822,7 +2822,7 @@ adv_dip_event.148 = {
 
 	option = {
 		name = adv_dip_event.148.b
-		great_game_score_major_effect = yes
+		shadow_war_score_major_effect = yes
 		trigger = {
 			has_dlc_feature = ep2_content
 			scope:naval_intel_target ?= {
@@ -2846,7 +2846,7 @@ adv_dip_event.148 = {
 
 	option = {
 		name = adv_dip_event.148.c
-		great_game_score_major_effect = yes
+		shadow_war_score_major_effect = yes
 		add_modifier = {
 			name = naval_landing_intel_modifier
 			months = 36
@@ -3075,7 +3075,7 @@ adv_dip_event.153 = {
 				setting = yes
 			}
 		}
-		great_game_score_major_effect = yes
+		shadow_war_score_major_effect = yes
 	}
 }
 
@@ -3114,7 +3114,7 @@ adv_dip_event.160 = {
 					adv_dip_stop_operation = { ACTION = steal_technology TARGET = spy_target_country }
 					adv_dip_stop_operation = { ACTION = election_interference TARGET = spy_target_country }
 					adv_dip_stop_operation = { ACTION = sow_discontent TARGET = spy_target_country }
-					great_game_score_major_effect = yes
+					shadow_war_score_major_effect = yes
 					trigger_event = {
 						id = adv_dip_event.161
 						days = 3
@@ -3252,7 +3252,7 @@ adv_dip_event.170 = {
 						days = 10
 					}
 				}
-				great_game_score_major_effect = yes
+				shadow_war_score_major_effect = yes
 			}
 			100 = {
 				custom_tooltip = sealed_train_failure_tt
@@ -3381,8 +3381,8 @@ adv_dip_event.175 = {
 						days = 3
 					}
 				}
-				great_game_score_major_effect = yes
-				great_game_score_major_effect = yes
+				shadow_war_score_major_effect = yes
+				shadow_war_score_major_effect = yes
 			}
 		}
 	}
@@ -3464,7 +3464,7 @@ adv_dip_event.180 = {
 			id = adv_dip_event.181
 			days = 365
 		}
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 	}
 	option = {
 		name = adv_dip_event.180.b
@@ -3497,7 +3497,7 @@ adv_dip_event.180 = {
 			}
 			2 = {}
 		}
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 	}
 	option = {
 		name = adv_dip_event.180.c
@@ -3510,7 +3510,7 @@ adv_dip_event.180 = {
 				value = 0.02
 			}
 		}
-		great_game_score_minor_effect = yes
+		shadow_war_score_minor_effect = yes
 	}
 }
 
@@ -3680,11 +3680,13 @@ adv_dip_event.190 = {
 			}
 			on_created = {
 				save_scope_as = new_operative
+				owner = {
+					add_to_variable_list = {
+						name = adv_dip_operatives
+						target = prev
+					}
+				}
 			}
-		}
-		add_to_variable_list = {
-			name = adv_dip_operatives
-			target = scope:new_operative
 		}
 	}
 

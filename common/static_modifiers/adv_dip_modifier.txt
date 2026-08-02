@@ -270,7 +270,7 @@
 		country_tech_research_speed_mult = -0.05
 	}
 
-	master_of_the_great_game_modifier = {
+	master_of_the_shadow_war_modifier = {
 		icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
 		country_prestige_mult = 0.05
 		country_leverage_generation_mult = 0.05

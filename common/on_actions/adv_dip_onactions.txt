@@ -126,17 +126,17 @@ adv_dip_espionage_yearly = {
 			has_law = law_type:law_directorate_of_state_security
 			has_law = law_type:law_deniable_assets
 		}
-				NOT = { has_journal_entry = adv_dip_je_great_game }
+				NOT = { has_journal_entry = adv_dip_je_shadow_war }
 			}
 			add_journal_entry = {
-				type = adv_dip_je_great_game
+				type = adv_dip_je_shadow_war
 			}
 		}
 		# Great Game score decay
 		if = {
-			limit = { has_variable = great_game_score }
+			limit = { has_variable = shadow_war_score }
 			change_variable = {
-				name = great_game_score
+				name = shadow_war_score
 				multiply = 0.9
 			}
 		}
@@ -206,10 +206,10 @@ adv_dip_law_enacted_hook = {
 			has_law = law_type:law_directorate_of_state_security
 			has_law = law_type:law_deniable_assets
 		}
-				NOT = { has_journal_entry = adv_dip_je_great_game }
+				NOT = { has_journal_entry = adv_dip_je_shadow_war }
 			}
 			add_journal_entry = {
-				type = adv_dip_je_great_game
+				type = adv_dip_je_shadow_war
 			}
 		}
 	}

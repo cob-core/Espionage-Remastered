@@ -1,4 +1,4 @@
-﻿adv_dip_je_great_game = {
+﻿adv_dip_je_shadow_war = {
 
 	group = je_group_espionage
 
@@ -32,9 +32,9 @@
 
 	immediate = {
 		if = {
-			limit = { NOT = { has_variable = great_game_score } }
+			limit = { NOT = { has_variable = shadow_war_score } }
 			set_variable = {
-				name = great_game_score
+				name = shadow_war_score
 				value = 0
 			}
 		}
@@ -43,14 +43,14 @@
 	status_desc = {
 		first_valid = {
 			triggered_desc = {
-				desc = adv_dip_je_great_game_leading
+				desc = adv_dip_je_shadow_war_leading
 				trigger = {
-					exists = global_var:great_game_leader
-					global_var:great_game_leader ?= this
+					exists = global_var:shadow_war_leader
+					global_var:shadow_war_leader ?= this
 				}
 			}
 			triggered_desc = {
-				desc = adv_dip_je_great_game_playing
+				desc = adv_dip_je_shadow_war_playing
 				trigger = { always = yes }
 			}
 		}

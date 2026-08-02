@@ -1,69 +1,69 @@
-﻿great_game_score_minor_effect = {
+﻿shadow_war_score_minor_effect = {
 	if = {
-		limit = { NOT = { has_variable = great_game_score } }
+		limit = { NOT = { has_variable = shadow_war_score } }
 		set_variable = {
-			name = great_game_score
+			name = shadow_war_score
 			value = 0
 		}
 	}
 	change_variable = {
-		name = great_game_score
+		name = shadow_war_score
 		add = 1
 	}
-	great_game_leadership_check_effect = yes
+	shadow_war_leadership_check_effect = yes
 }
 
-great_game_score_major_effect = {
+shadow_war_score_major_effect = {
 	if = {
-		limit = { NOT = { has_variable = great_game_score } }
+		limit = { NOT = { has_variable = shadow_war_score } }
 		set_variable = {
-			name = great_game_score
+			name = shadow_war_score
 			value = 0
 		}
 	}
 	change_variable = {
-		name = great_game_score
+		name = shadow_war_score
 		add = 3
 	}
-	great_game_leadership_check_effect = yes
+	shadow_war_leadership_check_effect = yes
 }
 
-great_game_leadership_check_effect = {
+shadow_war_leadership_check_effect = {
 	if = {
 		limit = {
-			exists = global_var:great_game_leader
-			global_var:great_game_leader = { is_country_alive = no }
+			exists = global_var:shadow_war_leader
+			global_var:shadow_war_leader = { is_country_alive = no }
 		}
-		remove_global_variable = great_game_leader
+		remove_global_variable = shadow_war_leader
 	}
 	if = {
 		limit = {
 			has_law = law_type:law_spy_agency
-			has_variable = great_game_score
+			has_variable = shadow_war_score
 			OR = {
-				NOT = { exists = global_var:great_game_leader }
+				NOT = { exists = global_var:shadow_war_leader }
 				AND = {
-					NOT = { global_var:great_game_leader ?= this }
-					global_var:great_game_leader = {
-						has_variable = great_game_score
+					NOT = { global_var:shadow_war_leader ?= this }
+					global_var:shadow_war_leader = {
+						has_variable = shadow_war_score
 					}
-					var:great_game_score > global_var:great_game_leader.var:great_game_score
+					var:shadow_war_score > global_var:shadow_war_leader.var:shadow_war_score
 				}
 			}
 		}
 		if = {
-			limit = { exists = global_var:great_game_leader }
-			global_var:great_game_leader = {
-				remove_modifier = master_of_the_great_game_modifier
+			limit = { exists = global_var:shadow_war_leader }
+			global_var:shadow_war_leader = {
+				remove_modifier = master_of_the_shadow_war_modifier
 				trigger_event = { id = adv_dip_event.166 }
 			}
 		}
 		set_global_variable = {
-			name = great_game_leader
+			name = shadow_war_leader
 			value = this
 		}
 		add_modifier = {
-			name = master_of_the_great_game_modifier
+			name = master_of_the_shadow_war_modifier
 		}
 		trigger_event = { id = adv_dip_event.165 }
 	}

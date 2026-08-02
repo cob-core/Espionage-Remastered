@@ -13,10 +13,13 @@
 	is_valid = {
 		custom_tooltip = {
 			text = adv_dip_recruit_cap_tt
-			NOT = {
-				list_size = {
-					name = adv_dip_operatives
-					value >= institution_investment_level:institution_espionage
+			OR = {
+				NOT = { has_variable_list = adv_dip_operatives }
+				NOT = {
+					list_size = {
+						name = adv_dip_operatives
+						value >= institution_investment_level:institution_espionage
+					}
 				}
 			}
 		}
@@ -36,11 +39,9 @@ adv_dip_sgui_appoint_director = {
 	}
 
 	is_valid = {
-		custom_tooltip = {
-			text = adv_dip_appoint_director_tt
-			scope:candidate ?= {
-				is_busy = no
-			}
+		scope:candidate ?= {
+			is_busy = no
+			has_role = character_role_operative
 		}
 	}
 
