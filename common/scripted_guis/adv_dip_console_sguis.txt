@@ -503,3 +503,23 @@ adv_dip_sgui_tier_master = {
 	effect = {
 	}
 }
+
+# Pairs an operation row (root = the target country) with the agent running it,
+# read by the console to place the right portrait on the right row.
+adv_dip_sgui_agent_matches = {
+	scope = country
+	saved_scopes = { agent }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		scope:agent ?= {
+			var:adv_dip_assignment_target ?= root
+		}
+	}
+
+	effect = {
+	}
+}
