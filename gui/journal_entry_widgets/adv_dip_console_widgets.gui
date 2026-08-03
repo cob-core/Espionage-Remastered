@@ -529,23 +529,58 @@ flowcontainer = {
 
 		fixedgridbox = {
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_smuggle_candidates')]"
-			addcolumn = 520
-			addrow = 50
+			addcolumn = 258
+			addrow = 64
+			flipdirection = yes
+			datamodel_wrap = 2
 
 			item = {
-				adv_dip_character_row = {
+				flowcontainer = {
+					direction = horizontal
+					spacing = 8
+					margin_left = 8
+					margin_right = 8
 					datacontext = "[Scope.AccessCharacter]"
 
-					blockoverride "detail_line" {
+					background = {
+						using = entry_bg_simple
+						alpha = 0.5
+					}
+
+					button = {
+						parentanchor = vcenter
+						size = { 40 40 }
+						onclick = "[InformationPanelBar.OpenCharacterPanel(Character.AccessSelf)]"
+						onrightclick = "[RightClickMenuManager.ShowForCharacter(Character.AccessSelf)]"
+						tooltip = "GO_TO_BUTTON_CHARACTER"
+						using = tooltip_ne
+
+						character_portrait_small = {}
+					}
+
+					flowcontainer = {
+						parentanchor = vcenter
+						direction = vertical
+
 						textbox = {
-							size = { 120 16 }
+							size = { 150 18 }
+							text = "[Character.GetFullNameNoFormatting]"
+							default_format = "#v"
+							align = left|nobaseline
+							elide = right
+							using = fontsize_small
+						}
+
+						textbox = {
+							size = { 150 16 }
 							text = "[Character.GetIdeology.GetName]"
 							align = left|nobaseline
 							elide = right
 							using = fontsize_small
 						}
+
 						textbox = {
-							size = { 100 16 }
+							size = { 150 16 }
 							text = "[Character.GetInterestGroup.GetName]"
 							align = left|nobaseline
 							elide = right
@@ -553,18 +588,14 @@ flowcontainer = {
 						}
 					}
 
-					blockoverride "traits_area" {}
-
-					blockoverride "row_action" {
-						button_icon_check = {
-							parentanchor = vcenter
-							size = { 26 26 }
-							visible = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
-							enabled = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
-							onclick = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
-							tooltip = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
-							using = tooltip_ne
-						}
+					button_icon_check = {
+						parentanchor = vcenter
+						size = { 26 26 }
+						visible = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+						enabled = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+						onclick = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+						tooltip = "[GetScriptedGui('adv_dip_sgui_smuggle_pick').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('rev', Scope.GetCharacter.MakeScope).End)]"
+						using = tooltip_ne
 					}
 				}
 			}
