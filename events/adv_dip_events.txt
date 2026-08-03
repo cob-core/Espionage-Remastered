@@ -3017,7 +3017,6 @@ adv_dip_event.180 = {
 	}
 	option = {
 		name = adv_dip_event.180.a
-		default_option = yes
 		trigger = {
 			exists = scope:kompromat_target
 		}
@@ -3084,6 +3083,13 @@ adv_dip_event.180 = {
 		ai_chance = {
 			base = 40
 		}
+	}
+	# The safe keeps its secrets: nothing is spent, nothing changes hands.
+	option = {
+		name = adv_dip_event.180.x
+		default_option = yes
+		custom_tooltip = adv_dip_dossier_filed_tt
+		ai_chance = { base = 15 }
 	}
 }
 

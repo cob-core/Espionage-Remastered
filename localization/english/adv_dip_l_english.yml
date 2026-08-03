@@ -985,3 +985,5 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA discree
  adv_dip_event.239.f: "The stationmaster who was paid to forget has remembered everything, at length and under oath."
  adv_dip_event.239.a: "Burn the manifests."
  adv_dip_train_failure_result_tt: "#N The smuggling failed.#! The passenger is in their hands, our name is in the papers, and the target has begun a crackdown."
+ adv_dip_event.180.x: "Do nothing. File it away."
+ adv_dip_dossier_filed_tt: "The dossier goes into the safe unused. Perhaps a wiser year will come."

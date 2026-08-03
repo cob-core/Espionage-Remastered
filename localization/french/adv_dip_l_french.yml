@@ -985,3 +985,5 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_event.239.f: "Le chef de gare payé pour oublier s'est souvenu de tout, longuement et sous serment."
  adv_dip_event.239.a: "Brûlez les manifestes."
  adv_dip_train_failure_result_tt: "#N Le passage a échoué.#! Le passager est entre leurs mains, notre nom est dans les journaux, et la cible a lancé une répression."
+ adv_dip_event.180.x: "Ne faites rien. Classez le dossier."
+ adv_dip_dossier_filed_tt: "Le dossier rejoint le coffre sans servir. Une année plus propice viendra peut-être."
