@@ -10,17 +10,18 @@ It adds espionage actions each with their own strengths and weaknesses. Once you
 
 [i]The AI can use these actions also, so be careful![/i]
 
-Currently, this mod adds a new law group, a new institution, over a dozen diplomatic actions with their event chains, four treaty articles, and three journal-entry operations with progress bars.
+Currently, this mod adds a new law group with five laws, a new institution, fifteen diplomatic actions with their event chains, five treaty articles, a character-based operative system, a custom intelligence console, and three journal-entry operations with progress bars.
 See the full list [url=https://github.com/cob-core/Espionage-Remastered/wiki/Espionage-Remastered:-How%E2%80%90To,-Action-Requirements,-and-Action-Effects]here[/url].
 
 
 [h2]What's New in 5.0 — Operatives[/h2]
 [list]
-[*][b]Espionage is finally secret.[/b] No more public pacts announcing your intentions: operations leave no trace in any diplomacy panel, and your target learns nothing until your people are caught.
-[*][b]Recruit operatives.[/b] Named agents with tradecraft traits who carry out your operations in person. Every mission asks who goes, the right specialist tilts the odds, and an agent caught abroad can be captured or executed.
-[*][b]The Intelligence Console.[/b] A Director of Intelligence to appoint, your full roster with portraits and live status, hire-and-fire controls, and every running operation at a glance.
-[*][b]Careers and wages.[/b] Agents earn their stripes on assignment - and their pay. Experience improves their odds, and nothing about your spending is visible to foreign powers any more.
-[*][b]Prisoners and ransoms.[/b] Captured agents rot in foreign cells, risk talking every year, and can be ransomed home through a new treaty article - if you pay what their captor asks.
+[*][b]Espionage is finally secret.[/b] No public pacts, no tell-tale modifiers, no visible spending: your target learns nothing until your people are caught.
+[*][b]Recruit operatives.[/b] Named agents with tradecraft specialties carry out every operation in person, gain experience from Seasoned to Master Spy, and draw wages tied to your government pay level - underpay them and they may sell everything they know.
+[*][b]The Intelligence Console.[/b] A full command panel: roster with portraits, status and wages, a Director of Intelligence, every operation with its cost and agent, the agency budget, election ballots and the sealed train manifest.
+[*][b]The counterintelligence dance.[/b] Discovered agents can be flipped, paraded, or jailed; prisoners can be interrogated, ransomed back by treaty, disavowed, or poached; fired spymasters defect; walk-ins sell dossiers that roll up entire networks.
+[*][b]Election interference, remade.[/b] Pick any party from the ballot, pump its momentum invisibly every month, and hear the result - or the scandal.
+[*][b]Careers, wages, and a real budget.[/b] Operation upkeep scales with the target's economy and it all comes straight out of the treasury.
 [*][b]Three new External Security laws[/b] give each espionage playthrough its own character.
 [/list]
 [i]5.0 is not save-compatible — please start a new campaign.[/i]
