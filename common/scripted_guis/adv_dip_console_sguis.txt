@@ -78,8 +78,50 @@ adv_dip_sgui_dismiss_operative = {
 				target = scope:candidate
 			}
 			scope:candidate = {
+				save_scope_as = adv_dip_spurned_operative
+				interest_group ?= {
+					add_modifier = {
+						name = adv_dip_spurned_service_modifier
+						months = 12
+					}
+				}
 				remove_variable = adv_dip_captured
 				remove_character_role = character_role_operative
+			}
+			# A lesser echo of a fired Director: one in ten shops their
+			# knowledge to a hostile power.
+			random_list = {
+				90 = {}
+				10 = {
+					if = {
+						limit = {
+							any_country = {
+								NOT = { this = root }
+								OR = {
+									has_diplomatic_pact = {
+										who = root
+										type = rivalry
+									}
+									relations:root <= relations_threshold:hostile
+								}
+							}
+						}
+						random_country = {
+							limit = {
+								NOT = { this = root }
+								OR = {
+									has_diplomatic_pact = {
+										who = root
+										type = rivalry
+									}
+									relations:root <= relations_threshold:hostile
+								}
+							}
+							save_scope_as = adv_dip_captor_country
+						}
+						trigger_event = { id = adv_dip_event.243 }
+					}
+				}
 			}
 		}
 	}

@@ -3652,6 +3652,15 @@ adv_dip_event.225 = {
 			country = scope:spymaster
 			value = -30
 		}
+		# The channel is blown: the money stops moving this campaign, and the
+		# sponsor hears about it.
+		every_active_party = {
+			limit = { var:adv_dip_backed_by ?= scope:spymaster }
+			remove_variable = adv_dip_backed_by
+		}
+		scope:spymaster ?= {
+			trigger_event = { id = adv_dip_event.240 days = 3 }
+		}
 	}
 
 	option = {
@@ -3712,6 +3721,101 @@ adv_dip_event.225 = {
 			}
 		}
 		ai_chance = { base = 40 }
+	}
+}
+
+# A dismissed rank-and-file operative sells out (lesser echo of the fired
+# Director; fired from the dismissal scripted GUI with the buyer saved).
+adv_dip_event.243 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.243.t
+	desc = adv_dip_event.243.d
+	flavor = adv_dip_event.243.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 1
+
+	trigger = {
+		exists = scope:adv_dip_captor_country
+	}
+
+	immediate = {
+		scope:adv_dip_captor_country ?= {
+			shadow_war_score_minor_effect = yes
+		}
+	}
+
+	option = {
+		name = adv_dip_event.243.a
+		default_option = yes
+		if = {
+			limit = {
+				adv_dip_has_network_against = { TARGET = adv_dip_captor_country }
+			}
+			adv_dip_roll_up_one_network = yes
+		}
+		else = {
+			custom_tooltip = adv_dip_defector_nothing_tt
+		}
+	}
+}
+
+# Election interference reports back to the sponsor: exposure (.240, fired
+# from the target's discovery event), the backed party taking power (.241) or
+# falling short (.242) when the campaign ends.
+adv_dip_event.240 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.240.t
+	desc = adv_dip_event.240.d
+	flavor = adv_dip_event.240.f
+	event_image = { video = "gfx/event_pictures/southamerica_aristocrats.bk2" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 1
+
+	option = {
+		name = adv_dip_event.240.a
+		default_option = yes
+		custom_tooltip = adv_dip_election_exposed_tt
+	}
+}
+
+adv_dip_event.241 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.241.t
+	desc = adv_dip_event.241.d
+	flavor = adv_dip_event.241.f
+	event_image = { video = "gfx/event_pictures/southamerica_aristocrats.bk2" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	duration = 1
+
+	option = {
+		name = adv_dip_event.241.a
+		default_option = yes
+		custom_tooltip = adv_dip_election_won_tt
+	}
+}
+
+adv_dip_event.242 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.242.t
+	desc = adv_dip_event.242.d
+	flavor = adv_dip_event.242.f
+	event_image = { video = "gfx/event_pictures/southamerica_aristocrats.bk2" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	duration = 1
+
+	option = {
+		name = adv_dip_event.242.a
+		default_option = yes
+		custom_tooltip = adv_dip_election_lost_tt
 	}
 }
 
