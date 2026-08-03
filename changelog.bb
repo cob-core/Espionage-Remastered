@@ -1,6 +1,6 @@
 [h1]Changelog[/h1]
 
-[h2]4.0 — Operatives[/h2]
+[h2]4.0: Operatives[/h2]
 [list]
 [*][b]Espionage is now genuinely secret.[/b] Operations no longer create diplomatic pacts and no cost modifiers betray your budget: nothing appears in any diplomacy panel, spending is drawn straight from the treasury, and a target learns it is being worked on only when your people are caught.
 [*][b]NEW: Operatives.[/b] Recruit named agents with tradecraft specialties - cryptographer, saboteur, master of disguise, silver tongue. Every operation asks who goes and cannot run without someone free; the right specialist tilts the odds. Time on assignment builds experience through Seasoned, Veteran and Master Spy: better odds, better escape chances, and unbreakable silence under interrogation at the top of the ladder.
@@ -25,7 +25,7 @@
 [*][b]This release is not save-compatible with 3.x.[/b] Please start a new campaign.
 [/list]
 
-[h2]3.6 — Stabilization[/h2]
+[h2]3.6: Stabilization[/h2]
 [list]
 [*]Fixed 32 modifiers and the espionage cost game rule silently never applying (missing '=' signs).
 [*]Fixed Develop Nation's journal entry (hijacked by a duplicate, wrong progress bar, lost target).
