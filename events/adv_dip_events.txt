@@ -3701,6 +3701,53 @@ adv_dip_event.225 = {
 	}
 }
 
+# An underpaid operative sells out (yearly roll while government wages sit at
+# low or very low). The buyer profits, any network against them is rolled up,
+# and the defector leaves the service.
+adv_dip_event.235 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.235.t
+	desc = adv_dip_event.235.d
+	flavor = adv_dip_event.235.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 1
+
+	trigger = {
+		exists = scope:adv_dip_defector
+		exists = scope:adv_dip_captor_country
+	}
+
+	immediate = {
+		scope:adv_dip_captor_country ?= {
+			shadow_war_score_minor_effect = yes
+		}
+		# The defector walks before the event even lands.
+		remove_list_variable = {
+			name = adv_dip_operatives
+			target = scope:adv_dip_defector
+		}
+		scope:adv_dip_defector ?= {
+			remove_variable = adv_dip_captured
+			remove_character_role = character_role_operative
+		}
+	}
+
+	option = {
+		name = adv_dip_event.235.a
+		default_option = yes
+		custom_tooltip = adv_dip_wage_defection_tt
+		if = {
+			limit = {
+				adv_dip_has_network_against = { TARGET = adv_dip_captor_country }
+			}
+			adv_dip_roll_up_one_network = yes
+		}
+	}
+}
+
 # A fired Director of Intelligence takes their knowledge to a hostile power
 # (25% on dismissal, fired from the dismiss scripted GUI with the buyer saved
 # as adv_dip_captor_country so the roll-up effect can reuse it).

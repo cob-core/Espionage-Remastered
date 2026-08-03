@@ -378,6 +378,42 @@ adv_dip_stop_operation = {
 	}
 }
 
+# Country scope, from the yearly pulse: an underpaid operative sells what
+# they know to a hostile power (buyer saved as adv_dip_captor_country so the
+# roll-up effect can reuse it).
+adv_dip_wage_defection = {
+	# Idle operatives only: a mid-assignment defection would orphan the
+	# operation, and it is the underpaid desk-sitters who wander.
+	random_scope_character = {
+		limit = {
+			has_role = character_role_operative
+			is_busy = no
+			NOT = { has_variable = adv_dip_captured }
+		}
+		save_scope_as = adv_dip_defector
+	}
+	random_country = {
+		limit = {
+			NOT = { this = root }
+			OR = {
+				has_diplomatic_pact = {
+					who = root
+					type = rivalry
+				}
+				relations:root <= relations_threshold:hostile
+			}
+		}
+		save_scope_as = adv_dip_captor_country
+	}
+	if = {
+		limit = {
+			exists = scope:adv_dip_defector
+			exists = scope:adv_dip_captor_country
+		}
+		trigger_event = { id = adv_dip_event.235 }
+	}
+}
+
 # Spymaster scope. A discovered agent's network folds: the operation against
 # scope:adv_dip_flip_victim (identified by their adv_dip_flip_code) is stopped,
 # which also frees or hands over the agent.

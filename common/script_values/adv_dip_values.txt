@@ -232,11 +232,30 @@ adv_dip_recruit_cost = {
 
 # v5.1 operative wages: monthly, scaled to our own economy, drawn by every
 # operative not held prisoner. Tiers follow the experience traits.
+# Operatives are paid on the government payroll: the wage level the player
+# sets scales every espionage salary - and a stingy treasury breeds traitors
+# (see the yearly defection roll in adv_dip_espionage_yearly).
 adv_dip_wage_base = {
 	value = gdp
 	divide = 600000
 	round = yes
 	min = 40
+	if = {
+		limit = { government_wage_level = very_low }
+		multiply = 0.7
+	}
+	else_if = {
+		limit = { government_wage_level = low }
+		multiply = 0.85
+	}
+	else_if = {
+		limit = { government_wage_level = high }
+		multiply = 1.2
+	}
+	else_if = {
+		limit = { government_wage_level = very_high }
+		multiply = 1.4
+	}
 }
 adv_dip_wage_seasoned = {
 	value = adv_dip_wage_base

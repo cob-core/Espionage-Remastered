@@ -169,6 +169,47 @@ adv_dip_espionage_yearly = {
 				type = adv_dip_je_shadow_war
 			}
 		}
+		# Underpaid spies shop their knowledge around: at low government wages
+		# there is a yearly chance an operative approaches a hostile power.
+		if = {
+			limit = {
+				government_wage_level <= low
+				any_scope_character = {
+					has_role = character_role_operative
+					is_busy = no
+					NOT = { has_variable = adv_dip_captured }
+				}
+				any_country = {
+					NOT = { this = root }
+					OR = {
+						has_diplomatic_pact = {
+							who = root
+							type = rivalry
+						}
+						relations:root <= relations_threshold:hostile
+					}
+				}
+			}
+			# random_list weight modifiers are banned in this codebase (silent
+			# 1.13 failures) - tiered rolls instead.
+			if = {
+				limit = { government_wage_level = very_low }
+				random_list = {
+					88 = {}
+					12 = {
+						adv_dip_wage_defection = yes
+					}
+				}
+			}
+			else = {
+				random_list = {
+					94 = {}
+					6 = {
+						adv_dip_wage_defection = yes
+					}
+				}
+			}
+		}
 		# A captured operative in foreign cells is a standing liability: each
 		# year they risk talking. Ransoming them back (Operative Repatriation
 		# treaty article) or disavowing them are the only ways to end it early.
