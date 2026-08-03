@@ -3701,14 +3701,160 @@ adv_dip_event.225 = {
 	}
 }
 
-# An underpaid operative sells out (yearly roll while government wages sit at
-# low or very low). The buyer profits, any network against them is rolled up,
-# and the defector leaves the service.
+# The buyer's side of a wage defection: an underpaid enemy operative offers
+# everything they know. Root = the buyer; scope:adv_dip_spymaster_country =
+# their employer, scope:adv_dip_defector = the walk-in.
+adv_dip_event.236 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.236.t
+	desc = adv_dip_event.236.d
+	flavor = adv_dip_event.236.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_defector
+		exists = scope:adv_dip_spymaster_country
+	}
+
+	# Pay for the dossier: every operation run against us is laid bare.
+	option = {
+		name = adv_dip_event.236.a
+		default_option = yes
+		custom_tooltip = adv_dip_pay_defector_tt
+		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 13 }
+		shadow_war_score_minor_effect = yes
+		scope:adv_dip_spymaster_country ?= {
+			adv_dip_roll_up_all_networks = yes
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:adv_dip_defector
+			}
+			trigger_event = { id = adv_dip_event.235 }
+		}
+		scope:adv_dip_defector ?= {
+			remove_character_role = character_role_operative
+		}
+		ai_chance = { base = 60 }
+	}
+
+	# A service of our own can offer a better contract: the dossier AND the man.
+	option = {
+		name = adv_dip_event.236.b
+		trigger = {
+			OR = {
+				has_law = law_type:law_consular_intelligence
+				has_law = law_type:law_spy_agency
+				has_law = law_type:law_directorate_of_state_security
+				has_law = law_type:law_deniable_assets
+			}
+		}
+		custom_tooltip = adv_dip_poach_defector_tt
+		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 26 }
+		shadow_war_score_minor_effect = yes
+		scope:adv_dip_spymaster_country ?= {
+			adv_dip_roll_up_all_networks = yes
+			remove_list_variable = {
+				name = adv_dip_operatives
+				target = scope:adv_dip_defector
+			}
+			trigger_event = { id = adv_dip_event.235 }
+		}
+		scope:adv_dip_spymaster_country ?= {
+			set_variable = {
+				name = adv_dip_defector_poached
+				months = 2
+			}
+		}
+		scope:adv_dip_defector ?= {
+			transfer_character = root
+		}
+		add_to_variable_list = {
+			name = adv_dip_operatives
+			target = scope:adv_dip_defector
+		}
+		ai_chance = { base = 30 }
+	}
+
+	# Turn the traitor away: nothing is paid, nothing is learned - and their
+	# employer never hears of the attempt.
+	option = {
+		name = adv_dip_event.236.x
+		custom_tooltip = adv_dip_refuse_defector_tt
+		random_list = {
+			50 = {}
+			50 = {
+				scope:adv_dip_spymaster_country ?= {
+					trigger_event = { id = adv_dip_event.237 days = 30 }
+				}
+			}
+		}
+		ai_chance = { base = 10 }
+	}
+}
+
+# A rebuffed defection surfaces at home (50% after the buyer turns them
+# away): the spymaster catches their own operative mid-treachery and chooses
+# the gallows-adjacent option or the ledger.
+adv_dip_event.237 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.237.t
+	desc = adv_dip_event.237.d
+	flavor = adv_dip_event.237.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_defector
+	}
+
+	option = {
+		name = adv_dip_event.237.a
+		default_option = yes
+		custom_tooltip = adv_dip_cashier_traitor_tt
+		remove_list_variable = {
+			name = adv_dip_operatives
+			target = scope:adv_dip_defector
+		}
+		scope:adv_dip_defector ?= {
+			remove_variable = adv_dip_captured
+			remove_character_role = character_role_operative
+		}
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = adv_dip_event.237.b
+		custom_tooltip = adv_dip_pay_arrears_tt
+		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 4 }
+		ai_chance = { base = 40 }
+	}
+}
+
+# The spymaster's aftermath: the service learns it has been sold out
+# (fired from the buyer's choice in .236; the damage is already done).
 adv_dip_event.235 = {
 	type = country_event
 	placement = root
 	title = adv_dip_event.235.t
-	desc = adv_dip_event.235.d
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = adv_dip_event.235.d_poached
+				trigger = { has_variable = adv_dip_defector_poached }
+			}
+			triggered_desc = {
+				desc = adv_dip_event.235.d
+				trigger = { always = yes }
+			}
+		}
+	}
 	flavor = adv_dip_event.235.f
 	event_image = { video = "unspecific_politicians_arguing" }
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
@@ -3720,31 +3866,11 @@ adv_dip_event.235 = {
 		exists = scope:adv_dip_captor_country
 	}
 
-	immediate = {
-		scope:adv_dip_captor_country ?= {
-			shadow_war_score_minor_effect = yes
-		}
-		# The defector walks before the event even lands.
-		remove_list_variable = {
-			name = adv_dip_operatives
-			target = scope:adv_dip_defector
-		}
-		scope:adv_dip_defector ?= {
-			remove_variable = adv_dip_captured
-			remove_character_role = character_role_operative
-		}
-	}
-
 	option = {
 		name = adv_dip_event.235.a
 		default_option = yes
 		custom_tooltip = adv_dip_wage_defection_tt
-		if = {
-			limit = {
-				adv_dip_has_network_against = { TARGET = adv_dip_captor_country }
-			}
-			adv_dip_roll_up_one_network = yes
-		}
+		remove_variable = adv_dip_defector_poached
 	}
 }
 

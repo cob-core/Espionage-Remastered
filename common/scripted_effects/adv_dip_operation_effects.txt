@@ -410,7 +410,60 @@ adv_dip_wage_defection = {
 			exists = scope:adv_dip_defector
 			exists = scope:adv_dip_captor_country
 		}
-		trigger_event = { id = adv_dip_event.235 }
+		save_scope_as = adv_dip_spymaster_country
+		scope:adv_dip_captor_country = {
+			trigger_event = { id = adv_dip_event.236 }
+		}
+	}
+}
+
+# Spymaster scope. The whole hand is shown: every operation against
+# scope:adv_dip_captor_country is rolled up (independent checks, not a chain).
+adv_dip_roll_up_all_networks = {
+	custom_tooltip = adv_dip_all_networks_rolled_up_tt
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_sow_discontent target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = sow_discontent TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_support_nationalists target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = support_nationalists TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_agitate_for_liberty target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = agitate_for_liberty TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_steal_technology target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = steal_technology TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_sabotage_recruitment target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = sabotage_recruitment TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_election_interference target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = election_interference TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_steal_commander target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = steal_commander TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_clandestine_arms_pipeline target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_fund_black_market_slavery target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = fund_black_market_slavery TARGET = adv_dip_captor_country }
+	}
+	if = {
+		limit = { is_target_in_variable_list = { name = adv_dip_op_support_slaves target = scope:adv_dip_captor_country } }
+		adv_dip_stop_operation = { ACTION = support_slaves TARGET = adv_dip_captor_country }
+	}
+	change_relations = {
+		country = scope:adv_dip_captor_country
+		value = -20
 	}
 }
 
