@@ -54,13 +54,15 @@ types adv_dip_console_types
 			}
 		}
 
-		widget = {
-			parentanchor = vcenter
-			size = { 160 52 }
-			scissor = yes
+		block "traits_area" {
+			widget = {
+				parentanchor = vcenter
+				size = { 160 52 }
+				scissor = yes
 
-			character_traits_no_label = {
-				parentanchor = left|vcenter
+				character_traits_no_label = {
+					parentanchor = left|vcenter
+				}
 			}
 		}
 
@@ -533,6 +535,25 @@ flowcontainer = {
 			item = {
 				adv_dip_character_row = {
 					datacontext = "[Scope.AccessCharacter]"
+
+					blockoverride "detail_line" {
+						textbox = {
+							size = { 120 16 }
+							text = "[Character.GetIdeology.GetName]"
+							align = left|nobaseline
+							elide = right
+							using = fontsize_small
+						}
+						textbox = {
+							size = { 100 16 }
+							text = "[Character.GetInterestGroup.GetName]"
+							align = left|nobaseline
+							elide = right
+							using = fontsize_small
+						}
+					}
+
+					blockoverride "traits_area" {}
 
 					blockoverride "row_action" {
 						button_icon_check = {

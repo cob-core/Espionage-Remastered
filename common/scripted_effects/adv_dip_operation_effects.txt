@@ -180,9 +180,13 @@ adv_dip_dispatch_pending_operation = {
 		}
 		else_if = {
 			limit = { var:adv_dip_pending_op = 12 }
-			set_variable = {
-				name = recently_sealed_train
-				months = 60
+			# The route into this one country is burned for a while; other
+			# targets remain open.
+			scope:spy_target_country = {
+				set_variable = {
+					name = adv_dip_sealed_train_used
+					months = 60
+				}
 			}
 			adv_dip_assign_operative = { ACTION = sealed_train }
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_very_large WEEKS = 50 }

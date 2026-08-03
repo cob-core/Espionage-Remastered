@@ -2806,11 +2806,19 @@ adv_dip_event.170 = {
 						days = 10
 					}
 				}
+				trigger_event = {
+					id = adv_dip_event.238
+					days = 10
+				}
 				shadow_war_score_major_effect = yes
 			}
 			100 = {
 				custom_tooltip = sealed_train_failure_tt
 				change_infamy = 5
+				trigger_event = {
+					id = adv_dip_event.239
+					days = 5
+				}
 				if = {
 					limit = { NOT = { has_variable = false_flag_patsy } }
 					scope:spy_target_country ?= {
@@ -3698,6 +3706,65 @@ adv_dip_event.225 = {
 			}
 		}
 		ai_chance = { base = 40 }
+	}
+}
+
+# Sealed-train outcomes for the sponsor: the operation finally reports back.
+adv_dip_event.238 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.238.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = adv_dip_event.238.d_named
+				trigger = { exists = scope:smuggled_revolutionary }
+			}
+			triggered_desc = {
+				desc = adv_dip_event.238.d
+				trigger = { always = yes }
+			}
+		}
+	}
+	flavor = adv_dip_event.238.f
+	event_image = { video = "unspecific_steam_ship" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+	duration = 1
+
+	option = {
+		name = adv_dip_event.238.a
+		default_option = yes
+		custom_tooltip = adv_dip_train_success_result_tt
+	}
+}
+
+adv_dip_event.239 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.239.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = adv_dip_event.239.d_named
+				trigger = { exists = scope:smuggled_revolutionary }
+			}
+			triggered_desc = {
+				desc = adv_dip_event.239.d
+				trigger = { always = yes }
+			}
+		}
+	}
+	flavor = adv_dip_event.239.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+	duration = 1
+
+	option = {
+		name = adv_dip_event.239.a
+		default_option = yes
+		custom_tooltip = adv_dip_train_failure_result_tt
 	}
 }
 

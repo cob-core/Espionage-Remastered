@@ -204,9 +204,9 @@ adv_dip_upkeep_small = {
 	if = {
 		limit = { exists = scope:spy_target_country }
 		add = scope:spy_target_country.gdp
-		divide = 120000
+		divide = 12000
 		round = yes
-		min = 60
+		min = 600
 	}
 }
 adv_dip_upkeep_medium = {
@@ -214,9 +214,9 @@ adv_dip_upkeep_medium = {
 	if = {
 		limit = { exists = scope:spy_target_country }
 		add = scope:spy_target_country.gdp
-		divide = 60000
+		divide = 6000
 		round = yes
-		min = 120
+		min = 1200
 	}
 }
 # Operative recruitment: scales off our own economy (there is no target country).
@@ -285,13 +285,13 @@ adv_dip_monthly_espionage_spend = {
 # bare gdp instead of scope:spy_target_country.
 adv_dip_upkeep_small_display = {
 	value = gdp
-	divide = 120000
+	divide = 12000
 	round = yes
-	min = 60
+	min = 600
 }
 adv_dip_upkeep_medium_display = {
 	value = gdp
-	divide = 60000
+	divide = 6000
 	round = yes
-	min = 120
+	min = 1200
 }

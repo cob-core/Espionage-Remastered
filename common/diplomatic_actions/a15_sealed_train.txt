@@ -34,7 +34,10 @@
 		is_revolutionary = no
 		in_default = no
 		NOT = { has_war_with = scope:target_country }
-		NOT = { has_variable = recently_sealed_train }
+		NOT = { has_variable = adv_dip_smuggle_pending }
+		scope:target_country = {
+			NOT = { has_variable = adv_dip_sealed_train_used }
+		}
 		has_diplomatic_relevance = scope:target_country
 		adv_dip_operation_launch_gate = yes
 	}
