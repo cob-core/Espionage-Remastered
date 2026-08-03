@@ -693,3 +693,28 @@ adv_dip_sgui_smuggle_pick = {
 		}
 	}
 }
+
+adv_dip_sgui_cancel_false_flag = {
+	scope = country
+	saved_scopes = { op_target }
+
+	is_shown = {
+		always = yes
+	}
+
+	is_valid = {
+		is_target_in_variable_list = {
+			name = adv_dip_op_false_flag
+			target = scope:op_target
+		}
+	}
+
+	effect = {
+		custom_tooltip = adv_dip_cancel_false_flag_tt
+		if = {
+			limit = { exists = scope:op_target }
+			adv_dip_stop_operation = { ACTION = false_flag TARGET = op_target }
+			remove_variable = false_flag_patsy
+		}
+	}
+}

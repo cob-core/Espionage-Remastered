@@ -278,8 +278,10 @@ adv_dip_dispatch_pending_operation = {
 				value = scope:spy_target_country
 				months = 60
 			}
+			adv_dip_start_operation = { ACTION = false_flag }
 			adv_dip_assign_operative = { ACTION = false_flag }
 			adv_dip_covert_charge = { COST = spy_cost_multiplier_large WEEKS = 120 }
+			trigger_event = { id = adv_dip_event.244 }
 		}
 	}
 	remove_variable = adv_dip_pending_op

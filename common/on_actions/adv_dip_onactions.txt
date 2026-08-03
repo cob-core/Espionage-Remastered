@@ -413,6 +413,32 @@ adv_dip_espionage_monthly = {
 		# Free any operative whose operation has ended by a path that could not
 		# release them directly (annexation, chain resolution, expiry).
 		adv_dip_reconcile_assignments = yes
+		# The false-flag directive's console row follows its variable: backfill
+		# rows for saves that predate the list, clear them when the directive
+		# lapses or is cancelled.
+		if = {
+			limit = { has_variable = false_flag_patsy }
+			var:false_flag_patsy ?= { save_scope_as = adv_dip_patsy_scope }
+			if = {
+				limit = {
+					exists = scope:adv_dip_patsy_scope
+					NOT = {
+						is_target_in_variable_list = {
+							name = adv_dip_op_false_flag
+							target = scope:adv_dip_patsy_scope
+						}
+					}
+				}
+				add_to_variable_list = {
+					name = adv_dip_op_false_flag
+					target = scope:adv_dip_patsy_scope
+				}
+			}
+		}
+		else_if = {
+			limit = { has_variable_list = adv_dip_op_false_flag }
+			clear_variable_list = adv_dip_op_false_flag
+		}
 		# An unanswered smuggle slate expires with its pending marker.
 		if = {
 			limit = {

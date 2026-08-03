@@ -28,7 +28,10 @@
 	possible = {
 		is_revolutionary = no
 		in_default = no
-		NOT = { has_variable = false_flag_patsy }
+		custom_tooltip = {
+			text = adv_dip_one_patsy_tt
+			NOT = { has_variable = false_flag_patsy }
+		}
 		NOT = { has_war_with = scope:target_country }
 		has_diplomatic_relevance = scope:target_country
 		adv_dip_operation_launch_gate = yes

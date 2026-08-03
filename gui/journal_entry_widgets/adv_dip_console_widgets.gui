@@ -1348,5 +1348,65 @@ flowcontainer = {
 				}
 			}
 		}
+		fixedgridbox = {
+			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_false_flag')]"
+			addcolumn = 520
+			addrow = 48
+
+			item = {
+				adv_dip_operation_row = {
+					datacontext = "[Scope.GetCountry]"
+
+					blockoverride "op_label" {
+						textbox = {
+							size = { 260 18 }
+							text = "false_flag_directive_action_name"
+							align = left|nobaseline
+							elide = right
+							using = fontsize_small
+						}
+					}
+
+					blockoverride "agent_portrait" {
+						flowcontainer = {
+							parentanchor = vcenter
+							ignoreinvisible = yes
+							datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_agents_false_flag')]"
+
+							item = {
+								widget = {
+									size = { 36 36 }
+									visible = "[GetScriptedGui('adv_dip_sgui_agent_matches').IsValid(GuiScope.SetRoot(Country.MakeScope).AddScope('agent', Scope.GetCharacter.MakeScope).End)]"
+
+									button = {
+										size = { 36 36 }
+										datacontext = "[Scope.AccessCharacter]"
+										onclick = "[InformationPanelBar.OpenCharacterPanel(Character.AccessSelf)]"
+										onrightclick = "[RightClickMenuManager.ShowForCharacter(Character.AccessSelf)]"
+										tooltip = "ADV_DIP_CONSOLE_AGENT_TT"
+										using = tooltip_ne
+
+										character_portrait_mini = {}
+									}
+								}
+							}
+						}
+					}
+
+					blockoverride "cancel_button" {
+						button_icon_cancel = {
+							parentanchor = vcenter
+							size = { 26 26 }
+							visible = "[GetScriptedGui('adv_dip_sgui_cancel_false_flag').IsShown(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
+							enabled = "[GetScriptedGui('adv_dip_sgui_cancel_false_flag').IsValid(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
+							onclick = "[GetScriptedGui('adv_dip_sgui_cancel_false_flag').Execute(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
+							tooltip = "[GetScriptedGui('adv_dip_sgui_cancel_false_flag').ExecuteTooltip(GuiScope.SetRoot(JournalEntry.GetCountry.MakeScope).AddScope('op_target', Scope.GetCountry.MakeScope).End)]"
+							using = tooltip_ne
+						}
+					}
+				}
+			}
+		}
 	}
 }

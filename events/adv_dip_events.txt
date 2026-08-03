@@ -3724,6 +3724,26 @@ adv_dip_event.225 = {
 	}
 }
 
+# Confirmation for the otherwise-invisible False Flag Directive: the forger
+# is at work, and for five years detections point at the patsy.
+adv_dip_event.244 = {
+	type = country_event
+	placement = root
+	title = adv_dip_event.244.t
+	desc = adv_dip_event.244.d
+	flavor = adv_dip_event.244.f
+	event_image = { video = "unspecific_politicians_arguing" }
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+	duration = 1
+
+	option = {
+		name = adv_dip_event.244.a
+		default_option = yes
+		custom_tooltip = adv_dip_false_flag_active_tt
+	}
+}
+
 # A dismissed rank-and-file operative sells out (lesser echo of the fired
 # Director; fired from the dismissal scripted GUI with the buyer saved).
 adv_dip_event.243 = {
