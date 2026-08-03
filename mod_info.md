@@ -1,7 +1,7 @@
 # Espionage Remastered
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
-## Latest Changelog (v5.0 — Operatives)
+## Latest Changelog (v4.0 — Operatives)
 + ESPIONAGE IS NOW SECRET. Operations no longer create diplomatic pacts and no cost modifiers reveal your spending: everything charges the treasury directly, and targets learn nothing until agents are caught.
 + NEW: Operatives — named agents with tradecraft specialties (cryptographer/saboteur/master of disguise/silver tongue) carry out every operation; each launch asks who goes and requires someone free. Experience tiers (Seasoned 1yr / Veteran 3yr / Master Spy 6yr) raise odds (+15/30/45%), halve capture risk (Veteran+), and grant interrogation immunity (Master).
 + NEW: The Intelligence Console — roster with portraits, live status and wages; Director of Intelligence (promoted from the ranks; firing one angers their interest group and risks a 25% defection); operations with per-row cost and agent portrait; total agency budget; election ballots; sealed-train manifest; false-flag row with cancel.
@@ -17,33 +17,7 @@
 + NEW: Three additional External Security laws — Consular Intelligence, Directorate of State Security, Deniable Assets; the institution tooltip lists per-level action unlocks.
 + Operation upkeep scales with the target economy (0.2%/0.4% of target GDP monthly, floors £600/£1,200).
 + Removed Steal Ship Designs; Shadow War journal entry (formerly The Great Game) pinned by default.
-+ NOTE: v5.0 is not save-compatible with earlier versions; please start a new campaign.
-
-## Previous Changelog (v4.1 — Shadow War)
-+ NEW: Clandestine Arms Pipeline — covertly bankroll a belligerent's war without joining it; run the blockade gauntlet, survive the ultimatum when named, and collect an obligation from the survivor.
-+ NEW: Turned Networks — victims with superior espionage can secretly turn sow-discontent, election and tech-theft networks: the spymaster keeps paying while receiving nothing (or poisoned technology); counterintelligence reviews eventually smell the rot.
-+ NEW: The Great Game — a global intelligence scoreboard; every operation scores, scores decay, and the leading service holds Master of the Great Game.
-+ NEW: The Sealed Train — smuggle a revolutionary into a rival power: massive radicalism surge and possible spark, or a border arrest that rallies their loyalists.
-+ NEW: False Flag Directive — route detections through a patsy of your choice; if the forgery unravels, both powers turn on you.
-+ NEW: Kompromat — active networks compile dossiers on enemy commanders: disgrace them for a year, end their career, or humiliate their government.
-+ NEW: Fund Black Market Slavery — covertly finance the contraband slave trade supplying a slaver power, doubling vanilla's import ceiling, with suppression-squadron interceptions, abolitionist backlash, and a lobby game rule to disable it.
-+ NEW: Dynamic odds — every operation's monthly success odds now scale with the espionage institution differential, fulfilling the long-standing community suggestion.
-+ Fund Piracy removed — superseded by the 1.13 naval piracy mechanics and the new espionage systems.
-+ Fixed a bug as old as the mod: running operations against multiple countries at once could resolve events against the wrong target — each operation now carries its own target through its event chain.
-+ Post-test polish: vanilla lens icons for the new actions, hover effect descriptions, Smuggle Revolutionary rename, journal entries correctly country-scoped, and a full error.log cleanup.
-
-## Previous Changelog (v4.0 — Completion & The Great Wave)
-+ NEW: Naval Intelligence Network — an assassination-style journal-entry operation: infiltrate an admiralty, balance Infiltration against Exposure through flavor events and buttons, then choose your coup: crack their codes, cripple their flagship (The Great Wave), or copy their coastal surveys.
-+ NEW: Blackmailed Concession treaty article — an intelligence dossier (any active espionage pact) compels the target's cooperation; the article collapses if your spy network is rolled up.
-+ Steal Commander completed — true defection via character transfer, with its own event chain, an asset-in-place alternative, and a five-year cooldown. No longer fires the Steal Technology placeholder.
-+ Sabotage Recruitment completed — espionage gate, full localization (it had none), conscript unrest.
-+ Develop Nation completed — sweetened ending: recognition plus relations, an obligation, gratitude and prestige rewards.
-+ Fund Piracy reworked — victim modifiers re-expressed with real 1.13 effects (port throughput, power-projection prestige); with The Great Wave, a new "Arm the corsairs" option pays you a cut of real piracy income.
-+ Sabotage Industry fully removed (redundant with 1.13 naval mechanics).
-+ Fixed two more invalid modifier types (navy offense, icon paths) and added a reference-integrity checker to the release process.
-+ Technology Stealing game rule gains a 'Players Only' setting — humans may steal technology, the AI never will.
-+ Removed the dead Fund Armaments remnants (orphaned events, malformed modifiers); fixed all remaining legacy modifier types, scripted-button AI weights, event AI weights, missing default options, and — significantly — the original treaty articles' misplaced war-goal blocks, whose enforcement was silently dead.
-+ Error.log remediation: modernized every 1.13-invalid token the first real launch exposed — pact auto-cancel logic (dead since the treaty rework) now uses requirement_to_maintain; character role and ruler triggers, income triggers, and journal pinning fields renamed; flagship sabotage re-expressed with real effects; on_secession_start made compatibility-safe.
++ NOTE: v4.0 is not save-compatible with 3.x; please start a new campaign.
 
 ## Previous Changelog (v3.6 — Stabilization)
 + Fixed 32 modifiers that silently never parsed (missing `=`), restoring all assassination-flavor, piracy, development, and stolen-technology modifiers.

@@ -4,93 +4,45 @@
 [img]https://i.imgur.com/zEwgv0g.png[/img]
 
 [h2]Description[/h2]
-This is a revival of koa's 'Espionage' mod. It's been updated to work on the latest version of Victoria 3 and improves upon the already-implemented features.
+This is a revival of koa's 'Espionage' mod, updated for the latest version of Victoria 3 and massively expanded.
 
-It adds espionage actions each with their own strengths and weaknesses. Once you have the right tech you can overthrow governments, fund militias in foreign countries, support nationalists and cause an uprising, steal enemy commanders, infiltrate admiralties, and more, but at a [i]hefty[/i] price. Each action has ongoing maintenance costs and tech requirements and even then there's only a fraction of a chance each month that something actually happens; it takes time and money to establish a spy network! It costs even more to do it on the greatest powers.
+Build a real intelligence service: recruit named operatives, run secret operations across the world, and fight the counterintelligence war when your people are caught. Every operation costs real money, takes time, and can blow up in your face - it takes patience and a full treasury to work against a great power.
 
-[i]The AI can use these actions also, so be careful![/i]
+[i]The AI runs espionage too, and it can run it against you.[/i]
 
-Currently, this mod adds a new law group with five laws, a new institution, fifteen diplomatic actions with their event chains, five treaty articles, a character-based operative system, a custom intelligence console, and three journal-entry operations with progress bars.
-See the full list [url=https://github.com/cob-core/Espionage-Remastered/wiki/Espionage-Remastered:-How%E2%80%90To,-Action-Requirements,-and-Action-Effects]here[/url].
-
-
-[h2]What's New in 5.0 — Operatives[/h2]
+[h2]Features — 4.0 "Operatives"[/h2]
 [list]
-[*][b]Espionage is finally secret.[/b] No public pacts, no tell-tale modifiers, no visible spending: your target learns nothing until your people are caught.
-[*][b]Recruit operatives.[/b] Named agents with tradecraft specialties carry out every operation in person, gain experience from Seasoned to Master Spy, and draw wages tied to your government pay level - underpay them and they may sell everything they know.
-[*][b]The Intelligence Console.[/b] A full command panel: roster with portraits, status and wages, a Director of Intelligence, every operation with its cost and agent, the agency budget, election ballots and the sealed train manifest.
-[*][b]The counterintelligence dance.[/b] Discovered agents can be flipped, paraded, or jailed; prisoners can be interrogated, ransomed back by treaty, disavowed, or poached; fired spymasters defect; walk-ins sell dossiers that roll up entire networks.
-[*][b]Election interference, remade.[/b] Pick any party from the ballot, pump its momentum invisibly every month, and hear the result - or the scandal.
-[*][b]Careers, wages, and a real budget.[/b] Operation upkeep scales with the target's economy and it all comes straight out of the treasury.
-[*][b]Three new External Security laws[/b] give each espionage playthrough its own character.
-[/list]
-[i]5.0 is not save-compatible — please start a new campaign.[/i]
-
-[h2]Previously in 4.1 — Shadow War[/h2]
-[list]
-[*][b]Clandestine Arms Pipeline[/b] — bankroll a belligerent's war without joining it. Run the blockade, survive the ultimatum when you're named, and collect a survivor's debt.
-[*][b]Turned Networks[/b] — out-spy the spies: victims with superior espionage can secretly turn a network and feed its master nothing — or poisoned technology — while the bills keep coming.
-[*][b]The Great Game[/b] — a living scoreboard of the world's intelligence services. Every operation counts; the leading service holds Master of the Great Game.
-[*][b]The Sealed Train[/b] — smuggle a professional revolutionary into a rival power and choose the moment their tinder catches.
-[*][b]False Flag Directive[/b] — frame a patsy for your operations, until the forgery unravels.
-[*][b]Kompromat[/b] — your networks compile dossiers on enemy commanders: disgrace, ruin, or humiliate.
-[*][b]Dynamic odds[/b] — espionage institution investment now decisively drives success and detection odds (the long-requested feature).
-[/list]
-
-[h2]Previously in 4.0 — Completion & The Great Wave[/h2]
-[list]
-[*][b]Naval Intelligence Network[/b] — infiltrate a rival admiralty in a journal-entry operation: balance Infiltration against Exposure through flavour events, fund informants or burn compromised contacts, then choose your coup — crack their naval codes, cripple their flagship (requires The Great Wave), or copy their coastal landing charts. Get caught, and your network is paraded before tribunals.
-[*][b]Steal Ship Designs[/b] — turn a superior navy's own drawing offices against it for cheaper ship construction and faster military tech spread.
-[*][b]Blackmailed Concession[/b] — a new treaty article: while your spies operate inside a country, a compromising dossier makes their diplomats remarkably agreeable. Lose the network and the blackmail collapses.
-[*][b]Steal Commander completed[/b] — their general or admiral [i]actually defects[/i] and joins your roster, or stays in place as an asset feeding you military doctrine. One shot; the network burns either way.
-[*][b]Sabotage Recruitment completed[/b] — starve a rival's conscription offices, now with full text and events.
-[*][b]Develop Nation completed[/b] — patiently modernise a decentralised nation into a recognised power that owes you everything.
-[*][b]Fund Piracy reworked[/b] — real 1.13 effects on the victim; with The Great Wave, arm the corsairs properly and take a cut of their plunder.
-[*]French localisation for every feature, naval event art, and a mountain of bugfixes (see the changelog).
+[*][b]Espionage is genuinely secret.[/b] No pacts, no tell-tale modifiers, no visible spending: operations charge the treasury directly, and a target learns it is being worked on only when your people are caught.
+[*][b]Operatives.[/b] Recruit named agents with tradecraft specialties - cryptographer, saboteur, master of disguise, silver tongue. Every operation asks who goes and cannot run without someone free; the right specialist tilts the odds. Time on assignment builds experience through Seasoned, Veteran and Master Spy: better odds, better escape chances, unbreakable silence under interrogation.
+[*][b]The Intelligence Console.[/b] A command panel inside the Shadow War journal entry: your roster with portraits, status and wages; a Director of Intelligence (fire one and their interest group seethes - one in four sells everything to a hostile power); every operation with its cost and its agent; the agency budget; election ballots and the sealed train manifest.
+[*][b]Spies on the government payroll.[/b] Wages follow your economy, each agent's experience, and the government wage level. Underpay them and idle operatives may defect - and the buyer chooses: pay for the dossier and roll up every operation against them, pay extra to poach the agent outright, or turn the traitor away and hope their employer was not watching.
+[*][b]Counterespionage coups.[/b] Catch a foreign agent and move on them, with odds set by the espionage institution edge: leave them in place as a turned channel, parade them for scandal and infamy, or lock them in a quiet cell.
+[*][b]Prisoners and ransoms.[/b] Captured operatives face yearly interrogation; ransom them home via the Operative Repatriation treaty article, disavow them, or trust their silence.
+[*][b]Fifteen operations[/b], from Sow Discontent and Steal Technology to Assassination: political murder as a journal-entry plot run by your own operative, with capture or execution waiting on failure.
+[*][b]Election Interference[/b] - pick any party on the target's ballot from the console and flood its campaign with momentum, invisibly, every month. Exposure craters their electoral confidence and names you; victory seats a well-disposed government.
+[*][b]The Sealed Train[/b] - choose which exiled revolutionary rides into a rival power, and hear whether the spark catches or the border police were waiting.
+[*][b]Clandestine Arms Pipeline[/b] - fund a belligerent's war without joining it: delivery reports, an interception gauntlet, an ultimatum when you are finally named.
+[*][b]Naval Intelligence Network[/b] - infiltrate an admiralty, balance Infiltration against Exposure, then crack their codes, cripple their flagship (The Great Wave), or copy their landing charts.
+[*][b]Turned networks, false flags and kompromat[/b] - feed a spymaster nothing or poisoned technology, frame a patsy for your operations, and compile dossiers to disgrace enemy commanders - or file them away.
+[*][b]Blackmail and Develop Nation[/b] - a dossier-backed treaty article that compels cooperation, and patient modernisation of a minor power that ends up owing you everything.
+[*][b]Five External Security laws[/b] - from Consular Intelligence to the Directorate of State Security and Deniable Assets - and an espionage institution whose every level unlocks new operations.
+[*][b]The Shadow War[/b] - a global scoreboard of intelligence services; the leader holds Master of the Shadow War.
+[*][b]Dynamic odds[/b] - institution edge, tradecraft and experience all drive monthly success chances.
 [/list]
 [i]The Great Wave is supported but not required — DLC-dependent options simply hide without it.[/i]
+[i]4.0 is not save-compatible with 3.x — please start a new campaign.[/i]
 
 [h2]Compatibility[/h2]
-Currently, this mod should be compatible with almost every other mod. If you find a conflict, let me know and I'll look into it but this mod uses it's own files for every function and doesn't rely on many requirements. For Better Politics, see below.
-This won't be compatible with any overhaul that removes vanilla technologies, as they are requirements for the actions.
-It's best this mod is at the top of the load order, but it most likely doesn't matter.
+This mod uses its own files for every function and should be compatible with almost every other mod; report conflicts and I'll look into them. It won't be compatible with overhauls that remove vanilla technologies, as they gate the actions. Best placed at the top of the load order.
 
 [h3]Better Politics[/h3]
-As Better Politics adds and changes ideologies, it requires a compatibility patch in order to work. 
-[url=https://steamcommunity.com/sharedfiles/filedetails/?edit=true&id=3436435973]Please download the patch here.[/url]
-[b]It must be last in the load order, and this mod must be at the top.[/b]
+Better Politics changes ideologies and needs a compatibility patch:
+[url=https://steamcommunity.com/sharedfiles/filedetails/?edit=true&id=3436435973]download the patch here.[/url]
+[b]The patch must be last in the load order, and this mod at the top.[/b]
 
 [h2]Known Issues[/h2]
 [list]
 [*]Election Interference may not auto-end if the country removes voting.
-[*]AI does not make any specific decision regarding election interference, its choice of party is random.
-[/list]
-
-[h2]Update Progress[/h2]
-[h3]Past Updates[/h3]
-[list]
-[*][strike]Add an institution for espionage, with greater levels giving access to greater actions.[/strike]  [b]ADDED[/b]
-[*][strike]Assassinations, with journal entries and progress bars. [/strike]  [b]ADDED[/b]
-[*][strike]Regime Change, with journal entries and progress bars.[/strike] [b]ADDED AS ELECTION INTERFERENCE, MAY EXPAND IN FUTURE[/b]
-[*][strike]Military Attache.[/strike]   [b]ADDED[/b]
-[*][strike]Cultural Exchange.[/strike]   [b]ADDED[/b]
-[*][strike]Support Slaves.[/strike]   [b]ADDED[/b]
-[*][strike]Steal technology.[/strike] [b]ADDED[/b]
-[*][strike]Steal Commanders.[/strike] [b]ADDED IN 4.0[/b]
-[*][strike]Sabotage Recruitment.[/strike] [b]ADDED IN 4.0[/b]
-[*][strike]Develop Nation.[/strike] [b]ADDED IN 4.0[/b]
-[*][strike]Naval Intelligence Network.[/strike] [b]ADDED IN 4.0[/b]
-[*][strike]Steal Ship Designs.[/strike] [b]ADDED IN 4.0[/b]
-[*][strike]Blackmail via treaty articles.[/strike] [b]ADDED IN 4.0[/b]
-[*][strike]Espionage level affects action outcomes.[/strike] [b]ADDED IN 4.1[/b]
-[/list]
-
-[h3]Future Updates[/h3]
-[list]
-[*]Install loyal regime: +80 opinion and an illegitimate government for a large cost.
-[*]Make diplomatic actions invisible to everyone but the owner.
-[*]Remove power bloc cohesion.
-[*]Law lobbying: Push for a law to be implemented for a cost.
 [/list]
 
 [h2]Localisation[/h2]
