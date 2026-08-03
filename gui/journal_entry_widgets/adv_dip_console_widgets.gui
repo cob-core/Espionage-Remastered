@@ -605,6 +605,7 @@ flowcontainer = {
 	### ACTIVE OPERATIONS
 	flowcontainer = {
 		direction = vertical
+		ignoreinvisible = yes
 
 		background = {
 			using = dropdown_background
@@ -639,7 +640,7 @@ flowcontainer = {
 		}
 
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sow_discontent'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sow_discontent')]"
 			addcolumn = 520
 			addrow = 48
@@ -710,7 +711,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_nationalists'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_nationalists')]"
 			addcolumn = 520
 			addrow = 48
@@ -781,7 +782,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_agitate_for_liberty'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_agitate_for_liberty')]"
 			addcolumn = 520
 			addrow = 48
@@ -852,7 +853,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_technology'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_technology')]"
 			addcolumn = 520
 			addrow = 48
@@ -923,7 +924,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sabotage_recruitment'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_sabotage_recruitment')]"
 			addcolumn = 520
 			addrow = 48
@@ -994,7 +995,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_election_interference'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_election_interference')]"
 			addcolumn = 520
 			addrow = 48
@@ -1065,7 +1066,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_commander'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_steal_commander')]"
 			addcolumn = 520
 			addrow = 48
@@ -1136,7 +1137,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_clandestine_arms_pipeline'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_clandestine_arms_pipeline')]"
 			addcolumn = 520
 			addrow = 48
@@ -1207,7 +1208,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_fund_black_market_slavery'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_fund_black_market_slavery')]"
 			addcolumn = 520
 			addrow = 48
@@ -1278,7 +1279,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_slaves'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_support_slaves')]"
 			addcolumn = 520
 			addrow = 48
@@ -1349,7 +1350,7 @@ flowcontainer = {
 			}
 		}
 		fixedgridbox = {
-			visible = "[Not(GetVariableSystem.Exists('adv_dip_ops_toggle'))]"
+			visible = "[And( Not(GetVariableSystem.Exists('adv_dip_ops_toggle')), Not(IsDataModelEmpty(JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_false_flag'))) )]"
 			datamodel = "[JournalEntry.GetCountry.MakeScope.GetList('adv_dip_op_false_flag')]"
 			addcolumn = 520
 			addrow = 48
@@ -1365,6 +1366,17 @@ flowcontainer = {
 							align = left|nobaseline
 							elide = right
 							using = fontsize_small
+						}
+					}
+
+					blockoverride "op_cost" {
+						textbox = {
+							size = { 80 20 }
+							raw_text = "#v £[Country.MakeScope.ScriptValue('adv_dip_upkeep_small_display')|0]/mo#!"
+							align = right|nobaseline
+							using = fontsize_small
+							tooltip = "ADV_DIP_CONSOLE_OP_COST_TT"
+							using = tooltip_ne
 						}
 					}
 

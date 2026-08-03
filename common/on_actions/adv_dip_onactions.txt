@@ -434,6 +434,15 @@ adv_dip_espionage_monthly = {
 					target = scope:adv_dip_patsy_scope
 				}
 			}
+			# Maintaining the forged trail costs like a small network.
+			if = {
+				limit = { exists = scope:adv_dip_patsy_scope }
+				scope:adv_dip_patsy_scope = { save_scope_as = spy_target_country }
+				change_variable = {
+					name = adv_dip_upkeep_total
+					add = adv_dip_upkeep_small
+				}
+			}
 		}
 		else_if = {
 			limit = { has_variable_list = adv_dip_op_false_flag }
