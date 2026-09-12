@@ -425,6 +425,39 @@ adv_dip_espionage_monthly = {
 				}
 			}
 		}
+		# Kompromat fallback: .181 (queued 365 days) normally frees the held
+		# commander; if that event is ever lost, release them here once the
+		# 12-month hold variable expires (or they stopped existing).
+		if = {
+			limit = { has_variable_list = adv_dip_kompromat_holds }
+			every_in_list = {
+				variable = adv_dip_kompromat_holds
+				limit = {
+					OR = {
+						NOT = { has_variable = adv_dip_kompromat_hold }
+						is_character_alive = no
+					}
+				}
+				add_to_local_variable_list = {
+					name = adv_dip_kompromat_release
+					target = this
+				}
+			}
+			every_in_local_list = {
+				variable = adv_dip_kompromat_release
+				save_scope_as = adv_dip_freed_commander
+				if = {
+					limit = { is_character_alive = yes }
+					set_character_busy_and_immortal = no
+				}
+				root = {
+					remove_list_variable = {
+						name = adv_dip_kompromat_holds
+						target = scope:adv_dip_freed_commander
+					}
+				}
+			}
+		}
 		# Free any operative whose operation has ended by a path that could not
 		# release them directly (annexation, chain resolution, expiry).
 		adv_dip_reconcile_assignments = yes

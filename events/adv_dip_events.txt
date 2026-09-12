@@ -3067,6 +3067,16 @@ adv_dip_event.180 = {
 		}
 		scope:kompromat_target = {
 			set_character_busy_and_immortal = yes
+			# Source of truth for the hold: if the queued .181 is ever lost,
+			# the monthly reconciler frees the commander when this expires.
+			set_variable = {
+				name = adv_dip_kompromat_hold
+				months = 12
+			}
+		}
+		add_to_variable_list = {
+			name = adv_dip_kompromat_holds
+			target = scope:kompromat_target
 		}
 		trigger_event = {
 			id = adv_dip_event.181
@@ -3156,6 +3166,11 @@ adv_dip_event.181 = {
 		default_option = yes
 		scope:kompromat_target = {
 			set_character_busy_and_immortal = no
+			remove_variable = adv_dip_kompromat_hold
+		}
+		remove_list_variable = {
+			name = adv_dip_kompromat_holds
+			target = scope:kompromat_target
 		}
 	}
 }
