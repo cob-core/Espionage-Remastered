@@ -1,5 +1,20 @@
 [h1]Changelog[/h1]
 
+[h2]4.1: Loose Ends[/h2]
+[list]
+[*][b]Operative fates are now reported.[/b] You are told when one of your agents is captured (and by whom, when known), executed, or slips a counter-intelligence net and makes it home.
+[*][b]Assassination victims notice.[/b] The target country now learns that a death was an assassination, or that a plot against its leader was foiled - the sponsor stays unnamed.
+[*][b]Steal Technology[/b] now requires the target to lead you in technologies, and says so. Reaching parity mid-operation recalls the agent with a notification instead of ending silently.
+[*][b]Director of Intelligence[/b] bonus is permanent while one is seated - no more monthly "modifier gained" spam or countdown.
+[*][b]External Security laws[/b] are gated on later technologies (Central Archives, Identification Documents, Political Agitation) instead of all being available in 1836. Already-enacted laws are kept.
+[*][b]AI election interference[/b] backs an opposition party rather than any party at random.
+[*]Clandestine Arms Pipeline: the defiance payoff is judged when the pipeline winds down, and only if the recipient came through the war intact.
+[*]Kompromat: a disgraced commander is always released after twelve months, even if the scheduled release is lost.
+[*]Naval Intelligence Network has its own lens icon (it reused Sow Discontent's).
+[*]Removed a diplomatic catalyst that could no longer fire.
+[*]Save-compatible with 4.0.
+[/list]
+
 [h2]4.0: Operatives[/h2]
 [list]
 [*][b]Espionage is now genuinely secret.[/b] Operations no longer create diplomatic pacts and no cost modifiers betray your budget: nothing appears in any diplomacy panel, spending is drawn straight from the treasury, and a target learns it is being worked on only when your people are caught.

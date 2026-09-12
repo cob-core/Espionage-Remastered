@@ -1,7 +1,20 @@
 # Espionage Remastered
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
-## Latest Changelog (v4.0 — Operatives)
+## Latest Changelog (v4.1 — Loose Ends)
++ Owner-side notifications for every operative fate: captured (captor named when known), executed, or escaped home after a failed counter-intelligence move.
++ Target-side assassination notifications: a successful plot is recognised as murder, a foiled plot is announced — the sponsor stays unnamed.
++ Steal Technology requires the target to lead in total technologies (visible tooltip); reaching parity mid-operation recalls the agent with a "Nothing Left to Steal" event instead of ending silently.
++ Director of Intelligence bonus is permanent while seated — no monthly re-application or countdown.
++ External Security laws re-laddered: Consular Intelligence (International Relations), Spy Agency (Central Archives), Directorate of State Security (Identification Documents), Deniable Assets (Political Agitation). Enacted laws are kept.
++ AI election interference backs an opposition party (falls back to any party only when the whole slate is in government).
++ Clandestine Arms Pipeline defiance payoff is judged at wind-down, only if the recipient survived the war intact.
++ Kompromat: disgraced commanders are released after twelve months even if the scheduled release event is lost.
++ Naval Intelligence Network lens icon replaced (was a copy of Sow Discontent's).
++ Removed the pact-formed diplomatic catalyst, unreachable since pacts were removed.
++ Save-compatible with 4.0.
+
+## Previous Changelog (v4.0 — Operatives)
 + ESPIONAGE IS NOW SECRET. Operations no longer create diplomatic pacts and no cost modifiers reveal your spending: everything charges the treasury directly, and targets learn nothing until agents are caught.
 + NEW: Operatives — named agents with tradecraft specialties (cryptographer/saboteur/master of disguise/silver tongue) carry out every operation; each launch asks who goes and requires someone free. Experience tiers (Seasoned 1yr / Veteran 3yr / Master Spy 6yr) raise odds (+15/30/45%), halve capture risk (Veteran+), and grant interrogation immunity (Master).
 + NEW: The Intelligence Console — roster with portraits, live status and wages; Director of Intelligence (promoted from the ranks; firing one angers their interest group and risks a 25% defection); operations with per-row cost and agent portrait; total agency budget; election ballots; sealed-train manifest; false-flag row with cancel.
@@ -19,7 +32,7 @@
 + Removed Steal Ship Designs; Shadow War journal entry (formerly The Great Game) pinned by default.
 + NOTE: v4.0 is not save-compatible with 3.x; please start a new campaign.
 
-## Previous Changelog (v3.6 — Stabilization)
+## Older Changelog (v3.6 — Stabilization)
 + Fixed 32 modifiers that silently never parsed (missing `=`), restoring all assassination-flavor, piracy, development, and stolen-technology modifiers.
 + Fixed the espionage cost game rule never applying — its options were also silently unparsed. Low/Medium/High cost settings now work for the first time.
 + Fixed Develop Nation: the journal entry was hijacked by a misnamed duplicate, read the wrong progress bar, and lost its target country between events. It now has a proper JE target and completes/fails correctly.
@@ -35,8 +48,7 @@
 + Metadata now declares a stable mod id and supported game version 1.13.*.
 
 ## Known Issues & Bugs
-+ Election Interference may not auto-end if the country removes voting.
-+ AI does not make any specific decision regarding election interference, its choice of party is random.  
++ None currently tracked. Report bugs on the Workshop page or GitHub.
 
 ## Changes in Victoria 3 1.9+
 + Some actions have now been converted into treaty articles.
@@ -44,15 +56,11 @@
 
 ## To-Do 
 ### Current Goals
-+ Incorporate diplomatic catalysts.
-+ Write assassination success/failure to notify the target country.
 + Flesh out Agitate for Liberty with journal entries and buttons.
 + Add liberty desire to Agitate for Liberty.
 + Flesh out Sow Discontent.
-+ Election Interference auto-end when voting is removed; targeted AI party choice.
 + Add loading screen tips.
-+ Real lens icons for Naval Intelligence and Steal Ship Designs (placeholders reuse existing art).
-+ In-game verification of the ep2-gated paths (flagship sabotage, corsair patronage) — DLC now installed, pending a play-test.
++ In-game verification of the flagship sabotage path (The Great Wave) — DLC installed, pending a play-test.
 
 ### Long-Term Goals
 + Create a custom GUI.
@@ -60,7 +68,7 @@
 + Merge 'New Frontiers: A Colonization Helper' into the mod.
 
 ### Community Suggestions
-+ ~~Level of Espionage institution affects outcome of diplomatic actions.~~ **Shipped in v4.1 as dynamic odds.**
++ ~~Level of Espionage institution affects outcome of diplomatic actions.~~ **Shipped in v4.0 as dynamic odds.**
 
 ## Contributers
 > cob

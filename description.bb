@@ -10,7 +10,7 @@ Build a real intelligence service: recruit named operatives, run secret operatio
 
 [i]The AI runs espionage too, and it can run it against you.[/i]
 
-[h2]Features: 4.0 "Operatives"[/h2]
+[h2]Features (4.1)[/h2]
 [list]
 [*][b]Espionage is genuinely secret.[/b] No pacts, no tell-tale modifiers, no visible spending: operations charge the treasury directly, and a target learns it is being worked on only when your people are caught.
 [*][b]Operatives.[/b] Recruit named agents with tradecraft specialties - cryptographer, saboteur, master of disguise, silver tongue. Every operation asks who goes and cannot run without someone free; the right specialist tilts the odds. Time on assignment builds experience through Seasoned, Veteran and Master Spy: better odds, better escape chances, unbreakable silence under interrogation.
@@ -30,7 +30,7 @@ Build a real intelligence service: recruit named operatives, run secret operatio
 [*][b]Dynamic odds[/b] - institution edge, tradecraft and experience all drive monthly success chances.
 [/list]
 [i]The Great Wave is supported but not required — DLC-dependent options simply hide without it.[/i]
-[i]4.0 is not save-compatible with 3.x — please start a new campaign.[/i]
+[i]4.x is not save-compatible with 3.x — please start a new campaign. 4.1 is save-compatible with 4.0.[/i]
 
 [h2]Compatibility[/h2]
 This mod uses its own files for every function and should be compatible with almost every other mod; report conflicts and I'll look into them. It won't be compatible with overhauls that remove vanilla technologies, as they gate the actions. Best placed at the top of the load order.
