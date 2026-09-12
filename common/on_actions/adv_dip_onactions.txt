@@ -1286,6 +1286,25 @@ adv_dip_espionage_monthly = {
 						scope:spy_target_country = { is_at_war = no }
 						}
 					}
+					# Defiance payoff (.152.b): judged here at wind-down, not at
+					# decision time — only if the recipient survived intact.
+					if = {
+						limit = {
+							root = { var:pipeline_defiance_var ?= scope:spy_target_country }
+							scope:spy_target_country = {
+								is_at_war = no
+								NOT = { is_country_type = decentralized }
+							}
+							NOT = { root = { has_war_with = scope:spy_target_country } }
+						}
+						root = { trigger_event = { id = adv_dip_event.153 } }
+					}
+					if = {
+						limit = {
+							root = { var:pipeline_defiance_var ?= scope:spy_target_country }
+						}
+						root = { remove_variable = pipeline_defiance_var }
+					}
 					add_to_local_variable_list = {
 						name = adv_dip_stop_clandestine_arms_pipeline
 						target = scope:spy_target_country

@@ -2609,6 +2609,10 @@ adv_dip_event.152 = {
 				months = 12
 			}
 		}
+		if = {
+			limit = { var:pipeline_defiance_var ?= scope:spy_target_country }
+			remove_variable = pipeline_defiance_var
+		}
 		adv_dip_stop_operation = { ACTION = clandestine_arms_pipeline TARGET = spy_target_country }
 		ai_chance = {
 			base = 25
@@ -2620,16 +2624,12 @@ adv_dip_event.152 = {
 			name = pipeline_infamy_modifier
 			months = 24
 		}
-		# Defiance keeps the pipeline open: if the recipient wins their war we
-		# collect the payoff (.153) when the operation later winds down.
-		if = {
-			limit = {
-				scope:spy_target_country ?= { is_at_war = no }
-			}
-			trigger_event = {
-				id = adv_dip_event.153
-				days = 30
-			}
+		# Defiance keeps the pipeline open: the payoff (.153) is collected by
+		# the monthly loop at wind-down, and only if the recipient came
+		# through their war intact.
+		set_variable = {
+			name = pipeline_defiance_var
+			value = scope:spy_target_country
 		}
 		change_relations = {
 			country = scope:pipeline_enemy
