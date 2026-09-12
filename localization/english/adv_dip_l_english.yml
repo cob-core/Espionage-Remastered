@@ -351,6 +351,14 @@ adv_dip_assassination_event.199.t: "No Time to Die"
 adv_dip_assassination_event.199.d: "Our foreign agents were outmaneuvered and [SCOPE.sCharacter('assassination_target').GetFullName] got away. There were attempts but unfortunately none successful. We can't risk another attempt."
 adv_dip_assassination_event.199.f: "Rain lashed against the windows of the Foreign Ministry as the coded message was decrypted. The Minister's face darkened with each line. \n\n"Compromised," he finally said, sliding the paper across to his deputy. "The target was warned. Our agents scattered." \n\nYears of planning, millions in resources, countless risks taken—all for nothing. The target would now be doubly guarded, the window of opportunity slammed shut. \n\n"Your orders, sir?" \n\nThe Minister sighed, suddenly looking much older than his years. "Recall everyone. Destroy the evidence. This operation never existed." He stared into the middle distance. "There will be other opportunities. There always are.""
 adv_dip_assassination_event.199.a: "Not good enough."
+adv_dip_assassination_event.196.t: "Murder Most Foul"
+adv_dip_assassination_event.196.d: "[SCOPE.sCharacter('assassination_target').GetFullName] is dead - and the circumstances admit no innocent explanation. This was assassination. Who ordered it, no one can yet say."
+adv_dip_assassination_event.196.f: "The physicians' report was unambiguous, and the ministers who read it did so in silence. The death had been arranged - the method precise, the timing exact, the perpetrators gone before the alarm was raised. \n\nBy nightfall the capital knew, and grief was already curdling into anger. Somewhere, a foreign hand had reached across our border and taken a life at the summit of the state. \n\nThe only question worth asking could not yet be answered: whose hand?"
+adv_dip_assassination_event.196.a: "Find who did this."
+adv_dip_assassination_event.197.t: "A Plot Uncovered"
+adv_dip_assassination_event.197.d: "Our services have broken up a plot against the life of [SCOPE.sCharacter('assassination_target').GetFullName]. The assassins were professionals - funded, trained, and directed from abroad."
+adv_dip_assassination_event.197.f: "The arrests were made an hour before dawn: a safehouse, a cache of arms, a cipher no amateur could have carried. Under the lamplight the prisoners said nothing, and their silence said a great deal. \n\nMen like these do not act on grievance. They are paid, provisioned, and pointed - and the pointing is done from an embassy or a ministry far from here. \n\nThe intended victim was informed at breakfast, and took the news with better composure than the cabinet did."
+adv_dip_assassination_event.197.a: "Double the guard."
 
 # # # # # ASSASSINATION JOURNAL # # # # #
 

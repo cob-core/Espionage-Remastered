@@ -727,7 +727,12 @@ adv_dip_assassination_event.198 = { #Successful
 		default_option = yes
 		scope:assassination_leader = {
 			set_character_busy_and_immortal = no
-		} 
+		}
+		# Fired before the kill so the victim's scope is alive when the
+		# notification's trigger and loc are evaluated.
+		scope:spy_target_country = {
+			trigger_event = { id = adv_dip_assassination_event.196 }
+		}
 		scope:assassination_target = {
 			kill_character = yes
 		}
@@ -747,6 +752,39 @@ adv_dip_assassination_event.198 = { #Successful
 		}
 		remove_variable = active_assassination
 		remove_assassination_events_effect = yes
+	}
+}
+
+# Target-side notification: the murder is recognised as an assassination,
+# explaining the recent_assassination_modifier — the sponsor stays unnamed.
+adv_dip_assassination_event.196 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_assassination_event.196.t
+	desc = adv_dip_assassination_event.196.d
+	flavor = adv_dip_assassination_event.196.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 3
+
+	trigger = {
+		exists = scope:assassination_target
+	}
+
+	option = {
+		name = adv_dip_assassination_event.196.a
+		default_option = yes
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 
@@ -828,8 +866,42 @@ adv_dip_assassination_event.199 = { #Failed
 				name = recent_assassination_modifier
 				months = 13
 			}
+			trigger_event = { id = adv_dip_assassination_event.197 }
 		}
 		remove_assassination_events_effect = yes
+	}
+}
+
+# Target-side notification: the foiled plot is announced to its intended
+# victim's country — foreign hands suspected, none named.
+adv_dip_assassination_event.197 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_assassination_event.197.t
+	desc = adv_dip_assassination_event.197.d
+	flavor = adv_dip_assassination_event.197.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 3
+
+	trigger = {
+		exists = scope:assassination_target
+	}
+
+	option = {
+		name = adv_dip_assassination_event.197.a
+		default_option = yes
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 
