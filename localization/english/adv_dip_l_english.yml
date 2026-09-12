@@ -125,6 +125,11 @@ adv_dip_event.92.d: "Our security services have uncovered evidence of theft of o
 adv_dip_event.92.f: "The Chief of Security's report made for grim reading. Foreign agents had thoroughly infiltrated our research institutions, making off with valuable technological data. \n\nBlueprints had been copied, research journals photographed, and in some cases, key personnel had been bribed to share sensitive information. The breach appeared systematic and well-organized, bearing all the hallmarks of state-sponsored espionage. \n\nMost concerning was the targeted nature of the theft—the spies knew exactly what they were looking for, suggesting a serious intelligence leak at the highest levels."
 adv_dip_event.92.a: "Increase security immediately!"
 adv_dip_event.92.b: "I'm sure it's nothing."
+adv_dip_event.93.t: "Nothing Left to Steal"
+adv_dip_event.93.d: "Our sciences now rival those of [SCOPE.sCountry('spy_target_country').GetName]. With nothing left worth taking, the operation has been wound down and our agent recalled home."
+adv_dip_event.93.f: "The station chief's last dispatch read less like an intelligence report than a confession. 'There is nothing here we do not already possess,' it said. 'Their laboratories labor toward discoveries our academies published a season ago; their engineers copy what ours have already discarded.' \n\nThe Minister set the report down and allowed himself a rare smile. The great rival, once so far ahead, was now merely a reflection. \n\nThe recall order was signed before lunch."
+adv_dip_event.93.a: "Then our agent's work there is done."
+adv_dip_steal_tech_lead_tt: "The target must have researched more technologies than we have."
 
 
 

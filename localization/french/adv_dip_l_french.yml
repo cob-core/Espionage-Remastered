@@ -125,6 +125,11 @@ adv_dip_event.92.d: "Nos services de sécurité ont mis au jour des preuves du v
 adv_dip_event.92.f: "Le rapport du chef de la Sûreté était d'une lecture sinistre. Des agents étrangers avaient profondément infiltré nos institutions de recherche et fait main basse sur de précieuses données technologiques. \n\nDes plans avaient été copiés, des journaux de recherche photographiés et, dans certains cas, du personnel clef soudoyé pour livrer des informations sensibles. La brèche paraissait systématique et bien organisée, portant toutes les marques d'un espionnage d'État. \n\nLe plus préoccupant était le caractère ciblé du vol — les espions savaient exactement ce qu'ils cherchaient, ce qui suggère une grave fuite au plus haut niveau."
 adv_dip_event.92.a: "Renforcez la sécurité immédiatement !"
 adv_dip_event.92.b: "Ce n'est rien, j'en suis sûr."
+adv_dip_event.93.t: "Plus rien à voler"
+adv_dip_event.93.d: "Nos sciences rivalisent désormais avec celles de [SCOPE.sCountry('spy_target_country').GetName]. N'ayant plus rien à y prendre, l'opération a été démantelée et notre agent rappelé au pays."
+adv_dip_event.93.f: "La dernière dépêche du chef de poste tenait moins du rapport de renseignement que de l'aveu. « Il n'y a rien ici que nous ne possédions déjà », écrivait-il. « Leurs laboratoires peinent vers des découvertes que nos académies ont publiées il y a une saison ; leurs ingénieurs copient ce que les nôtres ont déjà écarté. » \n\nLe ministre reposa le rapport et s'autorisa un rare sourire. Le grand rival, jadis si loin devant, n'était plus qu'un reflet. \n\nL'ordre de rappel fut signé avant le déjeuner."
+adv_dip_event.93.a: "Alors le travail de notre agent là-bas est terminé."
+adv_dip_steal_tech_lead_tt: "La cible doit avoir recherché plus de technologies que nous."
 
 
 

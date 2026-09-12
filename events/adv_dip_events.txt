@@ -1577,6 +1577,51 @@ adv_dip_event.92 = {
 	}
 }
 
+# Tech parity reached: the steal-technology operation has nothing left to take.
+# The monthly loop stops the operation and frees the agent before firing this;
+# the event only explains the recall.
+adv_dip_event.93 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.93.t
+	desc = adv_dip_event.93.d
+	flavor = adv_dip_event.93.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 1
+
+	trigger = {
+	}
+
+	immediate = {
+		# Console-fire fallback; the monthly loop saves the scope in normal flow
+		if = {
+			limit = { NOT = { exists = scope:spy_target_country } }
+			random_country = {
+				limit = { NOT = { this = root } }
+				save_scope_as = spy_target_country
+			}
+		}
+	}
+
+	option = {
+		name = adv_dip_event.93.a
+		default_option = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
 adv_dip_event.110 = {
 	type = country_event
 	placement = root

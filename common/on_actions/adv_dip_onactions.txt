@@ -925,7 +925,6 @@ adv_dip_espionage_monthly = {
 						OR = {
 							scope:spy_target_country = { is_country_type = decentralized }
 						root = { has_war_with = scope:spy_target_country }
-						scope:spy_target_country = { NOT = { techs_researched > root.techs_researched } }
 						}
 					}
 					add_to_local_variable_list = {
@@ -981,6 +980,18 @@ adv_dip_espionage_monthly = {
 						name = adv_dip_stop_sabotage_recruitment
 						target = scope:spy_target_country
 					}
+				}
+				# Tech parity: nothing left to steal — recall the agent and tell
+				# the initiator why, instead of winding down silently.
+				else_if = {
+					limit = {
+						scope:spy_target_country = { NOT = { techs_researched > root.techs_researched } }
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_steal_technology
+						target = scope:spy_target_country
+					}
+					root = { trigger_event = { id = adv_dip_event.93 } }
 				}
 				else = {
 					root = {

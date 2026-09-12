@@ -52,6 +52,10 @@
         in_default = no
         NOT = { has_war_with = scope:target_country }
         has_diplomatic_relevance = scope:target_country
+        custom_tooltip = {
+            text = adv_dip_steal_tech_lead_tt
+            NOT = { techs_researched >= scope:target_country.techs_researched }
+        }
         adv_dip_operation_launch_gate = yes
     }
     
