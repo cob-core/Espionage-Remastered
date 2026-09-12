@@ -130,6 +130,20 @@ adv_dip_event.93.d: "Nos sciences rivalisent désormais avec celles de [SCOPE.sC
 adv_dip_event.93.f: "La dernière dépêche du chef de poste tenait moins du rapport de renseignement que de l'aveu. « Il n'y a rien ici que nous ne possédions déjà », écrivait-il. « Leurs laboratoires peinent vers des découvertes que nos académies ont publiées il y a une saison ; leurs ingénieurs copient ce que les nôtres ont déjà écarté. » \n\nLe ministre reposa le rapport et s'autorisa un rare sourire. Le grand rival, jadis si loin devant, n'était plus qu'un reflet. \n\nL'ordre de rappel fut signé avant le déjeuner."
 adv_dip_event.93.a: "Alors le travail de notre agent là-bas est terminé."
 adv_dip_steal_tech_lead_tt: "La cible doit avoir recherché plus de technologies que nous."
+adv_dip_event.245.t: "Un agent aux mains de l'ennemi"
+adv_dip_event.245.d: "[SCOPE.sCharacter('adv_dip_captured_agent').GetFullName] est aux mains de [SCOPE.sCountry('adv_dip_captor_country').GetName]. À moins de négocier un rapatriement, des années de cellule étrangère se profilent - et chacune de ces années porte le risque de révélations."
+adv_dip_event.245.d2: "[SCOPE.sCharacter('adv_dip_captured_agent').GetFullName] a été capturé. Qui détient notre agent - et ce qu'on pourrait lui faire dire - reste inconnu."
+adv_dip_event.245.f: "Le signal n'est jamais venu. Deux jours après l'échéance, la colonne codée de la station dans le journal du soir restait vide, et à la fin de la semaine les lettres de la planque revenaient non ouvertes. \n\nL'officier de permanence inscrivit au registre les seuls mots que la procédure autorisait : contact perdu, présumé capturé. Quelque part derrière une frontière, dans une cellule sans nom, l'un des nôtres comptait les jours. \n\nLa seule question qui comptait ne pouvait trouver réponse ici : combien de temps le silence tiendrait-il ?"
+adv_dip_event.245.a: "Personne ne reste derrière. Un jour."
+adv_dip_event.246.t: "Une étoile au mur"
+adv_dip_event.246.d: "[SCOPE.sCharacter('adv_dip_executed_agent').GetFullName] a été exécuté par [SCOPE.sCountry('adv_dip_captor_country').GetName]. Il n'y eut pas de procès digne de ce nom, et il n'y aura pas de corps à rapatrier."
+adv_dip_event.246.d2: "[SCOPE.sCharacter('adv_dip_executed_agent').GetFullName] a été exécuté. La dépêche qui l'a confirmé ne disait pas où, et n'en avait pas besoin."
+adv_dip_event.246.f: "La confirmation arriva de troisième main, comme toujours pour ce genre de nouvelles : un commis consulaire, un journal étranger, quatre lignes au bas d'une colonne. Un espion, disait-elle. Justice, disait-elle. \n\nAu registre, un dossier fut clos et rangé dans une armoire qu'on ne rouvre jamais. Aucune décoration ne peut être publiée ; aucune famille ne peut apprendre plus que rien. \n\nLe service se souvient malgré tout. Il s'est toujours souvenu."
+adv_dip_event.246.a: "Les risques étaient connus. De nous tous."
+adv_dip_event.247.t: "Rentré avant minuit"
+adv_dip_event.247.d: "Le contre-espionnage de [SCOPE.sCountry('adv_dip_flip_victim').GetName] a tenté de prendre [SCOPE.sCharacter('adv_dip_escaped_agent').GetFullName] - et a échoué. Notre agent a passé la frontière avant la battue et reprend sa place, mais le réseau est perdu."
+adv_dip_event.247.f: "On frappa à la porte de la planque à quatre heures du matin, et la pièce était déjà vide. Un poêle froid, un carnet de chiffrement brûlé, puis une semaine de frontières franchies - et une silhouette fatiguée entra dans la station en demandant, sans hausser le ton, si son bureau était encore libre. \n\nLe réseau n'est que cendres - chaque contact brûlé en chemin, comme la procédure l'exige. Mais la procédure a aussi une colonne pour le personnel revenu vivant, et les inscriptions y sont plus rares et plus précieuses qu'on n'aime l'admettre."
+adv_dip_event.247.a: "Bon retour parmi nous."
 
 
 

@@ -130,6 +130,20 @@ adv_dip_event.93.d: "Our sciences now rival those of [SCOPE.sCountry('spy_target
 adv_dip_event.93.f: "The station chief's last dispatch read less like an intelligence report than a confession. 'There is nothing here we do not already possess,' it said. 'Their laboratories labor toward discoveries our academies published a season ago; their engineers copy what ours have already discarded.' \n\nThe Minister set the report down and allowed himself a rare smile. The great rival, once so far ahead, was now merely a reflection. \n\nThe recall order was signed before lunch."
 adv_dip_event.93.a: "Then our agent's work there is done."
 adv_dip_steal_tech_lead_tt: "The target must have researched more technologies than we have."
+adv_dip_event.245.t: "An Operative in Enemy Hands"
+adv_dip_event.245.d: "[SCOPE.sCharacter('adv_dip_captured_agent').GetFullName] has been captured by [SCOPE.sCountry('adv_dip_captor_country').GetName]. Unless a repatriation is negotiated, years in a foreign cell lie ahead - and every one of those years carries the risk that they talk."
+adv_dip_event.245.d2: "[SCOPE.sCharacter('adv_dip_captured_agent').GetFullName] has been captured. Who holds them - and what they might be made to say - is not yet known."
+adv_dip_event.245.f: "The signal never came. Two days past the deadline, the station's coded column in the evening paper stayed blank, and by the end of the week the safehouse letters were returning unopened. \n\nThe duty officer entered the only words procedure allowed into the ledger: contact lost, presumed taken. Somewhere behind a border, in a cell without a name, one of our own was counting days. \n\nThe question that mattered could not be answered from here: how long would they stay silent?"
+adv_dip_event.245.a: "No one gets left behind. Eventually."
+adv_dip_event.246.t: "A Star on the Wall"
+adv_dip_event.246.d: "[SCOPE.sCharacter('adv_dip_executed_agent').GetFullName] has been executed by [SCOPE.sCountry('adv_dip_captor_country').GetName]. There was no trial worth the name, and there will be no body to bring home."
+adv_dip_event.246.d2: "[SCOPE.sCharacter('adv_dip_executed_agent').GetFullName] has been executed. The dispatch that confirmed it did not say where, and it did not need to."
+adv_dip_event.246.f: "The confirmation came third-hand, the way such news always does: a consular clerk, a foreign newspaper, four lines at the bottom of a column. A spy, it said. Justice, it said. \n\nIn the registry a file was closed and moved to a cabinet that is never reopened. No decoration can be gazetted; no family can be told more than nothing. \n\nThe service remembers anyway. It always has."
+adv_dip_event.246.a: "They knew the risks. So do we all."
+adv_dip_event.247.t: "Home by Midnight"
+adv_dip_event.247.d: "[SCOPE.sCountry('adv_dip_flip_victim').GetAdjective] counter-intelligence moved against [SCOPE.sCharacter('adv_dip_escaped_agent').GetFullName] - and missed. Our agent crossed the border ahead of the manhunt and is back in the roster, though the network they ran is gone."
+adv_dip_event.247.f: "The knock on the safehouse door came at four in the morning, and by then the room was already empty. A cold stove, a burned cipher pad, and a week of border crossings later, a tired figure walked into the station and asked, mildly, whether anyone had kept their desk. \n\nThe network is ash - every contact burned on the way out, as procedure demands. But procedure also has a column for personnel returned alive, and entries in that column are rarer and more valuable than any of us like to admit."
+adv_dip_event.247.a: "Welcome home."
 
 
 

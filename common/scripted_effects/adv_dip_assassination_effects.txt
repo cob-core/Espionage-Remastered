@@ -150,11 +150,37 @@ adv_dip_lose_operative = {
 						months = 60
 					}
 				}
+				save_scope_as = adv_dip_captured_agent
+				if = {
+					limit = { has_variable = adv_dip_captor }
+					var:adv_dip_captor = {
+						save_scope_as = adv_dip_captor_country
+					}
+				}
+				root = { trigger_event = { id = adv_dip_event.245 } }
 			}
 			50 = {
 				custom_tooltip = adv_dip_operative_executed_tt
 				remove_variable = assassination_leader_var
 				set_character_busy_and_immortal = no
+				# Notify before the kill so the agent's scope is alive when
+				# the event's trigger and loc are evaluated.
+				save_scope_as = adv_dip_executed_agent
+				if = {
+					limit = { exists = scope:spy_target_country }
+					scope:spy_target_country = {
+						save_scope_as = adv_dip_captor_country
+					}
+				}
+				else_if = {
+					limit = { root = { has_variable = assassination_target_country } }
+					root = {
+						var:assassination_target_country ?= {
+							save_scope_as = adv_dip_captor_country
+						}
+					}
+				}
+				root = { trigger_event = { id = adv_dip_event.246 } }
 				kill_character = yes
 			}
 		}

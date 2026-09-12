@@ -3538,6 +3538,13 @@ adv_dip_event.215 = {
 				value = scope:adv_dip_flip_victim
 				months = 60
 			}
+			save_scope_as = adv_dip_captured_agent
+		}
+		scope:adv_dip_flip_victim ?= {
+			save_scope_as = adv_dip_captor_country
+		}
+		scope:adv_dip_flip_spymaster_scope ?= {
+			trigger_event = { id = adv_dip_event.245 }
 		}
 		shadow_war_score_major_effect = yes
 		remove_variable = adv_dip_flip_code
@@ -3564,6 +3571,13 @@ adv_dip_event.215 = {
 				value = scope:adv_dip_flip_victim
 				months = 60
 			}
+			save_scope_as = adv_dip_captured_agent
+		}
+		scope:adv_dip_flip_victim ?= {
+			save_scope_as = adv_dip_captor_country
+		}
+		scope:adv_dip_flip_spymaster_scope ?= {
+			trigger_event = { id = adv_dip_event.245 }
 		}
 		shadow_war_score_minor_effect = yes
 		remove_variable = adv_dip_flip_code
@@ -3595,8 +3609,12 @@ adv_dip_event.216 = {
 		name = adv_dip_event.216.a
 		default_option = yes
 		custom_tooltip = adv_dip_flip_escaped_tt
+		scope:adv_dip_flipped_agent ?= {
+			save_scope_as = adv_dip_escaped_agent
+		}
 		scope:adv_dip_flip_spymaster_scope ?= {
 			adv_dip_collapse_flipped_network = yes
+			trigger_event = { id = adv_dip_event.247 }
 		}
 		remove_variable = adv_dip_flip_code
 		remove_variable = adv_dip_flip_spymaster
@@ -3801,6 +3819,126 @@ adv_dip_event.244 = {
 		name = adv_dip_event.244.a
 		default_option = yes
 		custom_tooltip = adv_dip_false_flag_active_tt
+	}
+}
+
+# An operative has been taken: fired at the owner from every capture site —
+# the failed-assassination roll (adv_dip_lose_operative) and both capture
+# options of the flip event .215. The yearly held-operative review is .210.
+adv_dip_event.245 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.245.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = adv_dip_event.245.d
+				trigger = { exists = scope:adv_dip_captor_country }
+			}
+			desc = adv_dip_event.245.d2
+		}
+	}
+	flavor = adv_dip_event.245.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_captured_agent
+	}
+
+	option = {
+		name = adv_dip_event.245.a
+		default_option = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# An operative has been executed: fired at the owner from the execution branch
+# of adv_dip_lose_operative, before the kill resolves.
+adv_dip_event.246 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.246.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = adv_dip_event.246.d
+				trigger = { exists = scope:adv_dip_captor_country }
+			}
+			desc = adv_dip_event.246.d2
+		}
+	}
+	flavor = adv_dip_event.246.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_executed_agent
+	}
+
+	option = {
+		name = adv_dip_event.246.a
+		default_option = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# An agent slipped a counter-intelligence net and made it home: fired at the
+# owner from .216 (the victim's failed move against them). The network is
+# blown, but the operative returns to the roster.
+adv_dip_event.247 = {
+	type = country_event
+	placement = root
+
+	title = adv_dip_event.247.t
+	desc = adv_dip_event.247.d
+	flavor = adv_dip_event.247.f
+
+	event_image = {
+		video = "unspecific_politicians_arguing"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/aristocrats"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		exists = scope:adv_dip_escaped_agent
+	}
+
+	option = {
+		name = adv_dip_event.247.a
+		default_option = yes
+		ai_chance = {
+			base = 10
+		}
 	}
 }
 
