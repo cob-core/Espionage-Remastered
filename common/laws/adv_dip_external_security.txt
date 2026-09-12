@@ -26,7 +26,7 @@ law_spy_agency = {
 	progressiveness = 25
 
 	unlocking_technologies = {
-		international_relations
+		central_archives
 	}
 
 	institution = institution_espionage
@@ -106,7 +106,7 @@ law_directorate_of_state_security = {
 	institution = institution_espionage
 
 	unlocking_technologies = {
-		international_relations
+		identification_documents
 	}
 
 	ai_enact_weight_modifier = {
@@ -136,7 +136,7 @@ law_deniable_assets = {
 	institution = institution_espionage
 
 	unlocking_technologies = {
-		mass_communication
+		political_agitation
 	}
 
 	ai_enact_weight_modifier = {
