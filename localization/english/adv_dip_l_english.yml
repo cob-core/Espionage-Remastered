@@ -677,7 +677,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA discree
  setting_players_only_tech_stealing_desc: "Only human players may steal technology. The AI will never use this action."
  adv_dip_je_expand_infrastructure: "Expand Infrastructure"
  adv_dip_je_expand_infrastructure_desc: "Fund railways, roads, and ports in [SCOPE.gsCountry('target').GetName] to accelerate their development."
- adv_dip_catalyst_pact_formed: "Diplomatic Pact Formed"
  # v4.1 Shadow War
  clandestine_arms_pipeline: "Clandestine Arms Pipeline"
  clandestine_arms_pipeline_desc: "#header $clandestine_arms_pipeline$#!\n$TOOLTIP_DELIMITER$\nA covert operation supplying money and war materiel to a country at war without joining it. The support stays secret unless enough shipments are intercepted."

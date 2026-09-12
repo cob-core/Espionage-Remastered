@@ -677,7 +677,6 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  setting_players_only_tech_stealing_desc: "Seuls les joueurs humains peuvent voler des technologies. L'IA n'utilisera jamais cette action."
  adv_dip_je_expand_infrastructure: "Développer les infrastructures"
  adv_dip_je_expand_infrastructure_desc: "Financez chemins de fer, routes et ports en [SCOPE.gsCountry('target').GetName] pour accélérer leur développement."
- adv_dip_catalyst_pact_formed: "Pacte diplomatique conclu"
  # v4.1 Guerre de l'ombre
  clandestine_arms_pipeline: "Filière d'armes clandestine"
  clandestine_arms_pipeline_desc: "#header $clandestine_arms_pipeline$#!\n$TOOLTIP_DELIMITER$\nUne opération secrète qui fournit fonds et matériel de guerre à un pays en guerre sans se joindre au conflit. Le soutien reste secret tant qu'un nombre suffisant de cargaisons n'est pas intercepté."
