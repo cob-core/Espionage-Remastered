@@ -965,6 +965,18 @@ adv_dip_espionage_monthly = {
 						target = scope:spy_target_country
 					}
 				}
+				# Tech parity: nothing left to steal — recall the agent and tell
+				# the initiator why, instead of winding down silently.
+				else_if = {
+					limit = {
+						scope:spy_target_country = { NOT = { techs_researched > root.techs_researched } }
+					}
+					add_to_local_variable_list = {
+						name = adv_dip_stop_steal_technology
+						target = scope:spy_target_country
+					}
+					root = { trigger_event = { id = adv_dip_event.93 } }
+				}
 				else = {
 					root = {
 
@@ -1013,18 +1025,6 @@ adv_dip_espionage_monthly = {
 						name = adv_dip_stop_sabotage_recruitment
 						target = scope:spy_target_country
 					}
-				}
-				# Tech parity: nothing left to steal — recall the agent and tell
-				# the initiator why, instead of winding down silently.
-				else_if = {
-					limit = {
-						scope:spy_target_country = { NOT = { techs_researched > root.techs_researched } }
-					}
-					add_to_local_variable_list = {
-						name = adv_dip_stop_steal_technology
-						target = scope:spy_target_country
-					}
-					root = { trigger_event = { id = adv_dip_event.93 } }
 				}
 				else = {
 					root = {
@@ -1138,16 +1138,37 @@ adv_dip_espionage_monthly = {
 								trigger_event = { id = adv_dip_event.81 popup = yes }
 							}
 						}
-						# The AI commits to a party once per campaign.
+						# The AI commits to a party once per campaign, preferring
+						# the opposition — the point is to unseat the sitting
+						# government.
 						else_if = {
 							limit = { root = { is_player = no } }
 							scope:spy_target_country = {
-								random_active_party = {
-									set_variable = {
-										name = adv_dip_backed_by
-										value = root
+								if = {
+									limit = {
+										any_active_party = {
+											NOT = { any_member = { is_in_government = yes } }
+										}
 									}
-									add_momentum = momentum_large
+									random_active_party = {
+										limit = {
+											NOT = { any_member = { is_in_government = yes } }
+										}
+										set_variable = {
+											name = adv_dip_backed_by
+											value = root
+										}
+										add_momentum = momentum_large
+									}
+								}
+								else = {
+									random_active_party = {
+										set_variable = {
+											name = adv_dip_backed_by
+											value = root
+										}
+										add_momentum = momentum_large
+									}
 								}
 							}
 						}
