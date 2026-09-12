@@ -152,6 +152,10 @@ adv_dip_sgui_dismiss_director = {
 				name = adv_dip_director
 				target = scope:candidate
 			}
+			if = {
+				limit = { has_modifier = adv_dip_director_modifier }
+				remove_modifier = adv_dip_director_modifier
+			}
 			scope:candidate = {
 				save_scope_as = adv_dip_spurned_director
 				interest_group ?= {
@@ -652,6 +656,9 @@ adv_dip_sgui_appoint_director = {
 			scope:candidate = {
 				remove_character_role = character_role_operative
 				add_character_role = character_role_spymaster
+			}
+			add_modifier = {
+				name = adv_dip_director_modifier
 			}
 		}
 	}

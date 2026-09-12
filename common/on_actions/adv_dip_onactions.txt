@@ -154,6 +154,9 @@ adv_dip_espionage_yearly = {
 				name = adv_dip_director
 				target = scope:adv_dip_new_director
 			}
+			add_modifier = {
+				name = adv_dip_director_modifier
+			}
 		}
 		if = {
 			limit = {
@@ -375,13 +378,25 @@ adv_dip_espionage_monthly = {
 				}
 			}
 		}
-		# Director of Intelligence bonus, maintained while one is seated
+		# Director of Intelligence bonus: permanent while one is seated. The
+		# appoint/dismiss SGUIs apply and remove it directly; this reconciler
+		# converges any other path (death, annexation, AI appointment) within
+		# a month.
 		if = {
-			limit = { has_variable_list = adv_dip_director }
+			limit = {
+				has_variable_list = adv_dip_director
+				NOT = { has_modifier = adv_dip_director_modifier }
+			}
 			add_modifier = {
 				name = adv_dip_director_modifier
-				months = 2
 			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_variable_list = adv_dip_director }
+				has_modifier = adv_dip_director_modifier
+			}
+			remove_modifier = adv_dip_director_modifier
 		}
 		# Prune operatives who have died or left our service
 		if = {
