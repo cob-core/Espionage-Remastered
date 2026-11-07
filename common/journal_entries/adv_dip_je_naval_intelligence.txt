@@ -2,6 +2,10 @@
 
 	group = je_group_espionage
 
+	activation_description = {
+		always = yes
+	}
+
 	weight = 200
 	transferable = no
 	should_be_pinned_by_default_involved = yes
@@ -27,33 +31,52 @@
 	immediate = {
 	}
 
-	complete = {
-		custom_tooltip = {
-			text = adv_dip_je_naval_intelligence_success
-			scope:journal_entry = {
-				"scripted_bar_progress(naval_intel_progress_bar)" >= 10
+	outcome = {
+		header = je_standard_completion_header
+		effect_header = je_standard_on_completion_header
+		conclusion_desc = je_standard_completion_conclusion_desc
+		color = "gold_positive"
+		trigger = {
+			custom_tooltip = {
+				text = adv_dip_je_naval_intelligence_success
+				scope:journal_entry = {
+					"scripted_bar_progress(naval_intel_progress_bar)" >= 10
+				}
 			}
+		}
+		effect = {
+			trigger_event = { id = adv_dip_event.148 }
 		}
 	}
 
-	on_complete = {
-		trigger_event = { id = adv_dip_event.148 }
-	}
-
-	fail = {
-		OR = {
+	outcome = {
+		header = je_standard_failure_header
+		effect_header = je_standard_on_failure_header
+		conclusion_desc = je_standard_failure_conclusion_desc
+		color = "blue_negative"
+		trigger = {
 			custom_tooltip = {
 				text = adv_dip_je_naval_intelligence_exposed
 				scope:journal_entry = {
 					"scripted_bar_progress(naval_intel_risk_bar)" >= 10
 				}
 			}
-
-			NOT = { has_variable = naval_intel_target_var }
+		}
+		effect = {
+			trigger_event = { id = adv_dip_event.149 }
 		}
 	}
 
-	on_fail = {
-		trigger_event = { id = adv_dip_event.149 }
+	# Safety net: the network lost its target, so close it out through the
+	# failure event's teardown.
+	outcome = {
+		flags = { hidden }
+		conclusion_desc = je_standard_failure_conclusion_desc
+		trigger = {
+			NOT = { has_variable = naval_intel_target_var }
+		}
+		effect = {
+			trigger_event = { id = adv_dip_event.149 }
+		}
 	}
 }

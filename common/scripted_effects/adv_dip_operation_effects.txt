@@ -223,7 +223,7 @@ adv_dip_dispatch_pending_operation = {
 						}
 						create_character = {
 							culture = primary_culture
-							ideology = ideology_communist
+							ideology = ideology_communist_leader
 							on_created = {
 								exile_character = yes
 								root = {

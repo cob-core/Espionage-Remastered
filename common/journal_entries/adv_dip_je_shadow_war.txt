@@ -2,6 +2,10 @@
 
 	group = je_group_espionage
 
+	activation_description = {
+		always = yes
+	}
+
 	widget = {
 		gui = "gui/journal_entry_widgets/adv_dip_console_widgets.gui"
 		name = "widget_adv_dip_console"
@@ -58,15 +62,17 @@
 		}
 	}
 
-	invalid = {
-		NOT = { OR = {
-			has_law = law_type:law_consular_intelligence
-			has_law = law_type:law_spy_agency
-			has_law = law_type:law_directorate_of_state_security
-			has_law = law_type:law_deniable_assets
-		} }
-	}
-
-	on_invalid = {
+	# The service is abolished: the JE quietly closes.
+	outcome = {
+		flags = { hidden invalid_outcome }
+		conclusion_desc = je_standard_failure_conclusion_desc
+		trigger = {
+			NOR = {
+				has_law = law_type:law_consular_intelligence
+				has_law = law_type:law_spy_agency
+				has_law = law_type:law_directorate_of_state_security
+				has_law = law_type:law_deniable_assets
+			}
+		}
 	}
 }

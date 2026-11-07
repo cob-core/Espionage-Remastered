@@ -325,7 +325,7 @@ adv_dip_event.21 = {
 		trigger = {    
 			exists = scope:nationalists_culture_scope_0   
 		}  
-		name = "[SCOPE.sCulture('nationalists_culture_scope_0').GetName]"
+		name = adv_dip_option_nationalists_culture_scope_0
 		scope:spy_target_country = {
 			random_list = { 
 				1 = {	
@@ -397,7 +397,7 @@ adv_dip_event.21 = {
 		trigger = {    
 			exists = scope:nationalists_culture_scope_1   
 		}  
-		name = "[SCOPE.sCulture('nationalists_culture_scope_1').GetName]"
+		name = adv_dip_option_nationalists_culture_scope_1
 		scope:spy_target_country = {
 			random_list = { 
 				1 = {	
@@ -470,7 +470,7 @@ adv_dip_event.21 = {
 		trigger = {    
 			exists = scope:nationalists_culture_scope_2   
 		}  
-		name = "[SCOPE.sCulture('nationalists_culture_scope_2').GetName]"
+		name = adv_dip_option_nationalists_culture_scope_2
 		scope:spy_target_country = {
 			random_list = { 
 				1 = {	
@@ -543,7 +543,7 @@ adv_dip_event.21 = {
 		trigger = {    
 			exists = scope:nationalists_culture_scope_3   
 		}  
-		name = "[SCOPE.sCulture('nationalists_culture_scope_3').GetName]"
+		name = adv_dip_option_nationalists_culture_scope_3
 		scope:spy_target_country = {
 			random_list = { 
 				1 = {	
@@ -615,7 +615,7 @@ adv_dip_event.21 = {
 		trigger = {    
 			exists = scope:nationalists_culture_scope_4   
 		}  
-		name = "[SCOPE.sCulture('nationalists_culture_scope_4').GetName]"
+		name = adv_dip_option_nationalists_culture_scope_4
 		scope:spy_target_country = {
 			random_list = { 
 				1 = {	
@@ -3412,7 +3412,7 @@ adv_dip_event.200 = {
 	}
 
 	option = {
-		name = "[SCOPE.sCharacter('op_candidate_1').GetFullName]"
+		name = adv_dip_option_op_candidate_1
 		trigger = { exists = scope:op_candidate_1 }
 		custom_tooltip = adv_dip_send_operative_tt
 		scope:op_candidate_1 = { save_scope_as = chosen_operative }
@@ -3420,7 +3420,7 @@ adv_dip_event.200 = {
 	}
 
 	option = {
-		name = "[SCOPE.sCharacter('op_candidate_2').GetFullName]"
+		name = adv_dip_option_op_candidate_2
 		trigger = { exists = scope:op_candidate_2 }
 		custom_tooltip = adv_dip_send_operative_tt
 		scope:op_candidate_2 = { save_scope_as = chosen_operative }
@@ -3428,7 +3428,7 @@ adv_dip_event.200 = {
 	}
 
 	option = {
-		name = "[SCOPE.sCharacter('op_candidate_3').GetFullName]"
+		name = adv_dip_option_op_candidate_3
 		trigger = { exists = scope:op_candidate_3 }
 		custom_tooltip = adv_dip_send_operative_tt
 		scope:op_candidate_3 = { save_scope_as = chosen_operative }

@@ -129,7 +129,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 	option = {
 
 		default_option = yes
-		name = "[SCOPE.sCharacter('assassination_leader_1').GetFullName]"
+		name = adv_dip_option_assassination_leader_1
 		custom_tooltip = assassination_costs_tt
 		scope:assassination_leader_1 = {
 			set_variable = assassination_leader_var
@@ -139,7 +139,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 	}
 
 	option = {
-		name = "[SCOPE.sCharacter('assassination_leader_2').GetFullName]"
+		name = adv_dip_option_assassination_leader_2
 		custom_tooltip = assassination_costs_tt
 		trigger = {
 			exists = scope:assassination_leader_2
@@ -152,7 +152,7 @@ adv_dip_assassination_event.101 = { # Select Commander
 	}
 
 	option = {
-		name = "[SCOPE.sCharacter('assassination_leader_3').GetFullName]"
+		name = adv_dip_option_assassination_leader_3
 		custom_tooltip = assassination_costs_tt
 		trigger = {
 			exists = scope:assassination_leader_3
@@ -344,7 +344,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_0
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_0').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_0
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -367,7 +367,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_1
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_1').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_1
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -390,7 +390,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_2
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_2').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_2
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -413,7 +413,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_3
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_3').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_3
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -436,7 +436,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_4
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_4').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_4
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -459,7 +459,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_5
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_5').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_5
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -482,7 +482,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_6
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_6').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_6
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -505,7 +505,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_7
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_7').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_7
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -528,7 +528,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_8
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_8').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_8
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -550,7 +550,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_9
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_9').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_9
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -573,7 +573,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_10
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_10').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_10
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -596,7 +596,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_11
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_11').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_11
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
@@ -619,7 +619,7 @@ adv_dip_assassination_event.102 = { # Select Target
 		trigger = {    
 			exists = scope:assassination_target_scope_12
 		}
-		name = "[SCOPE.sCharacter('assassination_target_scope_12').GetFullName]"
+		name = adv_dip_option_assassination_target_scope_12
 		trigger_event = {
 			id = adv_dip_assassination_event.103
 			days = 7
