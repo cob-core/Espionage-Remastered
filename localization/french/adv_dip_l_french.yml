@@ -830,7 +830,7 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nUn progra
  adv_dip_debrief_operative: "Débriefer l'agent"
  ADV_DIP_CONSOLE_OPERATIVES: "Agents"
  ADV_DIP_CONSOLE_RECRUIT: "Recruter un agent"
- adv_dip_recruit_cap_tt: "Notre institution d'espionnage ne peut entretenir davantage d'agents."
+ adv_dip_recruit_cap_tt: "Tous les postes d'agent sont pourvus. L'institution d'espionnage entretient un agent par niveau, et les agents capturés conservent leur poste. Augmentez le niveau de l'institution ou renvoyez un agent inactif pour en recruter un autre."
  cryptographer: "Cryptographe"
  cryptographer_desc: "Formé aux chiffres et aux transmissions ; il lit ce que d'autres croient illisible. #P +30% de réussite mensuelle#! sur les opérations de vol de technologie."
  master_of_disguise: "Maître du déguisement"

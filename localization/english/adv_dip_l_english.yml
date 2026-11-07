@@ -830,7 +830,7 @@ develop_nation_desc: "#header $develop_nation$#!\n$TOOLTIP_DELIMITER$\nA discree
  adv_dip_debrief_operative: "Debrief Operative"
  ADV_DIP_CONSOLE_OPERATIVES: "Operatives"
  ADV_DIP_CONSOLE_RECRUIT: "Recruit Operative"
- adv_dip_recruit_cap_tt: "Our espionage institution can support no more operatives."
+ adv_dip_recruit_cap_tt: "Every operative slot is filled. The espionage institution supports one operative per level, and captured operatives still hold their slot. Raise the institution's level or dismiss an idle operative to recruit another."
  cryptographer: "Cryptographer"
  cryptographer_desc: "Trained in ciphers and signals; reads what others believe unreadable. #P +30% monthly success#! on Steal Technology operations."
  master_of_disguise: "Master of Disguise"

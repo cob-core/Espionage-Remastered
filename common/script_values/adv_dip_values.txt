@@ -295,3 +295,14 @@ adv_dip_upkeep_medium_display = {
 	round = yes
 	min = 1200
 }
+
+# Free operative slots for root: the espionage institution supports one
+# operative per level, and every rostered operative (captured ones included)
+# fills a slot.
+adv_dip_operative_openings = {
+	value = institution_investment_level:institution_espionage
+	every_in_list = {
+		variable = adv_dip_operatives
+		subtract = 1
+	}
+}

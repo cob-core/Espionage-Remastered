@@ -13,40 +13,14 @@
 	is_valid = {
 		custom_tooltip = {
 			text = adv_dip_recruit_cap_tt
-			OR = {
-				NOT = { has_variable_list = adv_dip_operatives }
-				NOT = {
-					list_size = {
-						name = adv_dip_operatives
-						value >= institution_investment_level:institution_espionage
-					}
-				}
-			}
+			adv_dip_operative_openings >= 1
 		}
 	}
 
 	effect = {
 		custom_tooltip = adv_dip_recruit_tt
 		adv_dip_covert_charge = { COST = adv_dip_recruit_cost WEEKS = 26 }
-		create_character = {
-			role = character_role_operative
-			culture = primary_culture
-			on_created = {
-				save_scope_as = new_operative
-				random_list = {
-					1 = { add_trait = cryptographer }
-					1 = { add_trait = master_of_disguise }
-					1 = { add_trait = saboteur }
-					1 = { add_trait = silver_tongue }
-				}
-				owner = {
-					add_to_variable_list = {
-						name = adv_dip_operatives
-						target = prev
-					}
-				}
-			}
-		}
+		adv_dip_create_operative = yes
 	}
 }
 

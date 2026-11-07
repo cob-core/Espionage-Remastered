@@ -79,59 +79,21 @@ adv_dip_espionage_yearly = {
 			has_law = law_type:law_deniable_assets
 		}
 				scaled_debt <= 0
-				NOT = {
-					list_size = {
-						name = adv_dip_operatives
-						value >= institution_investment_level:institution_espionage
-					}
-				}
+				adv_dip_operative_openings >= 1
 			}
-			create_character = {
-				role = character_role_operative
-				culture = primary_culture
-				on_created = {
-					save_scope_as = adv_dip_ai_operative
-					random_list = {
-						1 = { add_trait = cryptographer }
-						1 = { add_trait = master_of_disguise }
-						1 = { add_trait = saboteur }
-						1 = { add_trait = silver_tongue }
-					}
-				}
+			# Snapshot the openings first: the first hire's roster write is
+			# deferred, so re-reading the roster would not count it yet.
+			set_local_variable = {
+				name = adv_dip_ai_openings
+				value = adv_dip_operative_openings
 			}
-			add_to_variable_list = {
-				name = adv_dip_operatives
-				target = scope:adv_dip_ai_operative
-			}
+			adv_dip_create_operative = yes
 			# Second recruit in the same year while still under cap: operations
 			# bind operatives for their whole lifetime, so one hire a year would
 			# starve the AI's espionage program within a decade.
 			if = {
-				limit = {
-					NOT = {
-						list_size = {
-							name = adv_dip_operatives
-							value >= institution_investment_level:institution_espionage
-						}
-					}
-				}
-				create_character = {
-					role = character_role_operative
-					culture = primary_culture
-					on_created = {
-						save_scope_as = adv_dip_ai_operative_2
-						random_list = {
-							1 = { add_trait = cryptographer }
-							1 = { add_trait = master_of_disguise }
-							1 = { add_trait = saboteur }
-							1 = { add_trait = silver_tongue }
-						}
-					}
-				}
-				add_to_variable_list = {
-					name = adv_dip_operatives
-					target = scope:adv_dip_ai_operative_2
-				}
+				limit = { local_var:adv_dip_ai_openings >= 2 }
+				adv_dip_create_operative = yes
 			}
 		}
 		if = {

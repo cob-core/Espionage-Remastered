@@ -737,3 +737,27 @@ adv_dip_operation_die = {
 		root = { trigger_event = { id = $EVENT$ } }
 	}
 }
+
+# Hires one operative for root with a random tradecraft trait. Character
+# creation is deferred, so the roster write lives inside on_created and is
+# root-wrapped (same reason as the Smuggle Revolutionary exiles above).
+adv_dip_create_operative = {
+	create_character = {
+		role = character_role_operative
+		culture = primary_culture
+		on_created = {
+			random_list = {
+				1 = { add_trait = cryptographer }
+				1 = { add_trait = master_of_disguise }
+				1 = { add_trait = saboteur }
+				1 = { add_trait = silver_tongue }
+			}
+			root = {
+				add_to_variable_list = {
+					name = adv_dip_operatives
+					target = prev
+				}
+			}
+		}
+	}
+}
