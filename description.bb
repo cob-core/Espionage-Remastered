@@ -10,7 +10,7 @@ Build a real intelligence service: recruit named operatives, run secret operatio
 
 [i]The AI runs espionage too, and it can run it against you.[/i]
 
-[h2]Features (4.1)[/h2]
+[h2]Features (4.2)[/h2]
 [list]
 [*][b]Espionage is genuinely secret.[/b] No pacts, no tell-tale modifiers, no visible spending: operations charge the treasury directly, and a target learns it is being worked on only when your people are caught.
 [*][b]Operatives.[/b] Recruit named agents with tradecraft specialties - cryptographer, saboteur, master of disguise, silver tongue. Every operation asks who goes and cannot run without someone free; the right specialist tilts the odds. Time on assignment builds experience through Seasoned, Veteran and Master Spy: better odds, better escape chances, unbreakable silence under interrogation.

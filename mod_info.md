@@ -1,7 +1,16 @@
 # Espionage Remastered
 [Link to Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3432409401)  
 
-## Latest Changelog (v4.1 — Loose Ends)
+## Latest Changelog (v4.2 — Ivan-Chai)
++ Updated for Victoria 3 1.15.
++ Assassination plots, development programmes and naval intelligence networks can succeed and fail again. Under 1.15 they never concluded.
++ Operative selection names each candidate again, as do the assassination-target and nationalist-culture choices.
++ The operative roster now holds to its cap of one operative per level of the espionage institution, for the AI too. Captured operatives keep their slot. The Recruit button says why it is disabled and how to free a slot.
++ Fixed Smuggle Revolutionary's exile spawning under 1.15.
++ Cultural Exchange, Military Attaché and Send Advisors use the 1.15 infamy cap.
++ Fixed the country link in four operation descriptions.
+
+## Previous Changelog (v4.1 — Loose Ends)
 + Owner-side notifications for every operative fate: captured (captor named when known), executed, or escaped home after a failed counter-intelligence move.
 + Target-side assassination notifications: a successful plot is recognised as murder, a foiled plot is announced — the sponsor stays unnamed.
 + Steal Technology requires the target to lead in total technologies (visible tooltip); reaching parity mid-operation recalls the agent with a "Nothing Left to Steal" event instead of ending silently.

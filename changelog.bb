@@ -1,5 +1,16 @@
 [h1]Changelog[/h1]
 
+[h2]4.2: Ivan-Chai[/h2]
+[list]
+[*][b]Updated for Victoria 3 1.15.[/b]
+[*]Assassination plots, development programmes and naval intelligence networks can succeed and fail again. Under 1.15 they never concluded.
+[*]Operative selection names each candidate again, as do the assassination-target and nationalist-culture choices.
+[*]The operative roster now holds to its cap of one operative per level of the espionage institution, for the AI too. Captured operatives keep their slot. The Recruit button says why it is disabled and how to free a slot.
+[*]Fixed Smuggle Revolutionary's exile spawning under 1.15.
+[*]Cultural Exchange, Military Attaché and Send Advisors use the 1.15 infamy cap.
+[*]Fixed the country link in four operation descriptions.
+[/list]
+
 [h2]4.1: Loose Ends[/h2]
 [list]
 [*][b]Operative fates are now reported.[/b] You are told when one of your agents is captured (and by whom, when known), executed, or slips a counter-intelligence net and makes it home.
