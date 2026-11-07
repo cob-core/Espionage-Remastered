@@ -152,6 +152,31 @@ for p, t in mod_script.items():
         if tok in hay:
             failures.append(f"[legacy] {p.relative_to(MOD)}: banned 1.13-invalid token '{tok.strip()}'")
 
+# --- 5c. banned 1.15 constructs (proven invalid in 1.15 via error.log) ---
+# Journal entries conclude through outcome = {} blocks; the old pairs no longer parse.
+JE_LEGACY_BLOCK = re.compile(r"^\s*(complete|fail|invalid|timeout|on_complete|on_fail|on_invalid|on_timeout)\s*=", re.M)
+LEGACY_115 = [
+    # Event option names must be loc keys; inline loc is read as an unknown key.
+    (re.compile(r'^\s*name\s*=\s*"\[', re.M), "inline loc in an option name"),
+    # list_size reads temporary lists; the mod's rosters are variable lists.
+    (re.compile(r"(?<![a-z_])list_size\s*=\s*\{"), "list_size on a variable list (use variable_list_size)"),
+    (re.compile(r"WAR_GOAL_INFAMY_POPULATION_SCALING_MULTIPLIER_MAX_TOTAL"), "define removed in 1.15"),
+    (re.compile(r"ideology\s*=\s*ideology_communist\b"), "IG ideology given to a character (use ideology_communist_leader)"),
+]
+for p, t in mod_script.items():
+    if "journal_entries" in p.parts:
+        for m in JE_LEGACY_BLOCK.finditer(t):
+            failures.append(f"[legacy] {p.relative_to(MOD)}: pre-1.15 journal entry block '{m.group(1)}' (use outcome)")
+        if "activation_description" not in t:
+            failures.append(f"[legacy] {p.relative_to(MOD)}: journal entry lacks activation_description")
+    for rx, why in LEGACY_115:
+        if rx.search(t):
+            failures.append(f"[legacy] {p.relative_to(MOD)}: {why}")
+for p in sorted((MOD / "localization").rglob("*.yml")):
+    # Concept() arguments that expand loc must be quote-escaped with |q.
+    for m in re.finditer(r"'\$[A-Za-z_]+\$'", read(p)):
+        failures.append(f"[legacy] {p.relative_to(MOD)}: unescaped loc argument {m.group(0)} (use $...|q$)")
+
 # --- 6. icons ---
 for p, t in mod_script.items():
     for icon in re.findall(r"[a-zA-Z_/]+\.dds", t):
